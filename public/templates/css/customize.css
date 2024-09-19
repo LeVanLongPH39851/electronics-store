@@ -1,0 +1,14 @@
+.signin_password {
+    position: relative;
+    width: 100%;
+}
+#togglePassword,
+#toggleConfirmPassword {
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    font-size: 18px;
+    color: #999;
+}

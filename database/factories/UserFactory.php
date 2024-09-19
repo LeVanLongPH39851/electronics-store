@@ -23,11 +23,19 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $showPassword = Str::random(8);
+
+        //Faker
         return [
+            'user_code' => "UR-".Str::random(5),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'phone' => fake()->phoneNumber,
+            'address' => fake()->address,
+            'show_password' => $showPassword,
+            'role_id' => 3,
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => Hash::make($showPassword),
             'remember_token' => Str::random(10),
         ];
     }
