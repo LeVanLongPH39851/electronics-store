@@ -7,7 +7,7 @@
 
   <!-- Top Bar Start -->
   <body>
-    <div class="container-xxl">
+    <div class="container-xxl animated fadeInDown">
       <div class="row vh-100 d-flex justify-content-center">
         <div class="col-12 align-self-center">
           <div class="card-body">
@@ -42,8 +42,8 @@
                     >
                     @csrf
                       <div class="form-group mb-2">
-                        <label class="form-label" for="username"
-                          >Username</label
+                        <label class="form-label" for="email"
+                          >Email</label
                         >
                         <input
                           type="text"

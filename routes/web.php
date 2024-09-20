@@ -4,8 +4,13 @@ use App\Http\Controllers\Admins\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admins\DashboardController;
 use App\Http\Controllers\Admins\UserController;
+use App\Http\Controllers\Clients\AccountController;
+use App\Http\Controllers\Clients\CartController;
+use App\Http\Controllers\Clients\CheckoutController;
 use App\Http\Controllers\Clients\HomeController;
 use App\Http\Controllers\Clients\LoginController;
+use App\Http\Controllers\Clients\ProductDetailController;
+use App\Http\Controllers\Clients\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,4 +46,9 @@ Route::get('/login', [LoginController::class, 'login'])->name('client.login');
 Route::get('/signup', [LoginController::class, 'signup'])->name('client.signup');
 Route::post('/store', [LoginController::class, 'store'])->name('client.store');
 Route::post('/store-signup', [LoginController::class, 'storeSignup'])->name('client.store.signup');
-Route::get('/logout', [LoginController::class, 'logout'])->name('client.logout');
+Route::get('/shop', [ShopController::class, 'shop'])->name('client.shop');
+Route::get('/product-detail', [ProductDetailController::class, 'productDetail'])->name('client.product.detail');
+Route::get('/cart', [CartController::class, 'cart'])->name('client.cart');
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkout');
+Route::get('/account', [AccountController::class, 'account'])->name('client.account');
+Route::get('/order-detail', [AccountController::class, 'orderDetail'])->name('client.order.detail');
