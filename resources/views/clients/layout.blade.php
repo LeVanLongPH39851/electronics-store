@@ -50,9 +50,9 @@
       <!-- Newsletter Popup End --> --}}
       @include('clients.components.header')
       @include($template)
-      <!-- Signup-Newsletter End -->
+      @include('clients.components.newsletter')
       @include('clients.components.footer')
-      @include('clients.components.modal')
+      @yield('modal')
     </div>
     <!-- Main Wrapper End Here -->
     @include('clients.components.script')
