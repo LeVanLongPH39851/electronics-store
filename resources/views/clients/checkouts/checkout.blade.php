@@ -5,42 +5,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="coupon-accordion">
-                    <!-- ACCORDION START -->
-                    {{-- <h3>Returning customer? <span id="showlogin">Click here to login</span></h3>
-                    <div id="checkout-login" class="coupon-content">
-                        <div class="coupon-info">
-                            <p class="coupon-text">Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est sit amet ipsum luctus.</p>
-                            <form action="#">
-                                <p class="form-row-first">
-                                    <label>Username or email <span class="required">*</span></label>
-                                    <input type="text" />
-                                </p>
-                                <p class="form-row-last">
-                                    <label>Password  <span class="required">*</span></label>
-                                    <input type="text" />
-                                </p>
-                                <p class="form-row">
-                                    <input type="submit" value="Login" />
-                                    <label>
-                                    <input type="checkbox" />
-                                     Remember me 
-                                </label>
-                                </p>
-                                <p class="lost-password">
-                                    <a href="#">Lost your password?</a>
-                                </p>
-                            </form>
-                        </div>
-                    </div> --}}
-                    <!-- ACCORDION END -->
-                    <!-- ACCORDION START -->
-                    <h3>Have a coupon? <span id="showcoupon">Click here to enter your code</span></h3>
+                    <h3>Bạn có mã giảm giá không? <span id="showcoupon">Nhấp để nhập mã của bạn.</span></h3>
                     <div id="checkout_coupon" class="coupon-checkout-content">
                         <div class="coupon-info">
                             <form action="#">
                                 <p class="checkout-coupon">
-                                    <input type="text" class="code" placeholder="Coupon code" />
-                                    <input type="submit" value="Apply Coupon" />
+                                    <input type="text" class="code" placeholder="Mã Giảm Giá" />
+                                    <input type="submit" value="Áp Dụng" />
                                 </p>
                             </form>
                         </div>
@@ -58,39 +29,39 @@
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="checkbox-form mb-sm-40">
-                    <h3>Billing Details</h3>
+                    <h3>Chi Tiết Thanh Toán</h3>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="checkout-form-list mb-30">
-                                <label>Name <span class="required">*</span></label>
-                                <input type="text" placeholder="" />
+                                <label>Họ Và Tên<span class="required">*</span></label>
+                                <input type="text" placeholder="Họ và tên"/>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="checkout-form-list mb-30">
-                                <label>Address <span class="required">*</span></label>
-                                <input type="text" placeholder="Street address" />
+                                <label>Địa Chỉ <span class="required">*</span></label>
+                                <input type="text" placeholder="Địa chỉ"/>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="checkout-form-list mb-30">
-                                <label>Email Address <span class="required">*</span></label>
-                                <input type="email" placeholder="" />
+                                <label>Địa Chỉ Email <span class="required">*</span></label>
+                                <input type="email" placeholder="Địa chỉ email"/>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="checkout-form-list mb-30">
-                                <label>Phone <span class="required">*</span></label>
-                                <input type="text" placeholder="Postcode / Zip" />
+                                <label>Số Điện Thoại <span class="required">*</span></label>
+                                <input type="text" placeholder="Số điện thoại"/>
                             </div>
                         </div>
                     </div>
                     <div class="different-address">
                         <div class="order-notes">
                             <div class="checkout-form-list">
-                                <label>Order Notes</label>
+                                <label>Ghi Chú</label>
                                 <textarea id="checkout-mess" cols="30" rows="10"
-                                    placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                    placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: ghi chú đặc biệt khi giao hàng."></textarea>
                             </div>
                         </div>
                     </div>
@@ -98,13 +69,13 @@
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="your-order">
-                    <h3>Your order</h3>
+                    <h3>Thông Tin Đơn Hàng</h3>
                     <div class="your-order-table table-responsive">
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="product-name">Product</th>
-                                    <th class="product-total">Total</th>
+                                    <th class="product-name">Sản Phẩm</th>
+                                    <th class="product-total">Tổng Tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -127,11 +98,11 @@
                             </tbody>
                             <tfoot>
                                 <tr class="cart-subtotal">
-                                    <th>Cart Subtotal</th>
+                                    <th>Tạm tính</th>
                                     <td><span class="amount">£215.00</span></td>
                                 </tr>
                                 <tr class="order-total">
-                                    <th>Order Total</th>
+                                    <th>Tổng đơn hàng</th>
                                     <td><span class=" total amount">£215.00</span>
                                     </td>
                                 </tr>
@@ -140,36 +111,30 @@
                     </div>
                     <div class="payment-method">
                         <div class="mb-3">
-                            <h3>Select Payment Method:</h3>
+                            <h3>CHỌN PHƯƠNG THỨC THANH TOÁN:</h3>
                             
                             <div class="form-check border rounded p-3 mb-3 bg-white">
                                 <input class="form-check-input" type="radio" name="paymentMethod" id="paymentDirectBank" value="directBank" checked>
                                 <label class="form-check-label" for="paymentDirectBank">
-                                    Direct Bank Transfer
+                                    Thanh toán trực tuyến
                                 </label>
                                 <div class="form-text">
-                                    Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.
+                                    Thanh toán Online với thẻ ATM, MoMo, ZaloPay hoặc PayPal. Bạn sẽ được chuyển tới TechNova để tiến hành thanh toán.
                                 </div>
                             </div>
                             
                             <div class="form-check border rounded p-3 mb-3 bg-white">
                                 <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCheque" value="cheque">
                                 <label class="form-check-label" for="paymentCheque">
-                                    Cheque Payment
+                                    Thanh toán trực tiếp
                                 </label>
                                 <div class="form-text">
-                                    Please send your cheque to Store Name, Store Street, Store Town, Store State/County, Store Postcode.
+                                    Khách hàng thanh toán bằng tiền mặt khi nhận hàng.
                                 </div>
                             </div>
-                            
-                            <div class="form-check border rounded p-3 mb-3 bg-white">
-                                <input class="form-check-input" type="radio" name="paymentMethod" id="paymentPaypal" value="paypal">
-                                <label class="form-check-label" for="paymentPaypal">
-                                    PayPal
-                                </label>
-                                <div class="form-text">
-                                    Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.
-                                </div>
+
+                            <div class="text-center mt-4">
+                                <button class="btn btn-success btn-lg">Thanh Toán</button>
                             </div>
                         </div>
                         

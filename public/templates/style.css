@@ -5053,3 +5053,16 @@ a.shipping-calculator-button:hover {
 .login-form .form-control {
   font-size: 13px;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity-prd{
+  text-align: center;
+  width: 70px;
+  height: 38px;
+  appearance: none;
+}
