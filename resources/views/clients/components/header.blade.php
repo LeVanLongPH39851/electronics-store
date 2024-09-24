@@ -245,12 +245,12 @@
                   <a href="terms-conditions.html">Terms and conditions</a>
                 </li>
                 <li>
-                  <a href="shop.html"
+                  <a href="{{ route('client.shop') }}"
                     >shop<i class="fa fa-angle-down"></i
                   ></a>
                   <!-- Home Version Dropdown Start -->
                   <ul class="ht-dropdown dropdown-style-two">
-                    <li><a href="product.html">product details</a></li>
+                    <li><a href="{{ route('client.product.detail') }}">product details</a></li>
                     <li><a href="compare.html">compare</a></li>
                     <li><a href="cart.html">cart</a></li>
                     <li><a href="checkout.html">checkout</a></li>
