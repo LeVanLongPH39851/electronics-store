@@ -26,12 +26,6 @@
                           class="auth-logo"
                         />
                       </a>
-                      <h4 class="mt-3 mb-1 fw-semibold text-white fs-18">
-                        Let's Get Started Rizz
-                      </h4>
-                      <p class="text-muted fw-medium mb-0">
-                        Sign in to continue to Rizz.
-                      </p>
                     </div>
                   </div>
                   <div class="card-body pt-0">
@@ -42,15 +36,15 @@
                     >
                     @csrf
                       <div class="form-group mb-2">
-                        <label class="form-label" for="email"
+                        <label class="form-label"
                           >Email</label
                         >
                         <input
                           type="text"
-                          class="form-control"
+                          class="form-control {{$errors->has("email") ? "is-invalid" : ""}}" 
                           name="email"
                           value="{{old('email')}}"
-                          placeholder="Enter email"
+                          placeholder="Nhập vào email"
                         />
                         @if ($errors->has("email"))
                         <p class="text-danger mb-0 mt-1 fs-12">{{$errors->first("email")}}</p>
@@ -59,15 +53,13 @@
                       <!--end form-group-->
 
                       <div class="form-group">
-                        <label class="form-label" for="userpassword"
-                          >Password</label
+                        <label class="form-label"
+                          >Mật khẩu</label
                         >
-                        <input
-                          type="password"
-                          class="form-control"
-                          name="password"
-                          placeholder="Enter password"
-                        />
+                        <div class="password-eye">
+                          <input class="form-control {{$errors->has("password") ? "is-invalid" : ""}} bg-none" id="password" name="password" type="password" placeholder="Nhập vào mật khẩu">
+                          <i class="fa fa-eye {{$errors->has("password") ? "text-danger" : ""}}" id="togglePassword"></i>
+                        </div>
                         @if ($errors->has("password"))
                         <p class="text-danger mb-0 mt-1 fs-12">{{$errors->first("password")}}</p>
                         @endif
@@ -87,7 +79,7 @@
                             <label
                               class="form-check-label"
                               for="customSwitchSuccess"
-                              >Remember me</label
+                              >Ghi nhớ</label
                             >
                           </div>
                         </div>
@@ -96,7 +88,7 @@
                           <a
                             href="auth-recover-pw.html"
                             class="text-muted font-13"
-                            ><i class="dripicons-lock"></i> Forgot password?</a
+                            ><i class="dripicons-lock"></i> Quên mật khẩu ?</a
                           >
                         </div>
                         <!--end col-->
@@ -107,7 +99,7 @@
                         <div class="col-12">
                           <div class="d-grid mt-3">
                             <button class="btn btn-primary" type="submit">
-                              Log In <i class="fas fa-sign-in-alt ms-1"></i>
+                              Đăng Nhập <i class="fas fa-sign-in-alt ms-1"></i>
                             </button>
                           </div>
                         </div>
@@ -132,6 +124,19 @@
       <!--end row-->
     </div>
     <!-- container -->
+
+    {{-- Thêm js --}}
+    <script>
+      document.getElementById('togglePassword').addEventListener('click', function (e) {
+          const passwordField = document.getElementById('password');
+          const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+          passwordField.setAttribute('type', type);
+
+          // Đổi biểu tượng mắt
+          this.classList.toggle('fa-eye');
+          this.classList.toggle('fa-eye-slash');
+      });
+    </script>
   </body>
   <!--end body-->
 

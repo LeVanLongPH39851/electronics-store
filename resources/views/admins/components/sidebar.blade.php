@@ -40,11 +40,11 @@
             </li>
             <li class="nav-item">
               <a
-                class="nav-link {{$classActive === "Dashboard" ? "bg-active" : ""}}" {{-- Nếu classActive là "Dashboard" thì thêm class bg-active --}}
+                class="nav-link {{$classActive === "Thống Kê" ? "active bg-active" : ""}}" {{-- Nếu classActive là "Thống Kê" thì thêm class bg-active --}}
                 href="{{route('admin.index')}}"
               >
-                <i class="fas fa-home menu-icon {{$classActive === "Dashboard" ? "text-primary" : ""}}"></i> {{-- Nếu classActive là "Dashboard" thì thêm class text-primary --}}
-                <span>Dashboard</span>
+                <i class="fas fa-home menu-icon {{$classActive === "Thống Kê" ? "text-primary" : ""}}"></i> {{-- Nếu classActive là "Thông Kể" thì thêm class text-primary --}}
+                <span>Thống Kê</span>
               </a>
             </li>
             <!--end nav-item-->
@@ -243,13 +243,25 @@
               <!--end startbarApplications-->
             </li> --}}
             <!--end nav-item-->
+            @if (Auth::user()->role_id == 1)
             <li class="nav-item">
               <a
-                class="nav-link {{$classActive === "Users" ? "bg-active" : ""}}"
+                class="nav-link {{$classActive === "Nhân Viên" ? "active bg-active" : ""}}"
+                href="{{route('staff.index')}}"
+              >
+                <i class="fas fa-user-friends menu-icon {{$classActive === "Nhân Viên" ? "text-primary" : ""}}"></i>
+                <span>Nhân Viên</span>
+              </a>
+              <!--end startbarElements-->
+            </li>
+            @endif
+            <li class="nav-item">
+              <a
+                class="nav-link {{$classActive === "Khách Hàng" ? "active bg-active" : ""}}"
                 href="{{route('user.index')}}"
               >
-                <i class="fas fa-user-friends menu-icon {{$classActive === "Users" ? "text-primary" : ""}}"></i>
-                <span>Users</span>
+                <i class="fas fa-users menu-icon {{$classActive === "Khách Hàng" ? "text-primary" : ""}}"></i>
+                <span>Khách Hàng</span>
               </a>
               <!--end startbarElements-->
             </li>

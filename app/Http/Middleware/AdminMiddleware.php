@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class LoggedMiddleware
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,11 @@ class LoggedMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() == true && (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)){ //Nếu đăng nhập admin rồi
-            //Chuyển đến trang giao diện admin luôn
-            return redirect()->route("admin.index");
+        if (Auth::check() == false || (Auth::user()->role_id != 1 && Auth::user()->role_id != 2)) { //Kiểm tra nếu chưa đăng nhập hoặc vai trò không phải admin và nhân viên
+            //Chuyển hướng đến trang đăng nhập với thông báo lỗi
+            return redirect()->route('admin.login')->with('error', 'Vui lòng đăng nhập');
         }
-
+        
         return $next($request); //Chạy tiếp
     }
 }

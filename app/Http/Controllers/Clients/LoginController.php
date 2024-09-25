@@ -14,7 +14,7 @@ class LoginController extends Controller
     //Form đăng nhập client
     public function login(){
         $template = "clients.logins.login";
-        return view("clients.layout", ["title" => "Login", "template" => $template]);
+        return view("clients.layout", ["title" => "Đăng Nhập", "template" => $template]);
     }
 
     //Đăng nhập client
@@ -23,35 +23,53 @@ class LoginController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8'
+        ], [
+           'email.required' => "Không được để trống email",
+           'email.email' => "Email không đúng định dạng",
+           'password.required' => "Không được để trống mật khẩu",
+           'password.min' => "Mật khẩu phải có ít nhất 8 ký tự",
         ]);
 
         //Kiểm tra xem email, password có đúng không
         if(Auth::attempt([
             'email' => $request->input('email'),
             'password' => $request->input('password'),
+            'role_id' => 3, //Vai trò là người dùng
         ])){
-            //Đăng nhập thành công chuyển sang trang giao diện client và tạo biến success = 'Logged in successfully'
-                return redirect()->route('client.index')->with('success', 'Logged in successfully');
+            //Đăng nhập thành công chuyển sang trang giao diện client và tạo biến success = 'Đăng nhập thành công'
+            return redirect()->route('client.index')->with('success', 'Đăng nhập thành công');
         }
 
-        //Đăng nhập không thành công, hiện lại form đăng nhập client và tạo session error = 'Email or password is incorrect'
-        return redirect()->back()->with("error", "Email or password is incorrect");
+        //Đăng nhập không thành công, hiện lại form đăng nhập client và tạo session error = 'Email hoặc mật khẩu không chính xác'
+        return redirect()->back()->with("error", "Email hoặc mật khẩu không chính xác");
     }
 
     //Form đăng nhập client
     public function signup(){
         $template = "clients.logins.signup";
-        return view("clients.layout", ["title" => "Sign Up", "template" => $template]);
+        return view("clients.layout", ["title" => "Đăng Ký", "template" => $template]);
     }
     
     //Đăng nhập client
     public function storeSignup(Request $request){
         //Validate
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
+            'name' => 'required|max:100',
+            'email' => 'required|email|max:100|unique:users,email',
+            'password' => 'required|min:8|max:20',
             'password_confirmation' => 'required_with:password|same:password'
+        ], [
+            'name.required' => 'Không được để trống họ tên',
+            'name.max' => 'Họ tên quá dài',
+            'email.required' => 'Không được để trống email',
+            'email.email' => 'Email không đúng định dạng',
+            'email.max' => 'Email quá dài',
+            'email.unique' => 'Email này đã có người sử dụng',
+            'password.required' => 'Không được để trông mật khẩu',
+            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự',
+            'password.max' => 'Mật khẩu không quá 20 ký tự',
+            'password_confirmation.required_with' => 'Không được để trống xác nhận mật khẩu',
+            'password_confirmation.same' => 'Xác nhận mật khẩu không khớp',
         ]);
 
         //Tạo biến password

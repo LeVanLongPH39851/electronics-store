@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    protected $classActive = "Dashboard"; //Dùng để thêm class active vào thẻ <li> ở sidebar
+    protected $classActive = "Thống Kê"; //Dùng để thêm class active vào thẻ <li> ở sidebar
     
     //Dashboard admin
     public function index(){
