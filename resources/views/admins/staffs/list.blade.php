@@ -8,14 +8,14 @@
                             <h4 class="card-title">{{$title}}</h4>                      
                         </div><!--end col-->
                         <div class="col-auto"> 
-                            <form id="form_filter" method="GET" action="{{route('user.index')}}" class="row g-2">
+                            <form id="form_filter" method="GET" action="{{route('staff.index')}}" class="row g-2">
                                 <div class="col-auto">
                                     <select name="perPage" class="form-select" onchange="submitForm()">
-                                        <option {{ request('perPage') == 8 ? "selected" : ""}} value="8">8 khách hàng</option>
-                                        <option {{ request('perPage') == 10 ? "selected" : ""}} value="10">10 khách hàng</option>
-                                        <option {{ request('perPage') == 12 ? "selected" : ""}} value="12">12 khách hàng</option>
-                                        <option {{ request('perPage') == 15 ? "selected" : ""}} value="15">15 khách hàng</option>
-                                        <option {{ request('perPage') == 18 ? "selected" : ""}} value="18">18 khách hàng</option>
+                                        <option {{ request('perPage') == 5 ? "selected" : ""}} value="5">5 nhân viên</option>
+                                        <option {{ request('perPage') == 8 ? "selected" : ""}} value="8">8 nhân viên</option>
+                                        <option {{ request('perPage') == 10 ? "selected" : ""}} value="10">10 nhân viên</option>
+                                        <option {{ request('perPage') == 12 ? "selected" : ""}} value="12">12 nhân viên</option>
+                                        <option {{ request('perPage') == 15 ? "selected" : ""}} value="15">15 nhân viên</option>
                                         {{-- request('perPage'): dữ lại value cũ của perPage --}}
                                     </select>
                                 </div>
@@ -41,7 +41,7 @@
                                 </div>
 
                                 <div class="col-auto">
-                                  <a href="{{route('user.create')}}"><button type="button" class="btn btn-primary"><i class="fa-solid fa-plus me-1"></i> Thêm khách hàng</button></a>
+                                  <a href="{{route('staff.create')}}"><button type="button" class="btn btn-primary"><i class="fa-solid fa-plus me-1"></i> Thêm nhân viên</button></a>
                                 </div><!--end col-->
                             </form>    
                         </div><!--end col-->
@@ -75,23 +75,23 @@
                                             <input type="checkbox" class="form-check-input select" value="{{$user->id}}">
                                         </div>
                                     </td>
-                                    <td class="ps-0"><span class="badge bg-transparent border border-primary text-primary">{{$user->user_code}}</span></td>
+                                    <td class="ps-0"><span class="badge bg-transparent border border-blue text-blue">{{$user->user_code}}</span></td>
                                     <td>
-                                        <a href="{{route('user.show', $user->id)}}">
-                                            <img src="{{$user->image ? ".".Storage::url($user->image) : "assets/images/users/avatar-default.png"}}" alt="" class="thumb-md d-inline rounded-circle me-1">
+                                        <a href="{{route('staff.show', $user->id)}}">
+                                            <img src="{{$user->image ? ".".Storage::url($user->image) : "assets/images/users/avatar-default-staff.png"}}" alt="" class="thumb-md d-inline rounded-circle me-1">
                                         </a>
                                         <p class="d-inline-block align-middle mb-0">
-                                         <a href="{{route('user.show', $user->id)}}" style="color: inherit"><span class="font-13 fw-medium">{{$user->name}}</span></a> 
+                                            <a href="{{route('staff.show', $user->id)}}" style="color: inherit"><span class="font-13 fw-medium">{{$user->name}}</span></a> 
                                         </p>
                                     </td>
                                     <td><a href="#" class="d-inline-block align-middle mb-0 text-body">{{$user->email}}</a></td>
                                     <td class="text-center">{{date('d/m/Y', strtotime($user->created_at))}}</td>
-                                    <td class="text-center"><span class="badge bg-primary-subtle text-primary text-capitalize">{{$user->role->name}}</span></td>
+                                    <td class="text-center"><span class="badge bg-blue-subtle text-blue text-capitalize">{{$user->role->name}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$user->status === "active" ? "success" : "danger"}} text-capitalize">{{$user->status}}</span></td>
                                     {{-- Hiển thị trạng thái và in màu tương ứng --}}
                                     <td class="text-end">                                                       
-                                        <a href="{{route('user.edit', $user->id)}}"><i class="las la-pen text-secondary fs-18"></i></a>
-                                        <form class="d-inline" action="{{route('user.destroy', $user->id)}}" method="POST">
+                                        <a href="{{route('staff.edit', $user->id)}}"><i class="las la-pen text-secondary fs-18"></i></a>
+                                        <form class="d-inline" action="{{route('staff.destroy', $user->id)}}" method="POST">
                                             @csrf
                                             @method('delete')
                                         <button type="submit" onclick="return confirm('Bạn có chắc chắn chuyển vào thùng rác không ?')" class="btn-reset"><i class="las la-trash-alt text-secondary fs-18"></i></button>
@@ -99,7 +99,7 @@
                                     </td>
                                 </tr>
                                 @empty
-                                <tr><td colspan="7" class="text-danger">Không có khách hàng nào</td></tr>
+                                <tr><td colspan="7" class="text-danger">Không có nhân viên nào</td></tr>
                                 @endforelse                                                                                   
                             </tbody>
                             <tfoot>
@@ -107,7 +107,7 @@
                                   <th style="width: 16px;">
                                       <div class="form-check">
                                           <input type="checkbox" class="form-check-input" id="select-all-foot">
-                                          <form id="myForm" method="POST" action="{{route('user.trash')}}">
+                                          <form id="myForm" method="POST" action="{{route('staff.trash')}}">
                                             @csrf
                                            <input type="hidden" id="selectedValues" name="selectedValues">
                                           </form>                                             
@@ -120,7 +120,7 @@
                                     </select>
                                   </th>
                                   <th colspan="4"></th>
-                                  <th class="text-end"><a href="{{route("user-trash.index")}}"><button class="btn btn-danger py-1 px-2"><i class="fa fa-trash"></i></button></a></th>
+                                  <th class="text-end"><a href="{{route("staff-trash.index")}}"><button class="btn btn-danger py-1 px-2"><i class="fa fa-trash"></i></button></a></th>
                                 </tr>
                               </tfoot>
                         </table>
@@ -215,7 +215,7 @@
             actionSelect.value = 0;
             }
         }else{
-            alert("Chưa có khách hàng nào được chọn");
+            alert("Chưa có nhân viên nào được chọn");
             actionSelect.value = 0;
         }
     }

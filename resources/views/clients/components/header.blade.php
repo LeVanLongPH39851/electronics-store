@@ -61,10 +61,10 @@
                      <img width="22px" class="border rounded-circle border-white" src="{{Auth::user()->image ? Auth::user()->image : "assets/images/users/avatar-default.png"}}" alt="">
                     @endif
                   <a href="{{route('client.login')}}" class="ps-0">
-                  {{Auth::user() ? Auth::user()->name : "Login"}}
+                  {{Auth::user() ? Auth::user()->name : "Đăng nhập"}}
                  </a>
                 </li>
-                <li><a href="{{Auth::user() ? route('client.logout') : route('client.signup')}}" class="{{Auth::user() ? "text-danger" : ""}}">{{Auth::user() ? "Logout" : "Sign Up"}}</a></li>
+                <li><a href="{{Auth::user() ? route('client.logout') : route('client.signup')}}" class="{{Auth::user() ? "text-danger" : ""}}">{{Auth::user() ? "Đăng xuất" : "Đăng ký"}}</a></li>
               </ul>
             </div>
             <!-- Header Top Right End -->

@@ -8,7 +8,7 @@
                             <h4 class="card-title">{{$title}}</h4>                      
                         </div><!--end col-->
                         <div class="col-auto"> 
-                            <form id="form_filter" method="GET" action="{{route('user.index')}}" class="row g-2">
+                            <form id="form_filter" method="GET" action="{{route('user-trash.index')}}" class="row g-2">
                                 <div class="col-auto">
                                     <select name="perPage" class="form-select" onchange="submitForm()">
                                         <option {{ request('perPage') == 8 ? "selected" : ""}} value="8">8 khách hàng</option>
@@ -39,10 +39,6 @@
                                     {{-- request('keyWord'): dữ lại value cũ của keyWord --}}
                                     <button class="btn btn-info text-nowrap" style="border-top-left-radius: 0; border-bottom-left-radius: 0" onclick="validateAndSubmit()">Tìm kiếm</button>
                                 </div>
-
-                                <div class="col-auto">
-                                  <a href="{{route('user.create')}}"><button type="button" class="btn btn-primary"><i class="fa-solid fa-plus me-1"></i> Thêm khách hàng</button></a>
-                                </div><!--end col-->
                             </form>    
                         </div><!--end col-->
                     </div><!--end row-->                                  
@@ -61,7 +57,7 @@
                                 <th class="ps-0">ID</th>
                                 <th>Avatar</th>
                                 <th>Email</th>
-                                <th class="text-center">Ngày tham gia</th>
+                                <th>Thời gian xóa</th>
                                 <th class="text-center">Vai trò</th>
                                 <th class="text-center">Trạng thái</th>
                                 <th></th>
@@ -77,24 +73,26 @@
                                     </td>
                                     <td class="ps-0"><span class="badge bg-transparent border border-primary text-primary">{{$user->user_code}}</span></td>
                                     <td>
-                                        <a href="{{route('user.show', $user->id)}}">
-                                            <img src="{{$user->image ? ".".Storage::url($user->image) : "assets/images/users/avatar-default.png"}}" alt="" class="thumb-md d-inline rounded-circle me-1">
-                                        </a>
+                                        <img src="{{$user->image ? ".".Storage::url($user->image) : "assets/images/users/avatar-default.png"}}" alt="" class="thumb-md d-inline rounded-circle me-1">
                                         <p class="d-inline-block align-middle mb-0">
-                                         <a href="{{route('user.show', $user->id)}}" style="color: inherit"><span class="font-13 fw-medium">{{$user->name}}</span></a> 
+                                            <span class="font-13 fw-medium">{{$user->name}}</span> 
                                         </p>
                                     </td>
                                     <td><a href="#" class="d-inline-block align-middle mb-0 text-body">{{$user->email}}</a></td>
-                                    <td class="text-center">{{date('d/m/Y', strtotime($user->created_at))}}</td>
+                                    <td class="text-danger">{{date('H:i:s d/m/Y', strtotime($user->deleted_at))}}</td>
                                     <td class="text-center"><span class="badge bg-primary-subtle text-primary text-capitalize">{{$user->role->name}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$user->status === "active" ? "success" : "danger"}} text-capitalize">{{$user->status}}</span></td>
                                     {{-- Hiển thị trạng thái và in màu tương ứng --}}
-                                    <td class="text-end">                                                       
-                                        <a href="{{route('user.edit', $user->id)}}"><i class="las la-pen text-secondary fs-18"></i></a>
-                                        <form class="d-inline" action="{{route('user.destroy', $user->id)}}" method="POST">
-                                            @csrf
-                                            @method('delete')
-                                        <button type="submit" onclick="return confirm('Bạn có chắc chắn chuyển vào thùng rác không ?')" class="btn-reset"><i class="las la-trash-alt text-secondary fs-18"></i></button>
+                                    <td class="text-end">
+                                        <form class="d-inline" action="{{route('user-trash.update', $user->id)}}" method="POST">
+                                          @csrf
+                                          @method("put")
+                                          <button type="submit" onclick="return confirm('Bạn có chắc chắn khôi phục không ?')" class="btn-reset"><i class="las la-window-restore text-secondary fs-18"></i></button>
+                                        </form>                                                       
+                                        <form class="d-inline" action="{{route('user-trash.destroy', $user->id)}}" method="POST">
+                                          @csrf
+                                          @method("delete")
+                                          <button type="submit" onclick="return confirm('Bạn có chắc chắn xóa vĩnh viễn không ?')" class="btn-reset"><i class="las la-trash-alt text-secondary fs-18"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -107,20 +105,20 @@
                                   <th style="width: 16px;">
                                       <div class="form-check">
                                           <input type="checkbox" class="form-check-input" id="select-all-foot">
-                                          <form id="myForm" method="POST" action="{{route('user.trash')}}">
+                                          <form id="myForm" method="POST" action="">
                                             @csrf
                                            <input type="hidden" id="selectedValues" name="selectedValues">
-                                          </form>                                             
+                                          </form>                                                
                                       </div>
                                   </th>
                                   <th class="ps-0" colspan="2">
                                     <select class="form-select w-auto" id="action-select" onchange="getCheckedValues()">
                                         <option value="0" selected>Hành động</option>
-                                        <option value="1">Xóa</option>
+                                        <option value="1">Khôi phục</option>
+                                        <option value="2">Xóa vĩnh viễn</option>
                                     </select>
                                   </th>
-                                  <th colspan="4"></th>
-                                  <th class="text-end"><a href="{{route("user-trash.index")}}"><button class="btn btn-danger py-1 px-2"><i class="fa fa-trash"></i></button></a></th>
+                                  <th colspan="5"></th>
                                 </tr>
                               </tfoot>
                         </table>
@@ -198,7 +196,7 @@
     });
 
     // Hàm lấy tất cả các giá trị của checkbox đã checked
-    function getCheckedValues() {
+    function getCheckedValues() {        
         let checkedValues = [];
 
         selectsArray.forEach(checkbox => {
@@ -206,10 +204,18 @@
                 checkedValues.push(checkbox.value); // Lưu value của checkbox đã checked
             }
         });
+
         if(checkedValues.length > 0){
-            // Gán các giá trị đã checked vào thẻ input hidden
-            if(confirm("Bạn có chắc chắn chuyển vào thùng rác không ?")){
+            if(actionSelect.value == 1){
+               var type = "<?php echo route('user.restore')?>";
+               var mess = "khôi phục";
+            }else{
+               var type = "<?php echo route('user.delete')?>";
+               var mess = "xóa vĩnh viễn";
+            }
+            if(confirm("Bạn có chắn chắn "+ mess +" không ?")){
             selectedValuesInput.value = checkedValues.join(','); // Ghép các giá trị thành chuỗi, phân tách bằng dấu phẩy
+            myForm.action = type;
             myForm.submit();
             }else{
             actionSelect.value = 0;
