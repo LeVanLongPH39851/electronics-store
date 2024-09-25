@@ -2,65 +2,76 @@
 <header>
     <!-- Header Top Start Here -->
     <div class="header-top light-blue-bg">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-2">
-                <div class="col">
-                    <!-- Header Top Left Start -->
-                    <div class="header-top-left text-center text-md-start">
-                        <ul>
-                            <li>
-                                <span>Language:</span><a href="#"><img src="templates/img/header/1.jpg"
-                                        alt="language-selector" />English<i class="ion-arrow-down-b"></i></a>
-                                <!-- Dropdown Start -->
-                                <ul class="ht-dropdown">
-                                    <li>
-                                        <a href="#"><img src="templates/img/header/1.jpg"
-                                                alt="language-selector" />English</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="templates/img/header/2.jpg"
-                                                alt="language-selector" />Francis</a>
-                                    </li>
-                                </ul>
-                                <!-- Dropdown End -->
-                            </li>
-                            <li>
-                                <span>Currency:</span><a href="#">USD $<i class="ion-arrow-down-b"></i></a>
-                                <!-- Dropdown Start -->
-                                <ul class="ht-dropdown">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">Français</a></li>
-                                </ul>
-                                <!-- Dropdown End -->
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Header Top Left End -->
-                </div>
-                <div class="col">
-                    <!-- Header Top Right Start -->
-                    <div class="header-top-right text-center text-md-end">
-                        <ul>
-                            <li>
-                                @if (Auth::user())
-                                    <img width="22px" class="border rounded-circle border-white"
-                                        src="{{ Auth::user()->image ? Auth::user()->image : 'assets/images/users/avatar-default.png' }}"
-                                        alt="">
-                                @endif
-                                <a href="{{ route('client.login') }}" class="ps-0">
-                                    {{ Auth::user() ? Auth::user()->name : 'Login' }}
-                                </a>
-                            </li>
-                            <li><a href="{{ Auth::user() ? route('client.logout') : route('client.signup') }}"
-                                    class="{{ Auth::user() ? 'text-danger' : '' }}">{{ Auth::user() ? 'Logout' : 'Sign Up' }}</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Header Top Right End -->
-                </div>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col">
+            <!-- Header Top Left Start -->
+            <div class="header-top-left text-center text-md-start">
+              <ul>
+                <li>
+                  <span>Language:</span
+                  ><a href="#"
+                    ><img
+                      src="templates/img/header/1.jpg"
+                      alt="language-selector" />English<i
+                      class="ion-arrow-down-b"
+                    ></i
+                  ></a>
+                  <!-- Dropdown Start -->
+                  <ul class="ht-dropdown">
+                    <li>
+                      <a href="#"
+                        ><img
+                          src="templates/img/header/1.jpg"
+                          alt="language-selector"
+                        />English</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><img
+                          src="templates/img/header/2.jpg"
+                          alt="language-selector"
+                        />Francis</a
+                      >
+                    </li>
+                  </ul>
+                  <!-- Dropdown End -->
+                </li>
+                <li>
+                  <span>Currency:</span
+                  ><a href="#">USD $<i class="ion-arrow-down-b"></i></a>
+                  <!-- Dropdown Start -->
+                  <ul class="ht-dropdown">
+                    <li><a href="#">English</a></li>
+                    <li><a href="#">Français</a></li>
+                  </ul>
+                  <!-- Dropdown End -->
+                </li>
+              </ul>
             </div>
+            <!-- Header Top Left End -->
+          </div>
+          <div class="col">
+            <!-- Header Top Right Start -->
+            <div class="header-top-right text-center text-md-end">
+              <ul>
+                <li>
+                    @if (Auth::user())
+                     <img width="22px" class="border rounded-circle border-white" src="{{Auth::user()->image ? Auth::user()->image : "assets/images/users/avatar-default.png"}}" alt="">
+                    @endif
+                  <a href="{{route('client.login')}}" class="ps-0">
+                  {{Auth::user() ? Auth::user()->name : "Login"}}
+                 </a>
+                </li>
+                <li><a href="{{Auth::user() ? route('client.logout') : route('client.signup')}}" class="{{Auth::user() ? "text-danger" : ""}}">{{Auth::user() ? "Logout" : "Sign Up"}}</a></li>
+              </ul>
+            </div>
+            <!-- Header Top Right End -->
+          </div>
         </div>
-        <!-- Container End -->
+      </div>
+      <!-- Container End -->
     </div>
     <!-- Header Top End Here -->
     <!-- Header Middle Start Here -->
@@ -192,123 +203,131 @@
     <!-- Header Middle End Here -->
     <!-- Header Bottom Start Here -->
     <div class="header-bottom dark-blue-bg header-sticky">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-9 col-lg-9 col-md-12">
-                    <nav class="d-none d-lg-block">
-                        <ul class="header-bottom-list d-flex">
-                            <li class="active">
-                                <a href="index.html">home<i class="fa fa-angle-down"></i></a>
-                                <!-- Home Version Dropdown Start -->
-                                <ul class="ht-dropdown">
-                                    <li><a href="index.html">Home Version 1</a></li>
-                                    <li><a href="index-2.html">Home Version 2</a></li>
-                                    <li><a href="index-3.html">Home Version 3</a></li>
-                                    <li><a href="index-4.html">Home Version 4</a></li>
-                                </ul>
-                                <!-- Home Version Dropdown End -->
-                            </li>
-                            <li>
-                                <a href="terms-conditions.html">Terms and conditions</a>
-                            </li>
-                            <li>
-                                <a href="shop.html">shop<i class="fa fa-angle-down"></i></a>
-                                <!-- Home Version Dropdown Start -->
-                                <ul class="ht-dropdown dropdown-style-two">
-                                    <li><a href="product.html">product details</a></li>
-                                    <li><a href="compare.html">compare</a></li>
-                                    <li><a href="{{ route('client.cart') }}">cart</a></li>
-                                    <li><a href="{{ route('client.checkout') }}">checkout</a></li>
-                                    <li><a href="wishlist.html">wishlist</a></li>
-                                </ul>
-                                <!-- Home Version Dropdown End -->
-                            </li>
-                            <li>
-                                <a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
-                                <!-- Home Version Dropdown Start -->
-                                <ul class="ht-dropdown dropdown-style-two">
-                                    <li><a href="single-blog.html">blog details</a></li>
-                                </ul>
-                                <!-- Home Version Dropdown End -->
-                            </li>
-                            <li>
-                                <a href="#">pages<i class="fa fa-angle-down"></i></a>
-                                <!-- Home Version Dropdown Start -->
-                                <ul class="ht-dropdown dropdown-style-two">
-                                    <li><a href="contact.html">contact us</a></li>
-                                    <li><a href="register.html">register</a></li>
-                                    <li><a href="login.html">sign in</a></li>
-                                    <li>
-                                        <a href="forgot-password.html">forgot password</a>
-                                    </li>
-                                    <li><a href="404.html">404</a></li>
-                                </ul>
-                                <!-- Home Version Dropdown End -->
-                            </li>
-                            <li><a href="about.html">About us</a></li>
-                        </ul>
-                    </nav>
-                    <div class="mobile-menu d-block d-lg-none">
-                        <nav>
-                            <ul>
-                                <li>
-                                    <a href="index.html">home</a>
-                                    <!-- Home Version Dropdown Start -->
-                                    <ul>
-                                        <li><a href="index.html">Home Version 1</a></li>
-                                        <li><a href="index-2.html">Home Version 2</a></li>
-                                        <li><a href="index-3.html">Home Version 3</a></li>
-                                        <li><a href="index-4.html">Home Version 4</a></li>
-                                    </ul>
-                                    <!-- Home Version Dropdown End -->
-                                </li>
-                                <li>
-                                    <a href="shop.html">shop</a>
-                                    <!-- Mobile Menu Dropdown Start -->
-                                    <ul>
-                                        <li><a href="product.html">product details</a></li>
-                                        <li><a href="compare.html">compare</a></li>
-                                        <li><a href="cart.html">cart</a></li>
-                                        <li><a href="checkout.html">checkout</a></li>
-                                        <li><a href="wishlist.html">wishlist</a></li>
-                                    </ul>
-                                    <!-- Mobile Menu Dropdown End -->
-                                </li>
-                                <li>
-                                    <a href="blog.html">Blog</a>
-                                    <!-- Mobile Menu Dropdown Start -->
-                                    <ul>
-                                        <li><a href="single-blog.html">blog details</a></li>
-                                    </ul>
-                                    <!-- Mobile Menu Dropdown End -->
-                                </li>
-                                <li>
-                                    <a href="#">pages</a>
-                                    <!-- Mobile Menu Dropdown Start -->
-                                    <ul>
-                                        <li><a href="register.html">register</a></li>
-                                        <li><a href="login.html">sign in</a></li>
-                                        <li>
-                                            <a href="forgot-password.html">forgot password</a>
-                                        </li>
-                                        <li><a href="404.html">404</a></li>
-                                    </ul>
-                                    <!-- Mobile Menu Dropdown End -->
-                                </li>
-                                <li><a href="about.html">about us</a></li>
-                                <li><a href="contact.html">contact us</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 text-right">
-                    <span class="header-right"><i class="ion-ios-telephone"></i>Hotline:
-                        <span class="header-helpline">+088 12 345 678</span></span>
-                </div>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-9 col-lg-9 col-md-12">
+            <nav class="d-none d-lg-block">
+              <ul class="header-bottom-list d-flex">
+                <li class="active">
+                  <a href="index.html"
+                    >home<i class="fa fa-angle-down"></i
+                  ></a>
+                  <!-- Home Version Dropdown Start -->
+                  <ul class="ht-dropdown">
+                    <li><a href="index.html">Home Version 1</a></li>
+                    <li><a href="index-2.html">Home Version 2</a></li>
+                    <li><a href="index-3.html">Home Version 3</a></li>
+                    <li><a href="index-4.html">Home Version 4</a></li>
+                  </ul>
+                  <!-- Home Version Dropdown End -->
+                </li>
+                <li>
+                  <a href="terms-conditions.html">Terms and conditions</a>
+                </li>
+                <li>
+                  <a href="shop.html"
+                    >shop<i class="fa fa-angle-down"></i
+                  ></a>
+                  <!-- Home Version Dropdown Start -->
+                  <ul class="ht-dropdown dropdown-style-two">
+                    <li><a href="product.html">product details</a></li>
+                    <li><a href="compare.html">compare</a></li>
+                    <li><a href="cart.html">cart</a></li>
+                    <li><a href="checkout.html">checkout</a></li>
+                    <li><a href="wishlist.html">wishlist</a></li>
+                  </ul>
+                  <!-- Home Version Dropdown End -->
+                </li>
+                <li>
+                  <a href="blog.html"
+                    >blog<i class="fa fa-angle-down"></i
+                  ></a>
+                  <!-- Home Version Dropdown Start -->
+                  <ul class="ht-dropdown dropdown-style-two">
+                    <li><a href="single-blog.html">blog details</a></li>
+                  </ul>
+                  <!-- Home Version Dropdown End -->
+                </li>
+                <li>
+                  <a href="#">pages<i class="fa fa-angle-down"></i></a>
+                  <!-- Home Version Dropdown Start -->
+                  <ul class="ht-dropdown dropdown-style-two">
+                    <li><a href="contact.html">contact us</a></li>
+                    <li><a href="register.html">register</a></li>
+                    <li><a href="login.html">sign in</a></li>
+                    <li>
+                      <a href="forgot-password.html">forgot password</a>
+                    </li>
+                    <li><a href="404.html">404</a></li>
+                  </ul>
+                  <!-- Home Version Dropdown End -->
+                </li>
+                <li><a href="about.html">About us</a></li>
+              </ul>
+            </nav>
+            <div class="mobile-menu d-block d-lg-none">
+              <nav>
+                <ul>
+                  <li>
+                    <a href="index.html">home</a>
+                    <!-- Home Version Dropdown Start -->
+                    <ul>
+                      <li><a href="index.html">Home Version 1</a></li>
+                      <li><a href="index-2.html">Home Version 2</a></li>
+                      <li><a href="index-3.html">Home Version 3</a></li>
+                      <li><a href="index-4.html">Home Version 4</a></li>
+                    </ul>
+                    <!-- Home Version Dropdown End -->
+                  </li>
+                  <li>
+                    <a href="shop.html">shop</a>
+                    <!-- Mobile Menu Dropdown Start -->
+                    <ul>
+                      <li><a href="product.html">product details</a></li>
+                      <li><a href="compare.html">compare</a></li>
+                      <li><a href="cart.html">cart</a></li>
+                      <li><a href="checkout.html">checkout</a></li>
+                      <li><a href="wishlist.html">wishlist</a></li>
+                    </ul>
+                    <!-- Mobile Menu Dropdown End -->
+                  </li>
+                  <li>
+                    <a href="blog.html">Blog</a>
+                    <!-- Mobile Menu Dropdown Start -->
+                    <ul>
+                      <li><a href="single-blog.html">blog details</a></li>
+                    </ul>
+                    <!-- Mobile Menu Dropdown End -->
+                  </li>
+                  <li>
+                    <a href="#">pages</a>
+                    <!-- Mobile Menu Dropdown Start -->
+                    <ul>
+                      <li><a href="register.html">register</a></li>
+                      <li><a href="login.html">sign in</a></li>
+                      <li>
+                        <a href="forgot-password.html">forgot password</a>
+                      </li>
+                      <li><a href="404.html">404</a></li>
+                    </ul>
+                    <!-- Mobile Menu Dropdown End -->
+                  </li>
+                  <li><a href="about.html">about us</a></li>
+                  <li><a href="contact.html">contact us</a></li>
+                </ul>
+              </nav>
             </div>
-            <!-- Row End -->
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-6 text-right">
+            <span class="header-right"
+              ><i class="ion-ios-telephone"></i>Hotline:
+              <span class="header-helpline">+088 12 345 678</span></span
+            >
+          </div>
         </div>
-        <!-- Container End -->
+        <!-- Row End -->
+      </div>
+      <!-- Container End -->
     </div>
     <!-- Header Bottom End Here -->
     <!-- Mobile Vertical Menu Start Here -->
@@ -379,5 +398,5 @@
         </div>
     </div>
     <!-- Mobile Vertical Menu Start End -->
-</header>
-<!-- Main Header Area End Here -->
+  </header>
+  <!-- Main Header Area End Here -->

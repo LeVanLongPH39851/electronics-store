@@ -11,4 +11,5 @@ class ShopController extends Controller
         $template = "clients.shops.shop";
         return view("clients.layout", ["title" => "Shop", "template" => $template]);
     }
+
 }

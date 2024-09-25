@@ -6,7 +6,7 @@ Author Name:Md Bayazid Hasan;
 Author URI:;
 Version: 1.0;
 
-NOTE: main.js, All custom script and plugin activation script in this file. 
+NOTE: main.js, All custom script and plugin activation script in this file.
 -----------------------------------------------------
 
     JS INDEX
@@ -37,7 +37,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     22. Sticky-Menu Activation
     23. Nice Select Activation
     24. Price Slider Activation
-    
+
 ================================================*/
 
 (function ($) {
@@ -75,7 +75,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl)
     })
-    
+
 
 
 
@@ -198,7 +198,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
             }
         }
     })
-    
+
     /*----------------------------------------------------
     8. Electronics Product Activation
     -----------------------------------------------------*/
@@ -231,7 +231,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
                 }
             }
         })
-    
+
     /*----------------------------------------------------
     9. New & Featured Product Activation
     -----------------------------------------------------*/
@@ -319,7 +319,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
             }
         }
     })
-    
+
     /*----------------------------------------------------
     12. New Product Tow For Home-2 Activation
     -----------------------------------------------------*/
@@ -350,7 +350,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
             }
         }
     })
-    
+
     /*----------------------------------------------------
     13. Featured Product Activation For Home-3
     -----------------------------------------------------*/
@@ -378,7 +378,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
             }
         }
     })
-    
+
     /*----------------------------------------------------
     14. New Product Tow For Home-2 Activation
     -----------------------------------------------------*/
@@ -406,7 +406,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
             }
         }
     })
-    
+
     /*----------------------------------------------------
     15. Single Categorie tow Activation
     -----------------------------------------------------*/
@@ -434,7 +434,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
             }
         }
     })
-    
+
     /*----------------------------------------------------
     16. Categorie Slider Product Activation
     -----------------------------------------------------*/
@@ -461,7 +461,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
             }
         }
     })
-    
+
     /*----------------------------------------------------
     17. New Product Tow For Home-2 Activation
     -----------------------------------------------------*/
@@ -489,7 +489,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
             }
         }
     })
-    
+
     /*----------------------------------------------------
     18. New Product Tow For Home-2 Activation
     -----------------------------------------------------*/
@@ -548,7 +548,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     $('.thumb-menu a').on('click', function () {
         $('.thumb-menu a').removeClass('active');
     })
-    
+
     /*----------------------------
     20. Countdown Js Activation
     -----------------------------*/
@@ -585,12 +585,12 @@ NOTE: main.js, All custom script and plugin activation script in this file.
             $('.header-sticky').removeClass("sticky");
         }
     });
-    
+
     /*----------------------------
     23. Nice Select Activation
     ------------------------------ */
     $('select').niceSelect();
-    
+
     /*----------------------------
     24. Price Slider Activation
     -----------------------------*/
