@@ -6,41 +6,13 @@
             <div class="col-md-12">
                 <div class="coupon-accordion">
                     <!-- ACCORDION START -->
-                    <h3>Returning customer? <span id="showlogin">Click here to login</span></h3>
-                    <div id="checkout-login" class="coupon-content">
-                        <div class="coupon-info">
-                            <p class="coupon-text">Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est sit amet ipsum luctus.</p>
-                            <form action="#">
-                                <p class="form-row-first">
-                                    <label>Username or email <span class="required">*</span></label>
-                                    <input type="text" />
-                                </p>
-                                <p class="form-row-last">
-                                    <label>Password  <span class="required">*</span></label>
-                                    <input type="text" />
-                                </p>
-                                <p class="form-row">
-                                    <input type="submit" value="Login" />
-                                    <label>
-                                    <input type="checkbox" />
-                                     Remember me 
-                                </label>
-                                </p>
-                                <p class="lost-password">
-                                    <a href="#">Lost your password?</a>
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- ACCORDION END -->
-                    <!-- ACCORDION START -->
-                    <h3>Have a coupon? <span id="showcoupon">Click here to enter your code</span></h3>
+                    <h3>Bạn có mã giảm giá không? <span id="showcoupon">Nhấp vào để nhập mã.</span></h3>
                     <div id="checkout_coupon" class="coupon-checkout-content">
                         <div class="coupon-info">
                             <form action="#">
                                 <p class="checkout-coupon">
-                                    <input type="text" class="code" placeholder="Coupon code" />
-                                    <input type="submit" value="Apply Coupon" />
+                                    <input type="text" class="code" placeholder="Mã giảm giá" />
+                                    <input type="submit" value="Áp dụng" /> 
                                 </p>
                             </form>
                         </div>
@@ -58,183 +30,39 @@
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="checkbox-form mb-sm-40">
-                    <h3>Billing Details</h3>
+                    <h3>Chi tiết thanh toán</h3>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="country-select clearfix mb-30">
-                                <label>Country <span class="required">*</span></label>
-                                <select class="wide">
-                                    <option value="volvo">Bangladesh</option>
-                                    <option value="saab">Algeria</option>
-                                    <option value="mercedes">Afghanistan</option>
-                                    <option value="audi">Ghana</option>
-                                    <option value="audi2">Albania</option>
-                                    <option value="audi3">Bahrain</option>
-                                    <option value="audi4">Colombia</option>
-                                    <option value="audi5">Dominican Republic</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="checkout-form-list mb-sm-30">
-                                <label>First Name <span class="required">*</span></label>
-                                <input type="text" placeholder="" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="checkout-form-list mb-30">
-                                <label>Last Name <span class="required">*</span></label>
-                                <input type="text" placeholder="" />
+                                <label>Họ và tên <span class="required">*</span></label>
+                                <input type="text" placeholder="Họ và tên" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="checkout-form-list mb-30">
-                                <label>Company Name</label>
-                                <input type="text" placeholder="" />
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="checkout-form-list">
-                                <label>Address <span class="required">*</span></label>
-                                <input type="text" placeholder="Street address" />
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="checkout-form-list mtb-30">
-                                <input type="text" placeholder="Apartment, suite, unit etc. (optional)" />
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="checkout-form-list mb-30">
-                                <label>Town / City <span class="required">*</span></label>
-                                <input type="text" placeholder="Town / City" />
+                                <label>Địa chỉ <span class="required">*</span></label>
+                                <input type="text" placeholder="Địa chỉ" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="checkout-form-list mb-30">
-                                <label>State / County <span class="required">*</span></label>
-                                <input type="text" placeholder="" />
+                                <label>Địa chỉ Email <span class="required">*</span></label>
+                                <input type="email" placeholder="Địa chỉ Email" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="checkout-form-list mb-30">
-                                <label>Postcode / Zip <span class="required">*</span></label>
-                                <input type="text" placeholder="Postcode / Zip" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="checkout-form-list mb-30">
-                                <label>Email Address <span class="required">*</span></label>
-                                <input type="email" placeholder="" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="checkout-form-list mb-30">
-                                <label>Phone  <span class="required">*</span></label>
-                                <input type="text" placeholder="Postcode / Zip" />
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="checkout-form-list create-acc mb-30">
-                                <input id="cbox" type="checkbox" />
-                                <label>Create an account?</label>
-                            </div>
-                            <div id="cbox_info" class="checkout-form-list create-accounts mb-25">
-                                <p class="mb-10">Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
-                                <label>Account password  <span class="required">*</span></label>
-                                <input type="password" placeholder="password" />
+                                <label>Số điện thoại <span class="required">*</span></label>
+                                <input type="text" placeholder="Số điện thoại" />
                             </div>
                         </div>
                     </div>
                     <div class="different-address">
-                        <div class="ship-different-title">
-                            <h3>
-                                <label>Ship to a different address?</label>
-                                <input id="ship-box" type="checkbox" />
-                            </h3>
-                        </div>
-                        <div id="ship-box-info">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="country-select clearfix mb-30">
-                                        <label>Country <span class="required">*</span></label>
-                                        <select class="wide">
-                                            <option value="volvo">Bangladesh</option>
-                                            <option value="saab">Algeria</option>
-                                            <option value="mercedes">Afghanistan</option>
-                                            <option value="audi">Ghana</option>
-                                            <option value="audi2">Albania</option>
-                                            <option value="audi3">Bahrain</option>
-                                            <option value="audi4">Colombia</option>
-                                            <option value="audi5">Dominican Republic</option>
-                                       </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="checkout-form-list mb-30">
-                                        <label>First Name <span class="required">*</span></label>
-                                        <input type="text" placeholder="" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="checkout-form-list mb-30">
-                                        <label>Last Name <span class="required">*</span></label>
-                                        <input type="text" placeholder="" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list mb-30">
-                                        <label>Company Name</label>
-                                        <input type="text" placeholder="" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list mb-30">
-                                        <label>Address <span class="required">*</span></label>
-                                        <input type="text" placeholder="Street address" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list mb-30">
-                                        <input type="text" placeholder="Apartment, suite, unit etc. (optional)" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list mb-30">
-                                        <label>Town / City <span class="required">*</span></label>
-                                        <input type="text" placeholder="Town / City" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="checkout-form-list mb-30">
-                                        <label>State / County <span class="required">*</span></label>
-                                        <input type="text" placeholder="" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="checkout-form-list mb-30">
-                                        <label>Postcode / Zip <span class="required">*</span></label>
-                                        <input type="text" placeholder="Postcode / Zip" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="checkout-form-list mb-30">
-                                        <label>Email Address <span class="required">*</span></label>
-                                        <input type="email" placeholder="" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="checkout-form-list mb-30">
-                                        <label>Phone  <span class="required">*</span></label>
-                                        <input type="text" placeholder="Postcode / Zip" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="order-notes">
                             <div class="checkout-form-list">
-                                <label>Order Notes</label>
-                                <textarea id="checkout-mess" cols="30" rows="10" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                <label>Ghi chú</label>
+                                <textarea id="checkout-mess" cols="30" rows="10"
+                                    placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: ghi chú đặc biệt khi giao hàng."></textarea>
                             </div>
                         </div>
                     </div>
@@ -242,13 +70,13 @@
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="your-order">
-                    <h3>Your order</h3>
+                    <h3>Đơn hàng của bạn</h3>
                     <div class="your-order-table table-responsive">
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="product-name">Product</th>
-                                    <th class="product-total">Total</th>
+                                    <th class="product-name">Sản phẩm</th>
+                                    <th class="product-total">Giá tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -271,11 +99,11 @@
                             </tbody>
                             <tfoot>
                                 <tr class="cart-subtotal">
-                                    <th>Cart Subtotal</th>
+                                    <th>Tạm tính</th>
                                     <td><span class="amount">£215.00</span></td>
                                 </tr>
                                 <tr class="order-total">
-                                    <th>Order Total</th>
+                                    <th>Tổng tiền giỏ hàng</th>
                                     <td><span class=" total amount">£215.00</span>
                                     </td>
                                 </tr>
@@ -283,47 +111,42 @@
                         </table>
                     </div>
                     <div class="payment-method">
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Direct Bank Transfer
-                                </button>
-                              </h2>
-                              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                        <div class="mb-3">
+                            <h3>Chọn Phương thức thanh toán:</h3>
+                            
+                            <div class="form-check border rounded p-3 mb-3 bg-white">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="paymentDirectBank" value="directBank" checked>
+                                <label class="form-check-label" for="paymentDirectBank">
+                                    Chuyển khoản ngân hàng trực tiếp
+                                </label>
+                                <div class="form-text">
+                                    Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng ID đơn hàng của bạn làm tài liệu tham khảo thanh toán. Đơn đặt hàng của bạn sẽ không được giao cho đến khi tiền đã được xóa trong tài khoản của chúng tôi.
                                 </div>
-                              </div>
                             </div>
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Cheque Payment
-                                </button>
-                              </h2>
-                              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                  <p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            
+                            <div class="form-check border rounded p-3 mb-3 bg-white">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="paymentPaypal" value="paypal">
+                                <label class="form-check-label" for="paymentPaypal">
                                     PayPal
-                                </button>
-                              </h2>
-                              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                                </label>
+                                <div class="form-text">
+                                    Thanh toán qua PayPal; bạn có thể thanh toán bằng thẻ tín dụng nếu bạn không có tài khoản PayPal.
                                 </div>
-                              </div>
                             </div>
-                          </div>
 
-
-
+                            <div class="form-check border rounded p-3 mb-3 bg-white">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="paymentDirectBank" value="directBank" checked>
+                                <label class="form-check-label" for="paymentDirectBank">
+                                    Thanh toán khi nhận hàng
+                                </label>
+                                <div class="form-text">
+                                    Khách hàng thanh toán tiền mặt khi nhận được sản phẩm.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-checkout text-center">
+                            <button type="submit" class="btn btn-success">Thanh toán</button>
+                        </div>
                     </div>
                 </div>
             </div>

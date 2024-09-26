@@ -11,80 +11,100 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="product-thumbnail">Image</th>
-                                    <th class="product-name">Product</th>
-                                    <th class="product-price">Price</th>
-                                    <th class="product-quantity">Quantity</th>
-                                    <th class="product-subtotal">Total</th>
-                                    <th class="product-remove">Remove</th>
+                                    <th class="product-thumbnail">Hình Ảnh</th>
+                                    <th class="product-name">Sản Phẩm</th>
+                                    <th class="product-price">Giá</th>
+                                    <th class="product-quantity">Số lượng</th>
+                                    <th class="product-subtotal">Tổng Tiền</th>
+                                    <th class="product-remove">Xóa</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="product-thumbnail">
-                                        <a href="#"><img src="templates/img/products/13.jpg" alt="cart-image" /></a>
+                                        <a href="#"><img src="templates/img/products/13.jpg"
+                                                alt="cart-image" /></a>
                                     </td>
                                     <td class="product-name"><a href="#">dictum idrisus</a></td>
                                     <td class="product-price"><span class="amount">£165.00</span></td>
-                                    <td class="product-quantity"><input type="number" value="1" /></td>
+                                    <td class="product-quantity">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <button class="btn btn-secondary" type="button">-</button>
+                                            <input type="number" value="1" class="quantity-prd mx-2"/>
+                                            <button class="btn btn-secondary" type="button">+</button>
+                                        </div>
+                                    </td>
                                     <td class="product-subtotal">£165.00</td>
-                                    <td class="product-remove"> <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                                    <td class="product-remove "> <a href="{{ route('client.cart') }}"><i
+                                                class="fa fa-times text-danger" aria-hidden="true"></i></a></td>
                                 </tr>
                                 <tr>
                                     <td class="product-thumbnail">
-                                        <a href="#"><img src="templates/img/products/23.jpg" alt="cart-image" /></a>
+                                        <a href="#"><img src="templates/img/products/23.jpg"
+                                                alt="cart-image" /></a>
                                     </td>
                                     <td class="product-name"><a href="#">Carte Postal Clock</a></td>
                                     <td class="product-price"><span class="amount">£50.00</span></td>
-                                    <td class="product-quantity"><input type="number" value="1" /></td>
+                                    <td class="product-quantity">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <button class="btn btn-secondary" type="button">-</button>
+                                            <input type="number" value="1" class="quantity-prd mx-2"/>
+                                            <button class="btn btn-secondary" type="button">+</button>
+                                        </div>
+                                    </td>
                                     <td class="product-subtotal">£50.00</td>
-                                    <td class="product-remove"> <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                                    <td class="product-remove "> <a href="{{ route('client.cart') }}"><i
+                                                class="fa fa-times text-danger" aria-hidden="true"></i></a></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <!-- Table Content Start -->
                     <div class="row">
-                       <!-- Cart Button Start -->
+                        <!-- Cart Button Start -->
                         <div class="col-md-8 col-sm-12">
                             <div class="buttons-cart">
-                                <input type="submit" value="Update Cart" />
-                                <a href="#">Continue Shopping</a>
+                                <input type="submit" value="Cập nhật giỏ hàng" />
+                                <a href="#">Tiếp tục mua sắm</a>
                             </div>
                         </div>
                         <!-- Cart Button Start -->
                         <!-- Cart Totals Start -->
                         <div class="col-md-4 col-sm-12">
                             <div class="cart_totals float-md-right text-md-right">
-                                <h2>Cart Totals</h2>
+                                <h2>Tổng Giỏ Hàng</h2>
                                 <br />
                                 <table class="float-md-right">
                                     <tbody>
                                         <tr class="cart-subtotal">
-                                            <th>Subtotal</th>
-                                            <td><span class="amount">$215.00</span></td>
-                                        </tr>
+                                            <th class="text-start">Tạm Tính</th>
+                                            <td class="text-end"><span class="amount">$215.00</span></td>
+                                        </tr>   
                                         <tr class="order-total">
-                                            <th>Total</th>
-                                            <td>
+                                            <th class="text-start">Tổng Tiền</th>
+                                            <td class="text-end">
                                                 <strong><span class="amount">$215.00</span></strong>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="wc-proceed-to-checkout">
-                                    <a href="#">Proceed to Checkout</a>
+                                    <a href="{{ route('client.checkout') }}">Tiến Hành Thanh Toán</a>
                                 </div>
                             </div>
                         </div>
                         <!-- Cart Totals End -->
+
+                        <div>
+                            <h3>Sản phẩm tương tự</h3>
+                        </div>
                     </div>
                     <!-- Row End -->
                 </form>
                 <!-- Form End -->
             </div>
         </div>
-         <!-- Row End -->
+        <!-- Row End -->
     </div>
 </div>
 <!-- Cart Main Area End -->
