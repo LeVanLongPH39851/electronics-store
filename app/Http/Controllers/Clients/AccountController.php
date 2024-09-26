@@ -7,13 +7,20 @@ use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
-    public function account(){
+    public function account()
+    {
         $template = "clients.accounts.account";
         return view("clients.layout", ["title" => "Account", "template" => $template]);
     }
 
-    public function orderDetail(){
+    public function orderDetail()
+    {
         $template = "clients.accounts.orderdetail";
-        return view("clients.layout", ["title" => "Order Detail", "template" => $template]);
+        return view("clients.layout", ["title" => "Lịch sử đơn hàng", "template" => $template]);
+    }
+    public function thanhCong()
+    {
+        $template = "clients.accounts.thanhcong";
+        return view("clients.layout", ["title" => "Thanh toán thành công", "template" => $template]);
     }
 }

@@ -35,23 +35,23 @@ Route::get('/admin', [AuthController::class, 'index'])->name('admin.login')->mid
 Route::post('/admin/store', [AuthController::class, 'store'])->name('admin.store');
 
 // route admin
-Route::middleware(['admin'])->group(function(){
-Route::prefix('/admin')->group(function(){
-    Route::get('/index', [DashboardController::class, 'index'])->name('admin.index');
-    Route::get('/logout',[AuthController::class, 'logout'])->name('admin.logout');
-    Route::post('/user-trash/trash', [UserTrashController::class, 'trash'])->name('user.trash');
-    Route::post('/user-trash/delete', [UserTrashController::class, 'delete'])->name('user.delete');
-    Route::post('/user-trash/restore', [UserTrashController::class, 'restore'])->name('user.restore');
-    Route::resource('/user-trash', UserTrashController::class);
-    Route::resource('/user', UserController::class);
-    Route::middleware(['staff'])->group(function(){
-    Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');
-    Route::post('/staff-trash/delete', [StaffTrashController::class, 'delete'])->name('staff.delete');
-    Route::post('/staff-trash/restore', [StaffTrashController::class, 'restore'])->name('staff.restore');
-    Route::resource('/staff-trash', StaffTrashController::class);
-    Route::resource('/staff', StaffController::class);
+Route::middleware(['admin'])->group(function () {
+    Route::prefix('/admin')->group(function () {
+        Route::get('/index', [DashboardController::class, 'index'])->name('admin.index');
+        Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
+        Route::post('/user-trash/trash', [UserTrashController::class, 'trash'])->name('user.trash');
+        Route::post('/user-trash/delete', [UserTrashController::class, 'delete'])->name('user.delete');
+        Route::post('/user-trash/restore', [UserTrashController::class, 'restore'])->name('user.restore');
+        Route::resource('/user-trash', UserTrashController::class);
+        Route::resource('/user', UserController::class);
+        Route::middleware(['staff'])->group(function () {
+            Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');
+            Route::post('/staff-trash/delete', [StaffTrashController::class, 'delete'])->name('staff.delete');
+            Route::post('/staff-trash/restore', [StaffTrashController::class, 'restore'])->name('staff.restore');
+            Route::resource('/staff-trash', StaffTrashController::class);
+            Route::resource('/staff', StaffController::class);
+        });
     });
-});
 });
 
 // route client
@@ -67,3 +67,4 @@ Route::get('/cart', [CartController::class, 'cart'])->name('client.cart');
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkout');
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');
 Route::get('/order-detail', [AccountController::class, 'orderDetail'])->name('client.order.detail');
+Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.order.thanhtoan');
