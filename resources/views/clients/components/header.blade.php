@@ -13,32 +13,12 @@
                   ><a href="#"
                     ><img
                       src="templates/img/header/1.jpg"
-                      alt="language-selector" />English<i
+                      alt="language-selector" />Tiếng Việt<i
                       class="ion-arrow-down-b"
                     ></i
                   ></a>
-                  <!-- Dropdown Start -->
-                  <ul class="ht-dropdown">
-                    <li>
-                      <a href="#"
-                        ><img
-                          src="templates/img/header/1.jpg"
-                          alt="language-selector"
-                        />English</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><img
-                          src="templates/img/header/2.jpg"
-                          alt="language-selector"
-                        />Francis</a
-                      >
-                    </li>
-                  </ul>
-                  <!-- Dropdown End -->
                 </li>
-                <li>
+                {{-- <li>
                   <span>Currency:</span
                   ><a href="#">USD $<i class="ion-arrow-down-b"></i></a>
                   <!-- Dropdown Start -->
@@ -47,7 +27,7 @@
                     <li><a href="#">Français</a></li>
                   </ul>
                   <!-- Dropdown End -->
-                </li>
+                </li> --}}
               </ul>
             </div>
             <!-- Header Top Left End -->
@@ -91,39 +71,15 @@
               <form action="#">
                 <div class="form-group">
                   <select class="bootstrap-select" name="poscats">
-                    <option value="0">All categories</option>
+                    <option value="0">All categanes</option>
                     <option value="2">Electronics</option>
-                    <option value="3">Cameras</option>
-                    <option value="4">Cords and Cables</option>
-                    <option value="5">gps accessories</option>
-                    <option value="6">Microphones</option>
-                    <option value="7">Wireless Transmitters</option>
-                    <option value="8">GamePad</option>
-                    <option value="9">cube lifestyle hd</option>
-                    <option value="10">Bags</option>
-                    <option value="11">Bottoms</option>
-                    <option value="12">Shirts</option>
-                    <option value="13">Tailored</option>
-                    <option value="14">Home &amp; Kitchen</option>
-                    <option value="15">Large Appliances</option>
-                    <option value="16">Armchairs</option>
-                    <option value="17">Bunk Bed</option>
-                    <option value="18">Mattress</option>
-                    <option value="19">Sideboard</option>
-                    <option value="20">Small Appliances</option>
-                    <option value="21">Bootees Bags</option>
-                    <option value="22">Jackets</option>
-                    <option value="23">Shelf</option>
-                    <option value="24">Shoes</option>
-                    <option value="25">Phones &amp; Tablets</option>
-                    <option value="26">Tablet</option>
-                    <option value="27">phones</option>
+
                   </select>
                 </div>
                 <input
                   type="text"
                   name="search"
-                  placeholder="Enter your search key ... "
+                  placeholder="Tìm kiếm sản phẩm ... "
                 />
                 <button><i class="ion-ios-search"></i></button>
               </form>
@@ -230,34 +186,30 @@
               <ul class="header-bottom-list d-flex">
                 <li class="active">
                   <a href="index.html"
-                    >home<i class="fa fa-angle-down"></i
+                    >home<i ></i
                   ></a>
                   <!-- Home Version Dropdown Start -->
-                  <ul class="ht-dropdown">
+                  {{-- <ul class="ht-dropdown">
                     <li><a href="index.html">Home Version 1</a></li>
                     <li><a href="index-2.html">Home Version 2</a></li>
                     <li><a href="index-3.html">Home Version 3</a></li>
                     <li><a href="index-4.html">Home Version 4</a></li>
-                  </ul>
+                  </ul> --}}
                   <!-- Home Version Dropdown End -->
                 </li>
+
                 <li>
-                  <a href="terms-conditions.html">Terms and conditions</a>
-                </li>
-                <li>
-                  <a href="{{ route('client.shop') }}"
-                    >shop<i class="fa fa-angle-down"></i
-                  ></a>
-                  <!-- Home Version Dropdown Start -->
-                  <ul class="ht-dropdown dropdown-style-two">
-                    <li><a href="{{ route('client.product.detail') }}">product details</a></li>
-                    <li><a href="compare.html">compare</a></li>
-                    <li><a href="cart.html">cart</a></li>
-                    <li><a href="checkout.html">checkout</a></li>
-                    <li><a href="wishlist.html">wishlist</a></li>
-                  </ul>
-                  <!-- Home Version Dropdown End -->
-                </li>
+                    <a href="shop.html">Sản phẩm<i class="fa fa-angle-down"></i></a>
+                    <!-- Bắt đầu Danh sách Dropdown -->
+                    <ul class="ht-dropdown dropdown-style-two">
+                      <li><a href="product.html">chi tiết sản phẩm</a></li>
+                      <li><a href="compare.html">so sánh</a></li>
+                      <li><a href="cart.html">giỏ hàng</a></li>
+                      <li><a href="checkout.html">thanh toán</a></li>
+                      <li><a href="wishlist.html">danh sách yêu thích</a></li>
+                    </ul>
+                    <!-- Kết thúc Danh sách Dropdown -->
+                  </li>
                 <li>
                   <a href="blog.html"
                     >blog<i class="fa fa-angle-down"></i
@@ -269,19 +221,17 @@
                   <!-- Home Version Dropdown End -->
                 </li>
                 <li>
-                  <a href="#">pages<i class="fa fa-angle-down"></i></a>
-                  <!-- Home Version Dropdown Start -->
-                  <ul class="ht-dropdown dropdown-style-two">
-                    <li><a href="contact.html">contact us</a></li>
-                    <li><a href="register.html">register</a></li>
-                    <li><a href="login.html">sign in</a></li>
-                    <li>
-                      <a href="forgot-password.html">forgot password</a>
-                    </li>
-                    <li><a href="404.html">404</a></li>
-                  </ul>
-                  <!-- Home Version Dropdown End -->
-                </li>
+                    <a href="#">Liên hệ<i class="fa fa-angle-down"></i></a>
+                    <!-- Bắt đầu Danh sách Dropdown -->
+                    <ul class="ht-dropdown dropdown-style-two">
+                      <li><a href="contact.html">liên hệ với chúng tôi</a></li>
+                      <li><a href="register.html">đăng ký</a></li>
+                      <li><a href="login.html">đăng nhập</a></li>
+                      <li><a href="forgot-password.html">quên mật khẩu</a></li>
+                      {{-- <li><a href="404.html">404</a></li> --}}
+                    </ul>
+                    <!-- Kết thúc Danh sách Dropdown -->
+                  </li>
                 <li><a href="about.html">About us</a></li>
               </ul>
             </nav>
@@ -291,25 +241,25 @@
                   <li>
                     <a href="index.html">home</a>
                     <!-- Home Version Dropdown Start -->
-                    <ul>
+                    {{-- <ul>
                       <li><a href="index.html">Home Version 1</a></li>
                       <li><a href="index-2.html">Home Version 2</a></li>
                       <li><a href="index-3.html">Home Version 3</a></li>
                       <li><a href="index-4.html">Home Version 4</a></li>
-                    </ul>
+                    </ul> --}}
                     <!-- Home Version Dropdown End -->
                   </li>
                   <li>
-                    <a href="shop.html">shop</a>
-                    <!-- Mobile Menu Dropdown Start -->
+                    <a href="shop.html">cửa hàng</a>
+                    <!-- Bắt đầu Danh sách Dropdown Di Động -->
                     <ul>
-                      <li><a href="product.html">product details</a></li>
-                      <li><a href="compare.html">compare</a></li>
-                      <li><a href="cart.html">cart</a></li>
-                      <li><a href="checkout.html">checkout</a></li>
-                      <li><a href="wishlist.html">wishlist</a></li>
+                      <li><a href="product.html">chi tiết sản phẩm</a></li>
+                      <li><a href="compare.html">so sánh</a></li>
+                      <li><a href="cart.html">giỏ hàng</a></li>
+                      <li><a href="checkout.html">thanh toán</a></li>
+                      <li><a href="wishlist.html">danh sách yêu thích</a></li>
                     </ul>
-                    <!-- Mobile Menu Dropdown End -->
+                    <!-- Kết thúc Danh sách Dropdown Di Động -->
                   </li>
                   <li>
                     <a href="blog.html">Blog</a>
