@@ -34,7 +34,7 @@ class LoginController extends Controller
         if(Auth::attempt([
             'email' => $request->input('email'),
             'password' => $request->input('password'),
-            'role_id' => 3, //Vai trò là người dùng
+            'role' => 3, //Vai trò là người dùng
         ])){
             //Đăng nhập thành công chuyển sang trang giao diện client và tạo biến success = 'Đăng nhập thành công'
             return redirect()->route('client.index')->with('success', 'Đăng nhập thành công');
@@ -82,7 +82,7 @@ class LoginController extends Controller
             "email" => $request->input('email'),
             'show_password' => $password,
             'password' => Hash::make($password),
-            "role_id" => 3
+            "role" => 3
         ]);
 
         //Đăng nhập thành công, hiện form đăng nhập client và tạo session success = 'Signuped successfully'

@@ -1,5 +1,4 @@
 <div class="container-xxl animated fadeInDown">
-                    
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card">
@@ -16,7 +15,7 @@
                                 <div class="">
                                     <h5 class="fw-semibold fs-20 mb-1">{{$user->name}}</h5>
                                     <p class="mb-0 text-muted mb2">ID: <span class="text-blue fw-medium">{{$user->user_code}}</span></p>
-                                    <span class="badge bg-blue-subtle text-blue text-capitalize me-1">{{$user->role->name}}</span>
+                                    <span class="badge bg-blue-subtle text-blue text-capitalize me-1">Nhân Viên</span>
                                     <span class="badge bg-{{$user->status == "active" ? "success" : "danger"}} text-capitalize">{{$user->status}}</span>
                                     <div class="d-flex mt-2">
                                         <select name="" class="form-select w-auto fs10 me-1">
@@ -86,7 +85,7 @@
                     <ul class="list-unstyled mb-0">               
                         <li><i class="fas fa-code me-1 text-secondary fs-5 align-middle"></i> <b> ID </b> : {{$user->user_code}}</li>
                         <li class="mt-2"><i class="fas fa-signature me-1 text-secondary fs-5 align-middle"></i> <b> Họ Tên </b> : {{$user->name}}</li>
-                        <li class="mt-2"><i class="fas fa-user-tie me-1 text-secondary fs-5 align-middle"></i> <b>&nbsp;&nbsp;Vai trò </b> : {{$user->role->name}}</li>
+                        <li class="mt-2"><i class="fas fa-user-tie me-1 text-secondary fs-5 align-middle"></i> <b>&nbsp;&nbsp;Vai trò </b> : Nhân Viên</li>
                         <li class="mt-2"><i class="fas fa-temperature-half me-1 text-secondary fs-5 align-middle"></i> <b>&nbsp;&nbsp;&nbsp;Trạng thái </b> : {{$user->status}}</li>
                         <li class="mt-2"><i class="fas fa-phone me-1 text-secondary fs-5 align-middle"></i> <b>&nbsp;Điện thoại </b> : {{$user->phone ? $user->phone : "Chưa cập nhật"}}</li>
                         <li class="mt-2"><i class="fas fa-envelope text-secondary fs-5 align-middle me-1"></i> <b>&nbsp;Email </b> : {{$user->email}}</li>

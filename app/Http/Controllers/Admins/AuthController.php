@@ -31,8 +31,8 @@ class AuthController extends Controller
             'email' => $request->input('email'),
             'password' => $request->input('password'),
         ])){
-            // role_id là 1 hoặc 2
-            if (in_array(Auth::user()->role_id, [1, 2])) { 
+            // role là 1 hoặc 2
+            if (in_array(Auth::user()->role, [1, 2])) { 
                 //Đăng nhập thành công, chuyển sang trang giao diện admin và tạo session success = 'Đăng nhập thành công'
                 return redirect()->route('admin.index')->with('success', 'Đăng nhập thành công');
             }

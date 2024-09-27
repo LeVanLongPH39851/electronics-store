@@ -29,16 +29,11 @@ class User extends Authenticatable
         'address',
         'status',
         'show_password',
-        'role_id',
+        'role',
         'password',
         'deleted_at'
     ];
     
-    public function role() //Nối với bảng roles
-    {
-        return $this->belongsTo(Role::class, 'role_id');
-    }
-
     /**
      * The attributes that should be hidden for serialization.
      *

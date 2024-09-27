@@ -16,7 +16,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() == false || (Auth::user()->role_id != 1 && Auth::user()->role_id != 2)) { //Kiểm tra nếu chưa đăng nhập hoặc vai trò không phải admin và nhân viên
+        if (Auth::check() == false || (Auth::user()->role != 1 && Auth::user()->role != 2)) { //Kiểm tra nếu chưa đăng nhập hoặc vai trò không phải admin và nhân viên
             //Chuyển hướng đến trang đăng nhập với thông báo lỗi
             return redirect()->route('admin.login')->with('error', 'Vui lòng đăng nhập');
         }

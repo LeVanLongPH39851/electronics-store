@@ -9,7 +9,7 @@
                 <div class="sidebar">
                     <!-- Sidebar Electronics Categorie Start -->
                     <div class="electronics mb-30">
-                        <h3 class="sidebar-title e-title">Electronic</h3>
+                        <h3 class="sidebar-title e-title">Danh Mục</h3>
                         <div id="shop-cate-toggle" class="category-menu sidebar-menu sidbar-style">
                             <ul>
                                 <li class="has-sub"><a href="#">Camera</a>
@@ -64,7 +64,7 @@
                     <!-- Price Filter Options End -->
                     <!-- Sidebar Categorie Start -->
                     <div class="sidebar-categorie mb-30">
-                        <h3 class="sidebar-title">danh mục</h3>
+                        <h3 class="sidebar-title">Màu</h3>
                         <ul class="sidbar-style">
                             <li class="form-check">
                                 <input class="form-check-input" value="#" id="camera" type="checkbox">

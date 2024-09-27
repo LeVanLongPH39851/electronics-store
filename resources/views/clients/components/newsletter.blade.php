@@ -5,8 +5,8 @@
         <div class="col-xl-5 col-lg-6">
           <div class="main-news-desc mb-all-30">
             <div class="news-desc">
-              <h3>Sign Up For Newsletters</h3>
-              <p>Be the First to Know. Sign up for newsletter today</p>
+              <h3>ĐĂNG KÝ NHẬN BẢN TIN</h3>
+              <p>Hãy là người đầu tiên biết. Đăng ký nhận bản tin ngay hôm nay</p>
             </div>
           </div>
         </div>
@@ -15,12 +15,12 @@
             <form action="#">
               <input
                 class="subscribe"
-                placeholder="your email address"
+                placeholder="Email của bạn"
                 name="email"
                 id="subscribe"
                 type="text"
               />
-              <button type="submit" class="submit">subscribe!</button>
+              <button type="submit" class="submit">Đăng Ký</button>
             </form>
           </div>
         </div>
