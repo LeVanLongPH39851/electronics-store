@@ -17,7 +17,7 @@ class StaffMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         
-        if(Auth::user()->role_id == 2){
+        if(Auth::user()->role == 2){
             return redirect()->back()->with("error", "Tài khoản không có quyền truy cập");
         }
 

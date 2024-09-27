@@ -41,10 +41,10 @@
                      <img width="22px" class="border rounded-circle border-white" src="{{Auth::user()->image ? Auth::user()->image : "assets/images/users/avatar-default.png"}}" alt="">
                     @endif
                   <a href="{{route('client.login')}}" class="ps-0">
-                  {{Auth::user() ? Auth::user()->name : "Login"}}
+                  {{Auth::user() ? Auth::user()->name : "Đăng nhập"}}
                  </a>
                 </li>
-                <li><a href="{{Auth::user() ? route('client.logout') : route('client.signup')}}" class="{{Auth::user() ? "text-danger" : ""}}">{{Auth::user() ? "Logout" : "Sign Up"}}</a></li>
+                <li><a href="{{Auth::user() ? route('client.logout') : route('client.signup')}}" class="{{Auth::user() ? "text-danger" : ""}}">{{Auth::user() ? "Đăng xuất" : "Đăng ký"}}</a></li>
               </ul>
             </div>
             <!-- Header Top Right End -->
@@ -71,7 +71,7 @@
               <form action="#">
                 <div class="form-group">
                   <select class="bootstrap-select" name="poscats">
-                    <option value="0">All categanes</option>
+                    <option value="0">Tất cả sản phẩm</option>
                     <option value="2">Electronics</option>
 
                   </select>
@@ -232,7 +232,7 @@
                     </ul>
                     <!-- Kết thúc Danh sách Dropdown -->
                   </li>
-                <li><a href="about.html">About us</a></li>
+                <li><a href="about.html">Về chúng tôi</a></li>
               </ul>
             </nav>
             <div class="mobile-menu d-block d-lg-none">
@@ -302,70 +302,74 @@
     <!-- Header Bottom End Here -->
     <!-- Mobile Vertical Menu Start Here -->
     <div class="container d-block d-lg-none">
-        <div class="vertical-menu mt-30">
-            <span class="categorie-title mobile-categorei-menu">all Categories <i class="fa fa-angle-down"></i></span>
-            <nav>
-                <div id="cate-mobile-toggle"
-                    class="category-menu sidebar-menu sidbar-style mobile-categorei-menu-list menu-hidden">
-                    <ul>
-                        <li class="has-sub">
-                            <a href="#">Electronics</a>
-                            <ul class="category-sub">
-                                <li><a href="shop.html">Cords and Cables</a></li>
-                                <li><a href="shop.html">gps accessories</a></li>
-                                <li><a href="shop.html">Microphones</a></li>
-                                <li><a href="shop.html">Wireless Transmitters</a></li>
-                            </ul>
-                            <!-- category submenu end-->
-                        </li>
-                        <li class="has-sub">
-                            <a href="#">Fashion</a>
-                            <ul class="category-sub">
-                                <li><a href="shop.html">Fashion one</a></li>
-                                <li><a href="shop.html">Fashion two</a></li>
-                                <li><a href="shop.html">Fashion three</a></li>
-                                <li><a href="shop.html">Fashion Four</a></li>
-                            </ul>
-                            <!-- category submenu end-->
-                        </li>
-                        <li class="has-sub">
-                            <a href="#">Home & Kitchen</a>
-                            <ul class="category-sub">
-                                <li><a href="shop.html">kithen one</a></li>
-                                <li><a href="shop.html">kithen two</a></li>
-                                <li><a href="shop.html">kithen three</a></li>
-                                <li><a href="shop.html">kithen four</a></li>
-                            </ul>
-                            <!-- category submenu end-->
-                        </li>
-                        <li class="has-sub">
-                            <a href="#">Phones & Tablets</a>
-                            <ul class="category-sub">
-                                <li><a href="shop.html">phone one</a></li>
-                                <li><a href="shop.html">Tablet two</a></li>
-                                <li><a href="shop.html">Tablet three</a></li>
-                                <li><a href="shop.html">phone four</a></li>
-                            </ul>
-                            <!-- category submenu end-->
-                        </li>
-                        <li class="has-sub">
-                            <a href="#">TV & Video</a>
-                            <ul class="category-sub">
-                                <li><a href="shop.html">smart tv</a></li>
-                                <li><a href="shop.html">real video</a></li>
-                                <li><a href="shop.html">Microphones</a></li>
-                                <li><a href="shop.html">Wireless Transmitters</a></li>
-                            </ul>
-                            <!-- category submenu end-->
-                        </li>
-                        <li><a href="#">Beauty</a></li>
-                        <li><a href="#">Sport & tourisim</a></li>
-                        <li><a href="#">Meat & Seafood</a></li>
-                    </ul>
-                </div>
-                <!-- category-menu-end -->
-            </nav>
-        </div>
+      <div class="vertical-menu mt-30">
+        <span class="categorie-title mobile-categorei-menu"
+          >all Categories <i class="fa fa-angle-down"></i
+        ></span>
+        <nav>
+          <div
+            id="cate-mobile-toggle"
+            class="category-menu sidebar-menu sidbar-style mobile-categorei-menu-list menu-hidden"
+          >
+            <ul>
+              <li class="has-sub">
+                <a href="#">Electronics</a>
+                <ul class="category-sub">
+                  <li><a href="shop.html">Cords and Cables</a></li>
+                  <li><a href="shop.html">gps accessories</a></li>
+                  <li><a href="shop.html">Microphones</a></li>
+                  <li><a href="shop.html">Wireless Transmitters</a></li>
+                </ul>
+                <!-- category submenu end-->
+              </li>
+              <li class="has-sub">
+                <a href="#">Fashion</a>
+                <ul class="category-sub">
+                  <li><a href="shop.html">Fashion one</a></li>
+                  <li><a href="shop.html">Fashion two</a></li>
+                  <li><a href="shop.html">Fashion three</a></li>
+                  <li><a href="shop.html">Fashion Four</a></li>
+                </ul>
+                <!-- category submenu end-->
+              </li>
+              <li class="has-sub">
+                <a href="#">Home & Kitchen</a>
+                <ul class="category-sub">
+                  <li><a href="shop.html">kithen one</a></li>
+                  <li><a href="shop.html">kithen two</a></li>
+                  <li><a href="shop.html">kithen three</a></li>
+                  <li><a href="shop.html">kithen four</a></li>
+                </ul>
+                <!-- category submenu end-->
+              </li>
+              <li class="has-sub">
+                <a href="#">Phones & Tablets</a>
+                <ul class="category-sub">
+                  <li><a href="shop.html">phone one</a></li>
+                  <li><a href="shop.html">Tablet two</a></li>
+                  <li><a href="shop.html">Tablet three</a></li>
+                  <li><a href="shop.html">phone four</a></li>
+                </ul>
+                <!-- category submenu end-->
+              </li>
+              <li class="has-sub">
+                <a href="#">TV & Video</a>
+                <ul class="category-sub">
+                  <li><a href="shop.html">smart tv</a></li>
+                  <li><a href="shop.html">real video</a></li>
+                  <li><a href="shop.html">Microphones</a></li>
+                  <li><a href="shop.html">Wireless Transmitters</a></li>
+                </ul>
+                <!-- category submenu end-->
+              </li>
+              <li><a href="#">Beauty</a></li>
+              <li><a href="#">Sport & tourisim</a></li>
+              <li><a href="#">Meat & Seafood</a></li>
+            </ul>
+          </div>
+          <!-- category-menu-end -->
+        </nav>
+      </div>
     </div>
     <!-- Mobile Vertical Menu Start End -->
   </header>

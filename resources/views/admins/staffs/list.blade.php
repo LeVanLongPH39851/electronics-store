@@ -86,7 +86,7 @@
                                     </td>
                                     <td><a href="#" class="d-inline-block align-middle mb-0 text-body">{{$user->email}}</a></td>
                                     <td class="text-center">{{date('d/m/Y', strtotime($user->created_at))}}</td>
-                                    <td class="text-center"><span class="badge bg-blue-subtle text-blue text-capitalize">{{$user->role->name}}</span></td>
+                                    <td class="text-center"><span class="badge bg-blue-subtle text-blue text-capitalize">Nhân Viên</span></td>
                                     <td class="text-center"><span class="badge bg-{{$user->status === "active" ? "success" : "danger"}} text-capitalize">{{$user->status}}</span></td>
                                     {{-- Hiển thị trạng thái và in màu tương ứng --}}
                                     <td class="text-end">                                                       

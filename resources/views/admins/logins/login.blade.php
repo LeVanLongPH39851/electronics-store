@@ -68,7 +68,7 @@
 
                       <div class="form-group row mt-3">
                         <div class="col-sm-6">
-                          <div
+                          {{-- <div
                             class="form-check form-switch form-switch-success"
                           >
                             <input
@@ -81,7 +81,7 @@
                               for="customSwitchSuccess"
                               >Ghi nhớ</label
                             >
-                          </div>
+                          </div> --}}
                         </div>
                         <!--end col-->
                         <div class="col-sm-6 text-end">

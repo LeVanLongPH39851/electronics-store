@@ -27,7 +27,9 @@
                                 <p class="text-danger mt-1">{{$errors->first("password")}}</p>
                                 @endif
                             </div>
-                            <div class="d-flex justify-content-between"><div class="d-flex align-items-center" style="font-size: 13px"><input type="checkbox" class="me-1"><span>Nghi nhớ</span></div><p class="lost-password mt-0"><a href="forgot-password.html">Quên mật khẩu ?</a></p></div>
+                            <div class="d-flex justify-content-between"><div class="d-flex align-items-center" style="font-size: 13px">
+                                {{-- <input type="checkbox" class="me-1"><span>Nghi nhớ</span> --}}
+                            </div><p class="lost-password mt-0"><a href="forgot-password.html">Quên mật khẩu ?</a></p></div>
                             <input type="submit" value="Đăng nhập" class="return-customer-btn">
                         </form>
                     </div>

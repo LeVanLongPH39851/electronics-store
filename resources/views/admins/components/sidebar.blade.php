@@ -243,7 +243,7 @@
               <!--end startbarApplications-->
             </li> --}}
             <!--end nav-item-->
-            @if (Auth::user()->role_id == 1)
+            @if (Auth::user()->role == 1)
             <li class="nav-item">
               <a
                 class="nav-link {{$classActive === "Nhân Viên" ? "active bg-active" : ""}}"

@@ -19,13 +19,12 @@ class UserTrashController extends Controller
     public function index(Request $request)
     {        
         //Lấy danh sách user xếp theo created_at desc, nếu created_at = nhau thì lấy theo id desc
-        $users = User::with('role') //Kết nối với roles
-        ->where("status", $request->input("status") && $request->input("status") != 0 ? $request->input("status") : "LIKE", "%") //Filter theo trạng thái
+        $users = User::where("status", $request->input("status") && $request->input("status") != 0 ? $request->input("status") : "LIKE", "%") //Filter theo trạng thái
         ->where(function($query) use ($request) {
             $query->where("name", "LIKE", $request->input("keyWord") ? "%".$request->input("keyWord")."%" : "%") //Filter theo tên user
             ->orWhere("user_code", "LIKE", $request->input("keyWord") ? "%".$request->input("keyWord")."%" : "%"); //Filter theo mã user
         })
-        ->where("role_id", 3)
+        ->where("role", 3)
         ->orderBy("deleted_at", $request->input("orderBy") && $request->input("orderBy") === "oldest" ? "asc" : "desc") //Filter theo mới, cũ nhất
         ->orderBy('id', $request->input("orderBy") && $request->input("orderBy") === "oldest" ? "asc" : "desc") //Filter theo mới, cũ nhất
         ->onlyTrashed() //Lấy danh sách đã xóa
@@ -84,7 +83,7 @@ class UserTrashController extends Controller
             
             $user = User::onlyTrashed()->find($id); //Tìm user đã xóa có id đấy
 
-            if($user && $user->role_id == 3){
+            if($user && $user->role == 3){
              $user->restore(); //Khôi phục
              return redirect()->back()->with("success", "Khôi phục thành công");
             }
@@ -104,7 +103,7 @@ class UserTrashController extends Controller
     {
         $user = User::onlyTrashed()->find($id); ////Tìm user đã xóa có id đấy
 
-        if($user && $user->role_id == 3){
+        if($user && $user->role == 3){
             
             if($user->image && Storage::disk('public')->exists($user->image)){ //Nếu có ảnh thì xóa ảnh
             Storage::disk('public')->delete($user->image);
@@ -125,7 +124,7 @@ class UserTrashController extends Controller
         
         foreach($arrayOfValues as $arrayOfValue){
             $user = User::find($arrayOfValue);
-            if($user && $user->role_id == 3){
+            if($user && $user->role == 3){
              $user->delete(); //Xóa mềm nhiều
             }else{
              return redirect()->back()->with("error", "Không tìm thấy khách hàng");
@@ -146,7 +145,7 @@ class UserTrashController extends Controller
         foreach($arrayOfValues as $arrayOfValue){
             $user = User::onlyTrashed()->find($arrayOfValue);
 
-            if($user && $user->role_id == 3){
+            if($user && $user->role == 3){
             if($user->image && Storage::disk('public')->exists($user->image)){ //Nếu có ảnh thì xóa ảnh
             Storage::disk('public')->delete($user->image);
             }
@@ -172,7 +171,7 @@ class UserTrashController extends Controller
 
             $user = User::onlyTrashed()->find($arrayOfValue); //Tìm user đã xóa
 
-            if($user && $user->role_id == 3){
+            if($user && $user->role == 3){
                 $user->restore(); //Khôi phục
             }else{
                 return redirect()->back()->with("error", "Không tìm thấy khách hàng");

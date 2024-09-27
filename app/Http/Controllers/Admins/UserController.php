@@ -20,13 +20,12 @@ class UserController extends Controller
     public function index(Request $request)
     {           
         //Lấy danh sách user xếp theo created_at desc, nếu created_at = nhau thì lấy theo id desc
-        $users = User::with('role') //Kết nối với roles
-        ->where("status", $request->input("status") && $request->input("status") != 0 ? $request->input("status") : "LIKE", "%") //Filter theo trạng thái
+        $users = User::where("status", $request->input("status") && $request->input("status") != 0 ? $request->input("status") : "LIKE", "%") //Filter theo trạng thái
         ->where(function($query) use ($request) {
             $query->where("name", "LIKE", $request->input("keyWord") ? "%".$request->input("keyWord")."%" : "%") //Filter theo tên user
             ->orWhere("user_code", "LIKE", $request->input("keyWord") ? "%".$request->input("keyWord")."%" : "%"); //Filter theo mã user
         })
-        ->where("role_id", 3)
+        ->where("role", 3)
         ->orderBy("created_at", $request->input("orderBy") && $request->input("orderBy") === "oldest" ? "asc" : "desc") //Filter theo mới, cũ nhất
         ->orderBy('id', $request->input("orderBy") && $request->input("orderBy") === "oldest" ? "asc" : "desc") //Filter theo mới, cũ nhất
         ->paginate($request->input("perPage") ? $request->input("perPage") : 8); //Lấy bao nhiêu bản ghi
@@ -87,7 +86,7 @@ class UserController extends Controller
              "status" => $request->input("status") ? "active" : "banned",
              "show_password" => $request->input("password"),
              "password" => Hash::make($request->input("password")),
-             "role_id" => 3,
+             "role" => 3,
             ]);
 
             return redirect()->route('user.index')->with('success','Tạo mới khách hàng thành công');
@@ -103,7 +102,7 @@ class UserController extends Controller
     {
         $user = User::find($id); //Lấy user hiện tại
 
-        if($user && $user->role_id == 3){
+        if($user && $user->role == 3){
             
             $template = "admins.users.detail";
             
@@ -125,7 +124,7 @@ class UserController extends Controller
     {   
         $user = User::find($id); //Lấy user hiện tại
 
-        if($user && $user->role_id == 3){
+        if($user && $user->role == 3){
             
             $template = "admins.users.edit";
             
@@ -149,7 +148,7 @@ class UserController extends Controller
             
         $user = User::find($id); //Tìm user đấy
 
-        if($user && $user->role_id == 3){ //Nếu có
+        if($user && $user->role == 3){ //Nếu có
             if ($request->hasFile('image')) {  //Nếu có ảnh
                 if($user->image && Storage::disk('public')->exists($user->image)){ //Kiểm tra có image trong csdl và public hay không
                     Storage::disk('public')->delete($user->image); //Nếu có thì xóa ảnh đấy
@@ -184,7 +183,7 @@ class UserController extends Controller
     {   
         $user = User::find($id);
         
-        if($user && $user->role_id == 3){
+        if($user && $user->role == 3){
             $user->delete(); //Xóa mềm
             return redirect()->back()->with("success", "Chuyển vào thùng rác thành công");
         }

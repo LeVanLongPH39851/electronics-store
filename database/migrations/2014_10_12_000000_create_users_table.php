@@ -21,8 +21,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->enum('status', ['active', 'banned'])->default('active');
             $table->string('show_password');
-            //Tạo khóa ngoại với bảng roles, nếu xóa roles thì tất cả users sẽ bị xóa khi có role_id = id của roles bị xóa
-            $table->integer('role_id')->references('id')->on('roles')->onDelete('cascade'); 
+            $table->enum('role', [1, 2, 3])->default(3);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

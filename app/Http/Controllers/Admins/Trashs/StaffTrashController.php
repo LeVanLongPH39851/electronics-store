@@ -18,13 +18,12 @@ class StaffTrashController extends Controller
     public function index(Request $request)
     {
         //Lấy danh sách staff xếp theo created_at desc, nếu created_at = nhau thì lấy theo id desc
-        $users = User::with('role') //Kết nối với roles
-        ->where("status", $request->input("status") && $request->input("status") != 0 ? $request->input("status") : "LIKE", "%") //Filter theo trạng thái
+        $users = User::where("status", $request->input("status") && $request->input("status") != 0 ? $request->input("status") : "LIKE", "%") //Filter theo trạng thái
         ->where(function($query) use ($request) {
             $query->where("name", "LIKE", $request->input("keyWord") ? "%".$request->input("keyWord")."%" : "%") //Filter theo tên staff
             ->orWhere("user_code", "LIKE", $request->input("keyWord") ? "%".$request->input("keyWord")."%" : "%"); //Filter theo mã staff
         })
-        ->where("role_id", 2)
+        ->where("role", 2)
         ->orderBy("deleted_at", $request->input("orderBy") && $request->input("orderBy") === "oldest" ? "asc" : "desc") //Filter theo mới, cũ nhất
         ->orderBy('id', $request->input("orderBy") && $request->input("orderBy") === "oldest" ? "asc" : "desc") //Filter theo mới, cũ nhất
         ->onlyTrashed() //Lấy danh sách đã xóa
@@ -81,7 +80,7 @@ class StaffTrashController extends Controller
             
             $user = User::onlyTrashed()->find($id); //Tìm staff đã xóa có id đấy
 
-            if($user && $user->role_id == 2){
+            if($user && $user->role == 2){
              $user->restore(); //Khôi phục
              return redirect()->back()->with("success", "Khôi phục thành công");
             }
@@ -99,7 +98,7 @@ class StaffTrashController extends Controller
     {
         $user = User::onlyTrashed()->find($id); ////Tìm staff đã xóa có id đấy
 
-        if($user && $user->role_id == 2){
+        if($user && $user->role == 2){
             
             if($user->image && Storage::disk('public')->exists($user->image)){ //Nếu có ảnh thì xóa ảnh
             Storage::disk('public')->delete($user->image);
@@ -120,7 +119,7 @@ class StaffTrashController extends Controller
         
         foreach($arrayOfValues as $arrayOfValue){
             $user = User::find($arrayOfValue);
-            if($user && $user->role_id == 2){
+            if($user && $user->role == 2){
              $user->delete(); //Xóa mềm nhiều
             }else{
              return redirect()->back()->with("error", "Không tìm thấy nhân viên");
@@ -141,7 +140,7 @@ class StaffTrashController extends Controller
         foreach($arrayOfValues as $arrayOfValue){
             $user = User::onlyTrashed()->find($arrayOfValue);
 
-            if($user && $user->role_id == 2){
+            if($user && $user->role == 2){
             if($user->image && Storage::disk('public')->exists($user->image)){ //Nếu có ảnh thì xóa ảnh
             Storage::disk('public')->delete($user->image);
             }
@@ -167,7 +166,7 @@ class StaffTrashController extends Controller
 
             $user = User::onlyTrashed()->find($arrayOfValue); //Tìm staff đã xóa
 
-            if($user && $user->role_id == 2){
+            if($user && $user->role == 2){
                 $user->restore(); //Khôi phục
             }else{
                 return redirect()->back()->with("error", "Không tìm thấy nhân viên");
