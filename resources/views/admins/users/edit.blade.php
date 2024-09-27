@@ -22,7 +22,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Email<span class="text-danger">*</span></label>
+                                    <label class="col-sm-2 col-form-label text-end">Email <span class="text-danger">*</span></label>
                                     <div class="col-sm-10">
                                         <input class="form-control {{$errors->has("email") ? "is-invalid" : ""}}" name="email" value="{{old('email', $user->email)}}" type="text" placeholder="example@gmail.com">
                                         @if ($errors->has("email"))

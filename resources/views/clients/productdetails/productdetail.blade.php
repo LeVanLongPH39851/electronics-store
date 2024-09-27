@@ -51,7 +51,7 @@
                  <!-- Thumbnail Description Start -->
                  <div class="col-lg-7">
                      <div class="thubnail-desc fix">
-                         <h3 class="product-header">Faded Short Sleeves T-shirt</h3>
+                         <h3 class="product-header">iPhone 15</h3>
                          <div class="rating-summary fix mtb-10">
                              <div class="rating">
                                  <i class="fa fa-star"></i>
@@ -66,12 +66,10 @@
                              </div>
                          </div>
                          <div class="pro-price mtb-30">
-                             <p class="d-flex align-items-center"><span class="prev-price">16.51</span><span
-                                     class="price">$15.19</span><span class="saving-price">save 8%</span></p>
+                             <p class="d-flex align-items-center"><span class="prev-price">12.000.000 vnđ</span><span
+                                     class="price">12.000.000 vnđ</span><span class="saving-price">giảm 8%</span></p>
                          </div>
-                         <p class="mb-20 pro-desc-details">Faded short sleeves t-shirt with high neckline. Soft and
-                             stretchy material for a comfortable fit. Accessorize with a straw hat and you're ready for
-                             summer!</p>
+                         <p class="mb-20 pro-desc-details">mô tả ngắn</p>
                          <div class="product-size mb-20 clearfix">
                              <label>Dung lượng</label>
                              <form action="#">
@@ -123,7 +121,7 @@
                              <form action="#">
                                  <input class="quantity mr-40" type="number" min="1" value="1">
                              </form>
-                             <a class="add-cart" href="cart.html">add to cart</a>
+                             <a class="add-cart" href="cart.html">Thêm vào giỏ hàng</a>
                          </div>
                          <div class="pro-ref mt-15">
                              <label><b>Số lượng có sẵn: 20</b></label>
@@ -164,12 +162,7 @@
                  <!-- Product Thumbnail Tab Content Start -->
                  <div class="tab-content thumb-content border-default">
                      <div id="dtail" class="tab-pane fade show active">
-                         <p>Fashion has been creating well-designed collections since 2010. The brand offers feminine
-                             designs delivering stylish separates and statement dresses which have since evolved into a
-                             full ready-to-wear collection in which every item is a vital part of a woman's wardrobe.
-                             The result? Cool, easy, chic looks with youthful elegance and unmistakable signature style.
-                             All the beautiful pieces are made in Italy and manufactured with the greatest attention.
-                             Now Fashion extends to a range of accessories including shoes, hats, belts and more!</p>
+                         <p>Mô tả dài</p>
                      </div>
                      <div id="review" class="tab-pane fade">
                          <!-- Reviews Start -->

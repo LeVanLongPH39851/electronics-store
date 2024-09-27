@@ -71,7 +71,7 @@
               <form action="#">
                 <div class="form-group">
                   <select class="bootstrap-select" name="poscats">
-                    <option value="0">All categanes</option>
+                    <option value="0">Tất cả sản phẩm</option>
                     <option value="2">Electronics</option>
 
                   </select>
@@ -232,7 +232,7 @@
                     </ul>
                     <!-- Kết thúc Danh sách Dropdown -->
                   </li>
-                <li><a href="about.html">About us</a></li>
+                <li><a href="about.html">Về chúng tôi</a></li>
               </ul>
             </nav>
             <div class="mobile-menu d-block d-lg-none">

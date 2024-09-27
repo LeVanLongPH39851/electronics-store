@@ -457,7 +457,7 @@
               aria-expanded="false"
             >
               <img
-                src="{{Auth::user()->image ? Auth::user()->image : "assets/images/users/avatar-default-".(Auth::user()->role_id == 1 ? "admin" : "staff").".png"}}"
+                src="{{Auth::user()->image ? Auth::user()->image : "assets/images/users/avatar-default-".(Auth::user()->role == 1 ? "admin" : "staff").".png"}}"
                 alt=""
                 class="thumb-lg rounded-circle"
               />
@@ -468,7 +468,7 @@
               >
                 <div class="flex-shrink-0">
                   <img
-                    src="{{Auth::user()->image ? Auth::user()->image : "assets/images/users/avatar-default-".(Auth::user()->role_id == 1 ? "admin" : "staff").".png"}}"
+                    src="{{Auth::user()->image ? Auth::user()->image : "assets/images/users/avatar-default-".(Auth::user()->role == 1 ? "admin" : "staff").".png"}}"
                     alt=""
                     class="thumb-md rounded-circle"
                   />
@@ -477,7 +477,7 @@
                   <h6 class="my-0 fw-medium text-dark fs-13">
                     {{Auth::user()->name}}
                   </h6>
-                  <small class="text-muted mb-0">{{Auth::user()->role->name}}</small>
+                  <small class="text-muted mb-0">{{Auth::user()->role == 1 ? "Admin" : "Nhân viên"}}</small>
                 </div>
                 <!--end media-body-->
               </div>

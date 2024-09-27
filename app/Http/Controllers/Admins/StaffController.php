@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admins\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,13 +21,12 @@ class StaffController extends Controller
     public function index(Request $request)
     {           
         //Lấy danh sách nhân viên xếp theo created_at desc, nếu created_at = nhau thì lấy theo id desc
-        $users = User::with('role') //Kết nối với roles
-        ->where("status", $request->input("status") && $request->input("status") != 0 ? $request->input("status") : "LIKE", "%") //Filter theo trạng thái
+        $users = User::where("status", $request->input("status") && $request->input("status") != 0 ? $request->input("status") : "LIKE", "%") //Filter theo trạng thái
         ->where(function($query) use ($request) {
             $query->where("name", "LIKE", $request->input("keyWord") ? "%".$request->input("keyWord")."%" : "%") //Filter theo tên nhân viên
             ->orWhere("user_code", "LIKE", $request->input("keyWord") ? "%".$request->input("keyWord")."%" : "%"); //Filter theo mã nhân viên
         })
-        ->where("role_id", 2)
+        ->where("role", 2)
         ->orderBy("created_at", $request->input("orderBy") && $request->input("orderBy") === "oldest" ? "asc" : "desc") //Filter theo mới, cũ nhất
         ->orderBy('id', $request->input("orderBy") && $request->input("orderBy") === "oldest" ? "asc" : "desc") //Filter theo mới, cũ nhất
         ->paginate($request->input("perPage") ? $request->input("perPage") : 5); //Lấy bao nhiêu bản ghi
@@ -58,7 +58,7 @@ class StaffController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         if($request->isMethod("POST")){
             
@@ -87,7 +87,7 @@ class StaffController extends Controller
              "status" => $request->input("status") ? "active" : "banned",
              "show_password" => $request->input("password"),
              "password" => Hash::make($request->input("password")),
-             "role_id" => 2,
+             "role" => 2,
             ]);
 
             return redirect()->route('staff.index')->with('success','Tạo mới nhân viên thành công');
@@ -103,7 +103,7 @@ class StaffController extends Controller
     {
         $user = User::find($id); //Lấy khách hàng hiện tại
 
-        if($user && $user->role_id == 2){
+        if($user && $user->role == 2){
             
             $template = "admins.staffs.detail";
             
@@ -125,7 +125,7 @@ class StaffController extends Controller
     {
         $user = User::find($id); //Lấy staff hiện tại
 
-        if($user && $user->role_id == 2){
+        if($user && $user->role == 2){
             
             $template = "admins.staffs.edit";
             
@@ -149,7 +149,7 @@ class StaffController extends Controller
             
             $user = User::find($id); //Tìm staff đấy
     
-            if($user && $user->role_id == 2){ //Nếu có
+            if($user && $user->role == 2){ //Nếu có
                 if ($request->hasFile('image')) {  //Nếu có ảnh
                     if($user->image && Storage::disk('public')->exists($user->image)){ //Kiểm tra có image trong csdl và public hay không
                         Storage::disk('public')->delete($user->image); //Nếu có thì xóa ảnh đấy
@@ -184,7 +184,7 @@ class StaffController extends Controller
     {
         $user = User::find($id);
         
-        if($user && $user->role_id == 2){
+        if($user && $user->role == 2){
             $user->delete(); //Xóa mềm
             return redirect()->back()->with("success", "Chuyển vào thùng rác thành công");
         }
