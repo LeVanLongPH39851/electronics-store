@@ -61,7 +61,7 @@
           <div class="col-lg-3 col-md-12">
             <div class="logo mb-all-30">
               <a href="index.html"
-                ><img src="templates/img/logo/logo.png" alt="logo-image"
+                ><img src="templates/img/logo/logoshop.png" alt="logo-image"
               /></a>
             </div>
           </div>
@@ -101,7 +101,7 @@
                   <a href="#"
                     ><i class="ion-bag"></i><span class="total-pro">2</span
                     ><span class="my-cart"
-                      ><span>my cart</span
+                      ><span>giỏ hàng</span
                       ><span class="total-price">$ 64.95</span></span
                     ></a
                   >

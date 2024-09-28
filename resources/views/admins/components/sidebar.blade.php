@@ -3,21 +3,14 @@
     <!--start brand-->
     <div class="brand">
       <a href="index.html" class="logo">
-        <span>
-          <img
-            src="assets/images/logo-sm.png"
-            alt="logo-small"
-            class="logo-sm"
-          />
-        </span>
         <span class="">
           <img
-            src="assets/images/logo-light.png"
+            src="assets/images/light.png"
             alt="logo-large"
             class="logo-lg logo-light"
           />
           <img
-            src="assets/images/logo-dark.png"
+            src="assets/images/dark.png"
             alt="logo-large"
             class="logo-lg logo-dark"
           />
@@ -264,6 +257,26 @@
                 <span>Khách Hàng</span>
               </a>
               <!--end startbarElements-->
+            </li>
+            <li class="nav-item">
+                <a
+                  class="nav-link  {{$classActive === "Màu Sắc" ? "active bg-active" : ""}}"
+                  href="{{ route('color.index') }}"
+                >
+                  <i class="fas fa-wand-magic-sparkles menu-icon  {{$classActive === "Màu Sắc" ? "text-primary" : ""}}"></i>
+                  <span>Màu Sắc</span>
+                </a>
+                <!--end startbarElements-->
+            </li>
+            <li class="nav-item">
+                <a
+                  class="nav-link {{$classActive === "Dung Lượng" ? "active bg-active" : ""}}"
+                  href="{{ route('ssd.index') }}"
+                >
+                  <i class="fas fa-cloud menu-icon {{$classActive === "Dung Lượng" ? "text-primary" : ""}}"></i>
+                  <span>Dung Lượng</span>
+                </a>
+                <!--end startbarElements-->
             </li>
             <!--end nav-item-->
           </ul>
