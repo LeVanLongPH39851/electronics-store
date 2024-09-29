@@ -278,6 +278,15 @@
                 </a>
                 <!--end startbarElements-->
             </li>
+            <li class="nav-item">
+              <a
+                  class="nav-link {{$classActive === 'Danh mục' ? 'active bg-active' : ''}}"
+                  href="{{route('categories.index')}}"
+              >
+                  <i class="fas fa-bars menu-icon {{$classActive === 'Danh mục' ? 'text-primary' : ''}}"></i>
+                  <span>Danh mục</span>
+              </a>
+            </li>
             <!--end nav-item-->
           </ul>
           <!--end navbar-nav--->
