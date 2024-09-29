@@ -1,3 +1,13 @@
+body::-webkit-scrollbar {
+    width: 5px;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: #22c55e;
+}
+body::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
 @keyframes fadeInDown {
     0% {
         opacity: 0;
@@ -32,8 +42,114 @@
 
 .nav-link:hover i {
     color: #22c55e !important;
+    transition: color 0.15s ease-in-out;
 }
 
 .nav-link {
     border-radius: 10px !important;
+}
+
+.mr1 {
+    margin-right: 1px;
+}
+
+.image-style {
+    height: calc(100% - 1px);
+    top: 50%;
+    right: 1px;
+    transform: translateY(-50%);
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    display: none;
+    border-radius: 0.4rem;
+}
+
+.password-eye {
+    position: relative;
+    width: 100%;
+}
+#togglePassword,
+#toggleConfirmPassword {
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    color: #999;
+}
+
+.btn-reset {
+    all: unset; /* Reset mọi thuộc tính về giá trị mặc định ban đầu */
+    display: inline-block; /* Nếu là thẻ <a> hoặc muốn giữ layout */
+    cursor: pointer; /* Đảm bảo hiển thị con trỏ khi hover */
+}
+
+.bg-none {
+    background-image: none !important;
+}
+
+.is-invalid::placeholder {
+    color: #ef4d56;
+    opacity: 0.9;
+}
+
+.mb2 {
+    margin-bottom: 2px !important;
+}
+
+.fs10 {
+    font-size: 10px !important;
+}
+
+.py2 {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.text-inherit {
+    color: inherit;
+}
+
+.text-underline:hover {
+    text-decoration: underline;
+    color: #22c55e;
+}
+
+.mr2 {
+    margin-right: 2px !important;
+}
+
+.w-h {
+    width: 15px;
+    height: 15px;
+}
+
+.position-quantity {
+    font-size: 8px !important;
+    top: -2.5px;
+    right: -2.5px;
+}
+
+.mb1 {
+    margin-bottom: 1px !important;
+}
+
+.fs-star {
+    font-size: 11px;
+}
+
+.gap1 {
+    gap: 1px;
+}
+
+.nav-mt-3 nav {
+    margin-top: 1.5rem !important;
+}
+
+.fs11 {
+    font-size: 11px !important;
+}
+
+.flex-1 {
+    flex: 1 !important;
 }

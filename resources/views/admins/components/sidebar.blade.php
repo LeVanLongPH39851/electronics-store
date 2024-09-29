@@ -3,21 +3,14 @@
     <!--start brand-->
     <div class="brand">
       <a href="index.html" class="logo">
-        <span>
-          <img
-            src="assets/images/logo-sm.png"
-            alt="logo-small"
-            class="logo-sm"
-          />
-        </span>
         <span class="">
           <img
-            src="assets/images/logo-light.png"
+            src="assets/images/light.png"
             alt="logo-large"
             class="logo-lg logo-light"
           />
           <img
-            src="assets/images/logo-dark.png"
+            src="assets/images/dark.png"
             alt="logo-large"
             class="logo-lg logo-dark"
           />
@@ -40,11 +33,11 @@
             </li>
             <li class="nav-item">
               <a
-                class="nav-link {{$classActive === "Dashboard" ? "bg-active" : ""}}" {{-- Nếu classActive là "Dashboard" thì thêm class bg-active --}}
+                class="nav-link {{$classActive === "Thống Kê" ? "active bg-active" : ""}}" {{-- Nếu classActive là "Thống Kê" thì thêm class bg-active --}}
                 href="{{route('admin.index')}}"
               >
-                <i class="fas fa-home menu-icon {{$classActive === "Dashboard" ? "text-primary" : ""}}"></i> {{-- Nếu classActive là "Dashboard" thì thêm class text-primary --}}
-                <span>Dashboard</span>
+                <i class="fas fa-home menu-icon {{$classActive === "Thống Kê" ? "text-primary" : ""}}"></i> {{-- Nếu classActive là "Thông Kể" thì thêm class text-primary --}}
+                <span>Thống Kê</span>
               </a>
             </li>
             <!--end nav-item-->
@@ -243,15 +236,56 @@
               <!--end startbarApplications-->
             </li> --}}
             <!--end nav-item-->
+            @if (Auth::user()->role == 1)
             <li class="nav-item">
               <a
-                class="nav-link {{$classActive === "Users" ? "bg-active" : ""}}"
-                href="{{route('user.index')}}"
+                class="nav-link {{$classActive === "Nhân Viên" ? "active bg-active" : ""}}"
+                href="{{route('staff.index')}}"
               >
-                <i class="fas fa-user-friends menu-icon {{$classActive === "Users" ? "text-primary" : ""}}"></i>
-                <span>Users</span>
+                <i class="fas fa-user-friends menu-icon {{$classActive === "Nhân Viên" ? "text-primary" : ""}}"></i>
+                <span>Nhân Viên</span>
               </a>
               <!--end startbarElements-->
+            </li>
+            @endif
+            <li class="nav-item">
+              <a
+                class="nav-link {{$classActive === "Khách Hàng" ? "active bg-active" : ""}}"
+                href="{{route('user.index')}}"
+              >
+                <i class="fas fa-users menu-icon {{$classActive === "Khách Hàng" ? "text-primary" : ""}}"></i>
+                <span>Khách Hàng</span>
+              </a>
+              <!--end startbarElements-->
+            </li>
+            <li class="nav-item">
+                <a
+                  class="nav-link  {{$classActive === "Màu Sắc" ? "active bg-active" : ""}}"
+                  href="{{ route('color.index') }}"
+                >
+                  <i class="fas fa-wand-magic-sparkles menu-icon  {{$classActive === "Màu Sắc" ? "text-primary" : ""}}"></i>
+                  <span>Màu Sắc</span>
+                </a>
+                <!--end startbarElements-->
+            </li>
+            <li class="nav-item">
+                <a
+                  class="nav-link {{$classActive === "Dung Lượng" ? "active bg-active" : ""}}"
+                  href="{{ route('ssd.index') }}"
+                >
+                  <i class="fas fa-cloud menu-icon {{$classActive === "Dung Lượng" ? "text-primary" : ""}}"></i>
+                  <span>Dung Lượng</span>
+                </a>
+                <!--end startbarElements-->
+            </li>
+            <li class="nav-item">
+              <a
+                  class="nav-link {{$classActive === 'Danh mục' ? 'active bg-active' : ''}}"
+                  href="{{route('categories.index')}}"
+              >
+                  <i class="fas fa-bars menu-icon {{$classActive === 'Danh mục' ? 'text-primary' : ''}}"></i>
+                  <span>Danh mục</span>
+              </a>
             </li>
             <!--end nav-item-->
           </ul>

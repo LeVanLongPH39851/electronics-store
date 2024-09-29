@@ -5,13 +5,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="coupon-accordion">
-                    <h3>Bạn có mã giảm giá không? <span id="showcoupon">Nhấp để nhập mã của bạn.</span></h3>
+                    <!-- ACCORDION START -->
+                    <h3>Bạn có mã giảm giá không? <span id="showcoupon">Nhấp vào để nhập mã.</span></h3>
                     <div id="checkout_coupon" class="coupon-checkout-content">
                         <div class="coupon-info">
                             <form action="#">
                                 <p class="checkout-coupon">
-                                    <input type="text" class="code" placeholder="Mã Giảm Giá" />
-                                    <input type="submit" value="Áp Dụng" />
+                                    <input type="text" class="code" placeholder="Mã giảm giá" />
+                                    <input type="submit" value="Áp dụng" /> 
                                 </p>
                             </form>
                         </div>
@@ -29,37 +30,37 @@
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="checkbox-form mb-sm-40">
-                    <h3>Chi Tiết Thanh Toán</h3>
+                    <h3>Chi tiết thanh toán</h3>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="checkout-form-list mb-30">
-                                <label>Họ Và Tên<span class="required">*</span></label>
-                                <input type="text" placeholder="Họ và tên"/>
+                                <label>Họ và tên <span class="required">*</span></label>
+                                <input type="text" placeholder="Họ và tên" />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="checkout-form-list mb-30">
-                                <label>Địa Chỉ <span class="required">*</span></label>
-                                <input type="text" placeholder="Địa chỉ"/>
+                                <label>Địa chỉ <span class="required">*</span></label>
+                                <input type="text" placeholder="Địa chỉ" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="checkout-form-list mb-30">
-                                <label>Địa Chỉ Email <span class="required">*</span></label>
-                                <input type="email" placeholder="Địa chỉ email"/>
+                                <label>Địa chỉ Email <span class="required">*</span></label>
+                                <input type="email" placeholder="Địa chỉ Email" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="checkout-form-list mb-30">
-                                <label>Số Điện Thoại <span class="required">*</span></label>
-                                <input type="text" placeholder="Số điện thoại"/>
+                                <label>Số điện thoại <span class="required">*</span></label>
+                                <input type="text" placeholder="Số điện thoại" />
                             </div>
                         </div>
                     </div>
                     <div class="different-address">
                         <div class="order-notes">
                             <div class="checkout-form-list">
-                                <label>Ghi Chú</label>
+                                <label>Ghi chú</label>
                                 <textarea id="checkout-mess" cols="30" rows="10"
                                     placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: ghi chú đặc biệt khi giao hàng."></textarea>
                             </div>
@@ -69,13 +70,13 @@
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="your-order">
-                    <h3>Thông Tin Đơn Hàng</h3>
+                    <h3>Đơn hàng của bạn</h3>
                     <div class="your-order-table table-responsive">
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="product-name">Sản Phẩm</th>
-                                    <th class="product-total">Tổng Tiền</th>
+                                    <th class="product-name">Sản phẩm</th>
+                                    <th class="product-total">Giá tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -102,7 +103,7 @@
                                     <td><span class="amount">£215.00</span></td>
                                 </tr>
                                 <tr class="order-total">
-                                    <th>Tổng đơn hàng</th>
+                                    <th>Tổng tiền giỏ hàng</th>
                                     <td><span class=" total amount">£215.00</span>
                                     </td>
                                 </tr>
@@ -111,33 +112,41 @@
                     </div>
                     <div class="payment-method">
                         <div class="mb-3">
-                            <h3>CHỌN PHƯƠNG THỨC THANH TOÁN:</h3>
+                            <h3>Chọn Phương thức thanh toán:</h3>
                             
                             <div class="form-check border rounded p-3 mb-3 bg-white">
                                 <input class="form-check-input" type="radio" name="paymentMethod" id="paymentDirectBank" value="directBank" checked>
                                 <label class="form-check-label" for="paymentDirectBank">
-                                    Thanh toán trực tuyến
+                                    Chuyển khoản ngân hàng trực tiếp
                                 </label>
                                 <div class="form-text">
-                                    Thanh toán Online với thẻ ATM, MoMo, ZaloPay hoặc PayPal. Bạn sẽ được chuyển tới TechNova để tiến hành thanh toán.
+                                    Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng ID đơn hàng của bạn làm tài liệu tham khảo thanh toán. Đơn đặt hàng của bạn sẽ không được giao cho đến khi tiền đã được xóa trong tài khoản của chúng tôi.
                                 </div>
                             </div>
                             
                             <div class="form-check border rounded p-3 mb-3 bg-white">
-                                <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCheque" value="cheque">
-                                <label class="form-check-label" for="paymentCheque">
-                                    Thanh toán trực tiếp
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="paymentPaypal" value="paypal">
+                                <label class="form-check-label" for="paymentPaypal">
+                                    PayPal
                                 </label>
                                 <div class="form-text">
-                                    Khách hàng thanh toán bằng tiền mặt khi nhận hàng.
+                                    Thanh toán qua PayPal; bạn có thể thanh toán bằng thẻ tín dụng nếu bạn không có tài khoản PayPal.
                                 </div>
                             </div>
 
-                            <div class="text-center mt-4">
-                                <button class="btn btn-success btn-lg">Thanh Toán</button>
+                            <div class="form-check border rounded p-3 mb-3 bg-white">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="paymentDirectBank" value="directBank" checked>
+                                <label class="form-check-label" for="paymentDirectBank">
+                                    Thanh toán khi nhận hàng
+                                </label>
+                                <div class="form-text">
+                                    Khách hàng thanh toán tiền mặt khi nhận được sản phẩm.
+                                </div>
                             </div>
                         </div>
-                        
+                        <div class="btn-checkout text-center">
+                            <button type="submit" class="btn btn-success">Thanh toán</button>
+                        </div>
                     </div>
                 </div>
             </div>

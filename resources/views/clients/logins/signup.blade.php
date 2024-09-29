@@ -7,44 +7,44 @@
             <div class="col-md-6">
                 <div class="well">
                     <div class="return-customer">
-                        <h3 class="mb-10 custom-title text-center">sign up</h3>
+                        <h3 class="mb-10 custom-title text-center">Đăng ký</h3>
                         <form action="{{route('client.store.signup')}}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="name" value="{{old('name')}}" placeholder="Enter your name" class="form-control">
+                                <label>Họ tên</label>
+                                <input type="text" name="name" value="{{old('name')}}" placeholder="Nhập vào họ tên" class="form-control {{$errors->has('name') ? 'is-invalid' : ""}}">
                                 @if ($errors->has("name"))
                                 <p class="text-danger mt-1">{{$errors->first("name")}}</p>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" name="email" value="{{old('email')}}" placeholder="Enter your email address..." class="form-control">
+                                <input type="text" name="email" value="{{old('email')}}" placeholder="Nhập vào email" class="form-control {{$errors->has('email') ? 'is-invalid' : ""}}">
                                 @if ($errors->has("email"))
                                 <p class="text-danger mt-1">{{$errors->first("email")}}</p>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Password</label>
-                                <div class="signin_password">
-                                <input type="password" id="password" name="password" placeholder="Password" class="form-control">
-                                <i class="fa fa-eye" id="togglePassword"></i>
+                                <label>Mật khẩu</label>
+                                <div class="password-eye">
+                                <input type="password" id="password" name="password" placeholder="Nhập vào mật khẩu" class="form-control {{$errors->has('password') ? 'is-invalid' : ""}} bg-none">
+                                <i class="fa fa-eye {{$errors->has('password') ? 'text-danger' : ""}}" id="togglePassword"></i>
                                 </div>
                                 @if ($errors->has("password"))
                                 <p class="text-danger mt-1">{{$errors->first("password")}}</p>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Comfirm Password</label>
-                                <div class="signin_password">
-                                <input type="password" id="confirmPassword" name="password_confirmation" placeholder="Confirm password" class="form-control">
-                                <i class="fa fa-eye" id="toggleConfirmPassword"></i>
+                                <label>Xác nhận mật khẩu</label>
+                                <div class="password-eye">
+                                <input type="password" id="confirmPassword" name="password_confirmation" placeholder="Xác nhận mật khẩu" class="form-control {{$errors->has('password_confirmation') ? 'is-invalid' : ""}} bg-none">
+                                <i class="fa fa-eye {{$errors->has('password_confirmation') ? 'text-danger' : ""}}" id="toggleConfirmPassword"></i>
                                 </div>
                                 @if ($errors->has("password_confirmation"))
                                 <p class="text-danger mt-1">{{$errors->first("password_confirmation")}}</p>
                                 @endif
                             </div>
-                            <input type="submit" value="Sign Up" class="return-customer-btn">
+                            <input type="submit" value="Đăng ký" class="return-customer-btn">
                         </form>
                     </div>
                 </div>

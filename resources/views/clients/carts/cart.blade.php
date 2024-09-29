@@ -30,7 +30,7 @@
                                     <td class="product-quantity">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <button class="btn btn-secondary" type="button">-</button>
-                                            <input type="number" value="1" class="quantity-prd mx-2" />
+                                            <input type="number" value="1" class="quantity-prd mx-2"/>
                                             <button class="btn btn-secondary" type="button">+</button>
                                         </div>
                                     </td>
@@ -48,7 +48,7 @@
                                     <td class="product-quantity">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <button class="btn btn-secondary" type="button">-</button>
-                                            <input type="number" value="1" class="quantity-prd mx-2" />
+                                            <input type="number" value="1" class="quantity-prd mx-2"/>
                                             <button class="btn btn-secondary" type="button">+</button>
                                         </div>
                                     </td>
@@ -65,7 +65,7 @@
                         <div class="col-md-8 col-sm-12">
                             <div class="buttons-cart">
                                 <input type="submit" value="Cập nhật giỏ hàng" />
-                                <a href="#">Tiếp tục mua sắm</a>
+                                <a href="{{ route('client.index') }}">Tiếp tục mua sắm</a>
                             </div>
                         </div>
                         <!-- Cart Button Start -->
@@ -94,6 +94,10 @@
                             </div>
                         </div>
                         <!-- Cart Totals End -->
+
+                        <div>
+                            <h3>Sản phẩm tương tự</h3>
+                        </div>
                     </div>
                     <!-- Row End -->
                 </form>

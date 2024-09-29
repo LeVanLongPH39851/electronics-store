@@ -16,7 +16,7 @@ class LoggedMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() == true && Auth::user()->role_id == 1){ //Nếu đăng nhập admin rồi
+        if(Auth::check() == true && (Auth::user()->role == 1 || Auth::user()->role == 2)){ //Nếu đăng nhập admin rồi
             //Chuyển đến trang giao diện admin luôn
             return redirect()->route("admin.index");
         }

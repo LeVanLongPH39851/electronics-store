@@ -9,7 +9,7 @@
                 <div class="sidebar">
                     <!-- Sidebar Electronics Categorie Start -->
                     <div class="electronics mb-30">
-                        <h3 class="sidebar-title e-title">Electronics</h3>
+                        <h3 class="sidebar-title e-title">Danh Mục</h3>
                         <div id="shop-cate-toggle" class="category-menu sidebar-menu sidbar-style">
                             <ul>
                                 <li class="has-sub"><a href="#">Camera</a>
@@ -55,7 +55,7 @@
                     <!-- Sidebar Electronics Categorie End -->
                     <!-- Price Filter Options Start -->
                     <div class="search-filter mb-30">
-                        <h3 class="sidebar-title">filter by price</h3>
+                        <h3 class="sidebar-title">Lọc theo giá</h3>
                         <form action="#" class="sidbar-style">
                             <div id="slider-range"></div>
                             <input type="text" id="amount" class="amount-range" readonly>
@@ -64,7 +64,7 @@
                     <!-- Price Filter Options End -->
                     <!-- Sidebar Categorie Start -->
                     <div class="sidebar-categorie mb-30">
-                        <h3 class="sidebar-title">categories</h3>
+                        <h3 class="sidebar-title">Màu</h3>
                         <ul class="sidbar-style">
                             <li class="form-check">
                                 <input class="form-check-input" value="#" id="camera" type="checkbox">
@@ -87,7 +87,7 @@
                     <!-- Sidebar Categorie Start -->
                     <!-- Product Size Start -->
                     <div class="size mb-30">
-                        <h3 class="sidebar-title">size</h3>
+                        <h3 class="sidebar-title">Ram</h3>
                         <ul class="size-list sidbar-style">
                             <li class="form-check">
                                 <input class="form-check-input" value="" id="small" type="checkbox">
@@ -105,7 +105,7 @@
                     </div>
                     <!-- Product Size End -->
                     <!-- Product Color Start -->
-                    <div class="color mb-30">
+                    {{-- <div class="color mb-30">
                         <h3 class="sidebar-title">color</h3>
                         <ul class="color-option sidbar-style">
                             <li>
@@ -125,12 +125,12 @@
                                 <a href="#">Yellow (8)</a>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <!-- Product Color End -->
                     <!-- Single Banner Start -->
-                    <div class="sidebar-banner">
+                    {{-- <div class="sidebar-banner">
                         <a href="shop.html"><img src="templates/img/banner/10.jpg" alt="slider-banner"></a>
-                    </div>
+                    </div> --}}
                     <!-- Single Banner End -->
                 </div>
             </div>
@@ -139,23 +139,25 @@
             <div class="col-lg-9 order-1 order-lg-2">
                 <!-- Grid & List View Start -->
                 <div class="grid-list-top border-default universal-padding d-md-flex justify-content-md-between align-items-center mb-30">
-                    <div class="grid-list-view  mb-sm-15">
-                        <ul class="nav tabs-area d-flex align-items-center">
-                            <li><a data-bs-toggle="tab" href="#grid-view"><i class="fa fa-th"></i></a></li>
-                            <li><a class="active" data-bs-toggle="tab" href="#list-view"><i class="fa fa-list-ul"></i></a></li>
-                            <li><span class="grid-item-list">There are 8 products.</span></li>
-                        </ul>
+                    {{-- <div class="grid-list-view">
+                        <select name="" id="">
+                            <option value="">12 product</option>
+                        </select>
+                    </div> --}}
+                    <div class="d-flex ">
+                        <input type="text" class="form-control me-2" placeholder="Tìm kiếm sản phẩm">
+                        <button class="btn btn-success"><i class="fa fa-search"></i></button>
                     </div>
                     <!-- Toolbar Short Area Start -->
                     <div class="main-toolbar-sorter clearfix">
                         <div class="toolbar-sorter d-md-flex align-items-center">
-                            <label>Sort By:</label>
+                            <label>Lọc:</label>
                             <select class="sorter wide">
-                                <option value="Position">Relevance</option>
-                                <option value="Product Name">Neme, A to Z</option>
-                                <option value="Product Name">Neme, Z to A</option>
-                                <option value="Price">Price low to heigh</option>
-                                <option value="Price">Price heigh to low</option>
+                                <option value="Position">Lọc sản phẩm</option>
+                                <option value="Product Name">Theo tên từ A đến Z</option>
+                                <option value="Product Name">Theo tên từ Z đến A</option>
+                                <option value="Price">Giá thấp đến cao</option>
+                                <option value="Price">Giá cao đến thấp</option>
                             </select>
                         </div>
                     </div>
@@ -165,7 +167,7 @@
                 <div class="main-categorie mb-all-40">
                     <!-- Grid & List Main Area End -->
                     <div class="tab-content border-default fix">
-                        <div id="grid-view" class="tab-pane fade ">
+                        <div id="grid-view" class="tab-pane show fade active">
                             <div class="row">
                                 <!-- Single Product Start -->
                                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
@@ -294,7 +296,7 @@
                                 </div>
                                 <!-- Single Product End -->
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                     <div class="single-product">
                                         <!-- Product Image Start -->
                                         <div class="pro-img">
@@ -333,7 +335,7 @@
                                         </div>
                                         <!-- Product Content End -->
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- Single Product End -->
                                 <!-- Single Product Start -->
                                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
@@ -378,7 +380,7 @@
                                 </div>
                                 <!-- Single Product End -->
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                     <div class="single-product">
                                         <!-- Product Image Start -->
                                         <div class="pro-img">
@@ -417,10 +419,10 @@
                                         </div>
                                         <!-- Product Content End -->
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- Single Product End -->
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                     <div class="single-product">
                                         <!-- Product Image Start -->
                                         <div class="pro-img">
@@ -459,10 +461,10 @@
                                         </div>
                                         <!-- Product Content End -->
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- Single Product End -->
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                     <div class="single-product">
                                         <!-- Product Image Start -->
                                         <div class="pro-img">
@@ -501,10 +503,10 @@
                                         </div>
                                         <!-- Product Content End -->
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- Single Product End -->
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                     <div class="single-product">
                                         <!-- Product Image Start -->
                                         <div class="pro-img">
@@ -543,10 +545,10 @@
                                         </div>
                                         <!-- Product Content End -->
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- Single Product End -->
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                     <div class="single-product">
                                         <!-- Product Image Start -->
                                         <div class="pro-img">
@@ -585,10 +587,10 @@
                                         </div>
                                         <!-- Product Content End -->
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- Single Product End -->
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                     <div class="single-product">
                                         <!-- Product Image Start -->
                                         <div class="pro-img">
@@ -627,10 +629,10 @@
                                         </div>
                                         <!-- Product Content End -->
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- Single Product End -->
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                     <div class="single-product">
                                         <!-- Product Image Start -->
                                         <div class="pro-img">
@@ -669,15 +671,16 @@
                                         </div>
                                         <!-- Product Content End -->
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- Single Product End -->
                             </div>
                             <!-- Row End -->
                         </div>
                         <!-- #grid view End -->
-                        <div id="list-view" class="tab-pane fade show active">
+                        {{-- -------------------------------------------------------------- 2 khoi --------------------------------- --}}
+                        {{-- <div id="list-view" class="tab-pane fade show active">
                             <!-- Single Product Start -->
-                            <div class="row single-product">         
+                            <div class="row single-product">
                                 <!-- Product Image Start -->
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5 col-4">
                                     <div class="pro-img">
@@ -721,7 +724,7 @@
                             </div>
                             <!-- Single Product End -->
                             <!-- Single Product Start -->
-                            <div class="row single-product">         
+                            <div class="row single-product">
                                 <!-- Product Image Start -->
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5 col-4">
                                     <div class="pro-img">
@@ -765,7 +768,7 @@
                             </div>
                             <!-- Single Product End -->
                             <!-- Single Product Start -->
-                            <div class="row single-product">         
+                            <div class="row single-product">
                                 <!-- Product Image Start -->
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5 col-4">
                                     <div class="pro-img">
@@ -809,7 +812,7 @@
                             </div>
                             <!-- Single Product End -->
                             <!-- Single Product Start -->
-                            <div class="row single-product">         
+                            <div class="row single-product">
                                 <!-- Product Image Start -->
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5 col-4">
                                     <div class="pro-img">
@@ -853,7 +856,7 @@
                             </div>
                             <!-- Single Product End -->
                             <!-- Single Product Start -->
-                            <div class="row single-product">         
+                            <div class="row single-product">
                                 <!-- Product Image Start -->
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5 col-4">
                                     <div class="pro-img">
@@ -897,7 +900,7 @@
                             </div>
                             <!-- Single Product End -->
                             <!-- Single Product Start -->
-                            <div class="row single-product">         
+                            <div class="row single-product">
                                 <!-- Product Image Start -->
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5 col-4">
                                     <div class="pro-img">
@@ -940,11 +943,11 @@
                                 <!-- Product Content End -->
                             </div>
                             <!-- Single Product End -->
-                        </div>
+                        </div> --}}
                         <!-- #list view End -->
                         <!-- Product Pagination Info -->
                         <div class="product-pagination mb-20 pb-15">
-                            <span class="grid-item-list">Showing 1-8 of 8 item(s)</span>
+                            <span class="grid-item-list">Showing 1-9 of 9 item(s)</span>
                         </div>
                         <ul class="blog-pagination ptb-20">
                             <li class="active"><a href="#">1</a></li>

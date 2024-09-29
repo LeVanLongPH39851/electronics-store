@@ -33,7 +33,7 @@ class UserFactory extends Factory
             'phone' => fake()->phoneNumber,
             'address' => fake()->address,
             'show_password' => $showPassword,
-            'role_id' => 3,
+            'role' => 3,
             'email_verified_at' => now(),
             'password' => Hash::make($showPassword),
             'remember_token' => Str::random(10),
