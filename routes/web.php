@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admins\AuthController;
+use App\Http\Controllers\Admins\Categories\CategoryController;
 use App\Http\Controllers\Admins\UserController;
 use App\Http\Controllers\Admins\StaffController;
 use App\Http\Controllers\Clients\CartController;
@@ -44,6 +45,7 @@ Route::middleware(['admin'])->group(function () {
         Route::post('/user-trash/restore', [UserTrashController::class, 'restore'])->name('user.restore');
         Route::resource('/user-trash', UserTrashController::class);
         Route::resource('/user', UserController::class);
+        Route::resource('/categories', CategoryController::class);
         Route::middleware(['staff'])->group(function () {
             Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');
             Route::post('/staff-trash/delete', [StaffTrashController::class, 'delete'])->name('staff.delete');
