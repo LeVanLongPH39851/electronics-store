@@ -65,7 +65,7 @@
                         <div class="col-md-8 col-sm-12">
                             <div class="buttons-cart">
                                 <input type="submit" value="Cập nhật giỏ hàng" />
-                                <a href="#">Tiếp tục mua sắm</a>
+                                <a href="{{ route('client.index') }}">Tiếp tục mua sắm</a>
                             </div>
                         </div>
                         <!-- Cart Button Start -->
@@ -79,7 +79,7 @@
                                         <tr class="cart-subtotal">
                                             <th class="text-start">Tạm Tính</th>
                                             <td class="text-end"><span class="amount">$215.00</span></td>
-                                        </tr>   
+                                        </tr>
                                         <tr class="order-total">
                                             <th class="text-start">Tổng Tiền</th>
                                             <td class="text-end">

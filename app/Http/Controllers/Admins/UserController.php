@@ -18,7 +18,7 @@ class UserController extends Controller
     protected $classActive = "Khách Hàng"; //Dùng để thêm class text-primary thẻ thẻ <li> ở sidebar
 
     public function index(Request $request)
-    {           
+    {
         //Lấy danh sách user xếp theo created_at desc, nếu created_at = nhau thì lấy theo id desc
         $users = User::where("status", $request->input("status") && $request->input("status") != 0 ? $request->input("status") : "LIKE", "%") //Filter theo trạng thái
         ->where(function($query) use ($request) {
@@ -29,7 +29,7 @@ class UserController extends Controller
         ->orderBy("created_at", $request->input("orderBy") && $request->input("orderBy") === "oldest" ? "asc" : "desc") //Filter theo mới, cũ nhất
         ->orderBy('id', $request->input("orderBy") && $request->input("orderBy") === "oldest" ? "asc" : "desc") //Filter theo mới, cũ nhất
         ->paginate($request->input("perPage") ? $request->input("perPage") : 8); //Lấy bao nhiêu bản ghi
-        
+
         $template = 'admins.users.list'; //Tạo biến template để include vào content của layout
 
         return view('admins.layout', [
@@ -60,7 +60,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         if($request->isMethod("POST")){
-            
+
             $userCode = "UR-".Str::random(5); //Tạo một mã bất kỳ
             $userExists = User::where('user_code', $userCode)->exists(); //Xem mã có bị trùng không
             if($userExists){ //Nếu trùng thông báo lỗi
@@ -74,7 +74,7 @@ class UserController extends Controller
             }else{
                 $image = NULL;
             }
-            
+
             //Tạo user
             User::create([
              "user_code" => $userCode,
@@ -103,9 +103,9 @@ class UserController extends Controller
         $user = User::find($id); //Lấy user hiện tại
 
         if($user && $user->role == 3){
-            
+
             $template = "admins.users.detail";
-            
+
             return view('admins.layout', [
              'title' => 'Chi Tiết Khách Hàng',
              'template' => $template,
@@ -113,7 +113,7 @@ class UserController extends Controller
              'classActive' => $this->classActive
             ]);
         }
-        
+
         return redirect()->back()->with('error','Không tìm thấy khách hàng');
     }
 
@@ -121,13 +121,13 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {   
+    {
         $user = User::find($id); //Lấy user hiện tại
 
         if($user && $user->role == 3){
-            
+
             $template = "admins.users.edit";
-            
+
             return view('admins.layout', [
              'title' => 'Sửa Khách Hàng',
              'template' => $template,
@@ -135,7 +135,7 @@ class UserController extends Controller
              'classActive' => $this->classActive
             ]);
         }
-        
+
         return redirect()->back()->with('error','Không tìm thấy khách hàng');
     }
 
@@ -145,7 +145,7 @@ class UserController extends Controller
     public function update(UserRequest $request, string $id)
     {
         if($request->isMethod("PUT")){
-            
+
         $user = User::find($id); //Tìm user đấy
 
         if($user && $user->role == 3){ //Nếu có
@@ -159,14 +159,14 @@ class UserController extends Controller
             }
 
             //Cập nhật
-            $user->name = $request->input('name');   
-            $user->email = $request->input('email');   
-            $user->phone = $request->input('phone');   
-            $user->image = $image;   
-            $user->address = $request->input('address');   
-            $user->status = $request->input('status') ? "active" : "banned";   
-            $user->show_password = $request->input('password');   
-            $user->password = Hash::make($request->input('password'));   
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->phone = $request->input('phone');
+            $user->image = $image;
+            $user->address = $request->input('address');
+            $user->status = $request->input('status') ? "active" : "banned";
+            $user->show_password = $request->input('password');
+            $user->password = Hash::make($request->input('password'));
             $user->save(); //Lưu
 
             return redirect()->route('user.index')->with('success','Cập nhật khách hàng thành công');
@@ -180,9 +180,9 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {   
+    {
         $user = User::find($id);
-        
+
         if($user && $user->role == 3){
             $user->delete(); //Xóa mềm
             return redirect()->back()->with("success", "Chuyển vào thùng rác thành công");

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admins\AuthController;
+use App\Http\Controllers\Admins\ColorController;
 use App\Http\Controllers\Admins\Categories\CategoryController;
 use App\Http\Controllers\Admins\UserController;
 use App\Http\Controllers\Admins\StaffController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Clients\ShopController;
 use App\Http\Controllers\Clients\LoginController;
 use App\Http\Controllers\Clients\AccountController;
 use App\Http\Controllers\Admins\DashboardController;
+use App\Http\Controllers\Admins\SsdController;
 use App\Http\Controllers\Clients\CheckoutController;
 use App\Http\Controllers\Clients\ProductDetailController;
 use App\Http\Controllers\Admins\Trashs\UserTrashController;
@@ -53,6 +55,20 @@ Route::middleware(['admin'])->group(function () {
             Route::resource('/staff-trash', StaffTrashController::class);
             Route::resource('/staff', StaffController::class);
         });
+        //------------------------------ quản lý thuộc tính màu sắc---------------------------------------------------------
+        Route::get('/color', [ColorController::class, 'index'])->name('color.index');
+        Route::get('/color/create', [ColorController::class, 'create'])->name('color.create');
+        Route::post('/color/store', [ColorController::class, 'store'])->name('color.store');
+        Route::get('/color/edit/{id}', [ColorController::class, 'edit'])->name('color.edit');
+        Route::post('/color/update/{id}', [ColorController::class, 'update'])->name('color.update');
+        Route::delete('/color/delete/{id}', [ColorController::class, 'destroy'])->name('color.destroy');
+        // ------------------------------quản lý thuộc tính dung lượng-------------------------------------------------------
+        Route::get('/ssd', [SsdController::class, 'index'])->name('ssd.index');
+        Route::get('/ssd/create', [SsdController::class, 'create'])->name('ssd.create');
+        Route::post('/ssd/store', [SsdController::class, 'store'])->name('ssd.store');
+        Route::get('/ssd/edit/{id}', [SsdController::class, 'edit'])->name('ssd.edit');
+        Route::post('/ssd/update/{id}', [SsdController::class, 'update'])->name('ssd.update');
+        Route::delete('/ssd/delete/{id}', [SsdController::class, 'destroy'])->name('ssd.destroy');
     });
 });
 

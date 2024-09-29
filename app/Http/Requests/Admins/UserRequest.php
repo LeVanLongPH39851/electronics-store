@@ -25,9 +25,9 @@ class UserRequest extends FormRequest
             "name" => "required|max:100",
             "email" => "required|email|max:100|unique:users,email,".$this->route('user'),
             "phone" => [
-            "nullable", 
-            "min:10", 
-            "max:20", 
+            "nullable",
+            "min:10",
+            "max:20",
             "regex:/^(?=(?:.*\d){10})[0-9a-zA-Z\(\)\+\.\-\s]*$/", //Đảm bảo có ít nhất 10 chữ số
             "regex:/^\+?[0-9\s\(\)\-\.]{10,}$/" //Định dạng số điện thoại quốc tế hợp lệ
         ],
@@ -55,7 +55,7 @@ class UserRequest extends FormRequest
             'image.image' => 'Ảnh sai định dạng',
             'image.mimes' => 'Ảnh phải là jpeg, png, jpg',
             'image.max' => 'Dung lượng ảnh quá lớn',
-            'address.max' => 'Đại chỉ quá dài'
+            'address.max' => 'Địa chỉ quá dài'
         ];
     }
 }
