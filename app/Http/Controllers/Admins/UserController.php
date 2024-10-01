@@ -155,7 +155,7 @@ class UserController extends Controller
                 }
                 $image = $request->file('image')->store("uploads/users", "public"); //Lưu ảnh mới
             }else{
-                $image = $user->image; //Dữ lại ảnh cũ
+                $image = $user->image; //Giũ lại ảnh cũ
             }
 
             //Cập nhật

@@ -19,6 +19,14 @@ class Ssd extends Model
     protected $fillable = [
         'name'
     ];
+
+    public $timestamps = false;
+
+    public function productVariants()
+    {
+        return $this->hasMany(ProductVariant::class, "ssd_id");
+    }
+
     // dùng để nối với các sản phẩm
     // public function products()
     // {

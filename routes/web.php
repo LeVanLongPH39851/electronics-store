@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admins\AuthController;
+use App\Http\Controllers\Admins\BrandController;
 use App\Http\Controllers\Admins\ColorController;
 use App\Http\Controllers\Admins\Categories\CategoryController;
 use App\Http\Controllers\Admins\UserController;
@@ -12,7 +13,9 @@ use App\Http\Controllers\Clients\ShopController;
 use App\Http\Controllers\Clients\LoginController;
 use App\Http\Controllers\Clients\AccountController;
 use App\Http\Controllers\Admins\DashboardController;
+use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Admins\SsdController;
+use App\Http\Controllers\Admins\Trashs\ProductTrashController;
 use App\Http\Controllers\Clients\CheckoutController;
 use App\Http\Controllers\Clients\ProductDetailController;
 use App\Http\Controllers\Admins\Trashs\UserTrashController;
@@ -47,6 +50,12 @@ Route::middleware(['admin'])->group(function () {
         Route::post('/user-trash/restore', [UserTrashController::class, 'restore'])->name('user.restore');
         Route::resource('/user-trash', UserTrashController::class);
         Route::resource('/user', UserController::class);
+        Route::resource('/brand', BrandController::class);
+        Route::resource('/product', ProductController::class);
+        Route::post('/product-trash/trash', [ProductTrashController::class, 'trash'])->name('product.trash');
+        Route::post('/product-trash/delete', [ProductTrashController::class, 'delete'])->name('product.delete');
+        Route::post('/product-trash/restore', [ProductTrashController::class, 'restore'])->name('product.restore');
+        Route::resource('/product-trash', ProductTrashController::class);
         Route::resource('/categories', CategoryController::class);
         Route::middleware(['staff'])->group(function () {
             Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');

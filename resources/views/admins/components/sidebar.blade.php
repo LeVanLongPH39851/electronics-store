@@ -259,6 +259,34 @@
               <!--end startbarElements-->
             </li>
             <li class="nav-item">
+              <a
+                  class="nav-link {{$classActive === 'Danh mục' ? 'active bg-active' : ''}}"
+                  href="{{route('categories.index')}}"
+              >
+                  <i class="fas fa-bars menu-icon {{$classActive === 'Danh mục' ? 'text-primary' : ''}}"></i>
+                  <span>Danh mục</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                  class="nav-link {{$classActive === 'Hãng' ? 'active bg-active' : ''}}"
+                  href="{{route('brand.index')}}"
+              >
+                  <i class="fa-brands fa-bandcamp menu-icon {{$classActive === 'Hãng' ? 'text-primary' : ''}}"></i>
+                  <span>Hãng</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link {{$classActive === "Sản Phẩm" ? "active bg-active" : ""}}"
+                href="{{route('product.index')}}"
+              >
+                <i class="fas fa-mobile-screen-button menu-icon {{$classActive === "Sản Phẩm" ? "text-primary" : ""}}"></i>
+                <span>Sản Phẩm</span>
+              </a>
+              <!--end startbarElements-->
+            </li>
+            <li class="nav-item">
                 <a
                   class="nav-link  {{$classActive === "Màu Sắc" ? "active bg-active" : ""}}"
                   href="{{ route('color.index') }}"
@@ -278,16 +306,6 @@
                 </a>
                 <!--end startbarElements-->
             </li>
-            <li class="nav-item">
-              <a
-                  class="nav-link {{$classActive === 'Danh mục' ? 'active bg-active' : ''}}"
-                  href="{{route('categories.index')}}"
-              >
-                  <i class="fas fa-bars menu-icon {{$classActive === 'Danh mục' ? 'text-primary' : ''}}"></i>
-                  <span>Danh mục</span>
-              </a>
-            </li>
-            <!--end nav-item-->
           </ul>
           <!--end navbar-nav--->
         </div>

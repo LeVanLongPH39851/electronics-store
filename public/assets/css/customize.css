@@ -8,6 +8,16 @@ body::-webkit-scrollbar-track {
     background-color: #f1f1f1;
 }
 
+.uppy-Dashboard-files::-webkit-scrollbar {
+    width: 5px;
+}
+.uppy-Dashboard-files::-webkit-scrollbar-thumb {
+    background-color: #22c55e;
+}
+.uppy-Dashboard-files::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
 @keyframes fadeInDown {
     0% {
         opacity: 0;
@@ -54,9 +64,20 @@ body::-webkit-scrollbar-track {
 }
 
 .image-style {
-    height: calc(100% - 1px);
+    height: calc(100% - 2px);
     top: 50%;
     right: 1px;
+    transform: translateY(-50%);
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    display: none;
+    border-radius: 0.4rem;
+}
+
+.image-style-variant {
+    height: calc(100% - 2px);
+    top: 50%;
+    left: 1px;
     transform: translateY(-50%);
     object-fit: cover;
     aspect-ratio: 1 / 1;
@@ -152,4 +173,51 @@ body::-webkit-scrollbar-track {
 
 .flex-1 {
     flex: 1 !important;
+}
+
+#editor {
+    height: 100px !important;
+}
+
+#editor .ql-editor {
+    min-height: 100px !important;
+}
+
+#editor-2 {
+    height: 375px !important;
+}
+
+#editor-2 .ql-editor {
+    min-height: 375px !important;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.mt2 {
+    margin-top: 2px !important;
+}
+
+.remove-attribute-btn {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100rem;
+}
+
+.div-product-image {
+    width: 128px;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+}
+
+.user-image {
+    width: 100px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
