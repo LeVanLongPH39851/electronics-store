@@ -101,7 +101,7 @@ class UserTrashController extends Controller
     //Xóa vĩnh viễn 1 user
     public function destroy(string $id)
     {
-        $user = User::onlyTrashed()->find($id); ////Tìm user đã xóa có id đấy
+        $user = User::onlyTrashed()->find($id); //Tìm user đã xóa có id đấy
 
         if($user && $user->role == 3){
             
