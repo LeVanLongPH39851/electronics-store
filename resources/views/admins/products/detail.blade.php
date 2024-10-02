@@ -43,8 +43,8 @@
                         <div class="text-body mb-1 d-flex align-items-center"><span class="text-body fw-semibold">Mã sản phẩm :</span>&nbsp;<span class="text-primary fw-semibold">{{$product->product_code}}</span></div>
                         <div class="text-body mb-1 d-flex align-items-center"><span class="text-body fw-semibold">Giá bán:</span>&nbsp;<span class="text-danger">{{number_format($product->product_variants_min_price, 0, '', '.')}} vnđ - {{number_format($product->product_variants_max_price, 0, '', '.')}} vnđ</span></div>                                    
                         <div class="text-body mb-3 d-flex align-items-center"><span class="text-body fw-semibold">Số lượng :</span>&nbsp;<span>{{$product->product_variants_sum_quantity}}</span></div>                                                            
-                        <div class="text-body mb-1"><span class="text-body fw-semibold">Mô tả ngắn :</span>&nbsp;<span>{!!$product->short_description ? $product->short_description : "Sản phẩm chưa có mô tả ngắn"!!}</span></div>                                                            
-                        <div class="text-body mb-0"><span class="text-body fw-semibold">Mô tả chi tiết :</span>&nbsp;<span>{!!$product->description ? $product->description : "Sản phẩm chưa có mô tả chi tiết"!!}</span></div>                                                            
+                        <div class="text-body mb-1"><span class="text-body fw-semibold">Mô tả ngắn :</span>&nbsp;<span>{!!$product->short_description ? $product->short_description : "<p>Sản phẩm chưa có mô tả ngắn</p>"!!}</span></div>                                                            
+                        <div class="text-body mb-0"><span class="text-body fw-semibold">Mô tả chi tiết :</span>&nbsp;<span>{!!$product->description ? $product->description : "<p>Sản phẩm chưa có mô tả chi tiết</p>"!!}</span></div>                                                            
                     </div>
                 </div><!--end card-body-->  
             </div><!--end card-->                             
