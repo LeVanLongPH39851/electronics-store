@@ -77,7 +77,7 @@ class ProductController extends Controller
             }
 
             if($request->hasFile('images')){
-               if(count($request->file('images')) !== count($request->input('variant'))){
+               if(count($request->file('images')) !== count($request->input('variants'))){
                 return redirect()->back()->with('error', 'Vui lòng nhập đầy đủ ảnh biến thể');
                } 
             }else{
