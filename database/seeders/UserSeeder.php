@@ -18,13 +18,13 @@ class UserSeeder extends Seeder
     {
         //Tạo seeder admin
         User::create([
-            'user_code' => "AD-".Str::random(5),
+            'user_code' => "AD-" . Str::random(5),
             'name' => "Admin TechNova",
             'email' => "admintechnova24@gmail.com",
             'show_password' => "adminwd24",
             'role' => 1,
             'password' => Hash::make("adminwd24")
-    ]);
+        ]);
 
         //Taọ 100 bảng ghi từ userFactory
         User::factory()->count(100)->create();

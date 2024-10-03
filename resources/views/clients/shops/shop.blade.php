@@ -10,55 +10,36 @@
                     <!-- Sidebar Electronics Categorie Start -->
                     <div class="electronics mb-30">
                         <h3 class="sidebar-title e-title">Danh Mục</h3>
+                        
                         <div id="shop-cate-toggle" class="category-menu sidebar-menu sidbar-style">
                             <ul>
-                                <li class="has-sub"><a href="#">Camera</a>
-                                    <ul class="category-sub">
-                                        <li><a href="shop.html">Cords and Cables</a></li>
-                                        <li><a href="shop.html">gps accessories</a></li>
-                                        <li><a href="shop.html">Microphones</a></li>
-                                        <li><a href="shop.html">Wireless Transmitters</a></li>
-                                    </ul>
-                                    <!-- category submenu end-->
-                                </li>
-                                <li class="has-sub"><a href="#">gamepad</a>
-                                    <ul class="category-sub">
-                                        <li><a href="shop.html">cube lifestyle hd</a></li>
-                                        <li><a href="shop.html">gopro hero4</a></li>
-                                        <li><a href="shop.html">bhandycam cx405ags</a></li>
-                                        <li><a href="shop.html">vixia hf r600</a></li>
-                                    </ul>
-                                    <!-- category submenu end-->
-                                </li>
-                                <li class="has-sub"><a href="#">Digital Cameras</a>
-                                    <ul class="category-sub">
-                                        <li><a href="shop.html">Gold eye</a></li>
-                                        <li><a href="shop.html">Questek</a></li>
-                                        <li><a href="shop.html">Snm</a></li>
-                                        <li><a href="shop.html">vantech</a></li>
-                                    </ul>
-                                    <!-- category submenu end-->
-                                </li>
-                                <li class="has-sub"><a href="#">Virtual Reality</a>
-                                    <ul class="category-sub">
-                                        <li><a href="shop.html">Samsung</a></li>
-                                        <li><a href="shop.html">Toshiba</a></li>
-                                        <li><a href="shop.html">Transcend</a></li>
-                                        <li><a href="shop.html">Sandisk</a></li>
-                                    </ul>
-                                    <!-- category submenu end-->
-                                </li>
+                                @foreach ($listDanhMuc as $danhMuc)
+                                    <li class="has-sub">
+                                        <a href="#" onclick="filterByCategory({{ $danhMuc->id }})">{{$danhMuc->name}}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
+                        
                         <!-- category-menu-end -->
                     </div>
                     <!-- Sidebar Electronics Categorie End -->
                     <!-- Price Filter Options Start -->
-                    <div class="search-filter mb-30">
+                    <div class="search-filter mb-30">   
                         <h3 class="sidebar-title">Lọc theo giá</h3>
-                        <form action="#" class="sidbar-style">
-                            <div id="slider-range"></div>
-                            <input type="text" id="amount" class="amount-range" readonly>
+                        <form method="get" action="{{route('client.shop')}}">
+                            <div class="price_slider_wrapper">
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="1-5" {{$price == '1-5' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id="">  Dưới 5 Triệu</div>
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="5-10" {{ $price == '5-10' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 5 Triệu - 10 Triệu</div>
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="10-20" {{$price == '10-20' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 10 Triệu - 20 Triệu</div>
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="20-30" {{$price == '20-30' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 20 Triệu - 30 Triệu</div>
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="30-40" {{$price == '30-40' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 30 Triệu - 40 Triệu</div>
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="40-50" {{$price == '40-50' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 40 Triệu - 50 Triệu</div>
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value=">50" {{$price == '>50' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> Trên 50 Triệu</div>
+                             <div class="price_slider_amount" style="display: flex; justify-content: start">
+                                <button type="submit" class="btn btn-success">Filter</button>
+                            </div>
+                            </div>
                         </form>
                     </div>
                     <!-- Price Filter Options End -->
@@ -66,22 +47,13 @@
                     <div class="sidebar-categorie mb-30">
                         <h3 class="sidebar-title">Màu</h3>
                         <ul class="sidbar-style">
+                            @foreach ($listColor as $color)                         
                             <li class="form-check">
                                 <input class="form-check-input" value="#" id="camera" type="checkbox">
-                                <label class="form-check-label" for="camera">Cameras (8)</label>
+                                <label class="form-check-label" for="camera">{{$color->name}}</label>
                             </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" id="GamePad" type="checkbox">
-                                <label class="form-check-label" for="GamePad">GamePad (8)</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" id="Digital" type="checkbox">
-                                <label class="form-check-label" for="Digital">Digital Cameras (8)</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" id="Virtual" type="checkbox">
-                                <label class="form-check-label" for="Virtual"> Virtual Reality (8) </label>
-                            </li>
+                            @endforeach
+                           
                         </ul>
                     </div>
                     <!-- Sidebar Categorie Start -->
@@ -89,18 +61,13 @@
                     <div class="size mb-30">
                         <h3 class="sidebar-title">Ram</h3>
                         <ul class="size-list sidbar-style">
+                            @foreach($listSsd as $ram)
                             <li class="form-check">
                                 <input class="form-check-input" value="" id="small" type="checkbox">
-                                <label class="form-check-label" for="small">S (6)</label>
+                                <label class="form-check-label" for="small">{{$ram->name}}</label>
                             </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="" id="medium" type="checkbox">
-                                <label class="form-check-label" for="medium">M (9)</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="" id="large" type="checkbox">
-                                <label class="form-check-label" for="large">L (8)</label>
-                            </li>
+                           @endforeach
+                            
                         </ul>
                     </div>
                     <!-- Product Size End -->
@@ -169,13 +136,14 @@
                     <div class="tab-content border-default fix">
                         <div id="grid-view" class="tab-pane show fade active">
                             <div class="row">
+                                @foreach ($listProduct as $key => $value)                 
                                 <!-- Single Product Start -->
                                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                     <div class="single-product">
                                         <!-- Product Image Start -->
                                         <div class="pro-img">
-                                            <a href="product.html">
-                                                <img class="primary-img" src="templates/img/products/35.jpg" alt="single-product">
+                                            <a href="{{route('client.product.detail', $value->id)}}">
+                                                <img class="primary-img" src="{{asset('storage/' . $value->image) }}" alt="single-product">
                                                 <img class="secondary-img" src="templates/img/products/14.jpg" alt="single-product">
                                             </a>
                                             <span class="sticker-new">new</span>
@@ -184,7 +152,7 @@
                                         <!-- Product Content Start -->
                                         <div class="pro-content">
                                             <div class="pro-info">
-                                                <h4><a href="product.html">summer dress</a></h4>
+                                                <h4><a href="product.html">{{ $value->name }}</a></h4>
                                                 <div class="product-rating">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
@@ -192,7 +160,11 @@
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                 </div>
-                                                <p><span class="price">$27.45</span></p>
+                                                <p>
+                                                    <span class="price">{{ number_format($value->product_variants_min_price, 0, '', '.').' VNĐ'}}</span
+                                                    ><del class="prev-price">{{number_format($value->product_variants_max_price, 0, '', '.').' VNĐ'}}</del>
+                                                </p>
+
                                             </div>
                                             <div class="pro-actions">
                                                 <div class="actions-primary">
@@ -211,468 +183,9 @@
                                     </div>
                                 </div>
                                 <!-- Single Product End -->
-                                <!-- Single Product Start -->
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <div class="single-product">
-                                        <!-- Product Image Start -->
-                                        <div class="pro-img">
-                                            <a href="product.html">
-                                                <img class="primary-img" src="templates/img/products/14.jpg" alt="single-product">
-                                                <img class="secondary-img" src="templates/img/products/11.jpg" alt="single-product">
-                                            </a>
-                                            <span class="sticker-new">new</span>
-                                        </div>
-                                        <!-- Product Image End -->
-                                        <!-- Product Content Start -->
-                                        <div class="pro-content">
-                                            <div class="pro-info">
-                                                <h4><a href="product.html">hot summer dress</a></h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <p><span class="price">$22.45</span><del class="prev-price">$30.50</del></p>
-                                            </div>
-                                            <div class="pro-actions">
-                                                <div class="actions-primary">
-                                                    <a href="cart.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">Add To Cart</a>
-                                                </div>
-                                                <div class="actions-secondary">
-                                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-heart-o"></i></a>
-
-                                                    </span>
-                                                    <a href="product.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Details"><i class="fa fa-signal"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Product Content End -->
-                                    </div>
-                                </div>
-                                <!-- Single Product End -->
-                                <!-- Single Product Start -->
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <div class="single-product">
-                                        <!-- Product Image Start -->
-                                        <div class="pro-img">
-                                            <a href="product.html">
-                                                <img class="primary-img" src="templates/img/products/22.jpg" alt="single-product">
-                                                <img class="secondary-img" src="templates/img/products/23.jpg" alt="single-product">
-                                            </a>
-                                            <span class="sticker-new">new</span>
-                                        </div>
-                                        <!-- Product Image End -->
-                                        <!-- Product Content Start -->
-                                        <div class="pro-content">
-                                            <div class="pro-info">
-                                                <h4><a href="product.html">winter dress</a></h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <p><span class="price">$11.40</span><del class="prev-price">$20.50</del></p>
-                                            </div>
-                                            <div class="pro-actions">
-                                                <div class="actions-primary">
-                                                    <a href="cart.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">Add To Cart</a>
-                                                </div>
-                                                <div class="actions-secondary">
-                                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-heart-o"></i></a>
-
-                                                    </span>
-                                                    <a href="product.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Details"><i class="fa fa-signal"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Product Content End -->
-                                    </div>
-                                </div>
-                                <!-- Single Product End -->
-                                <!-- Single Product Start -->
-                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <div class="single-product">
-                                        <!-- Product Image Start -->
-                                        <div class="pro-img">
-                                            <a href="product.html">
-                                                <img class="primary-img" src="templates/img/products/25.jpg" alt="single-product">
-                                                <img class="secondary-img" src="templates/img/products/26.jpg" alt="single-product">
-                                            </a>
-                                            <span class="sticker-new">new</span>
-                                        </div>
-                                        <!-- Product Image End -->
-                                        <!-- Product Content Start -->
-                                        <div class="pro-content">
-                                            <div class="pro-info">
-                                                <h4><a href="product.html">summer dress</a></h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <p><span class="price">$33.45</span><del class="prev-price">$40.25</del></p>
-                                            </div>
-                                            <div class="pro-actions">
-                                                <div class="actions-primary">
-                                                    <a href="cart.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">Add To Cart</a>
-                                                </div>
-                                                <div class="actions-secondary">
-                                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-heart-o"></i></a>
-
-                                                    </span>
-                                                    <a href="product.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Details"><i class="fa fa-signal"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Product Content End -->
-                                    </div>
-                                </div> --}}
-                                <!-- Single Product End -->
-                                <!-- Single Product Start -->
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <div class="single-product">
-                                        <!-- Product Image Start -->
-                                        <div class="pro-img">
-                                            <a href="product.html">
-                                                <img class="primary-img" src="templates/img/products/30.jpg" alt="single-product">
-                                                <img class="secondary-img" src="templates/img/products/31.jpg" alt="single-product">
-                                            </a>
-                                            <span class="sticker-new">new</span>
-                                        </div>
-                                        <!-- Product Image End -->
-                                        <!-- Product Content Start -->
-                                        <div class="pro-content">
-                                            <div class="pro-info">
-                                                <h4><a href="product.html">wnter miami dress</a></h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <p><span class="price">$22.18</span><del class="prev-price">$30.20</del></p>
-                                            </div>
-                                            <div class="pro-actions">
-                                                <div class="actions-primary">
-                                                    <a href="cart.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">Add To Cart</a>
-                                                </div>
-                                                <div class="actions-secondary">
-                                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-heart-o"></i></a>
-
-                                                    </span>
-                                                    <a href="product.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Details"><i class="fa fa-signal"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Product Content End -->
-                                    </div>
-                                </div>
-                                <!-- Single Product End -->
-                                <!-- Single Product Start -->
-                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <div class="single-product">
-                                        <!-- Product Image Start -->
-                                        <div class="pro-img">
-                                            <a href="product.html">
-                                                <img class="primary-img" src="templates/img/products/32.jpg" alt="single-product">
-                                                <img class="secondary-img" src="templates/img/products/16.jpg" alt="single-product">
-                                            </a>
-                                            <span class="sticker-new">new</span>
-                                        </div>
-                                        <!-- Product Image End -->
-                                        <!-- Product Content Start -->
-                                        <div class="pro-content">
-                                            <div class="pro-info">
-                                                <h4><a href="product.html">printed dress</a></h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <p><span class="price">$27.45</span></p>
-                                            </div>
-                                            <div class="pro-actions">
-                                                <div class="actions-primary">
-                                                    <a href="cart.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">Add To Cart</a>
-                                                </div>
-                                                <div class="actions-secondary">
-                                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-heart-o"></i></a>
-
-                                                    </span>
-                                                    <a href="product.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Details"><i class="fa fa-signal"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Product Content End -->
-                                    </div>
-                                </div> --}}
-                                <!-- Single Product End -->
-                                <!-- Single Product Start -->
-                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <div class="single-product">
-                                        <!-- Product Image Start -->
-                                        <div class="pro-img">
-                                            <a href="product.html">
-                                                <img class="primary-img" src="templates/img/products/18.jpg" alt="single-product">
-                                                <img class="secondary-img" src="templates/img/products/19.jpg" alt="single-product">
-                                            </a>
-                                            <span class="sticker-new">new</span>
-                                        </div>
-                                        <!-- Product Image End -->
-                                        <!-- Product Content Start -->
-                                        <div class="pro-content">
-                                            <div class="pro-info">
-                                                <h4><a href="product.html">printed hot dress</a></h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <p><span class="price">$55.15</span><del class="prev-price">$60.20</del></p>
-                                            </div>
-                                            <div class="pro-actions">
-                                                <div class="actions-primary">
-                                                    <a href="cart.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">Add To Cart</a>
-                                                </div>
-                                                <div class="actions-secondary">
-                                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-heart-o"></i></a>
-
-                                                    </span>
-                                                    <a href="product.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Details"><i class="fa fa-signal"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Product Content End -->
-                                    </div>
-                                </div> --}}
-                                <!-- Single Product End -->
-                                <!-- Single Product Start -->
-                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <div class="single-product">
-                                        <!-- Product Image Start -->
-                                        <div class="pro-img">
-                                            <a href="product.html">
-                                                <img class="primary-img" src="templates/img/products/22.jpg" alt="single-product">
-                                                <img class="secondary-img" src="templates/img/products/21.jpg" alt="single-product">
-                                            </a>
-                                            <span class="sticker-new">new</span>
-                                        </div>
-                                        <!-- Product Image End -->
-                                        <!-- Product Content Start -->
-                                        <div class="pro-content">
-                                            <div class="pro-info">
-                                                <h4><a href="product.html">cultural dress</a></h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <p><span class="price">$21.12</span></p>
-                                            </div>
-                                            <div class="pro-actions">
-                                                <div class="actions-primary">
-                                                    <a href="cart.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">Add To Cart</a>
-                                                </div>
-                                                <div class="actions-secondary">
-                                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-heart-o"></i></a>
-
-                                                    </span>
-                                                    <a href="product.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Details"><i class="fa fa-signal"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Product Content End -->
-                                    </div>
-                                </div> --}}
-                                <!-- Single Product End -->
-                                <!-- Single Product Start -->
-                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <div class="single-product">
-                                        <!-- Product Image Start -->
-                                        <div class="pro-img">
-                                            <a href="product.html">
-                                                <img class="primary-img" src="templates/img/products/6.jpg" alt="single-product">
-                                                <img class="secondary-img" src="templates/img/products/5.jpg" alt="single-product">
-                                            </a>
-                                            <span class="sticker-new">new</span>
-                                        </div>
-                                        <!-- Product Image End -->
-                                        <!-- Product Content Start -->
-                                        <div class="pro-content">
-                                            <div class="pro-info">
-                                                <h4><a href="product.html">printed dress</a></h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <p><span class="price">$31.99</span></p>
-                                            </div>
-                                            <div class="pro-actions">
-                                                <div class="actions-primary">
-                                                    <a href="cart.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">Add To Cart</a>
-                                                </div>
-                                                <div class="actions-secondary">
-                                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-heart-o"></i></a>
-
-                                                    </span>
-                                                    <a href="product.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Details"><i class="fa fa-signal"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Product Content End -->
-                                    </div>
-                                </div> --}}
-                                <!-- Single Product End -->
-                                <!-- Single Product Start -->
-                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <div class="single-product">
-                                        <!-- Product Image Start -->
-                                        <div class="pro-img">
-                                            <a href="product.html">
-                                                <img class="primary-img" src="templates/img/products/7.jpg" alt="single-product">
-                                                <img class="secondary-img" src="templates/img/products/8.jpg" alt="single-product">
-                                            </a>
-                                            <span class="sticker-new">new</span>
-                                        </div>
-                                        <!-- Product Image End -->
-                                        <!-- Product Content Start -->
-                                        <div class="pro-content">
-                                            <div class="pro-info">
-                                                <h4><a href="product.html">full sleeves shirt</a></h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <p><span class="price">$21.00</span><del class="prev-price">$25.00</del></p>
-                                            </div>
-                                            <div class="pro-actions">
-                                                <div class="actions-primary">
-                                                    <a href="cart.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">Add To Cart</a>
-                                                </div>
-                                                <div class="actions-secondary">
-                                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-heart-o"></i></a>
-
-                                                    </span>
-                                                    <a href="product.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Details"><i class="fa fa-signal"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Product Content End -->
-                                    </div>
-                                </div> --}}
-                                <!-- Single Product End -->
-                                <!-- Single Product Start -->
-                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <div class="single-product">
-                                        <!-- Product Image Start -->
-                                        <div class="pro-img">
-                                            <a href="product.html">
-                                                <img class="primary-img" src="templates/img/products/11.jpg" alt="single-product">
-                                                <img class="secondary-img" src="templates/img/products/12.jpg" alt="single-product">
-                                            </a>
-                                            <span class="sticker-new">new</span>
-                                        </div>
-                                        <!-- Product Image End -->
-                                        <!-- Product Content Start -->
-                                        <div class="pro-content">
-                                            <div class="pro-info">
-                                                <h4><a href="product.html">new arrival dress</a></h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <p><span class="price">$20.45</span><del class="prev-price">$30.10</del></p>
-                                            </div>
-                                            <div class="pro-actions">
-                                                <div class="actions-primary">
-                                                    <a href="cart.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">Add To Cart</a>
-                                                </div>
-                                                <div class="actions-secondary">
-                                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-heart-o"></i></a>
-
-                                                    </span>
-                                                    <a href="product.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Details"><i class="fa fa-signal"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Product Content End -->
-                                    </div>
-                                </div> --}}
-                                <!-- Single Product End -->
-                                <!-- Single Product Start -->
-                                {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <div class="single-product">
-                                        <!-- Product Image Start -->
-                                        <div class="pro-img">
-                                            <a href="product.html">
-                                                <img class="primary-img" src="templates/img/products/4.jpg" alt="single-product">
-                                                <img class="secondary-img" src="templates/img/products/5.jpg" alt="single-product">
-                                            </a>
-                                            <span class="sticker-new">new</span>
-                                        </div>
-                                        <!-- Product Image End -->
-                                        <!-- Product Content Start -->
-                                        <div class="pro-content">
-                                            <div class="pro-info">
-                                                <h4><a href="product.html">summer dress</a></h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <p><span class="price">$27.45</span></p>
-                                            </div>
-                                            <div class="pro-actions">
-                                                <div class="actions-primary">
-                                                    <a href="cart.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">Add To Cart</a>
-                                                </div>
-                                                <div class="actions-secondary">
-                                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-heart-o"></i></a>
-
-                                                    </span>
-                                                    <a href="product.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Details"><i class="fa fa-signal"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Product Content End -->
-                                    </div>
-                                </div> --}}
-                                <!-- Single Product End -->
+                                @endforeach
+                               
+                               
                             </div>
                             <!-- Row End -->
                         </div>
@@ -970,3 +483,26 @@
 @section('modal')
 @include('clients.components.modalshop')
 @endsection
+
+<!-- Đảm bảo bạn đã bao gồm thư viện jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+   function filterByCategory(categoryId) {
+        $.ajax({
+            type: 'GET',
+            url: '{{ route("client.shop") }}',
+            data: {
+                category_filter: categoryId
+            },
+            success: function(data) {
+                // Xử lý dữ liệu sản phẩm đã lọc từ máy chủ
+                console.log(data);
+                // Hiển thị dữ liệu sản phẩm đã lọc lên trang web của bạn
+            },
+            error: function(err) {
+                console.error(err);
+            }
+        });
+    }
+</script>

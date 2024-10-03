@@ -6873,30 +6873,30 @@
                 /></a>
               </div>
             </div>
-            <!-- New Products Activation Start -->
-            <div class="new-products-active owl-carousel">
-              <!-- Single Product Start -->
+            
+            @foreach ($newProducts as $newProduct)
               <div class="single-product">
                 <!-- Product Image Start -->
-                <div class="pro-img">
-                  <a href="product.html">
+                <div class="pro-img w-100 d-flex align-items-center" style="aspect-ratio: 1/1">
+                  <a href="{{route('client.product.detail', $newProduct->id)}}">
                     <img
                       class="primary-img"
-                      src="templates/img/products/9.jpg"
+                      src="{{".".Storage::url($newProduct->image)}}"
                       alt="single-product"
                     />
                     <img
                       class="secondary-img"
-                      src="templates/img/products/10.jpg"
+                      src="{{".".Storage::url($newProduct->galleries->first()->path)}}"
                       alt="single-product"
                     />
                   </a>
+                  {{-- <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div> --}}
                 </div>
                 <!-- Product Image End -->
                 <!-- Product Content Start -->
                 <div class="pro-content">
                   <div class="pro-info">
-                    <h4><a href="product.html">iPhone 15</a></h4>
+                    <h4><a href="product.html">{{$newProduct->name}}</a></h4>
                     <div class="product-rating">
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
@@ -6905,8 +6905,8 @@
                       <i class="fa fa-star"></i>
                     </div>
                     <p>
-                      <span class="price">15.000.00đ</span
-                      ><del class="prev-price">12.000.000đ</del>
+                      <span class="price" style="font-size: 14px">{{number_format($newProduct->product_variants_min_price, 0, '', '.')}}đ - {{number_format($newProduct->product_variants_max_price, 0, '', '.')}}đ</span
+                      >
                     </p>
                   </div>
                   <div class="pro-actions">
@@ -6939,157 +6939,14 @@
                           ><i class="fa fa-search"></i
                         ></a>
                       </span>
-                    </div>
+</div>
                   </div>
                 </div>
                 <!-- Product Content End -->
                 <span class="sticker-new">mới</span>
-              </div>
-              <!-- Single Product End -->
-              <!-- Single Product Start -->
-              <div class="single-product">
-                <!-- Product Image Start -->
-                <div class="pro-img">
-                  <a href="product.html">
-                    <img
-                      class="primary-img"
-                      src="templates/img/products/9.jpg"
-                      alt="single-product"
-                    />
-                    <img
-                      class="secondary-img"
-                      src="templates/img/products/10.jpg"
-                      alt="single-product"
-                    />
-                  </a>
-                </div>
-                <!-- Product Image End -->
-                <!-- Product Content Start -->
-                <div class="pro-content">
-                  <div class="pro-info">
-                    <h4><a href="product.html">iPhone 15</a></h4>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <p>
-                      <span class="price">15.000.00đ</span
-                      ><del class="prev-price">12.000.000đ</del>
-                    </p>
-                  </div>
-                  <div class="pro-actions">
-                    <div class="actions-primary">
-                      <a
-                        href="cart.html"
-                        class="px-1 w-auto"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Add to Cart"
-                        >Thêm giỏ hàng</a
-                      >
-                    </div>
-                    <div class="actions-secondary">
-                      <a
-                        href="product.html"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Favorite"
-                        ><i class="fa fa-heart-o"></i
-                      ></a>
-                      <span
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                      >
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#myModal"
-                          ><i class="fa fa-search"></i
-                        ></a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <!-- Product Content End -->
-                <span class="sticker-new">mới</span>
-              </div>
-              <!-- Single Product End -->
-              <!-- Single Product Start -->
-              <div class="single-product">
-                <!-- Product Image Start -->
-                <div class="pro-img">
-                  <a href="product.html">
-                    <img
-                      class="primary-img"
-                      src="templates/img/products/9.jpg"
-                      alt="single-product"
-                    />
-                    <img
-                      class="secondary-img"
-                      src="templates/img/products/10.jpg"
-                      alt="single-product"
-                    />
-                  </a>
-                </div>
-                <!-- Product Image End -->
-                <!-- Product Content Start -->
-                <div class="pro-content">
-                  <div class="pro-info">
-                    <h4><a href="product.html">iPhone 15</a></h4>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <p>
-                      <span class="price">15.000.00đ</span
-                      ><del class="prev-price">12.000.000đ</del>
-                    </p>
-                  </div>
-                  <div class="pro-actions">
-                    <div class="actions-primary">
-                      <a
-                        href="cart.html"
-                        class="px-1 w-auto"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Add to Cart"
-                        >Thêm giỏ hàng</a
-                      >
-                    </div>
-                    <div class="actions-secondary">
-                      <a
-                        href="product.html"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Favorite"
-                        ><i class="fa fa-heart-o"></i
-                      ></a>
-                      <span
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                      >
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#myModal"
-                          ><i class="fa fa-search"></i
-                        ></a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <!-- Product Content End -->
-                <span class="sticker-new">mới</span>
-              </div>
-              <!-- Single Product End -->
-            </div>
-            <!-- New Products Activation End -->
+                {{-- <span class="sticker-sale">-5%</span> --}}
+              </div>    
+              @endforeach
           </div>
           <!-- Main Product Wrpper Start Here -->
         </div>
