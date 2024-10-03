@@ -54,7 +54,7 @@
                            </div>
                            <div class="pro-price mtb-10">
                                <p class="d-flex align-items-center"><span
-                                       class="price">{{number_format($product->product_variants_min_price, 0, '', '.')}} vnđ - {{number_format($product->product_variants_max_price, 0, '', '.')}} vnđ</span><span class="saving-price">giảm 8%</span></p>
+                                       class="price" id="price">{{number_format($product->product_variants_min_price, 0, '', '.')}} vnđ - {{number_format($product->product_variants_max_price, 0, '', '.')}} vnđ</span><span id="sale"></span></p>
                            </div>
                            <p class="mb-20 pro-desc-details">{!!$product->short_description!!}</p>
                            <div class="product-size mb-20 clearfix">
@@ -81,7 +81,7 @@
                                        @endforeach
                                    </div>
                            </div>
-                           <div class="box-quantity d-flex">
+                           <div class="box-quantity d-flex my-4">
                                <label class="me-3">Số Lượng</label>
                                    <input class="quantity mr-40" type="number" min="1" value="1">
                                <a class="add-cart" href="cart.html">Thêm vào giỏ hàng</a>
@@ -275,12 +275,18 @@ radio.addEventListener('click', function () {
         const resultQuantity = document.getElementById('result-quantity');
         const linkImageMain = document.getElementById('link-image-main');
         const imageMain = document.getElementById('image-main');
+        const price = document.getElementById('price');
+        const sale = document.getElementById('sale');
         if (colorsChecked && ssdsChecked) {
             productVariants.forEach(variant => {
             if(ssdValue.value == variant.ssd_id && colorValue.value == variant.color_id){
                 resultQuantity.textContent = variant.quantity;
                 linkImageMain.href = "./storage/" + variant.image;
                 imageMain.src = "./storage/" + variant.image;
+                price.innerHTML = '<del class="prev-price me-3">' + variant.listed_price.toLocaleString('de-DE') + ' vnđ</del>' + variant.price.toLocaleString('de-DE') + ' vnđ';
+                var number = ((variant.listed_price - variant.price) / variant.listed_price) * 100;
+                var saleResult = (number % 1 >= 0.5) ? Math.ceil(number) : Math.floor(number);
+                sale.innerHTML = '<span class="saving-price">- ' + saleResult + '%</span>';
             } 
             });
         }
