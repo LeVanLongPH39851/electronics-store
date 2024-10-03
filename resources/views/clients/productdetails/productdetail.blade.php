@@ -8,41 +8,27 @@
                  <div class="col-lg-5 mb-all-40">
                      <!-- Thumbnail Large Image start -->
                      <div class="tab-content">
-                         <div id="thumb1" class="tab-pane fade show active">
-                             <a data-fancybox="images" href="templates/img/products/35.jpg"><img
-                                     src="templates/img/products/35.jpg" alt="product-view"></a>
+                         <div id="thumb{{$product->id}}" class="tab-pane fade show active">
+                             <a data-fancybox="images" id="link-image-main" href="{{".".Storage::url($product->image)}}"><img
+                                     id="image-main" src="{{".".Storage::url($product->image)}}" alt="product-view"></a>
                          </div>
-                         <div id="thumb2" class="tab-pane fade">
-                             <a data-fancybox="images" href="templates/img/products/13.jpg"><img
-                                     src="templates/img/products/13.jpg" alt="product-view"></a>
-                         </div>
-                         <div id="thumb3" class="tab-pane fade">
-                             <a data-fancybox="images" href="templates/img/products/15.jpg"><img
-                                     src="templates/img/products/15.jpg" alt="product-view"></a>
-                         </div>
-                         <div id="thumb4" class="tab-pane fade">
-                             <a data-fancybox="images" href="templates/img/products/4.jpg"><img
-                                     src="templates/img/products/4.jpg" alt="product-view"></a>
-                         </div>
-                         <div id="thumb5" class="tab-pane fade">
-                             <a data-fancybox="images" href="templates/img/products/5.jpg"><img
-                                     src="templates/img/products/5.jpg" alt="product-view"></a>
-                         </div>
+                         @foreach ($product->galleries as $gallery)
+                         <div id="thumbgl{{$gallery->id}}" class="tab-pane fade">
+                            <a data-fancybox="images" href="{{".".Storage::url($gallery->path)}}"><img
+                                    src="{{".".Storage::url($gallery->path)}}" alt="product-view"></a>
+                        </div>
+                         @endforeach
                      </div>
                      <!-- Thumbnail Large Image End -->
                      <!-- Thumbnail Image End -->
                      <div class="product-thumbnail">
                          <div class="thumb-menu owl-carousel nav tabs-area" role="tablist">
-                             <a class="active" data-bs-toggle="tab" href="#thumb1"><img
-                                     src="templates/img/products/35.jpg" alt="product-thumbnail"></a>
-                             <a data-bs-toggle="tab" href="#thumb2"><img src="templates/img/products/13.jpg"
+                             <a class="active" data-bs-toggle="tab" href="#thumb{{$product->id}}"><img
+                                     src="{{".".Storage::url($product->image)}}" alt="product-thumbnail"></a>
+                            @foreach ($product->galleries as $gallery)
+                             <a data-bs-toggle="tab" href="#thumbgl{{$gallery->id}}"><img src="{{".".Storage::url($gallery->path)}}"
                                      alt="product-thumbnail"></a>
-                             <a data-bs-toggle="tab" href="#thumb3"><img src="templates/img/products/15.jpg"
-                                     alt="product-thumbnail"></a>
-                             <a data-bs-toggle="tab" href="#thumb4"><img src="templates/img/products/4.jpg"
-                                     alt="product-thumbnail"></a>
-                             <a data-bs-toggle="tab" href="#thumb5"><img src="templates/img/products/5.jpg"
-                                     alt="product-thumbnail"></a>
+                            @endforeach
                          </div>
                      </div>
                      <!-- Thumbnail image end -->
@@ -50,97 +36,75 @@
                  <!-- Main Thumbnail Image End -->
                  <!-- Thumbnail Description Start -->
                  <div class="col-lg-7">
-                     <div class="thubnail-desc fix">
-                         <h3 class="product-header">iPhone 15</h3>
-                         <div class="rating-summary fix mtb-10">
-                             <div class="rating">
-                                 <i class="fa fa-star"></i>
-                                 <i class="fa fa-star"></i>
-                                 <i class="fa fa-star-o"></i>
-                                 <i class="fa fa-star-o"></i>
-                                 <i class="fa fa-star-o"></i>
-                             </div>
-                             <div class="rating-feedback">
-                                 <a href="#">(1 review)</a>
-                                 {{-- <a href="#">add to your review</a> --}}
-                             </div>
-                         </div>
-                         <div class="pro-price mtb-30">
-                             <p class="d-flex align-items-center"><span class="prev-price">12.000.000 vnđ</span><span
-                                     class="price">12.000.000 vnđ</span><span class="saving-price">giảm 8%</span></p>
-                         </div>
-                         <p class="mb-20 pro-desc-details">mô tả ngắn</p>
-                         <div class="product-size mb-20 clearfix">
-                             <label>Dung lượng</label>
-                             <form action="#">
-                                 <div class="product-options">
-                                     <div class="form-check">
-                                         {{-- id truyền vào phải trùng với for ở llabel, value truyền vào từ database --}}
-                                         <input class="form-check-input" type="radio" name="sizeram" id="size64"
-                                             value="64">
-                                         <label class="form-check-label" for="size64">64GB</label>
-                                     </div>
-                                     <div class="form-check">
-                                         <input class="form-check-input" type="radio" name="sizeram" id="size128"
-                                             value="128">
-                                         <label class="form-check-label" for="size128">128GB</label>
-                                     </div>
-                                     <div class="form-check">
-                                         <input class="form-check-input" type="radio" name="sizeram" id="size256"
-                                             value="256">
-                                         <label class="form-check-label" for="size256">256GB</label>
-                                     </div>
-                                 </div>
-                             </form>
-                         </div>
-                         <div class="color clearfix mb-20">
-                             <label>Màu Sắc</label>
-                             <form action="#">
-                                 <div class="product-options">
-                                     <div class="form-check">
-                                         {{-- id truyền vào phải trùng với for ở llabel, value truyền vào từ database --}}
-                                         <input class="form-check-input" type="radio" name="colorname"
-                                             id="vang" value="vang">
-                                         <label class="form-check-label" for="vang">Vàng</label>
-                                     </div>
-                                     <div class="form-check">
-                                         <input class="form-check-input" type="radio" name="colorname"
-                                             id="titan" value="titan">
-                                         <label class="form-check-label" for="titan">Titan</label>
-                                     </div>
-                                     <div class="form-check">
-                                         <input class="form-check-input" type="radio" name="colorname"
-                                             id="den" value="den">
-                                         <label class="form-check-label" for="den">Đen</label>
-                                     </div>
-                                 </div>
-                             </form>
-                         </div>
-                         <div class="box-quantity d-flex">
-                             <label class="me-3">Số Lượng</label>
-                             <form action="#">
-                                 <input class="quantity mr-40" type="number" min="1" value="1">
-                             </form>
-                             <a class="add-cart" href="cart.html">Thêm vào giỏ hàng</a>
-                         </div>
-                         <div class="pro-ref mt-15">
-                             <label><b>Số lượng có sẵn: 20</b></label>
-                         </div>
-                         {{-- <div class="socila-sharing mt-25">
-                            <ul class="d-flex">
-                                <li>share</li>
-                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus-official" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                            </ul>
+                    <form action="">
+                        <div class="thubnail-desc fix">
+                            <h3 class="product-header mb-1 mt-3">{{$product->name}}</h3>
+                            <div class="rating-summary fix mtb-10">
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <div class="rating-feedback">
+                                    <a href="#" class="mt-1">(1 review)</a>
+                                    {{-- <a href="#">add to your review</a> --}}
+                                </div>
+                            </div>
+                            <div class="pro-price mtb-10">
+                                <p class="d-flex align-items-center"><span
+                                        class="price">{{number_format($product->product_variants_min_price, 0, '', '.')}} vnđ - {{number_format($product->product_variants_max_price, 0, '', '.')}} vnđ</span><span class="saving-price">giảm 8%</span></p>
+                            </div>
+                            <p class="mb-20 pro-desc-details">{!!$product->short_description!!}</p>
+                            <div class="product-size mb-20 clearfix">
+                                <label class="mb-2 mt-4">Dung lượng</label>
+                                    <div class="product-options">
+                                        @foreach ($product->productVariants->unique('ssd_id') as $productVariant)
+                                        <div class="form-check ps-0">
+                                            <input class="form-check-input form-check-input1" type="radio" name="ssd" id="ssd{{$productVariant->ssd->id}}"
+                                                value="{{$productVariant->ssd->id}}">
+                                            <label class="form-check-label ms-0 me-2 text-nowrap" for="ssd{{$productVariant->ssd->id}}">{{$productVariant->ssd->name}}</label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                            </div>
+                            <div class="color clearfix mb-20">
+                                <label class="mb-2">Màu Sắc</label>
+                                    <div class="product-options">
+                                        @foreach ($product->productVariants->unique('color_id') as $productVariant)
+                                        <div class="form-check ps-0">
+                                            <input class="form-check-input form-check-input2" type="radio" name="color"
+                                                id="color{{$productVariant->color->id}}" value="{{$productVariant->color->id}}">
+                                            <label class="form-check-label ms-0 me-2 text-nowrap" for="color{{$productVariant->color->id}}">{{$productVariant->color->name}}</label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                            </div>
+                            <div class="box-quantity d-flex">
+                                <label class="me-3">Số Lượng</label>
+                                    <input class="quantity mr-40" type="number" min="1" value="1">
+                                <a class="add-cart" href="cart.html">Thêm vào giỏ hàng</a>
+                            </div>
+                            <div class="pro-ref mt-15">
+                                <label><b>Số lượng có sẵn:</b> <span id="result-quantity">{{$product->product_variants_sum_quantity}}</span></label>
+                            </div>
+                            {{-- <div class="socila-sharing mt-25">
+                               <ul class="d-flex">
+                                   <li>share</li>
+                                   <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                   <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                   <li><a href="#"><i class="fa fa-google-plus-official" aria-hidden="true"></i></a></li>
+                                   <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                               </ul>
+                           </div>
+                           <div class="product-policy mt-20">
+                              <p><i class="fa fa-check-square-o" aria-hidden="true"></i>Security policy (edit with Customer reassurance module)
+                              <p><i class="fa fa-truck" aria-hidden="true"></i>Delivery policy (edit with Customer reassurance module)
+                              <p><i class="fa fa-exchange" aria-hidden="true"></i>Return policy (edit with Customer reassurance module)
+                           </div> --}}
                         </div>
-                        <div class="product-policy mt-20">
-                           <p><i class="fa fa-check-square-o" aria-hidden="true"></i>Security policy (edit with Customer reassurance module)
-                           <p><i class="fa fa-truck" aria-hidden="true"></i>Delivery policy (edit with Customer reassurance module)
-                           <p><i class="fa fa-exchange" aria-hidden="true"></i>Return policy (edit with Customer reassurance module)
-                        </div> --}}
-                     </div>
+                    </form>
                  </div>
                  <!-- Thumbnail Description End -->
              </div>
@@ -157,59 +121,11 @@
              <div class="col-sm-12">
                  <ul class="main-thumb-desc nav tabs-area" role="tablist">
                      <li><a class="active" data-bs-toggle="tab" href="#dtail">Mô tả sản phẩm</a></li>
-                     <li><a data-bs-toggle="tab" href="#review">Đánh giá (1)</a></li> {{-- 1 là số lượt đánh giá(lấy từ DB) --}}
                  </ul>
                  <!-- Product Thumbnail Tab Content Start -->
                  <div class="tab-content thumb-content border-default">
                      <div id="dtail" class="tab-pane fade show active">
-                         <p>Mô tả dài</p>
-                     </div>
-                     <div id="review" class="tab-pane fade">
-                         <!-- Reviews Start -->
-                         <div class="review border-default universal-padding">
-                             <div class="group-title">
-                                 <h2>Đánh giá sản phẩm</h2>
-                             </div>
-                         </div>
-                         <!-- Reviews End -->
-                         <!-- Reviews Start -->
-                         <div class="review border-default universal-padding mt-30">
-                             <p class="review-mini-title">đánh giá của bạn</p>
-                             <ul class="review-list">
-                                 <!-- Single Review List Start -->
-                                 <li>
-                                     {{-- <span>Sao</span> --}}
-                                     <i class="fa fa-star"></i>
-                                     <i class="fa fa-star"></i>
-                                     <i class="fa fa-star"></i>
-                                     <i class="fa fa-star"></i>
-                                     <i class="fa fa-star-o"></i>
-                                 </li>
-                                 <!-- Single Review List End -->
-                             </ul>
-                             <!-- Reviews Field Start -->
-                             <div class="riview-field mt-40">
-                                 <form autocomplete="off" action="#">
-                                     {{-- <div class="form-group">
-                                         <label class="req" for="sure-name">Nickname</label>
-                                         <input type="text" class="form-control" id="sure-name"
-                                             required="required">
-                                     </div>
-                                     <div class="form-group">
-                                         <label class="req" for="subject">Summary</label>
-                                         <input type="text" class="form-control" id="subject"
-                                             required="required">
-                                     </div> --}}
-                                     <div class="form-group">
-                                         <label class="req" for="comments">Nhận xét</label>
-                                         <textarea class="form-control" rows="5" id="comments" required="required"></textarea>
-                                     </div>
-                                     <button type="submit" class="customer-btn">Gửi đánh giá</button>
-                                 </form>
-                             </div>
-                             <!-- Reviews Field Start -->
-                         </div>
-                         <!-- Reviews End -->
+                         <p>{!!$product->description!!}</p>
                      </div>
                  </div>
                  <!-- Product Thumbnail Tab Content End -->
@@ -234,7 +150,7 @@
              <div class="single-product">
                  <!-- Product Image Start -->
                  <div class="pro-img">
-                     <a href="{{ route('client.product.detail') }}">
+                     <a href="{{ route('client.product.detail', 1) }}">
                          <img class="primary-img" src="templates/img/products/9.jpg" alt="single-product">
                          <img class="secondary-img" src="templates/img/products/10.jpg" alt="single-product">
                      </a>
@@ -465,3 +381,85 @@
      <!-- Container End -->
  </div>
  <!-- Realated Products End Here -->
+@section('script')
+<script>
+    // Lấy tất cả radio buttons
+    const radioButtons = document.querySelectorAll('.form-check-input1');
+
+    // Lặp qua từng radio button và lắng nghe sự kiện click
+    radioButtons.forEach(radio => {
+        radio.addEventListener('click', function () {
+            // Bỏ chọn tất cả radio button khác
+            radioButtons.forEach(rb => {
+                if (rb !== this) {
+                    rb.checked = false; // Bỏ chọn
+                    rb.nextElementSibling.style.backgroundColor = ""; // Đặt lại màu nền
+                    rb.nextElementSibling.style.color = ""; // Đặt lại màu chữ
+                    rb.nextElementSibling.style.borderColor = ""; // Đặt lại màu viền
+                }
+            });
+
+            // Cập nhật màu sắc cho nhãn tương ứng với radio button đã chọn
+            this.nextElementSibling.style.backgroundColor = "#22c55e"; // Màu nền khi chọn
+            this.nextElementSibling.style.color = "white"; // Màu chữ khi chọn
+            this.nextElementSibling.style.borderColor = "#22c55e"; // Màu viền khi chọn
+        });
+    });
+    //-------------- phần màu sắc
+    const radioButtonsColor = document.querySelectorAll('.form-check-input2');
+
+// Lặp qua từng radio button và lắng nghe sự kiện click
+radioButtonsColor.forEach(radio => {
+radio.addEventListener('click', function () {
+    // Bỏ chọn tất cả radio button khác
+    radioButtonsColor.forEach(rb => {
+        if (rb !== this) {
+            rb.checked = false; // Bỏ chọn
+            rb.nextElementSibling.style.backgroundColor = ""; // Đặt lại màu nền
+            rb.nextElementSibling.style.color = ""; // Đặt lại màu chữ
+            rb.nextElementSibling.style.borderColor = ""; // Đặt lại màu viền
+        }
+    });
+
+    // Cập nhật màu sắc cho nhãn tương ứng với radio button đã chọn
+    this.nextElementSibling.style.backgroundColor = "#22c55e"; // Màu nền khi chọn
+    this.nextElementSibling.style.color = "white"; // Màu chữ khi chọn
+    this.nextElementSibling.style.borderColor = "#22c55e"; // Màu viền khi chọn
+});
+});
+</script>
+<script>
+    // Hàm kiểm tra nếu cả hai checkbox đều được chọn
+    function checkBothSelected() {
+        const ssdsChecked = document.querySelectorAll('.form-check-input1:checked').length > 0; // Kiểm tra nếu có ít nhất một color được chọn
+        const colorsChecked = document.querySelectorAll('.form-check-input2:checked').length > 0; // Kiểm tra nếu có ít nhất một ssd được chọn
+        const ssdValue = document.querySelector('.form-check-input1:checked')
+        const colorValue = document.querySelector('.form-check-input2:checked')
+        const productVariants = <?php echo json_encode($product->productVariants); ?>;
+        const resultQuantity = document.getElementById('result-quantity');
+        const linkImageMain = document.getElementById('link-image-main');
+        const imageMain = document.getElementById('image-main');
+        if (colorsChecked && ssdsChecked) {
+            productVariants.forEach(variant => {
+            if(ssdValue.value == variant.ssd_id && colorValue.value == variant.color_id){
+                resultQuantity.textContent = variant.quantity;
+                linkImageMain.href = "./storage/" + variant.image;
+                imageMain.src = "./storage/" + variant.image;
+            } 
+            });
+        }
+    }
+    
+    // Lắng nghe sự kiện change trên tất cả checkbox
+    const ssdCheckboxes = document.querySelectorAll('.form-check-input1');
+    const colorCheckboxes = document.querySelectorAll('.form-check-input2');
+
+    ssdCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', checkBothSelected);
+    });
+
+    colorCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', checkBothSelected);
+    });
+</script>
+@endsection

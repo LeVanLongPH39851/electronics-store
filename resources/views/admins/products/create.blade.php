@@ -142,7 +142,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div id="attribute-container" class="w-100">
-                                    <div class="mb-2 row attribute-item">
+                                    <div class="{{$errors->has('images.0') || $errors->has('colors.0') || $errors->has('ssds.0') || $errors->has('importPrices.0') || $errors->has('listedPrices.0') || $errors->has('prices.0') || $errors->has('quantities.0') ? "mb-1" : "mb-2"}} row attribute-item">
                                         <div class="col-sm-1 pe-0">
                                             <div class="position-relative">
                                                 <input class="form-control" name="variants[]" type="hidden" value="variant">
@@ -150,7 +150,7 @@
                                                 <img src="" class="image-style-variant position-absolute" alt="image">
                                             </div>
                                             @if ($errors->has("images.0"))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("images.0")}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("images.0")}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-auto ps-1 pe-0">
@@ -161,7 +161,7 @@
                                                 @endforeach
                                             </select>
                                             @if ($errors->has("colors.0"))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("colors.0")}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("colors.0")}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-auto ps-1 pe-0">
@@ -172,38 +172,38 @@
                                                 @endforeach
                                             </select>
                                             @if ($errors->has("ssds.0"))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("ssds.0")}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("ssds.0")}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-2 ps-1 pe-0">
                                             <input type="text" name="importPrices[]" class="form-control {{$errors->has("importPrices.0") ? "is-invalid" : ""}}" value="{{old('importPrices.0')}}" placeholder="Giá nhập">
                                             @if ($errors->has("importPrices.0"))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("importPrices.0")}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("importPrices.0")}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-2 ps-1 pe-0">
                                             <input type="text" name="listedPrices[]" class="form-control {{$errors->has("listedPrices.0") ? "is-invalid" : ""}}" value="{{old('listedPrices.0')}}" placeholder="Giá niêm yết">
                                             @if ($errors->has("listedPrices.0"))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("listedPrices.0")}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("listedPrices.0")}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-2 ps-1 pe-0">
                                             <input type="text" name="prices[]" class="form-control {{$errors->has("prices.0") ? "is-invalid" : ""}}" value="{{old('prices.0')}}" placeholder="Giá bán">
                                             @if ($errors->has("prices.0"))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("prices.0")}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("prices.0")}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-2 ps-1 pe-0">
                                             <input type="text" name="quantities[]" class="form-control {{$errors->has("quantities.0") ? "is-invalid" : ""}}" value="{{old('quantities.0')}}" placeholder="Số lượng">
                                             @if ($errors->has("quantities.0"))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("quantities.0")}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("quantities.0")}}</p>  
                                             @endif
                                         </div>
                                     </div>
                                     @if (old('variants'))
                                     @foreach(old('variants') as $index => $variant)
                                     @if($index > 0)
-                                    <div class="mb-2 row attribute-item">
+                                    <div class="{{$errors->has('images.'. $index) || $errors->has('colors.'. $index) || $errors->has('ssds.'. $index) || $errors->has('importPrices.'. $index) || $errors->has('listedPrices.'. $index) || $errors->has('prices.'. $index) || $errors->has('quantities.'. $index) ? "mb-1" : "mb-2"}} row attribute-item">
                                         <div class="col-sm-1 pe-0">
                                             <div class="position-relative">
                                                 <input class="form-control" name="variants[]" type="hidden" value="variant">
@@ -211,7 +211,7 @@
                                                 <img src="" class="image-style-variant position-absolute" alt="image">
                                             </div>
                                             @if ($errors->has("images.". $index))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("images.". $index)}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("images.". $index)}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-auto ps-1 pe-0">
@@ -222,7 +222,7 @@
                                                 @endforeach
                                             </select>
                                             @if ($errors->has("colors.". $index))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("colors.". $index)}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("colors.". $index)}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-auto ps-1 pe-0">
@@ -233,31 +233,31 @@
                                                 @endforeach
                                             </select>
                                             @if ($errors->has("ssds.". $index))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("ssds.". $index)}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("ssds.". $index)}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-2 ps-1 pe-0">
                                             <input type="text" name="importPrices[]" class="form-control {{$errors->has("importPrices.". $index) ? "is-invalid" : ""}}" value="{{old('importPrices.' . $index)}}" placeholder="Giá nhập">
                                             @if ($errors->has("importPrices.". $index))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("importPrices.". $index)}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("importPrices.". $index)}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-2 ps-1 pe-0">
                                             <input type="text" name="listedPrices[]" class="form-control {{$errors->has("listedPrices.". $index) ? "is-invalid" : ""}}" value="{{old('listedPrices.' . $index)}}" placeholder="Giá niêm yết">
                                             @if ($errors->has("listedPrices.". $index))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("listedPrices.". $index)}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("listedPrices.". $index)}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-2 ps-1 pe-0">
                                             <input type="text" name="prices[]" class="form-control {{$errors->has("prices.". $index) ? "is-invalid" : ""}}" value="{{old('prices.' . $index)}}" placeholder="Giá bán">
                                             @if ($errors->has("prices.". $index))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("prices.". $index)}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("prices.". $index)}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-2 ps-1 pe-0">
                                             <input type="text" name="quantities[]" class="form-control {{$errors->has("quantities.". $index) ? "is-invalid" : ""}}" value="{{old('quantities.' . $index)}}" placeholder="Số lượng">
                                             @if ($errors->has("quantities.". $index))
-                                             <p class="text-danger mb-0 mt-1 fs11">{{$errors->first("quantities.". $index)}}</p>  
+                                             <p class="text-danger mb-0 mt1 fs10">{{$errors->first("quantities.". $index)}}</p>  
                                             @endif
                                         </div>
                                         <div class="col-sm-auto ps-1 flex-grow-1 d-flex justify-content-center align-items-center">

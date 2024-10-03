@@ -89,7 +89,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('client.logout')
 Route::post('/store', [LoginController::class, 'store'])->name('client.store');
 Route::post('/store-signup', [LoginController::class, 'storeSignup'])->name('client.store.signup');
 Route::get('/shop', [ShopController::class, 'shop'])->name('client.shop');
-Route::get('/product-detail', [ProductDetailController::class, 'productDetail'])->name('client.product.detail');
+Route::get('/product-detail/{id}', [ProductDetailController::class, 'productDetail'])->name('client.product.detail');
 Route::get('/cart', [CartController::class, 'cart'])->name('client.cart');
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkout');
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');
