@@ -96,7 +96,7 @@ class StaffTrashController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::onlyTrashed()->find($id); ////Tìm staff đã xóa có id đấy
+        $user = User::onlyTrashed()->find($id); //Tìm staff đã xóa có id đấy
 
         if($user && $user->role == 2){
             

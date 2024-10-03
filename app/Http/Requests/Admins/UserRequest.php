@@ -32,7 +32,7 @@ class UserRequest extends FormRequest
             "regex:/^\+?[0-9\s\(\)\-\.]{10,}$/" //Định dạng số điện thoại quốc tế hợp lệ
         ],
             "password" => "required|min:8|max:20",
-            "image" => "nullable|image|:jpeg,png,jpg|max:2048",
+            "image" => "nullable|image|mimes:jpeg,png,jpg|max:2048",
             "address" => "nullable|max:255"
         ];
     }

@@ -5,7 +5,6 @@
     <table class="table table-bordered table-striped table-hover table-sm">
         <thead class="thead-dark">
             <tr class="text-center">
-                <th>ID</th>
                 <th>Hình Ảnh</th>
                 <th>Tên Danh Mục</th>
                 <th>Chức Năng</th>
@@ -19,7 +18,6 @@
             @else
                 @foreach ($categories as $category)
                     <tr>
-                        <td>{{ $category->id }}</td>
                         <td class="text-center">
                             <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}" class="img-fluid" style="max-width: 100px; max-height: 100px;">
                         </td>
