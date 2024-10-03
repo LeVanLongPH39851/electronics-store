@@ -21,21 +21,28 @@ class ProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        
+        $rules = [
             "name" => "required|max:100",
             "image" => "required|image|mimes:jpeg,png,jpg,gif|max:2048",
             "category" => "required|not_in:0",
             "brand" => "required|not_in:0",
             'galleries.*' => 'nullable|mimes:jpeg,png,jpg,gif,mp4|max:10240',
-            "images.*" => "required|image|mimes:jpeg,png,jpg,gif|max:2048",
+            "images.*" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048",
             "colors.*" => "required|not_in:0",
             "ssds.*" => "required|not_in:0",
-            "images.*" => "required|image|mimes:jpeg,png,jpg,gif|max:2048",
+            "images.*" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048",
             "importPrices.*" => "required|integer|min:1000|max:99999999999",
             "listedPrices.*" => "required|integer|min:1000|max:99999999999",
             "prices.*" => "required|integer|min:1000|max:99999999999",
             "quantities.*" => "required|integer|min:1|max:9999999999"
         ];
+
+        if ($this->route()->getName() === 'product.update') {
+            $rules["image"] = "nullable|image|mimes:jpeg,png,jpg,gif|max:2048";
+        }
+        
+        return $rules;
     }
 
     public function messages(): array
@@ -74,5 +81,48 @@ class ProductRequest extends FormRequest
             'quantities.*.min' => 'Số lượng phải lớn hơn 1',
             'quantities.*.max' => 'Số lượng lớn'
         ];
+    }
+    
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $importPrices = $this->input('importPrices');
+            $listedPrices = $this->input('listedPrices');
+            $prices = $this->input('prices');
+            $colors = $this->input('colors');
+            $ssds = $this->input('ssds');
+
+            if (count($importPrices) !== count($listedPrices) || count($importPrices) !== count($prices)) {
+                $validator->errors()->add('listedPrices', 'Vui lòng nhập đầy đủ các giá');
+            }
+
+            foreach ($importPrices as $key => $value) {
+                if ($importPrices[$key] >= $listedPrices[$key]) {
+                    $validator->errors()->add("listedPrices.$key", "Giá niêm yết phải lớn hơn giá nhập");
+                }
+
+                if ($listedPrices[$key] <= $prices[$key]) {
+                    $validator->errors()->add("prices.$key", "Giá bán phải nhỏ hơn giá niêm yết");
+                }
+
+                if ($prices[$key] <= $importPrices[$key]) {
+                    $validator->errors()->add("prices.$key", "Giá bán phải lớn hơn giá nhập");
+                }
+            }
+
+            $colorSsdPairs = [];
+
+            foreach ($colors as $key => $color) {
+                if (isset($ssds[$key])) {
+                    $pair = [$color, $ssds[$key]]; // Kết hợp màu và SSD thành mảng
+                    if (in_array($pair, $colorSsdPairs)) {
+                        $validator->errors()->add("colors.$key", "Trùng thuộc tính");
+                        $validator->errors()->add("ssds.$key", "Trùng thuộc tính");
+                    } else {
+                        $colorSsdPairs[] = $pair;
+                    }
+                }
+            }
+        });
     }
 }

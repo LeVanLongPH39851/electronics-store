@@ -102,11 +102,11 @@
                                     </td>
                                     <td><span class="badge bg-{{$product->status==='active' ? 'success' : 'danger'}}-subtle text-{{$product->status==='active' ? 'success' : 'danger'}} text-capitalize"><i class="fas fa-{{$product->status === 'active' ? 'check' : 'xmark'}} me-1"></i> {{$product->status}}</span></td>
                                     <td class="text-end">                                                       
-                                        <a href="#"><i class="las la-pen text-secondary fs-18"></i></a>
+                                        <a href="{{route('product.edit', $product->id)}}"><i class="las la-pen text-secondary fs-18"></i></a>
                                         <form class="d-inline" action="{{route('product.destroy', $product->id)}}" method="POST">
                                             @csrf
                                             @method('delete')
-                                        <button type="submit" onclick="return confirm('Bạn có chắc chắn chuyển vào thùng rác không ?')" class="btn-reset"><i class="las la-trash-alt text-secondary fs-18"></i></button>
+                                            <button type="submit" onclick="return confirm('Bạn có chắc chắn chuyển vào thùng rác không ?')" class="btn-reset"><i class="las la-trash-alt text-secondary fs-18"></i></button>
                                         </form>
                                     </td>
                                 </tr>
