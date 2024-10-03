@@ -13,7 +13,7 @@ class ProductDetailController extends Controller
         $product = Product::withMin('productVariants', 'price') //Lấy giá thấp nhất
         ->withMax('productVariants', 'price') //Lấy giá cao nhất
         ->withSum('productVariants', 'quantity') //Lấy tổng số lượng
-        ->find($id);;
+        ->find($id);
 
         if($product){
             $template = "clients.productdetails.productdetail";
