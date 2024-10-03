@@ -33,66 +33,6 @@
                      </div>
                      <!-- Thumbnail image end -->
                  </div>
-                 <!-- Main Thumbnail Image End -->
-                 <!-- Thumbnail Description Start -->
-                 <div class="col-lg-7">
-                    <form action="">
-                        <div class="thubnail-desc fix">
-                            <h3 class="product-header mb-1 mt-3">{{$product->name}}</h3>
-                            <div class="rating-summary fix mtb-10">
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <div class="rating-feedback">
-                                    <a href="#" class="mt-1">(1 review)</a>
-                                    {{-- <a href="#">add to your review</a> --}}
-                                </div>
-                            </div>
-                            <div class="pro-price mtb-10">
-                                <p class="d-flex align-items-center"><span
-                                        class="price">{{number_format($product->product_variants_min_price, 0, '', '.')}} vnđ - {{number_format($product->product_variants_max_price, 0, '', '.')}} vnđ</span><span class="saving-price">giảm 8%</span></p>
-                            </div>
-                            <p class="mb-20 pro-desc-details">{!!$product->short_description!!}</p>
-                            <div class="product-size mb-20 clearfix">
-                                <label class="mb-2 mt-4">Dung lượng</label>
-                                    <div class="product-options">
-                                        @foreach ($product->productVariants->unique('ssd_id') as $productVariant)
-                                        <div class="form-check ps-0">
-                                            <input class="form-check-input form-check-input1" type="radio" name="ssd" id="ssd{{$productVariant->ssd->id}}"
-                                                value="{{$productVariant->ssd->id}}">
-                                            <label class="form-check-label ms-0 me-2 text-nowrap" for="ssd{{$productVariant->ssd->id}}">{{$productVariant->ssd->name}}</label>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                            </div>
-                            <div class="color clearfix mb-20">
-                                <label class="mb-2">Màu Sắc</label>
-                                    <div class="product-options">
-                                        @foreach ($product->productVariants->unique('color_id') as $productVariant)
-                                        <div class="form-check ps-0">
-                                            <input class="form-check-input form-check-input2" type="radio" name="color"
-                                                id="color{{$productVariant->color->id}}" value="{{$productVariant->color->id}}">
-                                            <label class="form-check-label ms-0 me-2 text-nowrap" for="color{{$productVariant->color->id}}">{{$productVariant->color->name}}</label>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                            </div>
-                            <div class="box-quantity d-flex">
-                                <label class="me-3">Số Lượng</label>
-                                    <input class="quantity mr-40" type="number" min="1" value="1">
-                                <a class="add-cart" href="cart.html">Thêm vào giỏ hàng</a>
-                            </div>
-                            <div class="pro-ref mt-15">
-                                <label><b>Số lượng có sẵn:</b> <span id="result-quantity">{{$product->product_variants_sum_quantity}}</span></label>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Thumbnail image end -->
-                </div>
                 <!-- Main Thumbnail Image End -->
                 <!-- Thumbnail Description Start -->
                 <div class="col-lg-7">
