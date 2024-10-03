@@ -209,6 +209,8 @@
                 <!-- Product Content End -->
             </div>
             <!-- Single Product End -->
+            <!-- Single Product Start -->
+            <!-- Single Product End -->
         </div>
         <!-- New Pro Tow Activation End -->
     </div>
@@ -267,15 +269,15 @@ radio.addEventListener('click', function () {
    function checkBothSelected() {
        const ssdsChecked = document.querySelectorAll('.form-check-input1:checked').length > 0; // Kiểm tra nếu có ít nhất một color được chọn
        const colorsChecked = document.querySelectorAll('.form-check-input2:checked').length > 0; // Kiểm tra nếu có ít nhất một ssd được chọn
-       const valueSsd = document.querySelector('.form-check-input1:checked')
-       const valueColor = document.querySelector('.form-check-input2:checked')
+       const ssdValue = document.querySelector('.form-check-input1:checked')
+       const colorValue = document.querySelector('.form-check-input2:checked')
        const productVariants = <?php echo json_encode($product->productVariants); ?>;
        const resultQuantity = document.getElementById('result-quantity');
        const linkImageMain = document.getElementById('link-image-main');
        const imageMain = document.getElementById('image-main');
        if (colorsChecked && ssdsChecked) {
            productVariants.forEach(variant => {
-           if(valueSsd.value == variant.ssd_id && valueColor.value == variant.color_id){
+           if(ssdValue.value == variant.ssd_id && colorValue.value == variant.color_id){
                resultQuantity.textContent = variant.quantity;
                linkImageMain.href = "./storage/" + variant.image;
                imageMain.src = "./storage/" + variant.image;
