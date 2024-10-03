@@ -8,12 +8,12 @@
                  <div class="col-lg-5 mb-all-40">
                      <!-- Thumbnail Large Image start -->
                      <div class="tab-content">
-                         <div id="thumb{{$product->id}}" class="tab-pane fade show active">
+                         <div id="thumb{{$product->id}}" class="tab-pane fade show active d-flex align-items-center aspect-ratio">
                              <a data-fancybox="images" id="link-image-main" href="{{".".Storage::url($product->image)}}"><img
                                      id="image-main" src="{{".".Storage::url($product->image)}}" alt="product-view"></a>
                          </div>
                          @foreach ($product->galleries as $gallery)
-                         <div id="thumbgl{{$gallery->id}}" class="tab-pane fade">
+                         <div id="thumbgl{{$gallery->id}}" class="tab-pane fade d-flex align-items-center aspect-ratio">
                             <a data-fancybox="images" href="{{".".Storage::url($gallery->path)}}"><img
                                     src="{{".".Storage::url($gallery->path)}}" alt="product-view"></a>
                         </div>
@@ -23,10 +23,10 @@
                      <!-- Thumbnail Image End -->
                      <div class="product-thumbnail">
                          <div class="thumb-menu owl-carousel nav tabs-area" role="tablist">
-                             <a class="active" data-bs-toggle="tab" href="#thumb{{$product->id}}"><img
+                             <a class="active d-flex align-items-center aspect-ratio" data-bs-toggle="tab" href="#thumb{{$product->id}}"><img
                                      src="{{".".Storage::url($product->image)}}" alt="product-thumbnail"></a>
                             @foreach ($product->galleries as $gallery)
-                             <a data-bs-toggle="tab" href="#thumbgl{{$gallery->id}}"><img src="{{".".Storage::url($gallery->path)}}"
+                             <a data-bs-toggle="tab" class="d-flex align-items-center aspect-ratio" href="#thumbgl{{$gallery->id}}"><img src="{{".".Storage::url($gallery->path)}}"
                                      alt="product-thumbnail"></a>
                             @endforeach
                          </div>
