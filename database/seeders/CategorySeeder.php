@@ -16,18 +16,18 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert(
             [
                 [
-                    'name'=>'Điện Thoại',
-                    'image'=>'https://cdn2.cellphones.com.vn/insecure/rs:fill:300:0/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-xanh-luu-ly.png'
+                    'name' => 'Điện Thoại',
+                    'image' => 'https://cdn2.cellphones.com.vn/insecure/rs:fill:300:0/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-xanh-luu-ly.png'
                 ],
                 [
-                    'name'=>'Máy tính',
-                    'image'=>'https://cdn2.cellphones.com.vn/insecure/rs:fill:300:0/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-xanh-luu-ly.png'
+                    'name' => 'Máy tính',
+                    'image' => 'https://cdn2.cellphones.com.vn/insecure/rs:fill:300:0/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-xanh-luu-ly.png'
                 ],
                 [
-                    'name'=>'Laptop',
-                    'image'=>'https://cdn2.cellphones.com.vn/insecure/rs:fill:300:0/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-xanh-luu-ly.png'
+                    'name' => 'Laptop',
+                    'image' => 'https://cdn2.cellphones.com.vn/insecure/rs:fill:300:0/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-xanh-luu-ly.png'
                 ],
             ]
-        );    
+        );
     }
 }
