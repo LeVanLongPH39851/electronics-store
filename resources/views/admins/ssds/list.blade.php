@@ -1,6 +1,6 @@
 <div class="container-xxl animated fadeInDown">
     <div class="row">
-        <div class="col-12">
+        <div class="col-6">
             <div class="card">
                 <div class="card-header">
                     <div class="row align-items-center">
@@ -20,12 +20,6 @@
                         <table class="table mb-0 checkbox-all">
                             <thead class="table-light">
                                 <tr>
-                                    <th style="width: 16px;">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="select-all-head">
-                                        </div>
-                                    </th>
-                                    <th class="ps-0">ID</th>
                                     <th>Loại dung lượng</th>
                                     <th></th>
                                 </tr>
@@ -33,15 +27,6 @@
                             <tbody>
                                 @foreach ($ssds as $ssd)
                                     <tr>
-                                        <td style="width: 16px;">
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input select"
-                                                    value="{{ $ssd->id }}">
-                                            </div>
-                                        </td>
-                                        <td class="ps-0"><span
-                                                class="badge bg-transparent border border-primary text-primary">{{ $ssd->id }}</span>
-                                        </td>
                                         <td class="font-13 fw-medium">{{ $ssd->name }}</td>
                                         <td class="text-end">
                                             <a href="{{ route('ssd.edit', $ssd->id) }}"><i

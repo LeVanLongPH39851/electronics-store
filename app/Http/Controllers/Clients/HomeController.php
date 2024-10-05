@@ -2,14 +2,27 @@
 
 namespace App\Http\Controllers\Clients;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
     //Trang chủ client
     public function index(){
+        $categories = Category::orderByDesc('created_at')->get();
+        $newProducts = Product::withMin('productVariants', 'price') //Lấy giá thấp nhất
+        ->withMax('productVariants', 'price') //Lấy giá cao nhất
+        ->withSum('productVariants', 'quantity') //Lấy tổng số lượng
+        ->orderByDesc('created_at')
+        ->get();
         $template = "clients.homes.index";
-        return view("clients.layout", ["title" => "Home", "template" => $template]);
+        return view("clients.layout", [
+        "title" => "Trang chủ",
+        "template" => $template,
+        "categories" => $categories,
+        "newProducts" => $newProducts
+        ]);
     }
 }

@@ -1,6 +1,6 @@
 <div class="container-xxl animated fadeInDown">
-    <div class="row justify-content-center">
-        <div class="col-12">
+    <div class="row">
+        <div class="col-6">
             <div class="card">
                 <div class="card-header">
                     <div class="row align-items-center">
@@ -13,19 +13,11 @@
                     <form action="{{ route('ssd.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-12">
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">ID</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="text" value="Auto string" disabled>
-                                    </div>
-                                </div>
-                            </div><!--end col-->
-                            <div class="col-lg-8">
-                                <div class="mb-3 row">
-                                    <label class="col-sm-4 col-form-label text-end">Loại dung lượng<span
+                                    <label class="col-sm-3 col-form-label text-end">Loại dung lượng<span
                                             class="text-danger">*</span></label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-9">
                                         <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
                                             name="name" value="{{ old('name') }}" type="text"
                                             placeholder="Nhập vào loại dung lượng">

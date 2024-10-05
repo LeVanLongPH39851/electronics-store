@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admins\AuthController;
+use App\Http\Controllers\Admins\BrandController;
 use App\Http\Controllers\Admins\ColorController;
 use App\Http\Controllers\Admins\Categories\CategoryController;
 use App\Http\Controllers\Admins\UserController;
@@ -12,7 +13,9 @@ use App\Http\Controllers\Clients\ShopController;
 use App\Http\Controllers\Clients\LoginController;
 use App\Http\Controllers\Clients\AccountController;
 use App\Http\Controllers\Admins\DashboardController;
+use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Admins\SsdController;
+use App\Http\Controllers\Admins\Trashs\ProductTrashController;
 use App\Http\Controllers\Clients\CheckoutController;
 use App\Http\Controllers\Clients\ProductDetailController;
 use App\Http\Controllers\Admins\Trashs\UserTrashController;
@@ -47,6 +50,12 @@ Route::middleware(['admin'])->group(function () {
         Route::post('/user-trash/restore', [UserTrashController::class, 'restore'])->name('user.restore');
         Route::resource('/user-trash', UserTrashController::class);
         Route::resource('/user', UserController::class);
+        Route::resource('/brand', BrandController::class);
+        Route::resource('/product', ProductController::class);
+        Route::post('/product-trash/trash', [ProductTrashController::class, 'trash'])->name('product.trash');
+        Route::post('/product-trash/delete', [ProductTrashController::class, 'delete'])->name('product.delete');
+        Route::post('/product-trash/restore', [ProductTrashController::class, 'restore'])->name('product.restore');
+        Route::resource('/product-trash', ProductTrashController::class);
         Route::resource('/categories', CategoryController::class);
         Route::middleware(['staff'])->group(function () {
             Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');
@@ -80,10 +89,14 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('client.logout')
 Route::post('/store', [LoginController::class, 'store'])->name('client.store');
 Route::post('/store-signup', [LoginController::class, 'storeSignup'])->name('client.store.signup');
 Route::get('/shop', [ShopController::class, 'shop'])->name('client.shop');
-Route::get('/product-detail', [ProductDetailController::class, 'productDetail'])->name('client.product.detail');
+Route::get('/product-detail/{id}', [ProductDetailController::class, 'productDetail'])->name('client.product.detail');
 Route::get('/cart', [CartController::class, 'cart'])->name('client.cart');
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkout');
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');
 Route::get('/order-detail', [AccountController::class, 'orderDetail'])->name('client.order.detail');
+<<<<<<< HEAD
 Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.order.thanhtoan');
 Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
+=======
+Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.order.thanhtoan');
+>>>>>>> 50f944adf55200f388635538a48ff3bb94736c6a

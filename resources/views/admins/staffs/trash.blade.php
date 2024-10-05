@@ -97,7 +97,7 @@
                                     </td>
                                 </tr>
                                 @empty
-                                <tr><td colspan="7" class="text-danger">Không có nhân viên nào</td></tr>
+                                <tr><td colspan="8" class="text-danger">Không có nhân viên nào</td></tr>
                                 @endforelse                                                                                   
                             </tbody>
                             <tfoot>

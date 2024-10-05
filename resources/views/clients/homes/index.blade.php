@@ -10,281 +10,17 @@
             ></span>
             <nav>
               <ul class="vertical-menu-list">
+                @foreach ($categories as $category)
                 <li>
                   <a href="shop.html"
                     ><span
                       ><img
                         src="templates/img/vertical-menu/1.png"
                         alt="menu-icon" /></span
-                    >Điện thoại<i
-                      class="fa fa-angle-right"
-                      aria-hidden="true"
-                    ></i
-                  ></a>
-                  <!-- Vertical Mega-Menu Start -->
-                  <ul class="ht-dropdown megamenu first-megamenu w-auto pb-0">
-                    <!-- Single Column Start -->
-                    <li class="single-megamenu">
-                      <ul>
-                        <li><a href="shop.html">iPhone</a></li>
-                        <li><a href="shop.html">Samsumg</a></li>
-                        <li><a href="shop.html">Xiaomi</a></li>
-                      </ul>
-                    </li>
-                    <!-- Single Column End -->
-                  </ul>
-                  <!-- Vertical Mega-Menu End -->
+                    >{{$category->name}}
+                  </a>
                 </li>
-                <li>
-                  <a href="shop.html"
-                    ><span
-                      ><img
-                        src="templates/img/vertical-menu/2.png"
-                        alt="menu-icon" /></span
-                    >Laptop<i
-                      class="fa fa-angle-right"
-                      aria-hidden="true"
-                    ></i
-                  ></a>
-                  <!-- Vertical Mega-Menu Start -->
-                  <ul class="ht-dropdown megamenu first-megamenu w-auto pb-0">
-                    <!-- Single Column Start -->
-                    <li class="single-megamenu">
-                      <ul>
-                        <li><a href="shop.html">iPhone</a></li>
-                        <li><a href="shop.html">Samsumg</a></li>
-                        <li><a href="shop.html">Xiaomi</a></li>
-                      </ul>
-                    </li>
-                    <!-- Single Column End -->
-                  </ul>
-                  <!-- Vertical Mega-Menu End -->
-                </li>
-                <li>
-                  <a href="shop.html"
-                    ><span
-                      ><img
-                        src="templates/img/vertical-menu/3.png"
-                        alt="menu-icon" /></span
-                    >Tai nghe<i
-                      class="fa fa-angle-right"
-                      aria-hidden="true"
-                    ></i
-                  ></a>
-                  <!-- Vertical Mega-Menu Start -->
-                  <ul class="ht-dropdown megamenu first-megamenu w-auto pb-0">
-                    <!-- Single Column Start -->
-                    <li class="single-megamenu">
-                      <ul>
-                        <li><a href="shop.html">iPhone</a></li>
-                        <li><a href="shop.html">Samsumg</a></li>
-                        <li><a href="shop.html">Xiaomi</a></li>
-                      </ul>
-                    </li>
-                    <!-- Single Column End -->
-                  </ul>
-                  <!-- Vertical Mega-Menu End -->
-                </li>
-                <li>
-                  <a href="shop.html"
-                    ><span
-                      ><img
-                        src="templates/img/vertical-menu/4.png"
-                        alt="menu-icon" /></span
-                    >Đồng hồ<i
-                      class="fa fa-angle-right"
-                      aria-hidden="true"
-                    ></i
-                  ></a>
-                  <!-- Vertical Mega-Menu Start -->
-                  <ul class="ht-dropdown megamenu first-megamenu w-auto pb-0">
-                    <!-- Single Column Start -->
-                    <li class="single-megamenu">
-                      <ul>
-                        <li><a href="shop.html">iPhone</a></li>
-                        <li><a href="shop.html">Samsumg</a></li>
-                        <li><a href="shop.html">Xiaomi</a></li>
-                      </ul>
-                    </li>
-                    <!-- Single Column End -->
-                  </ul>
-                  <!-- Vertical Mega-Menu End -->
-                </li>
-                <li>
-                  <a href="shop.html"
-                    ><span
-                      ><img
-                        src="templates/img/vertical-menu/5.png"
-                        alt="menu-icon" /></span
-                    >Tay cầm<i
-                      class="fa fa-angle-right"
-                      aria-hidden="true"
-                    ></i
-                  ></a>
-                  <!-- Vertical Mega-Menu Start -->
-                  <ul class="ht-dropdown megamenu first-megamenu w-auto pb-0">
-                    <!-- Single Column Start -->
-                    <li class="single-megamenu">
-                      <ul>
-                        <li><a href="shop.html">iPhone</a></li>
-                        <li><a href="shop.html">Samsumg</a></li>
-                        <li><a href="shop.html">Xiaomi</a></li>
-                      </ul>
-                    </li>
-                    <!-- Single Column End -->
-                  </ul>
-                  <!-- Vertical Mega-Menu End -->
-                </li>
-                <li>
-                  <a href="shop.html"
-                    ><span
-                      ><img
-                        src="templates/img/vertical-menu/6.png"
-                        alt="menu-icon" /></span
-                    >PC<i
-                      class="fa fa-angle-right"
-                      aria-hidden="true"
-                    ></i
-                  ></a>
-                  <!-- Vertical Mega-Menu Start -->
-                  <ul class="ht-dropdown megamenu first-megamenu w-auto pb-0">
-                    <!-- Single Column Start -->
-                    <li class="single-megamenu">
-                      <ul>
-                        <li><a href="shop.html">iPhone</a></li>
-                        <li><a href="shop.html">Samsumg</a></li>
-                        <li><a href="shop.html">Xiaomi</a></li>
-                      </ul>
-                    </li>
-                    <!-- Single Column End -->
-                  </ul>
-                  <!-- Vertical Mega-Menu End -->
-                </li>
-                <li>
-                  <a href="shop.html"
-                    ><span
-                      ><img
-                        src="templates/img/vertical-menu/7.png"
-                        alt="menu-icon" /></span
-                    >iPad<i
-                      class="fa fa-angle-right"
-                      aria-hidden="true"
-                    ></i
-                  ></a>
-                  <!-- Vertical Mega-Menu Start -->
-                  <ul class="ht-dropdown megamenu first-megamenu w-auto pb-0">
-                    <!-- Single Column Start -->
-                    <li class="single-megamenu">
-                      <ul>
-                        <li><a href="shop.html">iPhone</a></li>
-                        <li><a href="shop.html">Samsumg</a></li>
-                        <li><a href="shop.html">Xiaomi</a></li>
-                      </ul>
-                    </li>
-                    <!-- Single Column End -->
-                  </ul>
-                  <!-- Vertical Mega-Menu End -->
-                </li>
-                <li>
-                  <a href="shop.html"
-                    ><span
-                      ><img
-                        src="templates/img/vertical-menu/8.png"
-                        alt="menu-icon" /></span
-                    >Điện thoại<i
-                      class="fa fa-angle-right"
-                      aria-hidden="true"
-                    ></i
-                  ></a>
-                  <!-- Vertical Mega-Menu Start -->
-                  <ul class="ht-dropdown megamenu first-megamenu w-auto pb-0">
-                    <!-- Single Column Start -->
-                    <li class="single-megamenu">
-                      <ul>
-                        <li><a href="shop.html">iPhone</a></li>
-                        <li><a href="shop.html">Samsumg</a></li>
-                        <li><a href="shop.html">Xiaomi</a></li>
-                      </ul>
-                    </li>
-                    <!-- Single Column End -->
-                  </ul>
-                  <!-- Vertical Mega-Menu End -->
-                </li>
-                <li>
-                  <a href="shop.html"
-                    ><span
-                      ><img
-                        src="templates/img/vertical-menu/9.png"
-                        alt="menu-icon" /></span
-                    >Laptop<i
-                      class="fa fa-angle-right"
-                      aria-hidden="true"
-                    ></i
-                  ></a>
-                  <!-- Vertical Mega-Menu Start -->
-                  <ul class="ht-dropdown megamenu first-megamenu w-auto pb-0">
-                    <!-- Single Column Start -->
-                    <li class="single-megamenu">
-                      <ul>
-                        <li><a href="shop.html">iPhone</a></li>
-                        <li><a href="shop.html">Samsumg</a></li>
-                        <li><a href="shop.html">Xiaomi</a></li>
-                      </ul>
-                    </li>
-                    <!-- Single Column End -->
-                  </ul>
-                  <!-- Vertical Mega-Menu End -->
-                </li>
-                <li>
-                  <a href="shop.html"
-                    ><span
-                      ><img
-                        src="templates/img/vertical-menu/10.png"
-                        alt="menu-icon" /></span
-                    >Tai nghe<i
-                      class="fa fa-angle-right"
-                      aria-hidden="true"
-                    ></i
-                  ></a>
-                  <!-- Vertical Mega-Menu Start -->
-                  <ul class="ht-dropdown megamenu first-megamenu w-auto pb-0">
-                    <!-- Single Column Start -->
-                    <li class="single-megamenu">
-                      <ul>
-                        <li><a href="shop.html">iPhone</a></li>
-                        <li><a href="shop.html">Samsumg</a></li>
-                        <li><a href="shop.html">Xiaomi</a></li>
-                      </ul>
-                    </li>
-                    <!-- Single Column End -->
-                  </ul>
-                  <!-- Vertical Mega-Menu End -->
-                </li>
-                <li>
-                  <a href="shop.html"
-                    ><span
-                      ><img
-                        src="templates/img/vertical-menu/1.png"
-                        alt="menu-icon" /></span
-                    >Đồng hồ<i
-                      class="fa fa-angle-right"
-                      aria-hidden="true"
-                    ></i
-                  ></a>
-                  <!-- Vertical Mega-Menu Start -->
-                  <ul class="ht-dropdown megamenu first-megamenu w-auto pb-0">
-                    <!-- Single Column Start -->
-                    <li class="single-megamenu">
-                      <ul>
-                        <li><a href="shop.html">iPhone</a></li>
-                        <li><a href="shop.html">Samsumg</a></li>
-                        <li><a href="shop.html">Xiaomi</a></li>
-                      </ul>
-                    </li>
-                    <!-- Single Column End -->
-                  </ul>
-                  <!-- Vertical Mega-Menu End -->
-                </li>
+                @endforeach
               </ul>
             </nav>
           </div>
@@ -375,7 +111,7 @@
     <div class="container">
       <!-- Post Title Start -->
       <div class="post-title">
-        <h2>Sản phẩm khuyến mãi</h2>
+        <h2>Sản phẩm mới</h2>
       </div>
       <!-- Post Title End -->
       <div class="row">
@@ -392,28 +128,29 @@
             <!-- Hot Deal Product Active Start -->
             <div class="hot-deal-active owl-carousel">
               <!-- Single Product Start -->
+              @foreach ($newProducts as $newProduct)
               <div class="single-product">
                 <!-- Product Image Start -->
-                <div class="pro-img">
-                  <a href="product.html">
+                <div class="pro-img w-100 d-flex align-items-center" style="aspect-ratio: 1/1">
+                  <a href="{{route('client.product.detail', $newProduct->id)}}">
                     <img
                       class="primary-img"
-                      src="templates/img/products/1.jpg"
+                      src="{{".".Storage::url($newProduct->image)}}"
                       alt="single-product"
                     />
                     <img
                       class="secondary-img"
-                      src="templates/img/products/7.jpg"
+                      src="{{".".Storage::url($newProduct->galleries->first()->path)}}"
                       alt="single-product"
                     />
                   </a>
-                  <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div>
+                  {{-- <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div> --}}
                 </div>
                 <!-- Product Image End -->
                 <!-- Product Content Start -->
                 <div class="pro-content">
                   <div class="pro-info">
-                    <h4><a href="product.html">iPhone 15</a></h4>
+                    <h4><a href="product.html">{{$newProduct->name}}</a></h4>
                     <div class="product-rating">
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
@@ -422,8 +159,8 @@
                       <i class="fa fa-star"></i>
                     </div>
                     <p>
-                      <span class="price fs15">10.500.000đ</span
-                      ><del class="prev-price fs14">10.200.000đ</del>
+                      <span class="price" style="font-size: 14px">{{number_format($newProduct->product_variants_min_price, 0, '', '.')}}đ - {{number_format($newProduct->product_variants_max_price, 0, '', '.')}}đ</span
+                      >
                     </p>
                   </div>
                   <div class="pro-actions">
@@ -461,299 +198,9 @@
                 </div>
                 <!-- Product Content End -->
                 <span class="sticker-new">mới</span>
-                <span class="sticker-sale">-5%</span>
-              </div>
-              <!-- Single Product End -->
-              <!-- Single Product Start -->
-              <div class="single-product">
-                <!-- Product Image Start -->
-                <div class="pro-img">
-                  <a href="product.html">
-                    <img
-                      class="primary-img"
-                      src="templates/img/products/17.jpg"
-                      alt="single-product"
-                    />
-                    <img
-                      class="secondary-img"
-                      src="templates/img/products/24.jpg"
-                      alt="single-product"
-                    />
-                  </a>
-                  <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div>
-                </div>
-                <!-- Product Image End -->
-                <!-- Product Content Start -->
-                <div class="pro-content">
-                  <div class="pro-info">
-                    <h4><a href="product.html">iPhone 15</a></h4>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <p>
-                      <span class="price fs15">10.500.000đ</span
-                      ><del class="prev-price fs14">10.200.000đ</del>
-                    </p>
-                  </div>
-                  <div class="pro-actions">
-                    <div class="actions-primary">
-                      <a
-                        href="cart.html"
-                        class="px-1 w-auto"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Add to Cart"
-                        >Thêm giỏ hàng</a
-                      >
-                    </div>
-                    <div class="actions-secondary">
-                      <a
-                        href="product.html"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Favorite"
-                        ><i class="fa fa-heart-o"></i
-                      ></a>
-                      <span
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                      >
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#myModal"
-                          ><i class="fa fa-search"></i
-                        ></a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <!-- Product Content End -->
-              </div>
-              <!-- Single Product End -->
-              <!-- Single Product Start -->
-              <div class="single-product">
-                <!-- Product Image Start -->
-                <div class="pro-img">
-                  <a href="product.html">
-                    <img
-                      class="primary-img"
-                      src="templates/img/products/16.jpg"
-                      alt="single-product"
-                    />
-                    <img
-                      class="secondary-img"
-                      src="templates/img/products/33.jpg"
-                      alt="single-product"
-                    />
-                  </a>
-                  <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div>
-                </div>
-                <!-- Product Image End -->
-                <!-- Product Content Start -->
-                <div class="pro-content">
-                  <div class="pro-info">
-                    <h4><a href="product.html">iPhone 15</a></h4>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <p>
-                      <span class="price fs15">10.500.000đ</span
-                      ><del class="prev-price fs14">10.200.000đ</del>
-                    </p>
-                  </div>
-                  <div class="pro-actions">
-                    <div class="actions-primary">
-                      <a
-                        href="cart.html"
-                        class="px-1 w-auto"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Add to Cart"
-                        >Thêm giỏ hàng</a
-                      >
-                    </div>
-                    <div class="actions-secondary">
-                      <a
-                        href="product.html"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Favorite"
-                        ><i class="fa fa-heart-o"></i
-                      ></a>
-                      <span
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                      >
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#myModal"
-                          ><i class="fa fa-search"></i
-                        ></a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <!-- Product Content End -->
-                <span class="sticker-new">mới</span>
-                <span class="sticker-sale">-10%</span>
-              </div>
-              <!-- Single Product End -->
-              <!-- Single Product Start -->
-              <div class="single-product">
-                <!-- Product Image Start -->
-                <div class="pro-img">
-                  <a href="product.html">
-                    <img
-                      class="primary-img"
-                      src="templates/img/products/19.jpg"
-                      alt="single-product"
-                    />
-                    <img
-                      class="secondary-img"
-                      src="templates/img/products/18.jpg"
-                      alt="single-product"
-                    />
-                  </a>
-                  <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div>
-                </div>
-                <!-- Product Image End -->
-                <!-- Product Content Start -->
-                <div class="pro-content">
-                  <div class="pro-info">
-                    <h4>
-                      <a href="product.html">iPhone 15</a>
-                    </h4>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <p>
-                      <span class="price fs15">10.500.000đ</span
-                      ><del class="prev-price fs14">10.200.000đ</del>
-                    </p>
-                  </div>
-                  <div class="pro-actions">
-                    <div class="actions-primary">
-                      <a
-                        href="cart.html"
-                        class="px-1 w-auto"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Add to Cart"
-                        >Thêm giỏ hàng</a
-                      >
-                    </div>
-                    <div class="actions-secondary">
-                      <a
-                        href="product.html"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Favorite"
-                        ><i class="fa fa-heart-o"></i
-                      ></a>
-                      <span
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                      >
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#myModal"
-                          ><i class="fa fa-search"></i
-                        ></a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <!-- Product Content End -->
-                <span class="sticker-sale">-12%</span>
-              </div>
-              <!-- Single Product End -->
-              <!-- Single Product Start -->
-              <div class="single-product">
-                <!-- Product Image Start -->
-                <div class="pro-img">
-                  <a href="product.html">
-                    <img
-                      class="primary-img"
-                      src="templates/img/products/12.jpg"
-                      alt="single-product"
-                    />
-                    <img
-                      class="secondary-img"
-                      src="templates/img/products/11.jpg"
-                      alt="single-product"
-                    />
-                  </a>
-                  <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div>
-                </div>
-                <!-- Product Image End -->
-                <!-- Product Content Start -->
-                <div class="pro-content">
-                  <div class="pro-info">
-                    <h4><a href="product.html">iPhone 15</a></h4>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <p>
-                      <span class="price fs15">10.500.000đ</span
-                      ><del class="prev-price fs14">10.200.000đ</del>
-                    </p>
-                  </div>
-                  <div class="pro-actions">
-                    <div class="actions-primary">
-                      <a
-                        href="cart.html"
-                        class="px-1 w-auto"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Add to Cart"
-                        >Thêm giỏ hàng</a
-                      >
-                    </div>
-                    <div class="actions-secondary">
-                      <a
-                        href="product.html"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Favorite"
-                        ><i class="fa fa-heart-o"></i
-                      ></a>
-                      <span
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                      >
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#myModal"
-                          ><i class="fa fa-search"></i
-                        ></a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <!-- Product Content End -->
-                <span class="sticker-new">mới</span>
-                <span class="sticker-sale">-10%</span>
-              </div>
+                {{-- <span class="sticker-sale">-5%</span> --}}
+              </div>    
+              @endforeach
               <!-- Single Product End -->
             </div>
             <!-- Hot Deal Product Active End -->
@@ -7426,30 +6873,30 @@
                 /></a>
               </div>
             </div>
-            <!-- New Products Activation Start -->
-            <div class="new-products-active owl-carousel">
-              <!-- Single Product Start -->
+            
+            @foreach ($newProducts as $newProduct)
               <div class="single-product">
                 <!-- Product Image Start -->
-                <div class="pro-img">
-                  <a href="product.html">
+                <div class="pro-img w-100 d-flex align-items-center" style="aspect-ratio: 1/1">
+                  <a href="{{route('client.product.detail', $newProduct->id)}}">
                     <img
                       class="primary-img"
-                      src="templates/img/products/9.jpg"
+                      src="{{".".Storage::url($newProduct->image)}}"
                       alt="single-product"
                     />
                     <img
                       class="secondary-img"
-                      src="templates/img/products/10.jpg"
+                      src="{{".".Storage::url($newProduct->galleries->first()->path)}}"
                       alt="single-product"
                     />
                   </a>
+                  {{-- <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div> --}}
                 </div>
                 <!-- Product Image End -->
                 <!-- Product Content Start -->
                 <div class="pro-content">
                   <div class="pro-info">
-                    <h4><a href="product.html">iPhone 15</a></h4>
+                    <h4><a href="product.html">{{$newProduct->name}}</a></h4>
                     <div class="product-rating">
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
@@ -7458,8 +6905,8 @@
                       <i class="fa fa-star"></i>
                     </div>
                     <p>
-                      <span class="price">15.000.00đ</span
-                      ><del class="prev-price">12.000.000đ</del>
+                      <span class="price" style="font-size: 14px">{{number_format($newProduct->product_variants_min_price, 0, '', '.')}}đ - {{number_format($newProduct->product_variants_max_price, 0, '', '.')}}đ</span
+                      >
                     </p>
                   </div>
                   <div class="pro-actions">
@@ -7492,157 +6939,14 @@
                           ><i class="fa fa-search"></i
                         ></a>
                       </span>
-                    </div>
+</div>
                   </div>
                 </div>
                 <!-- Product Content End -->
                 <span class="sticker-new">mới</span>
-              </div>
-              <!-- Single Product End -->
-              <!-- Single Product Start -->
-              <div class="single-product">
-                <!-- Product Image Start -->
-                <div class="pro-img">
-                  <a href="product.html">
-                    <img
-                      class="primary-img"
-                      src="templates/img/products/9.jpg"
-                      alt="single-product"
-                    />
-                    <img
-                      class="secondary-img"
-                      src="templates/img/products/10.jpg"
-                      alt="single-product"
-                    />
-                  </a>
-                </div>
-                <!-- Product Image End -->
-                <!-- Product Content Start -->
-                <div class="pro-content">
-                  <div class="pro-info">
-                    <h4><a href="product.html">iPhone 15</a></h4>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <p>
-                      <span class="price">15.000.00đ</span
-                      ><del class="prev-price">12.000.000đ</del>
-                    </p>
-                  </div>
-                  <div class="pro-actions">
-                    <div class="actions-primary">
-                      <a
-                        href="cart.html"
-                        class="px-1 w-auto"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Add to Cart"
-                        >Thêm giỏ hàng</a
-                      >
-                    </div>
-                    <div class="actions-secondary">
-                      <a
-                        href="product.html"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Favorite"
-                        ><i class="fa fa-heart-o"></i
-                      ></a>
-                      <span
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                      >
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#myModal"
-                          ><i class="fa fa-search"></i
-                        ></a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <!-- Product Content End -->
-                <span class="sticker-new">mới</span>
-              </div>
-              <!-- Single Product End -->
-              <!-- Single Product Start -->
-              <div class="single-product">
-                <!-- Product Image Start -->
-                <div class="pro-img">
-                  <a href="product.html">
-                    <img
-                      class="primary-img"
-                      src="templates/img/products/9.jpg"
-                      alt="single-product"
-                    />
-                    <img
-                      class="secondary-img"
-                      src="templates/img/products/10.jpg"
-                      alt="single-product"
-                    />
-                  </a>
-                </div>
-                <!-- Product Image End -->
-                <!-- Product Content Start -->
-                <div class="pro-content">
-                  <div class="pro-info">
-                    <h4><a href="product.html">iPhone 15</a></h4>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <p>
-                      <span class="price">15.000.00đ</span
-                      ><del class="prev-price">12.000.000đ</del>
-                    </p>
-                  </div>
-                  <div class="pro-actions">
-                    <div class="actions-primary">
-                      <a
-                        href="cart.html"
-                        class="px-1 w-auto"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Add to Cart"
-                        >Thêm giỏ hàng</a
-                      >
-                    </div>
-                    <div class="actions-secondary">
-                      <a
-                        href="product.html"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Favorite"
-                        ><i class="fa fa-heart-o"></i
-                      ></a>
-                      <span
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                      >
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#myModal"
-                          ><i class="fa fa-search"></i
-                        ></a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <!-- Product Content End -->
-                <span class="sticker-new">mới</span>
-              </div>
-              <!-- Single Product End -->
-            </div>
-            <!-- New Products Activation End -->
+                {{-- <span class="sticker-sale">-5%</span> --}}
+              </div>    
+              @endforeach
           </div>
           <!-- Main Product Wrpper Start Here -->
         </div>

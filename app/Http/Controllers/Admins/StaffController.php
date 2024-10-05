@@ -156,7 +156,7 @@ class StaffController extends Controller
                     }
                     $image = $request->file('image')->store("uploads/staffs", "public"); //Lưu ảnh mới
                 }else{
-                    $image = $user->image; //Dữ lại ảnh cũ
+                    $image = $user->image; //Giữ lại ảnh cũ
                 }
     
                 //Cập nhật
