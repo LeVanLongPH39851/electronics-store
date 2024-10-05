@@ -5054,8 +5054,6 @@ a.shipping-calculator-button:hover {
     font-size: 13px;
 }
 
-<<<<<<< HEAD
-=======
 /* Thanh toán, lịch sử */
 .your-order .check-auth i {
     font-size: 60px;
@@ -5082,8 +5080,6 @@ a.shipping-calculator-button:hover {
     padding: 8px !important;
 }
 
-
->>>>>>> a2404e42526e0e0312bb31e99cdc5969aef363b3
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -5092,10 +5088,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .quantity-prd{
   text-align: center;
-<<<<<<< HEAD
   width: 70px;
   height: 38px;
   appearance: none;
-=======
->>>>>>> a2404e42526e0e0312bb31e99cdc5969aef363b3
 }
