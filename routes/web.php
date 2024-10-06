@@ -13,6 +13,7 @@ use App\Http\Controllers\Clients\ShopController;
 use App\Http\Controllers\Clients\LoginController;
 use App\Http\Controllers\Clients\AccountController;
 use App\Http\Controllers\Admins\DashboardController;
+use App\Http\Controllers\Admins\Discounts\DiscountController;
 use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Admins\SsdController;
 use App\Http\Controllers\Admins\Trashs\ProductTrashController;
@@ -57,6 +58,7 @@ Route::middleware(['admin'])->group(function () {
         Route::post('/product-trash/restore', [ProductTrashController::class, 'restore'])->name('product.restore');
         Route::resource('/product-trash', ProductTrashController::class);
         Route::resource('/categories', CategoryController::class);
+        Route::resource('discounts', DiscountController::class);
         Route::middleware(['staff'])->group(function () {
             Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');
             Route::post('/staff-trash/delete', [StaffTrashController::class, 'delete'])->name('staff.delete');

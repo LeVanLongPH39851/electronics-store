@@ -287,6 +287,15 @@
               <!--end startbarElements-->
             </li>
             <li class="nav-item">
+              <a
+                class="nav-link {{$classActive === "Mã Giảm Giá" ? "active bg-active" : ""}}"
+                href="{{ route('discounts.index') }}"
+              >
+                <i class="fas fa-tag menu-icon {{$classActive === "Mã Giảm Giá" ? "text-primary" : ""}}"></i>
+                <span>Mã Giảm Giá</span>
+              </a>
+            </li>
+            <li class="nav-item">
                 <a
                   class="nav-link  {{$classActive === "Màu Sắc" ? "active bg-active" : ""}}"
                   href="{{ route('color.index') }}"
