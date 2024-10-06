@@ -1,44 +1,46 @@
- @include('clients.components.breadcrumb')
+@include('clients.components.breadcrumb')
  <!-- Product Thumbnail Start -->
- <div class="main-product-thumbnail ptb-45">
-     <div class="container">
-         <div class="thumb-bg">
-             <div class="row">
-                 <!-- Main Thumbnail Image Start -->
-                 <div class="col-lg-5 mb-all-40">
-                     <!-- Thumbnail Large Image start -->
-                     <div class="tab-content">
-                         <div id="thumb{{$product->id}}" class="tab-pane fade show active d-flex align-items-center aspect-ratio">
-                             <a data-fancybox="images" id="link-image-main" href="{{".".Storage::url($product->image)}}"><img
-                                     id="image-main" src="{{".".Storage::url($product->image)}}" alt="product-view"></a>
-                         </div>
-                         @foreach ($product->galleries as $gallery)
-                         <div id="thumbgl{{$gallery->id}}" class="tab-pane fade d-flex align-items-center aspect-ratio">
-                            <a data-fancybox="images" href="{{".".Storage::url($gallery->path)}}"><img
-                                    src="{{".".Storage::url($gallery->path)}}" alt="product-view"></a>
+<!-- Product Thumbnail Start -->
+<div class="main-product-thumbnail ptb-45">
+    <div class="container">
+        <div class="thumb-bg">
+            <div class="row">
+                <!-- Main Thumbnail Image Start -->
+                <div class="col-lg-5 mb-all-40">
+                    <!-- Thumbnail Large Image start -->
+                    <div class="tab-content">
+                        <div id="thumb{{$product->id}}" class="tab-pane fade show active d-flex align-items-center aspect-ratio">
+                            <a data-fancybox="images" id="link-image-main" href="{{".".Storage::url($product->image)}}"><img
+                                    id="image-main" src="{{".".Storage::url($product->image)}}" alt="product-view"></a>
                         </div>
-                         @endforeach
-                     </div>
-                     <!-- Thumbnail Large Image End -->
-                     <!-- Thumbnail Image End -->
-                     <div class="product-thumbnail">
-                         <div class="thumb-menu owl-carousel nav tabs-area" role="tablist">
-                             <a class="active d-flex align-items-center aspect-ratio" data-bs-toggle="tab" href="#thumb{{$product->id}}"><img
-                                     src="{{".".Storage::url($product->image)}}" alt="product-thumbnail"></a>
-                            @foreach ($product->galleries as $gallery)
-                             <a data-bs-toggle="tab" class="d-flex align-items-center aspect-ratio" href="#thumbgl{{$gallery->id}}"><img src="{{".".Storage::url($gallery->path)}}"
-                                     alt="product-thumbnail"></a>
-                            @endforeach
-                         </div>
-                     </div>
-                     <!-- Thumbnail image end -->
-                 </div>
-                <!-- Main Thumbnail Image End -->
-                <!-- Thumbnail Description Start -->
-                <div class="col-lg-7">
-                   <form action="">
+                        @foreach ($product->galleries as $gallery)
+                        <div id="thumbgl{{$gallery->id}}" class="tab-pane fade d-flex align-items-center aspect-ratio">
+                           <a data-fancybox="images" href="{{".".Storage::url($gallery->path)}}"><img
+                                   src="{{".".Storage::url($gallery->path)}}" alt="product-view"></a>
+                       </div>
+                        @endforeach
+                    </div>
+                    <!-- Thumbnail Large Image End -->
+                    <!-- Thumbnail Image End -->
+                    <div class="product-thumbnail">
+                        <div class="thumb-menu owl-carousel nav tabs-area" role="tablist">
+                            <a class="active d-flex align-items-center aspect-ratio" data-bs-toggle="tab" href="#thumb{{$product->id}}"><img
+                                    src="{{".".Storage::url($product->image)}}" alt="product-thumbnail"></a>
+                           @foreach ($product->galleries as $gallery)
+                            <a data-bs-toggle="tab" class="d-flex align-items-center aspect-ratio" href="#thumbgl{{$gallery->id}}"><img src="{{".".Storage::url($gallery->path)}}"
+                                    alt="product-thumbnail"></a>
+                           @endforeach
+                        </div>
+                    </div>
+                    <!-- Thumbnail image end -->
+                </div>
+               <!-- Main Thumbnail Image End -->
+               <!-- Thumbnail Description Start -->
+               <div class="col-lg-7">
+                   <form action="{{ route('client.addToCart') }}" method="post">
+                       @csrf
                        <div class="thubnail-desc fix">
-                           <h3 class="product-header mb-1 mt-3">{{$product->name}}</h3>
+                           <h3 class="product-header mb-1 mt-3">{{ $product->name }}</h3>
                            <div class="rating-summary fix mtb-10">
                                <div class="rating">
                                    <i class="fa fa-star"></i>
@@ -49,56 +51,58 @@
                                </div>
                                <div class="rating-feedback">
                                    <a href="#" class="mt-1">(1 review)</a>
-                                   {{-- <a href="#">add to your review</a> --}}
                                </div>
                            </div>
                            <div class="pro-price mtb-10">
-                               <p class="d-flex align-items-center"><span
-                                       class="price" id="price">{{number_format($product->product_variants_min_price, 0, '', '.')}} vnđ - {{number_format($product->product_variants_max_price, 0, '', '.')}} vnđ</span><span id="sale"></span></p>
+                               <p class="d-flex align-items-center"><span class="price" id="price">{{ number_format($product->product_variants_min_price, 0, '', '.') }} vnđ - {{ number_format($product->product_variants_max_price, 0, '', '.') }} vnđ</span><span id="sale"></span></p>
                            </div>
-                           <p class="mb-20 pro-desc-details">{!!$product->short_description!!}</p>
+                           <p class="mb-20 pro-desc-details">{!! $product->short_description !!}</p>
+                           
                            <div class="product-size mb-20 clearfix">
                                <label class="mb-2 mt-4">Dung lượng</label>
-                                   <div class="product-options">
-                                       @foreach ($product->productVariants->unique('ssd_id') as $productVariant)
-                                       <div class="form-check ps-0">
-                                           <input class="form-check-input form-check-input1" type="radio" name="ssd" id="ssd{{$productVariant->ssd->id}}"
-                                               value="{{$productVariant->ssd->id}}">
-                                           <label class="form-check-label ms-0 me-2 text-nowrap" for="ssd{{$productVariant->ssd->id}}">{{$productVariant->ssd->name}}</label>
-                                       </div>
-                                       @endforeach
+                               <div class="product-options">
+                                   @foreach ($product->productVariants->unique('ssd_id') as $productVariant)
+                                   <div class="form-check ps-0">
+                                       <input class="form-check-input" type="radio" name="variant_id" id="ssd{{ $productVariant->ssd->id }}" value="{{ $productVariant->id }}" required>
+                                       <label class="form-check-label ms-0 me-2 text-nowrap" for="ssd{{ $productVariant->ssd->id }}">{{ $productVariant->ssd->name }}</label>
                                    </div>
+                                   @endforeach
+                               </div>
                            </div>
+                           
                            <div class="color clearfix mb-20">
                                <label class="mb-2">Màu Sắc</label>
-                                   <div class="product-options">
-                                       @foreach ($product->productVariants->unique('color_id') as $productVariant)
-                                       <div class="form-check ps-0">
-                                           <input class="form-check-input form-check-input2" type="radio" name="color"
-                                               id="color{{$productVariant->color->id}}" value="{{$productVariant->color->id}}">
-                                           <label class="form-check-label ms-0 me-2 text-nowrap" for="color{{$productVariant->color->id}}">{{$productVariant->color->name}}</label>
-                                       </div>
-                                       @endforeach
+                               <div class="product-options">
+                                   @foreach ($product->productVariants->unique('color_id') as $productVariant)
+                                   <div class="form-check ps-0">
+                                       <input class="form-check-input" type="radio" name="color" id="color{{ $productVariant->color->id }}" value="{{ $productVariant->color->id }}" required>
+                                       <label class="form-check-label ms-0 me-2 text-nowrap" for="color{{ $productVariant->color->id }}">{{ $productVariant->color->name }}</label>
                                    </div>
+                                   @endforeach
+                               </div>
                            </div>
+                           
                            <div class="box-quantity d-flex my-4">
                                <label class="me-3">Số Lượng</label>
-                                   <input class="quantity mr-40" type="number" min="1" value="1">
-                               <a class="add-cart" href="cart.html">Thêm vào giỏ hàng</a>
+                               <input class="quantity mr-40" name="quantity" type="number" min="1" value="1">
+                               <button class="btn add-cart" type="submit">Thêm vào giỏ hàng</button>
                            </div>
+                           
                            <div class="pro-ref mt-15">
-                               <label><b>Số lượng có sẵn:</b> <span id="result-quantity">{{$product->product_variants_sum_quantity}}</span></label>
+                               <label><b>Số lượng có sẵn:</b> <span id="result-quantity">{{ $product->product_variants_sum_quantity }}</span></label>
                            </div>
                        </div>
                    </form>
-                </div>
-                <!-- Thumbnail Description End -->
-            </div>
-            <!-- Row End -->
-        </div>
-    </div>
-    <!-- Container End -->
+                   
+               </div>
+               <!-- Thumbnail Description End -->
+           </div>
+           <!-- Row End -->
+       </div>
+   </div>
+   <!-- Container End -->
 </div>
+<!-- Product Thumbnail End -->
 <!-- Product Thumbnail End -->
 <!-- Product Thumbnail Description Start -->
 <div class="thumnail-desc pb-45">
@@ -263,8 +267,7 @@ radio.addEventListener('click', function () {
     this.nextElementSibling.style.borderColor = "#22c55e"; // Màu viền khi chọn
 });
 });
-</script>
-<script>
+
     // Hàm kiểm tra nếu cả hai checkbox đều được chọn
     function checkBothSelected() {
         const ssdsChecked = document.querySelectorAll('.form-check-input1:checked').length > 0; // Kiểm tra nếu có ít nhất một color được chọn
@@ -303,5 +306,29 @@ radio.addEventListener('click', function () {
     colorCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', checkBothSelected);
     });
-</script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        let productVariants = @json($product->productVariants->groupBy('id'));
+
+        let ssdInputs = document.querySelectorAll('.form-check-input1');
+        let colorInputs = document.querySelectorAll('.form-check-input2');
+
+        ssdInputs.forEach(input => {
+            input.addEventListener('change', updateProductVariantId);
+        });
+
+        colorInputs.forEach(input => {
+            input.addEventListener('change', updateProductVariantId);
+        });
+
+        function updateProductVariantId() {
+            let selectedSsdId = document.querySelector('input[name="ssd"]:checked').value;
+            let selectedColorId = document.querySelector('input[name="color"]:checked').value;
+
+            let productVariantId = productVariants[selectedSsdId + '-' + selectedColorId][0].id;
+
+            document.getElementById('variant_id').value = productVariantId;
+        }
+    });
+    </script>
 @endsection

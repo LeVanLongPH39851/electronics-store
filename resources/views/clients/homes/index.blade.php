@@ -140,7 +140,8 @@
                     />
                     <img
                       class="secondary-img"
-                      src="{{".".Storage::url($newProduct->galleries->first()->path)}}"
+                      src="{{".".Storage::url($newProduct->image)}}"
+
                       alt="single-product"
                     />
                   </a>
@@ -6884,9 +6885,15 @@
                       src="{{".".Storage::url($newProduct->image)}}"
                       alt="single-product"
                     />
+                    @if($newProduct->galleries->isNotEmpty())
+    <img class="primary-img" src="{{ asset(Storage::url($newProduct->galleries->first()->path)) }}" alt="single-product">
+@else
+    <!-- Xử lý khi không có phần tử trong galleries -->
+@endif
                     <img
                       class="secondary-img"
-                      src="{{".".Storage::url($newProduct->galleries->first()->path)}}"
+                      src="{{".".Storage::url($newProduct->image)}}"
+
                       alt="single-product"
                     />
                   </a>
