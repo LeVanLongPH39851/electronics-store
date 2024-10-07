@@ -98,7 +98,7 @@
                                     </tbody>
                                 </table>
                                 <div class="wc-proceed-to-checkout">
-                                    <a href="{{ route('client.checkout') }}" class="btn btn-success">Tiến Hành Thanh Toán</a>
+                                    <a href="{{ route('client.checkouts.checkout') }}" class="btn btn-success">Tiến Hành Thanh Toán</a>
                                 </div>
                             </div>
                         </div>

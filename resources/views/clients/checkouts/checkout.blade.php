@@ -12,8 +12,9 @@
                             <form action="" method="POST">
                                 @csrf
                                 <p class="checkout-coupon">
-                                    <input type="text" name="coupon_code" class="code" placeholder="Mã giảm giá" required />
-                                    <input type="submit" value="Áp dụng" /> 
+                                    <input type="text" name="coupon_code" class="code" placeholder="Mã giảm giá"
+                                        required />
+                                    <input type="submit" value="Áp dụng" />
                                 </p>
                             </form>
                         </div>
@@ -29,7 +30,7 @@
 <!-- checkout-area start -->
 <div class="checkout-area pb-45 pt-15">
     <div class="container">
-        <form action="{{ route('checkout.process') }}" method="POST">
+        <form action="{{ route('client.checkouts.process') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-lg-6 col-md-6">
@@ -77,7 +78,8 @@
                             <div class="order-notes">
                                 <div class="checkout-form-list">
                                     <label>Ghi chú</label>
-                                    <textarea name="notes" id="checkout-mess" cols="30" rows="10" placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: ghi chú đặc biệt khi giao hàng."></textarea>
+                                    <textarea name="notes" id="checkout-mess" cols="30" rows="10"
+                                        placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: ghi chú đặc biệt khi giao hàng."></textarea>
                                 </div>
                             </div>
                         </div>
@@ -95,32 +97,44 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="cart_item">
-                                        <td class="product-name">
-                                            Product Name 1 <span class="product-quantity"> × 1</span>
-                                        </td>
-                                        <td class="product-total">
-                                            <span class="amount">£165.00</span>
-                                        </td>
-                                    </tr>
+                                    @foreach ($carts as $cart)
+                                        <tr class="cart_item">
+                                            <td class="product-name">
+                                                <img src="{{ Storage::url($cart->variant->image) }}" alt="Ảnh"
+                                                    style="width: 50px; height: 50px; margin-right: 10px; vertical-align: middle;">
+                                                {{ $cart->variant->product->name }} <span class="product-quantity"> ×
+                                                    {{ $cart->variant_quantity }}</span>
+                                            </td>
+                                            <td class="product-total">
+                                                <span
+                                                    class="amount">{{ number_format($cart->variant->price * $cart->variant_quantity, 0, '', '.') }}
+                                                    vnđ</span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr class="cart-subtotal">
                                         <th>Tạm tính</th>
-                                        <td><span class="amount">£165.00</span></td>
+                                        <td><span
+                                                class="amount">{{ number_format($carts->sum(function ($cart) {return $cart->variant->price * $cart->variant_quantity;}),0,'','.') }}
+                                                vnđ</span></td>
                                     </tr>
                                     <tr class="order-total">
-                                        <th>Tổng tiền</th>
-                                        <td><span class="total amount">£165.00</span></td>
+                                        <th>Tổng</th>
+                                        <td><span
+                                                class="total amount">{{ number_format($carts->sum(function ($cart) {return $cart->variant->price * $cart->variant_quantity;}),0,'','.') }}
+                                                vnđ</span></td>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
                         <div class="payment-method">
                             <div class="mb-3">
-                                <h3>Chọn Phương thức thanh toán:</h3>
+                                <h3>Chọn phương thức thanh toán:</h3>
                                 <div class="form-check border rounded p-3 mb-3 bg-white">
-                                    <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCOD" value="cod">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="paymentVnpay"
+                                        value="cod">
                                     <label class="form-check-label" for="paymentCOD">
                                         Thanh toán khi nhận hàng
                                     </label>
@@ -129,12 +143,13 @@
                                     </div>
                                 </div>
                                 <div class="form-check border rounded p-3 mb-3 bg-white">
-                                    <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMoMo" value="momo">
-                                    <label class="form-check-label" for="paymentMoMo">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="paymentVnpay"
+                                        value="online">
+                                    <label class="form-check-label" for="paymentVnpay">
                                         Thanh toán Online
                                     </label>
                                     <div class="form-text">
-                                        Thanh toán qua ví MoMo nhanh chóng và an toàn.
+                                        Thanh toán qua ví VnPay nhanh chóng và an toàn.
                                     </div>
                                 </div>
                                 @if ($errors->has('paymentMethod'))
@@ -146,7 +161,7 @@
                             <div class="btn-checkout text-center">
                                 <button type="submit" class="btn btn-success">Thanh toán</button>
                             </div>
-                        </div>                    
+                        </div>
                     </div>
                 </div>
             </div>
