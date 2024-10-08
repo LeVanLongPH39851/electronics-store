@@ -99,7 +99,7 @@
                 </li>
                 <li>
                   <a href="{{route('client.cart')}}"
-                    ><i class="ion-bag"></i><span class="total-pro">2</span
+                    ><i class="ion-bag"></i><span class="total-pro">{{Auth::id() ? DB::table('carts')->where('user_id', auth()->id())->count() : ""}}</span
                     ></a
                   >
                   
