@@ -140,8 +140,7 @@
                     />
                     <img
                       class="secondary-img"
-                      src="{{".".Storage::url($newProduct->image)}}"
-
+                      src="{{".".Storage::url($newProduct->galleries->first()->path)}}"
                       alt="single-product"
                     />
                   </a>
@@ -168,11 +167,11 @@
                     <div class="actions-primary">
                       <a
                         href="cart.html"
-                        class="px-1 w-auto"
+                        class="px-1"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
-                        title="Add to Cart"
-                        >Thêm giỏ hàng</a
+                        title="Xem chi tiết"
+                        >Xem chi tiết</a
                       >
                     </div>
                     <div class="actions-secondary">
@@ -180,25 +179,14 @@
                         href="product.html"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
-                        title="Favorite"
+                        title="Yêu thích"
                         ><i class="fa fa-heart-o"></i
                       ></a>
-                      <span
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                      >
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#myModal"
-                          ><i class="fa fa-search"></i
-                        ></a>
-                      </span>
                     </div>
                   </div>
                 </div>
                 <!-- Product Content End -->
-                <span class="sticker-new">mới</span>
+                {{-- <span class="sticker-new">mới</span> --}}
                 {{-- <span class="sticker-sale">-5%</span> --}}
               </div>    
               @endforeach
