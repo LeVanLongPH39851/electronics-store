@@ -16,10 +16,11 @@ use App\Http\Controllers\Admins\DashboardController;
 use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Admins\SsdController;
 use App\Http\Controllers\Admins\Trashs\ProductTrashController;
-use App\Http\Controllers\Clients\CheckoutController;
+// use App\Http\Controllers\Clients\CheckoutController;
 use App\Http\Controllers\Clients\ProductDetailController;
 use App\Http\Controllers\Admins\Trashs\UserTrashController;
 use App\Http\Controllers\Admins\Trashs\StaffTrashController;
+use App\Http\Controllers\Clients\VnPayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,8 +95,9 @@ Route::post('/cart/add', [CartController::class, 'addToCart'])->name('client.add
 Route::get('/cart', [CartController::class, 'showCart'])->name('client.cart');
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('client.updateCart');
 Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
-Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkouts.checkout');
-Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('client.checkouts.process');
+Route::get('/checkout', [VnPayController::class, 'checkout'])->name('client.checkouts.checkout');
+Route::get('/checkout/callback', [VnPayController::class, 'handleVnPayCallback'])->name('client.vnpay.callback');
+Route::post('/vnpay_payment', [VnPayController::class, 'vnpay_payment'])->name('client.vnpay.payment');
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');
 Route::get('/order-detail', [AccountController::class, 'orderDetail'])->name('client.order.detail');
 Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.accounts.thanhcong');
