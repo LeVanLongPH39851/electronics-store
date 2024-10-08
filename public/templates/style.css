@@ -5080,7 +5080,6 @@ a.shipping-calculator-button:hover {
     padding: 8px !important;
 }
 
-
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -5089,4 +5088,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .quantity-prd{
   text-align: center;
+  width: 70px;
+  height: 38px;
+  appearance: none;
 }
