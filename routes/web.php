@@ -13,6 +13,7 @@ use App\Http\Controllers\Clients\ShopController;
 use App\Http\Controllers\Clients\LoginController;
 use App\Http\Controllers\Clients\AccountController;
 use App\Http\Controllers\Admins\DashboardController;
+use App\Http\Controllers\Admins\OrderController;
 use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Admins\SsdController;
 use App\Http\Controllers\Admins\Trashs\ProductTrashController;
@@ -78,6 +79,8 @@ Route::middleware(['admin'])->group(function () {
         Route::get('/ssd/edit/{id}', [SsdController::class, 'edit'])->name('ssd.edit');
         Route::post('/ssd/update/{id}', [SsdController::class, 'update'])->name('ssd.update');
         Route::delete('/ssd/delete/{id}', [SsdController::class, 'destroy'])->name('ssd.destroy');
+        Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+        Route::get('/order/{id}', [OrderController::class, 'show'])->name('order.show');
     });
 });
 
@@ -93,7 +96,7 @@ Route::get('/product-detail/{id}', [ProductDetailController::class, 'productDeta
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('client.addToCart');
 Route::get('/cart', [CartController::class, 'showCart'])->name('client.cart');
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('client.updateCart');
-Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
+Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkouts.checkout');
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('client.checkouts.process');
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');

@@ -13,11 +13,20 @@ class Order extends Model
         'order_code',
         'status',
         'payment_method',
-        'name',
-        'email',
-        'phone',
-        'address',
-        'discount_id',
+        'payment_status',
+        'total_price',
+        'user_name',
+        'user_phone',
+        'user_address',
+        'voucher_id',
         'user_id'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function orderDetails(){
+        return $this->hasMany(OrderDetail::class, 'order_id');
+    }
 }

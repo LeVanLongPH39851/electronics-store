@@ -306,6 +306,16 @@
                 </a>
                 <!--end startbarElements-->
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link {{$classActive === "Đơn Hàng" ? "active bg-active" : ""}}"
+                href="{{ route('order.index') }}"
+              >
+                <i class="fas fa-rectangle-list menu-icon {{$classActive === "Đơn Hàng" ? "text-primary" : ""}}"></i>
+                <span>Đơn Hàng</span>
+              </a>
+              <!--end startbarElements-->
+          </li>
           </ul>
           <!--end navbar-nav--->
         </div>

@@ -40,7 +40,7 @@
                             <div class="col-md-12">
                                 <div class="checkout-form-list mb-30">
                                     <label>Họ và tên <span class="required">*</span></label>
-                                    <input type="text" name="name" placeholder="Họ và tên" />
+                                    <input type="text" name="name" value="{{Auth::user()->name}}" placeholder="Họ và tên" />
                                     @if ($errors->has('name'))
                                         <div class="text-danger">{{ $errors->first('name') }}</div>
                                     @endif
@@ -49,7 +49,7 @@
                             <div class="col-md-12">
                                 <div class="checkout-form-list mb-30">
                                     <label>Địa chỉ <span class="required">*</span></label>
-                                    <input type="text" name="address" placeholder="Địa chỉ" />
+                                    <input type="text" name="address" value="{{Auth::user()->address}}" placeholder="Địa chỉ" />
                                     @if ($errors->has('address'))
                                         <div class="text-danger">{{ $errors->first('address') }}</div>
                                     @endif
@@ -57,17 +57,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list mb-30">
-                                    <label>Địa chỉ Email <span class="required">*</span></label>
-                                    <input type="text" name="email" placeholder="Địa chỉ Email" />
-                                    @if ($errors->has('email'))
-                                        <div class="text-danger">{{ $errors->first('email') }}</div>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="checkout-form-list mb-30">
                                     <label>Số điện thoại <span class="required">*</span></label>
-                                    <input type="text" name="phone" placeholder="Số điện thoại" />
+                                    <input type="text" name="phone" value="{{Auth::user()->phone}}" placeholder="Số điện thoại" />
                                     @if ($errors->has('phone'))
                                         <div class="text-danger">{{ $errors->first('phone') }}</div>
                                     @endif
@@ -100,14 +91,14 @@
                                     @foreach ($carts as $cart)
                                         <tr class="cart_item">
                                             <td class="product-name">
-                                                <img src="{{ Storage::url($cart->variant->image) }}" alt="Ảnh"
+                                                <img src="{{".".Storage::url($cart->productVariant->image) }}" alt="Ảnh"
                                                     style="width: 50px; height: 50px; margin-right: 10px; vertical-align: middle;">
-                                                {{ $cart->variant->product->name }} <span class="product-quantity"> ×
-                                                    {{ $cart->variant_quantity }}</span>
+                                                {{ $cart->productVariant->product->name }}({{ $cart->productVariant->ssd->name }} - {{ $cart->productVariant->color->name }}) <span class="product-quantity"> ×
+                                                    {{ $cart->productVariant_quantity }}</span>
                                             </td>
                                             <td class="product-total">
                                                 <span
-                                                    class="amount">{{ number_format($cart->variant->price * $cart->variant_quantity, 0, '', '.') }}
+                                                    class="amount">{{ number_format($cart->productVariant->price * $cart->variant_quantity, 0, '', '.') }}
                                                     vnđ</span>
                                             </td>
                                         </tr>
@@ -117,13 +108,13 @@
                                     <tr class="cart-subtotal">
                                         <th>Tạm tính</th>
                                         <td><span
-                                                class="amount">{{ number_format($carts->sum(function ($cart) {return $cart->variant->price * $cart->variant_quantity;}),0,'','.') }}
+                                                class="amount">{{ number_format($carts->sum(function ($cart) {return $cart->productVariant->price * $cart->variant_quantity;}),0,'','.') }}
                                                 vnđ</span></td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>Tổng</th>
                                         <td><span
-                                                class="total amount">{{ number_format($carts->sum(function ($cart) {return $cart->variant->price * $cart->variant_quantity;}),0,'','.') }}
+                                                class="total amount">{{ number_format($carts->sum(function ($cart) {return $cart->productVariant->price * $cart->variant_quantity;}),0,'','.') }}
                                                 vnđ</span></td>
                                     </tr>
                                 </tfoot>
@@ -133,7 +124,7 @@
                             <div class="mb-3">
                                 <h3>Chọn phương thức thanh toán:</h3>
                                 <div class="form-check border rounded p-3 mb-3 bg-white">
-                                    <input class="form-check-input" type="radio" name="paymentMethod" id="paymentVnpay"
+                                    <input class="form-check-input" type="radio" checked name="paymentMethod" id="paymentVnpay"
                                         value="cod">
                                     <label class="form-check-label" for="paymentCOD">
                                         Thanh toán khi nhận hàng

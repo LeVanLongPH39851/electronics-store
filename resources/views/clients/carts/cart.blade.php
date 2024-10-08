@@ -25,14 +25,14 @@
                                 <tr>
                                     <td class="product-thumbnail">
                                         <a href="#">
-                                            <img src="{{ ".".Storage::url($cart->variant->image) }}" alt="cart-image" />
+                                            <img src="{{ ".".Storage::url($cart->productVariant->image) }}" alt="cart-image" />
                                         </a>
                                     </td>
                                     <td class="product-name">
-                                        <a href="#">{{ $cart->variant->product->name }} ({{ $cart->variant->color->name }} - {{ $cart->variant->ssd->name }})</a>
+                                        <a href="#">{{ $cart->productVariant->product->name }} ({{ $cart->productVariant->color->name }} - {{ $cart->productVariant->ssd->name }})</a>
                                     </td>
                                     <td class="product-price">
-                                        <span class="amount">{{ number_format($cart->variant->price, 0, '', '.') }} vnđ</span>
+                                        <span class="amount">{{ number_format($cart->productVariant->price, 0, '', '.') }} vnđ</span>
                                     </td>
                                     <td class="product-quantity">
                                         <div class="d-flex justify-content-center align-items-center">
@@ -43,7 +43,7 @@
                                         </div>
                                     </td>
                                     <td class="product-subtotal">
-                                        {{ number_format($cart->variant->price * $cart->variant_quantity, 0, '', '.') }} vnđ
+                                        {{ number_format($cart->productVariant->price * $cart->variant_quantity, 0, '', '.') }} vnđ
                                     </td>
                                     <td class="product-remove">
                                         <a href="{{route('client.removeFromCart', $cart->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')">
@@ -77,14 +77,14 @@
                                         <tr class="cart-subtotal">
                                             <th class="text-start">Tạm Tính</th>
                                             <td class="text-end">
-                                                <span class="amount">{{ number_format($carts->sum(function($cart) { return $cart->variant->price * $cart->variant_quantity; }), 0, '', '.') }} vnđ</span>
+                                                <span class="amount">{{ number_format($carts->sum(function($cart) { return $cart->productVariant->price * $cart->variant_quantity; }), 0, '', '.') }} vnđ</span>
                                             </td>
                                         </tr>
                                         <tr class="order-total">
                                             <th class="text-start">Tổng Tiền</th>
                                             <td class="text-end">
                                                 <strong>
-                                                    <span class="amount">{{ number_format($carts->sum(function($cart) { return $cart->variant->price * $cart->variant_quantity; }), 0, '', '.') }} vnđ</span>
+                                                    <span class="amount">{{ number_format($carts->sum(function($cart) { return $cart->productVariant->price * $cart->variant_quantity; }), 0, '', '.') }} vnđ</span>
                                                 </strong>
                                             </td>
                                         </tr>
