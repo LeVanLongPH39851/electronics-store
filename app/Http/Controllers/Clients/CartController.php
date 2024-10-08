@@ -21,26 +21,31 @@ class CartController extends Controller
     {
         // Kiểm tra xem người dùng đã đăng nhập chưa
         if (!Auth::check()) {
-            return redirect()->route('client.login')->with('error', 'Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!');
+            return redirect()->route('client.login')->with('error', 'Vui lòng đăng nhập');
         }
 
         // Xác thực dữ liệu đầu vào
         $validatedData = $request->validate([
-            'variant_id' => 'required|exists:product_variants,id',
+            'product' => 'required|exists:products,id',
+            'color' => 'required|exists:colors,id',
+            'ssd' => 'required|exists:ssds,id',
             'quantity' => 'required|integer|min:1',
         ]);
 
-        // Tìm sản phẩm biến thể
-        $variant = ProductVariant::find($validatedData['variant_id']);
+        $product = Product::find($validatedData['product']);
+        $productVariant = $product->productVariants->where('color_id', $validatedData['color'])->where('ssd_id', $validatedData['ssd'])->first();
+        if(!$productVariant){
+            return redirect()->back()->with('error', 'Thêm giỏ hàng không thành công');
+        }
 
         // Kiểm tra xem sản phẩm có còn trong kho không
-        if ($variant->quantity < $validatedData['quantity']) {
-            return redirect()->back()->with('error', 'Số lượng sản phẩm yêu cầu vượt quá số lượng có sẵn!');
+        if ($productVariant->quantity < $validatedData['quantity']) {
+            return redirect()->back()->with('error', 'Số lượng vượt quá số lượng có sẵn!');
         }
 
         // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
         $cartItem = Cart::where('user_id', Auth::id())
-            ->where('variant_id', $validatedData['variant_id'])
+            ->where('variant_id', $productVariant->id)
             ->first();
 
         if ($cartItem) {
@@ -48,7 +53,7 @@ class CartController extends Controller
             $cartItem->variant_quantity += $validatedData['quantity'];
 
             // Kiểm tra lại số lượng trong kho
-            if ($variant->quantity < $cartItem->variant_quantity) {
+            if ($productVariant->quantity < $cartItem->variant_quantity) {
                 return redirect()->back()->with('error', 'Số lượng sản phẩm yêu cầu vượt quá số lượng có sẵn!');
             }
 
@@ -57,7 +62,7 @@ class CartController extends Controller
             // Nếu sản phẩm chưa tồn tại, tạo mới
             Cart::create([
                 'user_id' => Auth::id(),
-                'variant_id' => $validatedData['variant_id'],
+                'variant_id' => $productVariant->id,
                 'variant_quantity' => $validatedData['quantity'],
             ]);
         }
@@ -95,15 +100,10 @@ class CartController extends Controller
     }
 
 
-    public function removeFromCart(Request $request)
+    public function removeFromCart(String $id)
     {
-        // Xác thực dữ liệu đầu vào
-        $request->validate([
-            'cart_id' => 'required|exists:carts,id',
-        ]);
-
         // Tìm giỏ hàng theo ID
-        $cartItem = Cart::find($request->cart_id);
+        $cartItem = Cart::find($id);
 
         // Nếu sản phẩm tồn tại trong giỏ hàng, xóa nó
         if ($cartItem) {
