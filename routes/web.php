@@ -99,3 +99,4 @@ Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');
 Route::get('/order-detail', [AccountController::class, 'orderDetail'])->name('client.order.detail');
 Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.accounts.thanhcong');
+Route::get('/order-history', [AccountController::class, 'orderHistory'])->name('client.accounts.orderhistory');
