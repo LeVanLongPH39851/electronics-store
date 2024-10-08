@@ -9,14 +9,14 @@
                 <div class="col-lg-5 mb-all-40">
                     <!-- Thumbnail Large Image start -->
                     <div class="tab-content">
-                        <div id="thumb{{$product->id}}" class="tab-pane fade show active d-flex align-items-center aspect-ratio">
+                        <div id="thumb{{$product->id}}" class="tab-pane fade show active d-flex align-items-center aspect-ratio d-flex justify-content-center">
                             <a data-fancybox="images" id="link-image-main" href="{{".".Storage::url($product->image)}}"><img
-                                    id="image-main" src="{{".".Storage::url($product->image)}}" alt="product-view"></a>
+                                    id="image-main" class="w-100" src="{{".".Storage::url($product->image)}}" alt="product-view"></a>
                         </div>
                         @foreach ($product->galleries as $gallery)
-                        <div id="thumbgl{{$gallery->id}}" class="tab-pane fade d-flex align-items-center aspect-ratio">
+                        <div id="thumbgl{{$gallery->id}}" class="tab-pane fade d-flex align-items-center aspect-ratio d-flex justify-content-center">
                            <a data-fancybox="images" href="{{".".Storage::url($gallery->path)}}"><img
-                                   src="{{".".Storage::url($gallery->path)}}" alt="product-view"></a>
+                                   src="{{".".Storage::url($gallery->path)}}" class="w-100" alt="product-view"></a>
                        </div>
                         @endforeach
                     </div>
@@ -58,36 +58,38 @@
                            </div>
                            <p class="mb-20 pro-desc-details">{!! $product->short_description !!}</p>
                            
-                           <div class="product-size mb-20 clearfix">
-                               <label class="mb-2 mt-4">Dung lượng</label>
-                               <div class="product-options">
-                                   @foreach ($product->productVariants->unique('ssd_id') as $productVariant)
-                                   <div class="form-check ps-0">
-                                       <input class="form-check-input" type="radio" name="variant_id" id="ssd{{ $productVariant->ssd->id }}" value="{{ $productVariant->id }}" required>
-                                       <label class="form-check-label ms-0 me-2 text-nowrap" for="ssd{{ $productVariant->ssd->id }}">{{ $productVariant->ssd->name }}</label>
-                                   </div>
-                                   @endforeach
-                               </div>
-                           </div>
-                           
                            <div class="color clearfix mb-20">
-                               <label class="mb-2">Màu Sắc</label>
+                               <label class="mb-2 mt-4">Màu Sắc</label>
                                <div class="product-options">
                                    @foreach ($product->productVariants->unique('color_id') as $productVariant)
                                    <div class="form-check ps-0">
-                                       <input class="form-check-input" type="radio" name="color" id="color{{ $productVariant->color->id }}" value="{{ $productVariant->color->id }}" required>
+                                       <input class="form-check-input form-check-input2" type="radio" name="color" id="color{{ $productVariant->color->id }}" value="{{ $productVariant->color->id }}" required>
                                        <label class="form-check-label ms-0 me-2 text-nowrap" for="color{{ $productVariant->color->id }}">{{ $productVariant->color->name }}</label>
                                    </div>
                                    @endforeach
                                </div>
                            </div>
-                           
+
+                           <div class="product-size mb-20 clearfix">
+                                <label class="mb-2">Dung lượng</label>
+                                <div class="product-options">
+                                    @foreach ($product->productVariants->unique('ssd_id') as $productVariant)
+                                    <div class="form-check ps-0">
+                                        <input class="form-check-input form-check-input1" type="radio" name="ssd" id="ssd{{ $productVariant->ssd->id }}" value="{{ $productVariant->ssd->id }}" required>
+                                        <label class="form-check-label ms-0 me-2 text-nowrap" for="ssd{{ $productVariant->ssd->id }}">{{ $productVariant->ssd->name }}</label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
                            <div class="box-quantity d-flex my-4">
                                <label class="me-3">Số Lượng</label>
                                <input class="quantity mr-40" name="quantity" type="number" min="1" value="1">
                                <button class="btn add-cart" type="submit">Thêm vào giỏ hàng</button>
                            </div>
                            
+                           <input type="hidden" name="product" value="{{$product->id}}">   
+
                            <div class="pro-ref mt-15">
                                <label><b>Số lượng có sẵn:</b> <span id="result-quantity">{{ $product->product_variants_sum_quantity }}</span></label>
                            </div>
@@ -131,89 +133,76 @@
     <div class="container">
         <!-- Post Title Start -->
         <div class="post-title">
-            <h2><i class="fa fa-trophy" aria-hidden="true"></i>Realted products</h2>
+            <h2><i class="fa fa-trophy" aria-hidden="true"></i>Sản phẩm liên quan</h2>
         </div>
         <!-- Post Title End -->
         <!-- New Pro Tow Activation Start -->
         <div class="featured-pro-active owl-carousel">
             <!-- Single Product Start -->
+            @forelse ($product->category->products->where('id', '<>', $product->id) as $relatedProduct )
             <div class="single-product">
                 <!-- Product Image Start -->
-                <div class="pro-img">
-                    <a href="{{ route('client.product.detail', 1) }}">
-                        <img class="primary-img" src="templates/img/products/9.jpg" alt="single-product">
-                        <img class="secondary-img" src="templates/img/products/10.jpg" alt="single-product">
-                    </a>
-                    <span class="sticker-new">new</span>
+                <div class="pro-img w-100 d-flex align-items-center" style="aspect-ratio: 1/1">
+                  <a href="{{route('client.product.detail', $relatedProduct->id)}}">
+                    <img
+                      class="primary-img"
+                      src="{{".".Storage::url($relatedProduct->image)}}"
+                      alt="single-product"
+                    />
+                    <img
+                      class="secondary-img"
+                      src="{{".".Storage::url($relatedProduct->galleries->first()->path)}}"
+                      alt="single-product"
+                    />
+                  </a>
+                  {{-- <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div> --}}
                 </div>
                 <!-- Product Image End -->
                 <!-- Product Content Start -->
                 <div class="pro-content">
-                    <div class="pro-info">
-                        <h4><a href="product.html">printed summer dress</a></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <p><span class="price">$27.45</span></p>
+                  <div class="pro-info">
+                    <h4><a href="product.html">{{$relatedProduct->name}}</a></h4>
+                    <div class="product-rating">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
                     </div>
-                    <div class="pro-actions">
-                        <div class="actions-primary">
-                            <a href="cart.html" title="Add to Cart">Add To Cart</a>
-                        </div>
-                        <div class="actions-secondary">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"
-                                title="Quick View"><i class="fa fa-heart-o"></i></a>
-                            {{-- <a href="{{ route('client.product.detail') }}" title="Details"><i
-                                    class="fa fa-signal"></i></a> --}}
-                        </div>
+                    <p>
+                      <span class="price" style="font-size: 14px">{{number_format($relatedProduct->productVariants->min('price'), 0, '', '.')}}đ - {{number_format($relatedProduct->productVariants->max('price'), 0, '', '.')}}đ</span
+                      >
+                    </p>
+                  </div>
+                  <div class="pro-actions">
+                    <div class="actions-primary">
+                      <a
+                        href="cart.html"
+                        class="px-1"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Xem chi tiết"
+                        >Xem chi tiết</a
+                      >
                     </div>
+                    <div class="actions-secondary">
+                      <a
+                        href="product.html"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Yêu thích"
+                        ><i class="fa fa-heart-o"></i
+                      ></a>
+                    </div>
+                  </div>
                 </div>
                 <!-- Product Content End -->
-            </div>
-            <!-- Single Product End -->
-            <!-- Single Product Start -->
-            <div class="single-product">
-                <!-- Product Image Start -->
-                <div class="pro-img">
-                    <a href="product.html">
-                        <img class="primary-img" src="templates/img/products/14.jpg" alt="single-product">
-                        <img class="secondary-img" src="templates/img/products/15.jpg" alt="single-product">
-                    </a>
-                    <span class="sticker-new">new</span>
-                </div>
-                <!-- Product Image End -->
-                <!-- Product Content Start -->
-                <div class="pro-content">
-                    <div class="pro-info">
-                        <h4><a href="product.html">summer dress</a></h4>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <p><span class="price">$22.12</span></p>
-                    </div>
-                    <div class="pro-actions">
-                        <div class="actions-primary">
-                            <a href="cart.html" title="Add to Cart">Add To Cart</a>
-                        </div>
-                        <div class="actions-secondary">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"
-                                title="Quick View"><i class="fa fa-heart-o"></i></a>
-                            {{-- <a href="product.html" title="Details"><i class="fa fa-signal"></i></a> --}}
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Content End -->
-            </div>
-            <!-- Single Product End -->
-            <!-- Single Product Start -->
+                {{-- <span class="sticker-new">mới</span> --}}
+                {{-- <span class="sticker-sale">-5%</span> --}}
+              </div>
+            @empty
+            <p class="text-danger">Không có sản phẩm nào</p>
+            @endforelse
             <!-- Single Product End -->
         </div>
         <!-- New Pro Tow Activation End -->
@@ -270,16 +259,55 @@ radio.addEventListener('click', function () {
 
     // Hàm kiểm tra nếu cả hai checkbox đều được chọn
     function checkBothSelected() {
+        // Lắng nghe sự kiện change trên tất cả checkbox
+        const ssdCheckboxes = document.querySelectorAll('.form-check-input1');
+        const colorCheckboxes = document.querySelectorAll('.form-check-input2');
         const ssdsChecked = document.querySelectorAll('.form-check-input1:checked').length > 0; // Kiểm tra nếu có ít nhất một color được chọn
         const colorsChecked = document.querySelectorAll('.form-check-input2:checked').length > 0; // Kiểm tra nếu có ít nhất một ssd được chọn
-        const ssdValue = document.querySelector('.form-check-input1:checked')
-        const colorValue = document.querySelector('.form-check-input2:checked')
+        const ssdValue = document.querySelector('.form-check-input1:checked');
+        const colorValue = document.querySelector('.form-check-input2:checked');
         const productVariants = <?php echo json_encode($product->productVariants); ?>;
         const resultQuantity = document.getElementById('result-quantity');
         const linkImageMain = document.getElementById('link-image-main');
         const imageMain = document.getElementById('image-main');
         const price = document.getElementById('price');
         const sale = document.getElementById('sale');
+        // Reset trạng thái disabled cho tất cả SSD
+        ssdCheckboxes.forEach(input => {
+            input.disabled = false;
+        });
+
+        // Reset trạng thái disabled cho tất cả màu
+        colorCheckboxes.forEach(input => {
+            input.disabled = false;
+        });
+
+        if (colorsChecked) {
+            // Lọc ra các SSD hợp lệ dựa trên color được chọn
+            let validSSDs = productVariants.filter(variant => variant.color_id == colorValue.value)
+                                            .map(variant => variant.ssd_id);
+                                            
+
+            // Disable SSDs không có trong danh sách hợp lệ
+            ssdCheckboxes.forEach(input => {
+                if (!validSSDs.includes(parseInt(input.value))) {
+                    input.disabled = true; // Disable SSD không hợp lệ
+                }
+            });
+        }
+
+        if (ssdsChecked) {
+            // Lọc ra các màu hợp lệ dựa trên SSD được chọn
+            let validColors = productVariants.filter(variant => variant.ssd_id == ssdValue.value)
+                                            .map(variant => variant.color_id);
+
+            // Disable màu không có trong danh sách hợp lệ
+            colorCheckboxes.forEach(input => {
+                if (!validColors.includes(parseInt(input.value))) {
+                    input.disabled = true; // Disable màu không hợp lệ
+                }
+            });
+        }
         if (colorsChecked && ssdsChecked) {
             productVariants.forEach(variant => {
             if(ssdValue.value == variant.ssd_id && colorValue.value == variant.color_id){
@@ -294,41 +322,14 @@ radio.addEventListener('click', function () {
             });
         }
     }
-    
-    // Lắng nghe sự kiện change trên tất cả checkbox
     const ssdCheckboxes = document.querySelectorAll('.form-check-input1');
     const colorCheckboxes = document.querySelectorAll('.form-check-input2');
-
     ssdCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', checkBothSelected);
     });
 
     colorCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', checkBothSelected);
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        let productVariants = @json($product->productVariants->groupBy('id'));
-
-        let ssdInputs = document.querySelectorAll('.form-check-input1');
-        let colorInputs = document.querySelectorAll('.form-check-input2');
-
-        ssdInputs.forEach(input => {
-            input.addEventListener('change', updateProductVariantId);
-        });
-
-        colorInputs.forEach(input => {
-            input.addEventListener('change', updateProductVariantId);
-        });
-
-        function updateProductVariantId() {
-            let selectedSsdId = document.querySelector('input[name="ssd"]:checked').value;
-            let selectedColorId = document.querySelector('input[name="color"]:checked').value;
-
-            let productVariantId = productVariants[selectedSsdId + '-' + selectedColorId][0].id;
-
-            document.getElementById('variant_id').value = productVariantId;
-        }
     });
     </script>
 @endsection

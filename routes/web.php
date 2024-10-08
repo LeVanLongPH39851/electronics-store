@@ -93,7 +93,7 @@ Route::get('/product-detail/{id}', [ProductDetailController::class, 'productDeta
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('client.addToCart');
 Route::get('/cart', [CartController::class, 'showCart'])->name('client.cart');
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('client.updateCart');
-Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
+Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkout');
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');
 Route::get('/order-detail', [AccountController::class, 'orderDetail'])->name('client.order.detail');
