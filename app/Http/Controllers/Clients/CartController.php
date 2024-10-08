@@ -73,7 +73,7 @@ class CartController extends Controller
 
     public function showCart()
     {
-        $carts = Cart::with(['variant.ssd', 'variant.color'])
+        $carts = Cart::with(['productVariant.ssd', 'productVariant.color'])
             ->where('user_id', Auth::id())
             ->get();
         $template = "clients.carts.cart";
@@ -82,7 +82,17 @@ class CartController extends Controller
 
     public function updateCart(Request $request)
     {
+        $count = Cart::where('user_id', Auth::id())->get();
+        if($count->isEmpty()){
+        return redirect()->route('client.cart')->with('error', 'Chưa có sản phẩm nào trong giỏ hàng');
+        }
+        if(!$request->quantities || count($request->quantities) !== $count->count()){
+            return redirect()->route('client.cart')->with('error', "Lỗi cập nhật giỏ hàng");
+        }
         foreach ($request->quantities as $cartId => $quantity) {
+            if($quantity <= 0){
+                return redirect()->route('client.cart')->with('error', 'Số lượng sản phẩm phải lớn hơn không');
+            }
             $cart = Cart::find($cartId);
             if ($cart) {
                 // Kiểm tra xem biến thể có còn trong kho không
@@ -93,6 +103,8 @@ class CartController extends Controller
 
                 $cart->variant_quantity = $quantity;
                 $cart->save();
+            }else{
+                return redirect()->route('client.cart')->with('error', "Lỗi cập nhật giỏ hàng");
             }
         }
 

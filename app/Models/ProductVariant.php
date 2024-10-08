@@ -35,4 +35,8 @@ class ProductVariant extends Model
     public function ssd(){
         return $this->belongsTo(SSD::class, 'ssd_id');
     }
+
+    public function carts(){
+        return $this->hasMany(Cart::class, 'variant_id');
+    }
 }
