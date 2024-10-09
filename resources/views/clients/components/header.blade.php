@@ -40,7 +40,7 @@
                     @if (Auth::user())
                      <img width="22px" class="border rounded-circle border-white" src="{{Auth::user()->image ? Auth::user()->image : "assets/images/users/avatar-default.png"}}" alt="">
                     @endif
-                  <a href="{{route('client.login')}}" class="ps-0">
+                  <a href="{{Auth::user() ? route('client.account') : route('client.login')}}" class="ps-0">
                   {{Auth::user() ? Auth::user()->name : "Đăng nhập"}}
                  </a>
                 </li>

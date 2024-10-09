@@ -81,6 +81,7 @@ Route::middleware(['admin'])->group(function () {
         Route::delete('/ssd/delete/{id}', [SsdController::class, 'destroy'])->name('ssd.destroy');
         Route::get('/order', [OrderController::class, 'index'])->name('order.index');
         Route::get('/order/{id}', [OrderController::class, 'show'])->name('order.show');
+        Route::post('/order/{id}', [OrderController::class, 'update'])->name('order.update');
     });
 });
 
@@ -102,4 +103,3 @@ Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');
 Route::get('/order-detail', [AccountController::class, 'orderDetail'])->name('client.order.detail');
 Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.accounts.thanhcong');
-Route::get('/order-history', [AccountController::class, 'orderHistory'])->name('client.accounts.orderhistory');
