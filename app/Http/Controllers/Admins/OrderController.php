@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admins;
 
-use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderHistory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -35,5 +37,33 @@ class OrderController extends Controller
         ]);
         }
         return redirect()->back()->with("error", "Không tìm thấy đơn hàng");
+    }
+
+    public function update(Request $request, string $id){
+        if($request->isMethod('POST')){
+        $request->validate([
+         "status" => "required"
+        ],
+        [
+         "status" => "Vui lòng chọn trạng thái"
+        ]
+        );    
+        $order = Order::find($id);
+        if($order){
+            $oldStatus = $order->status;
+            $order->status = $request->input('status');
+            $order->save();
+            OrderHistory::create([
+                "from_status" => $oldStatus,
+                "to_status" => $order->status,
+                "note" => $request->input("note"),
+                "by_user" => Auth::id(),
+                "order_id" => $order->id,
+            ]);
+        return redirect()->back()->with("success", "Cập nhật trạng thái thành công");
+        }
+        return redirect()->back()->with("error", "Không tìm thấy đơn hàng");
+        }
+        return redirect()->back()->with("error", "Cập nhật đơn hàng không thành công");
     }
 }

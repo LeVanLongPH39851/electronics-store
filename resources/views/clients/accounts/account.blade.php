@@ -21,34 +21,32 @@
                     <div class="tab-content dashboard-content mt-all-40">
                         
                         <div id="orders" class="tab-pane fade show active">
-                            <h3>Orders</h3>
+                            <h3>Đơn hàng</h3>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Số thứ tự</th>
-                                            <th>Ngày mua</th>
-                                            <th>Trang thái</th>
-                                            <th>Tổng cộng</th>
-                                            <th>Hành động</th>	 	 	 	
+                                            <th>Mã đơn hàng</th>
+                                            <th>Ngày đặt hàng</th>
+                                            <th>Phương thức thanh toán</th>
+                                            <th>Trạng thái thanh toán</th>
+                                            <th>Trạng thái đơn hàng</th>	 	 	 	
+                                            <th>Tổng tiền</th>	 	 	 	
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($orders as $order)
                                         <tr>
-                                            <td>1</td>
-                                            <td>10/08/2023</td>
-                                            <td>Đang xử lý</td>
-                                            <td>2.000.000 VNĐ </td>
+                                            <td>{{$order->order_code}}</td>
+                                            <td>{{ date('d/m/Y', strtotime($order->created_at)) }}</td>
+                                            <td>{{$order->payment_method === "cod" ? "Thanh toán khi nhận hàng" : "Thanh toán online"}}</td>
+                                            <td class="text-{{$order->payment_status === "ctt" ? "danger" : "success"}}">{{$order->payment_status === "ctt" ? "Chưa thanh toán" : "Đã thanh toán"}}</td>
+                                            <td class="text-{{$order->status === "cxn" ? "warning" : ($order->status === "dxn" ? "info" : ($order->status === "dgh" ? "purple" : ($order->status === "ghtc" ? "success" : ($order->status === "ghtb" ? "danger" : ($order->status === "dh" ? "danger" : "success")))))}}">{{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Đã nhận hàng")))))}}</td>
                                             <td><a class="view" href="cart.html">Xem</a></td>
                                         </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>10/08/2023</td>
-                                            <td>Đang xử lý</td>
-                                            <td>2.000.000 VNĐ </td>
-                                            <td><a class="view" href="cart.html">Xem</a></td>
-                                        </tr>
-                                        
+                                        @empty
+                                            
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

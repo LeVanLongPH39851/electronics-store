@@ -73,6 +73,12 @@
                                                 <div class="bg-primary w-h position-absolute position-quantity rounded-circle text-white d-flex justify-content-center align-items-center">{{$orderDetail->quantity}}</div>
                                                 @endif
                                             </div>
+                                            @if ($order->orderDetails->count() === 1)
+                                            <p class="d-inline-flex mb-0 flex-column">
+                                                <span class="d-block mb-0 product-name text-body fs11">{{$orderDetail->product_name}}</span>
+                                                <span class="text-muted" style="font-size: 9px">({{$orderDetail->color_name}} - {{$orderDetail->ssd_name}})</span> 
+                                            </p>
+                                            @endif
                                             @else
                                             @php
                                                 $i+=1;
@@ -95,17 +101,17 @@
                                         <span>{{date('d/m/Y', strtotime($order->created_at))}}</span>
                                     </td>
                                     <td>
-                                        <span class="badge bg-{{$order->payment_method === "cod" ? "info" : "primary"}}-subtle text-{{$order->payment_method === "cod" ? "info" : "primary"}}"><i class="fas fa-{{$order->payment_method === "cod" ? "money-bill-wave" : "money-check"}} me-1"></i> {{$order->payment_method === "cod" ? "Thanh toán khi nhận hàng" : "Thanh toán online"}}</span>
+                                        <span class="badge bg-{{$order->payment_method === "cod" ? "purple" : "info"}}-subtle text-{{$order->payment_method === "cod" ? "purple" : "info"}}"><i class="fas fa-{{$order->payment_method === "cod" ? "money-bill-wave" : "money-check"}} me-1"></i> {{$order->payment_method === "cod" ? "Thanh toán khi nhận hàng" : "Thanh toán online"}}</span>
                                     </td>
                                     <td>
                                         <span class="badge bg-{{$order->payment_status === "ctt" ? "danger" : "success"}}-subtle text-{{$order->payment_status === "ctt" ? "danger" : "success"}}"><i class="fas fa-{{$order->payment_status === "ctt" ? "xmark" : "check"}} me-1"></i> {{$order->payment_status === "ctt" ? "Chưa thanh toán" : "Đã thanh toán"}}</span>
                                     </td>
                                     @php
-                                        $color = $order->status === "cxn" ? "warning" : ($order->status === "dxc" ? "info" : ($order->status === "dgh" ? "purple" : ($order->status === "ghtc" ? "success" : ($order->status === "ghtb" ? "danger" : ($order->status === "dh" ? "danger" : "success")))));
-                                        $icon = $order->status === "cxn" ? "clock" : ($order->status === "dxc" ? "check" : ($order->status === "dgh" ? "truck" : ($order->status === "ghtc" ? "check" : ($order->status === "ghtb" ? "xmark" : ($order->status === "dh" ? "xmark" : "success")))));
+                                        $color = $order->status === "cxn" ? "warning" : ($order->status === "dxn" ? "primary" : ($order->status === "dgh" ? "purple" : ($order->status === "ghtc" ? "success" : ($order->status === "ghtb" ? "danger" : ($order->status === "dh" ? "danger" : "success")))));
+                                        $icon = $order->status === "cxn" ? "clock" : ($order->status === "dxn" ? "check" : ($order->status === "dgh" ? "truck" : ($order->status === "ghtc" ? "check-to-slot" : ($order->status === "ghtb" ? "ban" : ($order->status === "dh" ? "xmark" : "thumbs-up")))));
                                     @endphp
                                     <td>
-                                        <span class="badge bg-{{$color}}-subtle text-{{$color}}"><i class="fas fa-clock me-1"></i> {{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxc" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Đã nhận hàng")))))}}</span>
+                                        <span class="badge bg-{{$color}}-subtle text-{{$color}}"><i class="fas fa-{{$icon}} me-1"></i> {{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Đã nhận hàng")))))}}</span>
                                     </td>
                                     <td class="text-danger"><strong>{{number_format($order->total_price, 0, '', '.')}} vnđ</strong></td>
                                 </tr>
