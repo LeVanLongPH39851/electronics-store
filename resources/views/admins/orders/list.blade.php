@@ -114,6 +114,9 @@
                                         <span class="badge bg-{{$color}}-subtle text-{{$color}}"><i class="fas fa-{{$icon}} me-1"></i> {{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Đã nhận hàng")))))}}</span>
                                     </td>
                                     <td class="text-danger"><strong>{{number_format($order->total_price, 0, '', '.')}} vnđ</strong></td>
+                                    <td class="text-end">                                                       
+                                        <a href="{{route('order.show', $order->id)}}"><i class="las la-pen text-secondary fs-18"></i></a>
+                                    </td>
                                 </tr>
                                 @empty
                                 <tr>

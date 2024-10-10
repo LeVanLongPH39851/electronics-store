@@ -19,7 +19,8 @@ class Order extends Model
         'user_phone',
         'user_address',
         'voucher_id',
-        'user_id'
+        'user_id',
+        'delivered_at'
     ];
 
     public function user(){
@@ -33,4 +34,7 @@ class Order extends Model
     public function orderHistories(){
         return $this->hasMany(OrderHistory::class, "order_id");
     }
+    protected $casts = [
+        'delivered_at' => 'datetime',
+    ];
 }
