@@ -17,7 +17,6 @@ use App\Http\Controllers\Admins\OrderController;
 use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Admins\SsdController;
 use App\Http\Controllers\Admins\Trashs\ProductTrashController;
-// use App\Http\Controllers\Clients\CheckoutController;
 use App\Http\Controllers\Clients\ProductDetailController;
 use App\Http\Controllers\Admins\Trashs\UserTrashController;
 use App\Http\Controllers\Admins\Trashs\StaffTrashController;
@@ -98,21 +97,10 @@ Route::get('/product-detail/{id}', [ProductDetailController::class, 'productDeta
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('client.addToCart');
 Route::get('/cart', [CartController::class, 'showCart'])->name('client.cart');
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('client.updateCart');
-<<<<<<< HEAD
-Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
-Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkouts.checkout');
-Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('client.checkouts.process');
-=======
 Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
 Route::get('/checkout', [VnPayController::class, 'checkout'])->name('client.checkouts.checkout');
 Route::get('/checkout/callback', [VnPayController::class, 'handleVnPayCallback'])->name('client.vnpay.callback');
 Route::post('/vnpay_payment', [VnPayController::class, 'vnpay_payment'])->name('client.vnpay.payment');
->>>>>>> do-huu-tai
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');
 Route::get('/order-detail', [AccountController::class, 'orderDetail'])->name('client.order.detail');
-<<<<<<< HEAD
-Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.order.thanhtoan');
-Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
-=======
 Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.accounts.thanhcong');
->>>>>>> 4538a2a93f24e607120ea79319b1b63317076bae
