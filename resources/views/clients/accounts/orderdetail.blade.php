@@ -31,7 +31,7 @@
                                 //     $ttdh = 'Đã xác nhận';
                                 // }
                             @endphp
-                            {{$order}}
+                            {{-- {{$order}} --}}
                             <!-- Order Details Section -->
                             <div class="order-details mb-5 p-4 bg-light rounded shadow-sm">
                                 <h4 class="fs-5 text-center mb-4">Mã đơn hàng: <strong>{{ $order->order_code }}</strong>
@@ -50,7 +50,7 @@
                                 <p class="fs-6 mb-3"><strong>Phương thức thanh toán:</strong> {{ $pttt }}</p>
                             </div>
                             <!-- Order Details Section End -->
-                            {{-- <form action="" method="post">
+                            {{-- <form action="" method="post"> 
                                 <div class="row mt-3">
                                     <form action="" method="post">
                                             <input type="hidden" name="dh">

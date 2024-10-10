@@ -79,7 +79,7 @@
                                                 <span class="d-block mb-0 product-name text-body fs11">{{$orderDetail->product_name}}</span>
                                                 <span class="text-muted" style="font-size: 9px">({{$orderDetail->color_name}} - {{$orderDetail->ssd_name}})</span> 
                                             </p>
-                                            @endif
+                                            @endif 
                                             @else
                                             @php
                                                 $i+=1;

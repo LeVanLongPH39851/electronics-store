@@ -34,4 +34,4 @@ class Order extends Model
     public function orderHistories(){
         return $this->hasMany(OrderHistory::class, "order_id");
     }
-}
+} 

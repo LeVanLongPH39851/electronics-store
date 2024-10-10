@@ -47,7 +47,7 @@ class OrderController extends Controller
         [
          "status" => "Vui lòng chọn trạng thái"
         ]
-        );    
+        );     
         $order = Order::find($id);
         if($order){
             $oldStatus = $order->status;

@@ -104,7 +104,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                         @endforelse
                         @if ($order->status !== "ghtc" &&  $order->status !== "dndh" && $order->status !== "dh")
                         <form action="{{route('order.update', $order->id)}}" method="post">
