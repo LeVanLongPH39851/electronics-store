@@ -13,7 +13,7 @@ use App\Http\Controllers\Clients\ShopController;
 use App\Http\Controllers\Clients\LoginController;
 use App\Http\Controllers\Clients\AccountController;
 use App\Http\Controllers\Admins\DashboardController;
-use App\Http\Controllers\Admins\Discounts\DiscountController;
+use App\Http\Controllers\Admins\OrderController;
 use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Admins\SsdController;
 use App\Http\Controllers\Admins\Trashs\ProductTrashController;
@@ -58,7 +58,6 @@ Route::middleware(['admin'])->group(function () {
         Route::post('/product-trash/restore', [ProductTrashController::class, 'restore'])->name('product.restore');
         Route::resource('/product-trash', ProductTrashController::class);
         Route::resource('/categories', CategoryController::class);
-        Route::resource('discounts', DiscountController::class);
         Route::middleware(['staff'])->group(function () {
             Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');
             Route::post('/staff-trash/delete', [StaffTrashController::class, 'delete'])->name('staff.delete');
@@ -80,6 +79,9 @@ Route::middleware(['admin'])->group(function () {
         Route::get('/ssd/edit/{id}', [SsdController::class, 'edit'])->name('ssd.edit');
         Route::post('/ssd/update/{id}', [SsdController::class, 'update'])->name('ssd.update');
         Route::delete('/ssd/delete/{id}', [SsdController::class, 'destroy'])->name('ssd.destroy');
+        Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+        Route::get('/order/{id}', [OrderController::class, 'show'])->name('order.show');
+        Route::post('/order/{id}', [OrderController::class, 'update'])->name('order.update');
     });
 });
 
@@ -95,9 +97,14 @@ Route::get('/product-detail/{id}', [ProductDetailController::class, 'productDeta
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('client.addToCart');
 Route::get('/cart', [CartController::class, 'showCart'])->name('client.cart');
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('client.updateCart');
-Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
-Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkout');
+Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkouts.checkout');
+Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('client.checkouts.process');
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');
 Route::get('/order-detail', [AccountController::class, 'orderDetail'])->name('client.order.detail');
+<<<<<<< HEAD
 Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.order.thanhtoan');
 Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
+=======
+Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.accounts.thanhcong');
+>>>>>>> 4538a2a93f24e607120ea79319b1b63317076bae

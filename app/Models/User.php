@@ -33,6 +33,10 @@ class User extends Authenticatable
         'password',
         'deleted_at'
     ];
+
+    public function orders(){
+        return $this->hasMany(Order::class, 'user_id');
+    }
     
     /**
      * The attributes that should be hidden for serialization.

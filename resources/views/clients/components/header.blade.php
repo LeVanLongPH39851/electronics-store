@@ -40,7 +40,7 @@
                     @if (Auth::user())
                      <img width="22px" class="border rounded-circle border-white" src="{{Auth::user()->image ? Auth::user()->image : "assets/images/users/avatar-default.png"}}" alt="">
                     @endif
-                  <a href="{{route('client.login')}}" class="ps-0">
+                  <a href="{{Auth::user() ? route('client.account') : route('client.login')}}" class="ps-0">
                   {{Auth::user() ? Auth::user()->name : "Đăng nhập"}}
                  </a>
                 </li>
@@ -99,7 +99,7 @@
                 </li>
                 <li>
                   <a href="{{route('client.cart')}}"
-                    ><i class="ion-bag"></i><span class="total-pro">2</span
+                    ><i class="ion-bag"></i><span class="total-pro">{{Auth::id() ? DB::table('carts')->where('user_id', auth()->id())->count() : ""}}</span
                     ></a
                   >
                   
@@ -142,7 +142,7 @@
                       <li><a href="{{ route('client.order.detail')}}">chi tiết sản phẩm</a></li>
                       <li><a href="compare.html">so sánh</a></li>
                       <li><a href="{{ route('client.cart') }}">giỏ hàng</a></li>
-                      <li><a href="{{ route('client.checkout') }}">thanh toán</a></li>
+                      <li><a href="{{ route('client.checkouts.checkout') }}">thanh toán</a></li>
                       <li><a href="wishlist.html">danh sách yêu thích</a></li>
                     </ul>
                     <!-- Kết thúc Danh sách Dropdown -->

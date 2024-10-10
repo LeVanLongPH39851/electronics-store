@@ -21,14 +21,15 @@ class ShopController extends Controller
 
         $listProduct = Product::withMin('productVariants', 'price')
             ->withMax('productVariants', 'price')
-            ->withSum('productVariants', 'quantity')
-            ->orderByDesc('created_at');
+            ->withSum('productVariants', 'quantity');
 
         // Lọc theo danh mục
-        if ($request->input('category_filter')) {
-            $categoryFilter = $request->input('category_filter');
+        if ($request->input('category')) {
+            $listProduct = $listProduct->where('category_id', $request->input('category'));
+        }
 
-            $listProduct = $listProduct->where('category_id', $categoryFilter);
+        if ($request->input('search')) {
+            $listProduct = $listProduct->where('name', "LIKE", "%".$request->input('search')."%");
         }
 
         if ($request->input('price_filter')) {
@@ -76,17 +77,26 @@ class ShopController extends Controller
         } else {
             $price = 0;
         }
-
-        $listProduct = $listProduct->get();
-        // dd($listProduct);
-
-        // Lọc theo danh mục
-        if ($request->input('category_filter')) {
-            $categoryFilter = $request->input('category_filter');
-
-            $listProduct->where('category_id', $categoryFilter);
+        
+        if($request->input('sort') && $request->input('sort') != 0 ){
+            switch($request->input('sort')){
+                case "nameAZ":
+                    $listProduct->orderBy('name');
+                    break;
+                case "nameZA":
+                    $listProduct->orderByDesc('name');
+                    break;
+                case "priceAsc":
+                    $listProduct->orderBy('product_variants_max_price');
+                    break;
+                case "priceDesc":
+                    $listProduct->orderByDesc('product_variants_max_price');
+                    break;
+            }
         }
-
+        
+        $listProduct = $listProduct->orderByDesc('created_at')->paginate(8);
+        
         return view(
             "clients.layout",
             [

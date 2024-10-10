@@ -15,8 +15,6 @@
                                     <th class="product-thumbnail">Hình Ảnh</th>
                                     <th class="product-name">Sản Phẩm</th>
                                     <th class="product-price">Giá</th>
-                                    <th class="product-price">Màu</th>
-                                    <th class="product-price">Dung lượng</th>
                                     <th class="product-quantity">Số lượng</th>
                                     <th class="product-subtotal">Tổng Tiền</th>
                                     <th class="product-remove">Xóa</th>
@@ -27,17 +25,15 @@
                                 <tr>
                                     <td class="product-thumbnail">
                                         <a href="#">
-                                            <img src="{{ Storage::url($cart->variant->image) }}" alt="cart-image" />
+                                            <img src="{{ ".".Storage::url($cart->productVariant->image) }}" alt="cart-image" />
                                         </a>
                                     </td>
                                     <td class="product-name">
-                                        <a href="#">{{ $cart->variant->product->name }}</a>
+                                        <a href="#">{{ $cart->productVariant->product->name }} ({{ $cart->productVariant->color->name }} - {{ $cart->productVariant->ssd->name }})</a>
                                     </td>
                                     <td class="product-price">
-                                        <span class="amount">{{ number_format($cart->variant->price, 0, '', '.') }} vnđ</span>
+                                        <span class="amount">{{ number_format($cart->productVariant->price, 0, '', '.') }} vnđ</span>
                                     </td>
-                                    <td class="product-price">{{ $cart->variant->color->name }}</td>
-                                    <td class="product-price">{{ $cart->variant->ssd->name }}</td>
                                     <td class="product-quantity">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <input type="hidden" name="cart_id[]" value="{{ $cart->id }}">
@@ -47,18 +43,15 @@
                                         </div>
                                     </td>
                                     <td class="product-subtotal">
-                                        {{ number_format($cart->variant->price * $cart->variant_quantity, 0, '', '.') }} vnđ
+                                        {{ number_format($cart->productVariant->price * $cart->variant_quantity, 0, '', '.') }} vnđ
                                     </td>
                                     <td class="product-remove">
-                                        <form action="{{ route('client.removeFromCart') }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            <input type="hidden" name="cart_id" value="{{ $cart->id }}">
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')">
+                                        <a href="{{route('client.removeFromCart', $cart->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')">
+                                            <button type="button" class="btn btn-danger">
                                                 <i class="fa fa-times" aria-hidden="true"></i>
                                             </button>
-                                        </form>
+                                        </a>
                                     </td>
-                                    
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -84,21 +77,21 @@
                                         <tr class="cart-subtotal">
                                             <th class="text-start">Tạm Tính</th>
                                             <td class="text-end">
-                                                <span class="amount">{{ number_format($carts->sum(function($cart) { return $cart->variant->price * $cart->variant_quantity; }), 0, '', '.') }} vnđ</span>
+                                                <span class="amount">{{ number_format($carts->sum(function($cart) { return $cart->productVariant->price * $cart->variant_quantity; }), 0, '', '.') }} vnđ</span>
                                             </td>
                                         </tr>
                                         <tr class="order-total">
                                             <th class="text-start">Tổng Tiền</th>
                                             <td class="text-end">
                                                 <strong>
-                                                    <span class="amount">{{ number_format($carts->sum(function($cart) { return $cart->variant->price * $cart->variant_quantity; }), 0, '', '.') }} vnđ</span>
+                                                    <span class="amount">{{ number_format($carts->sum(function($cart) { return $cart->productVariant->price * $cart->variant_quantity; }), 0, '', '.') }} vnđ</span>
                                                 </strong>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="wc-proceed-to-checkout">
-                                    <a href="{{ route('client.checkout') }}" class="btn btn-success">Tiến Hành Thanh Toán</a>
+                                    <a href="{{ route('client.checkouts.checkout') }}" class="btn btn-success">Tiến Hành Thanh Toán</a>
                                 </div>
                             </div>
                         </div>

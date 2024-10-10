@@ -287,15 +287,6 @@
               <!--end startbarElements-->
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link {{$classActive === "Mã Giảm Giá" ? "active bg-active" : ""}}"
-                href="{{ route('discounts.index') }}"
-              >
-                <i class="fas fa-tag menu-icon {{$classActive === "Mã Giảm Giá" ? "text-primary" : ""}}"></i>
-                <span>Mã Giảm Giá</span>
-              </a>
-            </li>
-            <li class="nav-item">
                 <a
                   class="nav-link  {{$classActive === "Màu Sắc" ? "active bg-active" : ""}}"
                   href="{{ route('color.index') }}"
@@ -315,6 +306,16 @@
                 </a>
                 <!--end startbarElements-->
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link {{$classActive === "Đơn Hàng" ? "active bg-active" : ""}}"
+                href="{{ route('order.index') }}"
+              >
+                <i class="fas fa-rectangle-list menu-icon {{$classActive === "Đơn Hàng" ? "text-primary" : ""}}"></i>
+                <span>Đơn Hàng</span>
+              </a>
+              <!--end startbarElements-->
+          </li>
           </ul>
           <!--end navbar-nav--->
         </div>

@@ -17,13 +17,15 @@ class Cart extends Model
         'variant_quantity',
     ];
 
+    public $timestamps = false;
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, "user_id");
     }
 
-    public function variant()
+    public function productVariant()
     {
-        return $this->belongsTo(ProductVariant::class);
+        return $this->belongsTo(ProductVariant::class, "variant_id");
     }
 }
