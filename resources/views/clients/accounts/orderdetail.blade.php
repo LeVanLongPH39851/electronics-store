@@ -1,55 +1,61 @@
 @include('clients.components.breadcrumb')
+
 <!-- My Account Page Start Here -->
 <div class="my-account white-bg ptb-45">
     <div class="container">
         <div class="account-dashboard">
-           
+
             <div class="row">
                 <div class="col-lg-12">
                     <!-- Tab panes -->
                     <div class="tab-content dashboard-content mt-all-40">
                         <div class="tab-pane fade show active">
-                            <h3>Chi tiết đơn hàng</h3>
+                            <h3 class="mb-4 fs-4">Chi tiết đơn hàng</h3>
+                            <div class="order-details mb-4">
+                                <h2 class="fs-5 text-center">Mã đơn hàng: <strong>{{ $order->order_code }}</strong></h2>
+                                <p class="fs-6 mb-3">Tên người nhận: <strong>{{ $order->user_name }}</strong></p>
+                                <p class="fs-6 mb-3">Email người nhận: <strong>{{ $order->user->email }}</strong></p>
+                                <p class="fs-6 mb-3">Số điện thoại người nhận: <strong>{{ $order->user_phone }}</strong></p>
+                                <p class="fs-6 mb-3">Địa chỉ người nhận: <strong>{{ $order->user_address }}</strong></p>
+                                <p class="fs-6 mb-3">Ngày đặt hàng: <strong>{{ $order->created_at->format('d-m-Y') }}</strong></p>
+                                <p class="fs-6 mb-3">Trạng thái đơn hàng: <strong class="text-primary">{{ $order->status }}</strong></p>
+                                <p class="fs-6 mb-3">Trạng thái thanh toán: <strong class="text-success">{{ $order->payment_status }}</strong></p>
+                                <p class="fs-6 mb-3">Tổng tiền hàng: <strong class="text-danger">{{ number_format($order->total_price, 0, ',', '.') }} VNĐ</strong></p>
+                            </div>
+
                             <div class="table-responsive">
-                                <table class="table table-bordered text-center table-detail">
-                                    <thead>
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-light">
                                         <tr>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Ảnh</th>
-                                            <th>Giá</th>
-                                            <th>Số lượng</th>
-                                            <th>Thành tiền</th>	 	 	 	
-                                            <th>Tổng tiền</th>	 	 	 	
-                                            <th>Hình thức thanh toán</th>	 	 	 	
+                                            <th scope="col">Tên sản phẩm</th>
+                                            <th scope="col">Hình ảnh</th>
+                                            <th scope="col">Màu sắc</th>
+                                            <th scope="col">SSD</th>
+                                            <th scope="col">Giá nhập</th>
+                                            <th scope="col">Giá niêm yết</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col">Số lượng</th>
+                                            <th scope="col">Tổng giá</th>
+                                            <th scope="col">Phương thức thanh toán</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Faded Short Sleeves T-shirt</td>
-                                            <td><img src="templates/img/products/35.jpg" class="product-detal-w" /></td>
-                                            <td>2.000.000 VNĐ </td>
-                                            <td>2</td>
-                                            <td>4.000.000 VNĐ</td>
-                                            <td rowspan="2" class="text-center">6.000.000 VNĐ</td>
-                                            <td>Thanh toán bằng tiền mặt</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Faded Short Sleeves T-shirt</td>
-                                            <td><img src="templates/img/products/35.jpg" class="product-detal-w" /></td>
-                                            <td>2.000.000 VNĐ </td>
-                                            <td>2</td>
-                                            <td>4.000.000 VNĐ</td>
-                                            
-                                            <td>Thanh toán bằng tiền mặt</td>
-                                        </tr>
-                                        <tr>
-                                            
-                                            <td colspan="5">Ghi chú: không có</td>
-                                            <td>Ngày: 23/09/2023</td>
-                                            <td>Trang thái: Đang chờ nhận hàng</td>
-                                        </tr>
-                                       
-                                        
+                                        @foreach ($order->orderDetails as $item)
+                                            <tr>
+                                                <td>{{ $item->product_name }}</td>
+                                                <td>
+                                                    <img src="{{ '.' . Storage::url($item->product_variant_image) }}" class="img-fluid rounded" alt="{{ $item->product_name }}" style="width: 100px; height:120px;">
+                                                </td>
+                                                <td>{{ $item->color_name }}</td>
+                                                <td>{{ $item->ssd_name }}</td>
+                                                <td>{{ number_format($item->import_price, 0, ',', '.') }} VNĐ</td>
+                                                <td>{{ number_format($item->listed_price, 0, ',', '.') }} VNĐ</td>
+                                                <td>{{ number_format($item->price, 0, ',', '.') }} VNĐ</td>
+                                                <td>{{ $item->quantity }}</td>
+                                                <td>{{ number_format($item->price * $item->quantity, 0, ',', '.') }} VNĐ</td>
+                                                <td>Thanh toán bằng tiền mặt</td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

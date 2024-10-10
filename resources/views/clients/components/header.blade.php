@@ -60,7 +60,7 @@
         <div class="row align-items-center">
           <div class="col-lg-3 col-md-12">
             <div class="logo mb-all-30">
-              <a href="index.html"
+              <a href="{{ route('client.index') }}"
                 ><img src="templates/img/logo/logoshop.png" alt="logo-image"
               /></a>
             </div>
@@ -102,7 +102,7 @@
                     ><i class="ion-bag"></i><span class="total-pro">{{Auth::id() ? DB::table('carts')->where('user_id', auth()->id())->count() : ""}}</span
                     ></a
                   >
-                  
+
                 </li>
               </ul>
             </div>
@@ -122,7 +122,7 @@
             <nav class="d-none d-lg-block">
               <ul class="header-bottom-list d-flex">
                 <li class="active">
-                  <a href="index.html"
+                  <a href="{{ route('client.index') }}"
                     >home<i ></i
                   ></a>
                   <!-- Home Version Dropdown Start -->
@@ -136,7 +136,7 @@
                 </li>
 
                 <li>
-                    <a href="shop.html">Sản phẩm<i class="fa fa-angle-down"></i></a>
+                    <a href="{{ route('client.shop') }}">Sản phẩm<i class="fa fa-angle-down"></i></a>
                     <!-- Bắt đầu Danh sách Dropdown -->
                     <ul class="ht-dropdown dropdown-style-two">
                       <li><a href="{{ route('client.order.detail')}}">chi tiết sản phẩm</a></li>
