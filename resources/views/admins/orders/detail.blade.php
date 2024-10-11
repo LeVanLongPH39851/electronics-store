@@ -34,7 +34,7 @@
                                         </td>
                                         <td>{{number_format($orderDetail->price, 0, '', '.')}} vnđ</td>
                                         <td>{{$orderDetail->quantity}}</td>                                                    
-                                        <td>{{number_format($orderDetail->price * $orderDetail->quantity, 0, '', '.')}} vnđ</td>
+                                        <td class="text-danger">{{number_format($orderDetail->price * $orderDetail->quantity, 0, '', '.')}} vnđ</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -84,8 +84,12 @@
                             </div>
                             <div class="col-6 d-flex flex-column">
                                 <div class="bg-{{$orderHistory->to_status !== "dh" && $orderHistory->to_status !== "ghtb" ? "primary" : "danger"}}-subtle p-2 border-dashed border-{{$orderHistory->to_status !== "dh" && $orderHistory->to_status !== "ghtb" ? "primary" : "danger"}} rounded">
-                                <span class="text-{{$orderHistory->to_status !== "dh" && $orderHistory->to_status !== "ghtb" ? "primary" : "danger"}} fw-semibold">Ghi chú:</span><span class="text-{{$orderHistory->to_status !== "dh" && $orderHistory->to_status !== "ghtb" ? "primary" : "danger"}} fw-normal"> {{$orderHistory->note ?? "Không có ghi chú"}}</span>
+                                <span class="text-{{$orderHistory->to_status !== "dh" && $orderHistory->to_status !== "ghtb" ? "primary" : "danger"}} fw-semibold">{{$orderHistory->to_status === "dh" ? "Lý do:" : "Ghi chú:"}}</span><span class="text-{{$orderHistory->to_status !== "dh" && $orderHistory->to_status !== "ghtb" ? "primary" : "danger"}} fw-normal"> {{$orderHistory->note ?? "Không có ghi chú"}}</span>
+                                @php
+                                    $user = DB::table('users')->find($orderHistory->by_user);
+                                @endphp
                                 </div>
+                                <span class="text-end fs10 mt1 text-{{$orderHistory->to_status !== "dh" && $orderHistory->to_status !== "ghtb" ? "primary" : "danger"}}">{{$user->name}} <span class="text-muted">đã thay đổi</span></span>
                             </div>
                         </div>
                         @empty
@@ -112,18 +116,19 @@
                             <div class="row mt-3">
                                 <div class="col-auto">
                                     @php
-                                        $cxn = $order->status === "dxn" || $order->status === "dgh" || $order->status === "ghtc" || $order->status === "ghtb" ||  $order->status === "dh" ||  $order->status === "dndh" ? "disabled" : "";
-                                        $dxn = $order->status === "dgh" || $order->status === "ghtc" || $order->status === "ghtb" ||  $order->status === "dh" ||  $order->status === "dndh" ? "disabled" : "";
-                                        $dgh = $order->status === "ghtc" ||  $order->status === "dh" ||  $order->status === "dndh" ? "disabled" : "";
-                                        $ghtc = $order->status === "ghtb" ||  $order->status === "dh" ||  $order->status === "dndh" ? "disabled" : "";
-                                        $ghtb = $order->status === "ghtc" ||  $order->status === "dh" ||  $order->status === "dndh" ? "disabled" : "";
+                                        $dh = $order->status !== "cxn" && $order->status !== "ghtb" ? "disabled" : "";
+                                        $dxn = $order->status !== "cxn" ? "disabled" : "";
+                                        $dgh = $order->status !== "dxn" && $order->status !== "ghtb" ? "disabled" : "";
+                                        $ghtc = $order->status !== "dgh" ? "disabled" : "";
+                                        $ghtb = $order->status !== "dgh"  ? "disabled" : "";
                                     @endphp
                                     <select name="status" class="form-select">
-                                        <option {{$order->status === "cxn" ? "selected disabled" : ""}} {{$cxn}} value="cxn">Đang chờ xác nhận</option>
-                                        <option {{$order->status === "dxn" ? "selected disabled" : ""}} {{$dxn}} value="dxn">Đã xác nhận</option>
-                                        <option {{$order->status === "dgh" ? "selected disabled" : ""}} {{$dgh}} value="dgh">Đang giao hàng</option>
-                                        <option {{$order->status === "ghtc" ? "selected disabled" : ""}} {{$ghtc}} value="ghtc">Giao hàng thành công</option>
-                                        <option {{$order->status === "ghtb" ? "selected disabled" : ""}} {{$ghtb}} value="ghtb">Giao hàng thất bại</option>
+                                        <option {{$order->status === "dh" ? "selected" : ""}} {{$dh}} value="dh">Hủy</option>
+                                        <option {{$order->status === "cxn" ? "selected" : ""}} disabled value="cxn">Đang chờ xác nhận</option>
+                                        <option {{$order->status === "dxn" ? "selected" : ""}} {{$dxn}} value="dxn">Đã xác nhận</option>
+                                        <option {{$order->status === "dgh" ? "selected" : ""}} {{$dgh}} value="dgh">Đang giao hàng</option>
+                                        <option {{$order->status === "ghtc" ? "selected" : ""}} {{$ghtc}} value="ghtc">Giao hàng thành công</option>
+                                        <option {{$order->status === "ghtb" ? "selected" : ""}} {{$ghtb}} value="ghtb">Giao hàng thất bại</option>
                                     </select>
                                     @if ($errors->has("status"))
                                     <p class="text-danger mt-1 mb-0">{{$errors->first("status")}}</p>
@@ -131,6 +136,9 @@
                                 </div>
                                 <div class="col">
                                     <textarea name="note" class="form-control w-100" placeholder="Ghi chú" rows="3"></textarea>
+                                    @if ($errors->has("note"))
+                                    <p class="text-danger mt-1 mb-0">{{$errors->first("note")}}</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
@@ -167,8 +175,12 @@
                             </div>
                             <div class="d-flex justify-content-between">
                               <p class="text-body fw-semibold">Trạng thái thanh toán :</p>
-                              <p class="text-danger fw-semibold">{{$orderDetail->order->payment_status === "ctt" ? "Chưa thanh toán" : "Đã thanh toán"}}</p>
+                              <p class="text-{{$orderDetail->order->payment_status === "ctt" ? "danger" : "success"}} fw-semibold">{{$orderDetail->order->payment_status === "ctt" ? "Chưa thanh toán" : "Đã thanh toán"}}</p>
                             </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="text-body fw-semibold">Ghi chú :</p>
+                                <p class="text-muted">{{$order->note ?? "Không có ghi chú"}}</p>
+                              </div>
                         </div>
                         <hr class="hr-dashed">
                         <div class="d-flex justify-content-between">
@@ -192,7 +204,7 @@
                               <p class="text-body-emphasis fw-semibold">{{$orderDetail->order->user_name}}</p>
                             </div>
                             <div class="d-flex justify-content-between mb-2">
-                                <p class="text-body fw-semibold"><i class="iconoir-people-tag text-secondary fs-20 align-middle me-1"></i>Full Name :</p>
+                                <p class="text-body fw-semibold"><i class="iconoir-people-tag text-secondary fs-20 align-middle me-1"></i>Số điện thoại :</p>
                                 <p class="text-body-emphasis fw-semibold">{{$orderDetail->order->user_phone}}</p>
                             </div>
                             <div class="d-flex justify-content-between mb-2">

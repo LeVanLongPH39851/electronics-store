@@ -230,3 +230,6 @@ body::-webkit-scrollbar-track {
     margin-left: 3px !important;
     margin-right: 3px !important;
 }
+.ms1 {
+    margin-left: 1px !important;
+}

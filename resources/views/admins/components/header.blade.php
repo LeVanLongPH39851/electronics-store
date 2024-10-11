@@ -457,7 +457,7 @@
               aria-expanded="false"
             >
               <img
-                src="{{Auth::user()->image ? Auth::user()->image : "assets/images/users/avatar-default-".(Auth::user()->role == 1 ? "admin" : "staff").".png"}}"
+                src="{{Auth::user()->image ? ".".Storage::url(Auth::user()->image) : "assets/images/users/avatar-default-".(Auth::user()->role == 1 ? "admin" : "staff").".png"}}"
                 alt=""
                 class="thumb-lg rounded-circle"
               />
@@ -468,7 +468,7 @@
               >
                 <div class="flex-shrink-0">
                   <img
-                    src="{{Auth::user()->image ? Auth::user()->image : "assets/images/users/avatar-default-".(Auth::user()->role == 1 ? "admin" : "staff").".png"}}"
+                    src="{{Auth::user()->image ? ".".Storage::url(Auth::user()->image) : "assets/images/users/avatar-default-".(Auth::user()->role == 1 ? "admin" : "staff").".png"}}"
                     alt=""
                     class="thumb-md rounded-circle"
                   />
