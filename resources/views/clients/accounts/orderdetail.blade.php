@@ -1,9 +1,10 @@
 @include('clients.components.breadcrumb')
+
 <!-- My Account Page Start Here -->
 <div class="my-account white-bg ptb-45">
     <div class="container">
         <div class="account-dashboard">
-           
+
             <div class="row">
                 <div class="col-lg-12">
                     <!-- Tab panes -->
@@ -33,8 +34,8 @@
                                 @endif
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-bordered text-center table-detail">
-                                    <thead>
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-light">
                                         <tr>
                                             <th>Tên sản phẩm</th>
                                             <th>Ảnh</th>

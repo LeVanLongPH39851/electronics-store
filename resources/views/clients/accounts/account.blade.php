@@ -3,14 +3,14 @@
 <div class="my-account white-bg ptb-45">
     <div class="container">
         <div class="account-dashboard">
-           
+
             <div class="row">
                 <div class="col-lg-2">
                     <!-- Nav tabs -->
                     <ul class="nav flex-column dashboard-list" role="tablist">
-                        
+
                         <li> <a class="nav-link active" data-bs-toggle="tab" href="#orders">Đơn hàng</a></li>
-                      
+
                         <li><a class="nav-link" data-bs-toggle="tab" href="#address">Địa chỉ</a></li>
                         <li><a class="nav-link" data-bs-toggle="tab" href="#account-details">Chi tiết tài khoản</a></li>
                         <li><a class="nav-link" href="login.html" href="#logout">Đăng xuất</a></li>
@@ -19,7 +19,7 @@
                 <div class="col-lg-10">
                     <!-- Tab panes -->
                     <div class="tab-content dashboard-content mt-all-40">
-                        
+
                         <div id="orders" class="tab-pane fade show active">
                             <h3>Đơn hàng</h3>
                             <div class="table-responsive">
@@ -47,19 +47,19 @@
                                             <td><a class="view" href="{{route('client.order.detail', $order->id)}}">Xem</a></td>
                                         </tr>
                                         @empty
-                                            
+
                                         @endforelse
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        
+
                         <div id="address" class="tab-pane">
                             <label for="" class="form-label">Địa chỉ</label>
                             <textarea name="" id="" cols="5" rows="5" class="form-control"></textarea>
-                            
+
                             <a class="view" href="#">Cập nhật</a>
-                             
+
                         </div>
                         <div id="account-details" class="tab-pane fade">
                             <h3>Chi tiết tài khoản </h3>
@@ -117,8 +117,8 @@
                                             <input type="text" class="form-control" id="birth" placeholder="MM/DD/YYYY">
                                         </div>
                                     </div>
-                                   
-                                   
+
+
                                     <div class="register-box mt-40">
                                         <button type="submit" class="return-customer-btn float-right">Lưu</button>
                                     </div>

@@ -60,7 +60,7 @@
         <div class="row align-items-center">
           <div class="col-lg-3 col-md-12">
             <div class="logo mb-all-30">
-              <a href="index.html"
+              <a href="{{ route('client.index') }}"
                 ><img src="templates/img/logo/logoshop.png" alt="logo-image"
               /></a>
             </div>
@@ -102,7 +102,7 @@
                     ><i class="ion-bag"></i><span class="total-pro">{{Auth::id() ? DB::table('carts')->where('user_id', auth()->id())->count() : ""}}</span
                     ></a
                   >
-                  
+
                 </li>
               </ul>
             </div>

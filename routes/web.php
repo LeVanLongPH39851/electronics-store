@@ -1,26 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admins\SsdController;
 use App\Http\Controllers\Admins\AuthController;
+use App\Http\Controllers\Admins\UserController;
 use App\Http\Controllers\Admins\BrandController;
 use App\Http\Controllers\Admins\ColorController;
-use App\Http\Controllers\Admins\Categories\CategoryController;
-use App\Http\Controllers\Admins\UserController;
+use App\Http\Controllers\Admins\OrderController;
 use App\Http\Controllers\Admins\StaffController;
 use App\Http\Controllers\Clients\CartController;
 use App\Http\Controllers\Clients\HomeController;
 use App\Http\Controllers\Clients\ShopController;
 use App\Http\Controllers\Clients\LoginController;
+use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Clients\AccountController;
 use App\Http\Controllers\Admins\DashboardController;
-use App\Http\Controllers\Admins\OrderController;
-use App\Http\Controllers\Admins\ProductController;
-use App\Http\Controllers\Admins\SsdController;
-use App\Http\Controllers\Admins\Trashs\ProductTrashController;
 use App\Http\Controllers\Clients\CheckoutController;
+use App\Http\Controllers\Clients\OrderDetailController;
 use App\Http\Controllers\Clients\ProductDetailController;
 use App\Http\Controllers\Admins\Trashs\UserTrashController;
 use App\Http\Controllers\Admins\Trashs\StaffTrashController;
+use App\Http\Controllers\Admins\Categories\CategoryController;
+use App\Http\Controllers\Admins\Trashs\ProductTrashController;
 
 /*
 |--------------------------------------------------------------------------
