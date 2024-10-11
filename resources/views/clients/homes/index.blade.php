@@ -166,7 +166,7 @@
                   <div class="pro-actions">
                     <div class="actions-primary">
                       <a
-                        href="cart.html"
+                        href="{{route('client.product.detail', $newProduct->id)}}"
                         class="px-1"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"

@@ -74,7 +74,7 @@
                                                 @endif
                                             </div>
                                             @if ($order->orderDetails->count() === 1)
-                                            <p class="d-inline-flex mb-0 flex-column">
+                                            <p class="d-inline-flex mb-0 flex-column ms1">
                                                 <span class="d-block mb-0 product-name text-body fs11">{{$orderDetail->product_name}}</span>
                                                 <span class="text-muted" style="font-size: 9px">({{$orderDetail->color_name}} - {{$orderDetail->ssd_name}})</span> 
                                             </p>

@@ -30,8 +30,9 @@
                                             <th>Ngày đặt hàng</th>
                                             <th>Phương thức thanh toán</th>
                                             <th>Trạng thái thanh toán</th>
-                                            <th>Trạng thái đơn hàng</th>
-                                            <th>Tổng tiền</th>
+                                            <th>Trạng thái đơn hàng</th>	 	 	 	
+                                            <th>Tổng tiền</th>	 	 	 	
+                                            <th>Xem</th>	 	 	 	
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -42,11 +43,8 @@
                                             <td>{{$order->payment_method === "cod" ? "Thanh toán khi nhận hàng" : "Thanh toán online"}}</td>
                                             <td class="text-{{$order->payment_status === "ctt" ? "danger" : "success"}}">{{$order->payment_status === "ctt" ? "Chưa thanh toán" : "Đã thanh toán"}}</td>
                                             <td class="text-{{$order->status === "cxn" ? "warning" : ($order->status === "dxn" ? "info" : ($order->status === "dgh" ? "purple" : ($order->status === "ghtc" ? "success" : ($order->status === "ghtb" ? "danger" : ($order->status === "dh" ? "danger" : "success")))))}}">{{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Đã nhận hàng")))))}}</td>
-                                            <td>
-                                                <a href="{{ route('client.accounts.orderdetail', $order->id) }}" class="btn btn-info">
-                                                    View
-                                                </a>
-                                            </td>
+                                            <td class="text-danger fw-bold">{{number_format($order->total_price, 0, '', '.')}} vnđ</td>
+                                            <td><a class="view" href="{{route('client.order.detail', $order->id)}}">Xem</a></td>
                                         </tr>
                                         @empty
 

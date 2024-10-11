@@ -69,7 +69,7 @@
                             <div class="order-notes">
                                 <div class="checkout-form-list">
                                     <label>Ghi chú</label>
-                                    <textarea name="notes" id="checkout-mess" cols="30" rows="10"
+                                    <textarea name="note" id="checkout-mess" cols="30" rows="10"
                                         placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: ghi chú đặc biệt khi giao hàng."></textarea>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                                 <img src="{{".".Storage::url($cart->productVariant->image) }}" alt="Ảnh"
                                                     style="width: 50px; height: 50px; margin-right: 10px; vertical-align: middle;">
                                                 {{ $cart->productVariant->product->name }}({{ $cart->productVariant->ssd->name }} - {{ $cart->productVariant->color->name }}) <span class="product-quantity"> ×
-                                                    {{ $cart->productVariant_quantity }}</span>
+                                                    {{ $cart->variant_quantity }}</span>
                                             </td>
                                             <td class="product-total">
                                                 <span

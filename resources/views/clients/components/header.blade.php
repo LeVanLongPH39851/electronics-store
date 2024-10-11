@@ -38,7 +38,7 @@
               <ul>
                 <li>
                     @if (Auth::user())
-                     <img width="22px" class="border rounded-circle border-white" src="{{Auth::user()->image ? Auth::user()->image : "assets/images/users/avatar-default.png"}}" alt="">
+                     <img width="22px" class="border rounded-circle border-white" src="{{Auth::user()->image ? ".".Storage::url(Auth::user()->image) : "assets/images/users/avatar-default.png"}}" alt="">
                     @endif
                   <a href="{{Auth::user() ? route('client.account') : route('client.login')}}" class="ps-0">
                   {{Auth::user() ? Auth::user()->name : "Đăng nhập"}}
@@ -122,8 +122,8 @@
             <nav class="d-none d-lg-block">
               <ul class="header-bottom-list d-flex">
                 <li class="active">
-                  <a href="{{ route('client.index') }}"
-                    >home<i ></i
+                  <a href="{{route('client.index')}}"
+                    >Trang chủ<i ></i
                   ></a>
                   <!-- Home Version Dropdown Start -->
                   {{-- <ul class="ht-dropdown">
@@ -136,17 +136,16 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('client.shop') }}">Sản phẩm<i class="fa fa-angle-down"></i></a>
+                    <a href="{{route('client.shop')}}">Sản phẩm</a>
                     <!-- Bắt đầu Danh sách Dropdown -->
-                    <ul class="ht-dropdown dropdown-style-two">
-                      <li><a href="{{ route('client.order.detail')}}">chi tiết sản phẩm</a></li>
+                    {{-- <ul class="ht-dropdown dropdown-style-two">
+                      <li><a href="#">chi tiết sản phẩm</a></li>
                       <li><a href="compare.html">so sánh</a></li>
-                      <li><a href="{{ route('client.cart') }}">giỏ hàng</a></li>
-                      <li><a href="{{ route('client.checkouts.checkout') }}">thanh toán</a></li>
+                      <li><a href="#">giỏ hàng</a></li>
+                      <li><a href="#">thanh toán</a></li>
                       <li><a href="wishlist.html">danh sách yêu thích</a></li>
-                    </ul>
+                    </ul> --}}
                     <!-- Kết thúc Danh sách Dropdown -->
-                  </li>
                 <li>
                   <a href="blog.html"
                     >blog<i class="fa fa-angle-down"></i

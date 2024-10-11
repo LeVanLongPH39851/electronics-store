@@ -10,53 +10,69 @@
                     <!-- Tab panes -->
                     <div class="tab-content dashboard-content mt-all-40">
                         <div class="tab-pane fade show active">
-                            <h3 class="mb-4 fs-4">Chi tiết đơn hàng</h3>
-                            <div class="order-details mb-4">
-                                <h2 class="fs-5 text-center">Mã đơn hàng: <strong>{{ $order->order_code }}</strong></h2>
-                                <p class="fs-6 mb-3">Tên người nhận: <strong>{{ $order->user_name }}</strong></p>
-                                <p class="fs-6 mb-3">Email người nhận: <strong>{{ $order->user->email }}</strong></p>
-                                <p class="fs-6 mb-3">Số điện thoại người nhận: <strong>{{ $order->user_phone }}</strong></p>
-                                <p class="fs-6 mb-3">Địa chỉ người nhận: <strong>{{ $order->user_address }}</strong></p>
-                                <p class="fs-6 mb-3">Ngày đặt hàng: <strong>{{ $order->created_at->format('d-m-Y') }}</strong></p>
-                                <p class="fs-6 mb-3">Trạng thái đơn hàng: <strong class="text-primary">{{ $order->status }}</strong></p>
-                                <p class="fs-6 mb-3">Trạng thái thanh toán: <strong class="text-success">{{ $order->payment_status }}</strong></p>
-                                <p class="fs-6 mb-3">Tổng tiền hàng: <strong class="text-danger">{{ number_format($order->total_price, 0, ',', '.') }} VNĐ</strong></p>
+                            <div class="d-flex justify-content-between">
+                                <h3>Chi tiết đơn hàng</h3>
+                                @if ($order->status === "cxn")
+                                <div>
+                                    <a href="#"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#myModal">
+                                    <button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+                                    </a>
+                                </div>
+                                @elseif ($order->status === "ghtc")
+                                <div>
+                                    <form action="{{route('client.confirm', $order->id)}}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success" onclick="return confirm('Bạn có chắc chắn xác nhận không ?')">Xác nhận đơn hàng</button>
+                                    </form>
+                                </div>
+                                @else
+                                <p class="mb-0 text-{{$order->status === "cxn" ? "warning" : ($order->status === "dxn" ? "info" : ($order->status === "dgh" ? "purple" : ($order->status === "ghtc" ? "success" : ($order->status === "ghtb" ? "danger" : ($order->status === "dh" ? "danger" : "success")))))}}">
+                                    {{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Đã nhận hàng")))))}}
+                                </p>
+                                @endif
                             </div>
-
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover">
                                     <thead class="table-light">
                                         <tr>
-                                            <th scope="col">Tên sản phẩm</th>
-                                            <th scope="col">Hình ảnh</th>
-                                            <th scope="col">Màu sắc</th>
-                                            <th scope="col">SSD</th>
-                                            <th scope="col">Giá nhập</th>
-                                            <th scope="col">Giá niêm yết</th>
-                                            <th scope="col">Giá</th>
-                                            <th scope="col">Số lượng</th>
-                                            <th scope="col">Tổng giá</th>
-                                            <th scope="col">Phương thức thanh toán</th>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Ảnh</th>
+                                            <th>Giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành tiền</th>	 	 	 	
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($order->orderDetails as $item)
-                                            <tr>
-                                                <td>{{ $item->product_name }}</td>
-                                                <td>
-                                                    <img src="{{ '.' . Storage::url($item->product_variant_image) }}" class="img-fluid rounded" alt="{{ $item->product_name }}" style="width: 100px; height:120px;">
-                                                </td>
-                                                <td>{{ $item->color_name }}</td>
-                                                <td>{{ $item->ssd_name }}</td>
-                                                <td>{{ number_format($item->import_price, 0, ',', '.') }} VNĐ</td>
-                                                <td>{{ number_format($item->listed_price, 0, ',', '.') }} VNĐ</td>
-                                                <td>{{ number_format($item->price, 0, ',', '.') }} VNĐ</td>
-                                                <td>{{ $item->quantity }}</td>
-                                                <td>{{ number_format($item->price * $item->quantity, 0, ',', '.') }} VNĐ</td>
-                                                <td>Thanh toán bằng tiền mặt</td>
-                                            </tr>
+                                        @foreach ($order->orderDetails as $orderDetail)
+                                        <tr>
+                                            <td>{{$orderDetail->product_name}} ({{$orderDetail->color_name}} - {{$orderDetail->ssd_name}})</td>
+                                            <td><img src="{{".".Storage::url($orderDetail->product_variant_image)}}" class="product-detal-w"/></td>
+                                            <td class="text-danger">{{number_format($orderDetail->price, 0, '', '.')}} vnđ</td>
+                                            <td>{{$orderDetail->quantity}}</td>
+                                            <td class="text-danger">{{number_format($orderDetail->price * $orderDetail->quantity, 0, '', '.')}} vnđ</td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="4" class="text-start">
+                                                <p>Tên khách hàng: <span class="text-primary">{{$order->user_name}}</span></p>
+                                                <p>email: <span class="text-primary">{{$order->user->email}}</span></p>
+                                                <p>Số điện thoại: <span class="text-primary">{{$order->user_phone}}</span></p>
+                                                <p>Địa chỉ: <span class="text-primary">{{$order->user_address}}</span></p>
+                                                <p>Ghi chú: {{$order->note ?? "Không có ghi chú"}}</p>
+                                            </td>
+                                            <td class="text-start">
+                                                <p>Mã đơn hàng: <span class="text-success fw-bold">{{$order->order_code}}</span></p>
+                                                <p>Tổng tiền: <span class="text-danger fw-bold">{{number_format($order->total_price, 0, '', '.')}} vnđ</span></p>
+                                                <p>Phươn thức thanh toán: <span class="text-primary">{{$order->payment_method === "cod" ? "Thanh toán khi nhận hàng" : "Thanh toán online"}}</span></p>
+                                                <p>Trạng thái thanh toán: <span class="text-{{$order->payment_status === "ctt" ? "danger" : "success"}}">{{$order->payment_status === "ctt" ? "Chưa thanh toán" : "Đã thanh toán"}}</span></p>
+                                                <p>Trạng thái đơn hàng: <span class="text-{{$order->status === "cxn" ? "warning" : ($order->status === "dxn" ? "info" : ($order->status === "dgh" ? "purple" : ($order->status === "ghtc" ? "success" : ($order->status === "ghtb" ? "danger" : ($order->status === "dh" ? "danger" : "success")))))}}">{{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Đã nhận hàng")))))}}</span></p>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>
@@ -67,3 +83,6 @@
     </div>
 </div>
 <!-- My Account Page End Here -->
+@section('modal')
+@include('clients.components.modalcancel')
+@endsection
