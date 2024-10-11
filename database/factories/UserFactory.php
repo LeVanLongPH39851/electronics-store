@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'user_code' => "UR-".Str::random(5),
             'name' => $this->sanitizeName(fake()->name()),
             'email' => fake()->userName() . '@gmail.com',
-            'phone' => '0' . fake()->numberBetween(10000000, 99999999),
+            'phone' => '0' . fake()->numberBetween(100000000, 999999999),
             'address' => fake()->address(),
             'show_password' => $showPassword,
             'role' => 3,

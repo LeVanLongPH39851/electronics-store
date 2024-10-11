@@ -45,10 +45,17 @@
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
+                                                @if ($brand->products->count() > 0)
+                                                <button type="button"
+                                                onclick="return alert('Bạn không thể xóa hãng này !')"
+                                                class="btn-reset"><i
+                                                    class="las la-trash-alt text-secondary fs-18"></i></button>
+                                                @else
                                                 <button type="submit"
-                                                    onclick="return confirm('Bạn có chắc chắn xóa không ?')"
+                                                    onclick="return confirm('Bạn có muốn xóa không ?')"
                                                     class="btn-reset"><i
                                                         class="las la-trash-alt text-secondary fs-18"></i></button>
+                                                @endif
                                             </form>
                                         </td>
                                     </tr>

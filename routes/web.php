@@ -100,6 +100,9 @@ Route::post('/cart/update', [CartController::class, 'updateCart'])->name('client
 Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkouts.checkout');
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('client.checkouts.process');
+Route::get('/checkout/callback', [CheckoutController::class, 'handleVnPayCallback'])->name('client.vnpay.callback');
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');
-Route::get('/order-detail', [AccountController::class, 'orderDetail'])->name('client.order.detail');
+Route::get('/order-detail/{id}', [AccountController::class, 'orderDetail'])->name('client.order.detail');
+Route::post('/confirm/{id}', [AccountController::class, 'confirm'])->name('client.confirm');
+Route::post('/cancel/{id}', [AccountController::class, 'cancel'])->name('client.cancel');
 Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.accounts.thanhcong');

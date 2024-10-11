@@ -13,7 +13,7 @@ class OrderController extends Controller
     protected $classActive = "Đơn Hàng";
 
     public function index(){
-        $orders = Order::orderBy('created_at')->get();
+        $orders = Order::orderByDesc('created_at')->get();
         $template = 'admins.orders.list'; //Tạo biến template để include vào content của layout
 
         return view('admins.layout', [
@@ -42,16 +42,20 @@ class OrderController extends Controller
     public function update(Request $request, string $id){
         if($request->isMethod('POST')){
         $request->validate([
-         "status" => "required"
+         "status" => "required",
+         "note" => "required|max:255"
         ],
         [
-         "status" => "Vui lòng chọn trạng thái"
+         "status" => "Vui lòng chọn trạng thái",
+         "note" => "Vui lòng nhập ghi chú",
+         "note.max" => "Ghi chú quá dài"
         ]
         );    
         $order = Order::find($id);
         if($order){
             $oldStatus = $order->status;
             $order->status = $request->input('status');
+            $request->input('status') == "ghtc" ? $order->payment_status = "dtt" : "";
             $order->save();
             OrderHistory::create([
                 "from_status" => $oldStatus,
