@@ -12,7 +12,7 @@
               <ul class="vertical-menu-list">
                 @foreach ($categories as $category)
                 <li>
-                  <a href="shop.html"
+                  <a href="{{ route('client.shop') }}"
                     ><span
                       ><img
                         src="templates/img/vertical-menu/1.png"
@@ -138,11 +138,11 @@
                       src="{{".".Storage::url($newProduct->image)}}"
                       alt="single-product"
                     />
-                    <img
+                    {{-- <img
                       class="secondary-img"
                       src="{{".".Storage::url($newProduct->galleries->first()->path)}}"
                       alt="single-product"
-                    />
+                    /> --}}
                   </a>
                   {{-- <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div> --}}
                 </div>
@@ -166,7 +166,7 @@
                   <div class="pro-actions">
                     <div class="actions-primary">
                       <a
-                        href="cart.html"
+                        href="{{route('client.product.detail', $newProduct->id)}}"
                         class="px-1"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
@@ -188,7 +188,7 @@
                 <!-- Product Content End -->
                 {{-- <span class="sticker-new">mới</span> --}}
                 {{-- <span class="sticker-sale">-5%</span> --}}
-              </div>    
+              </div>
               @endforeach
               <!-- Single Product End -->
             </div>
@@ -6862,7 +6862,7 @@
                 /></a>
               </div>
             </div>
-            
+
             @foreach ($newProducts as $newProduct)
               <div class="single-product">
                 <!-- Product Image Start -->
@@ -6940,7 +6940,7 @@
                 <!-- Product Content End -->
                 <span class="sticker-new">mới</span>
                 {{-- <span class="sticker-sale">-5%</span> --}}
-              </div>    
+              </div>
               @endforeach
           </div>
           <!-- Main Product Wrpper Start Here -->

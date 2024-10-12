@@ -44,7 +44,7 @@
                     </div>
                     <!-- Price Filter Options End -->
                     <!-- Sidebar Categorie Start -->
-                    <div class="sidebar-categorie mb-30">
+                    {{-- <div class="sidebar-categorie mb-30">
                         <h3 class="sidebar-title">Màu</h3>
                         <ul class="sidbar-style">
                             @foreach ($listColor as $color)                         
@@ -69,7 +69,7 @@
                            @endforeach
                             
                         </ul>
-                    </div>
+                    </div> --}}
                     <!-- Product Size End -->
                     <!-- Product Color Start -->
                     {{-- <div class="color mb-30">
@@ -175,7 +175,7 @@
                                             <div class="pro-actions">
                                                 <div class="actions-primary">
                                                   <a
-                                                    href="cart.html"
+                                                    href="{{route('client.product.detail', $value->id)}}"
                                                     class="px-1"
                                                     data-bs-toggle="tooltip"
                                                     data-bs-placement="top"

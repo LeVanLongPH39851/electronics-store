@@ -25,9 +25,13 @@
                         <td>
                             <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning">Sửa</a>
                             <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có muốn xóa danh mục này không?')">Xóa</button>
+                            @csrf
+                            @method('DELETE')
+                            @if ($category->products->count() > 0)
+                            <button type="button" class="btn btn-danger" onclick="return alert('Bạn không thể xóa danh mục này !')">Xóa</button>
+                            @else
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có muốn xóa danh mục này không?')">Xóa</button>
+                            @endif
                             </form>
                         </td>
                     </tr>
