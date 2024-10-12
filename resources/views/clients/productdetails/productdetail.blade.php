@@ -68,6 +68,9 @@
                                    </div>
                                    @endforeach
                                </div>
+                               @if ($errors->has('color'))
+                                   <p class="text-danger mb-0">{{$errors->first('color')}}</p>
+                               @endif
                            </div>
 
                            <div class="product-size mb-20 clearfix">
@@ -80,6 +83,9 @@
                                     </div>
                                     @endforeach
                                 </div>
+                                @if ($errors->has('ssd'))
+                                   <p class="text-danger mb-0">{{$errors->first('ssd')}}</p>
+                               @endif
                             </div>
 
                            <div class="box-quantity d-flex my-4">
@@ -87,6 +93,9 @@
                                <input class="quantity mr-40" name="quantity" type="number" min="1" value="1">
                                <button class="btn add-cart" type="submit">Thêm vào giỏ hàng</button>
                            </div>
+                           @if ($errors->has('quantity'))
+                                   <p class="text-danger mb-0">{{$errors->first('quantity')}}</p>
+                               @endif
                            
                            <input type="hidden" name="product" value="{{$product->id}}">   
 
@@ -149,11 +158,11 @@
                       src="{{".".Storage::url($relatedProduct->image)}}"
                       alt="single-product"
                     />
-                    <img
+                    {{-- <img
                       class="secondary-img"
                       src="{{".".Storage::url($relatedProduct->galleries->first()->path)}}"
                       alt="single-product"
-                    />
+                    /> --}}
                   </a>
                   {{-- <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div> --}}
                 </div>
@@ -284,7 +293,7 @@ radio.addEventListener('click', function () {
 
         if (colorsChecked) {
             // Lọc ra các SSD hợp lệ dựa trên color được chọn
-            let validSSDs = productVariants.filter(variant => variant.color_id == colorValue.value)
+            let validSSDs = productVariants.filter(variant => variant.color_id == colorValue.value && variant.quantity > 0 )
                                             .map(variant => variant.ssd_id);
                                             
 
@@ -298,7 +307,7 @@ radio.addEventListener('click', function () {
 
         if (ssdsChecked) {
             // Lọc ra các màu hợp lệ dựa trên SSD được chọn
-            let validColors = productVariants.filter(variant => variant.ssd_id == ssdValue.value)
+            let validColors = productVariants.filter(variant => variant.ssd_id == ssdValue.value && variant.quantity > 0 )
                                             .map(variant => variant.color_id);
 
             // Disable màu không có trong danh sách hợp lệ

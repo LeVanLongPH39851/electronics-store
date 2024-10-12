@@ -30,7 +30,16 @@ class CartController extends Controller
             'color' => 'required|exists:colors,id',
             'ssd' => 'required|exists:ssds,id',
             'quantity' => 'required|integer|min:1',
-        ]);
+        ],
+        [
+            'color.required' => "Vui lòng nhập màu",
+            'color.exists' => "Màu không hợp lệ",
+            'ssd.required' => "Vui lòng nhập ssd",
+            'quantity.required' => "Vui lòng nhập số lượng",
+            'quantity.integer' => "Số lượng phải là số nguyên",
+            'quantity.min' => "Số lượng phải lớn hơn 0"
+        ]
+       );
 
         $product = Product::find($validatedData['product']);
         $productVariant = $product->productVariants->where('color_id', $validatedData['color'])->where('ssd_id', $validatedData['ssd'])->first();
@@ -75,6 +84,7 @@ class CartController extends Controller
     {
         $carts = Cart::with(['productVariant.ssd', 'productVariant.color'])
             ->where('user_id', Auth::id())
+            ->orderByDesc('id')
             ->get();
         $template = "clients.carts.cart";
         return view("clients.layout", ["title" => "Checkout", "template" => $template, "carts" => $carts]);

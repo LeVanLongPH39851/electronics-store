@@ -1,26 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admins\SsdController;
 use App\Http\Controllers\Admins\AuthController;
+use App\Http\Controllers\Admins\UserController;
 use App\Http\Controllers\Admins\BrandController;
 use App\Http\Controllers\Admins\ColorController;
-use App\Http\Controllers\Admins\Categories\CategoryController;
-use App\Http\Controllers\Admins\UserController;
+use App\Http\Controllers\Admins\OrderController;
 use App\Http\Controllers\Admins\StaffController;
 use App\Http\Controllers\Clients\CartController;
 use App\Http\Controllers\Clients\HomeController;
 use App\Http\Controllers\Clients\ShopController;
 use App\Http\Controllers\Clients\LoginController;
+use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Clients\AccountController;
 use App\Http\Controllers\Admins\DashboardController;
-use App\Http\Controllers\Admins\OrderController;
-use App\Http\Controllers\Admins\ProductController;
-use App\Http\Controllers\Admins\SsdController;
-use App\Http\Controllers\Admins\Trashs\ProductTrashController;
+use App\Http\Controllers\Clients\CheckoutController;
+use App\Http\Controllers\Clients\OrderDetailController;
 use App\Http\Controllers\Clients\ProductDetailController;
 use App\Http\Controllers\Admins\Trashs\UserTrashController;
 use App\Http\Controllers\Admins\Trashs\StaffTrashController;
-use App\Http\Controllers\Clients\VnPayController;
+use App\Http\Controllers\Admins\Categories\CategoryController;
+use App\Http\Controllers\Admins\Trashs\ProductTrashController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,10 +98,12 @@ Route::get('/product-detail/{id}', [ProductDetailController::class, 'productDeta
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('client.addToCart');
 Route::get('/cart', [CartController::class, 'showCart'])->name('client.cart');
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('client.updateCart');
-Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
-Route::get('/checkout', [VnPayController::class, 'checkout'])->name('client.checkouts.checkout');
-Route::get('/checkout/callback', [VnPayController::class, 'handleVnPayCallback'])->name('client.vnpay.callback');
-Route::post('/vnpay_payment', [VnPayController::class, 'vnpay_payment'])->name('client.vnpay.payment');
+Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkouts.checkout');
+Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('client.checkouts.process');
+Route::get('/checkout/callback', [CheckoutController::class, 'handleVnPayCallback'])->name('client.vnpay.callback');
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');
-Route::get('/order-detail', [AccountController::class, 'orderDetail'])->name('client.order.detail');
+Route::get('/order-detail/{id}', [AccountController::class, 'orderDetail'])->name('client.order.detail');
+Route::post('/confirm/{id}', [AccountController::class, 'confirm'])->name('client.confirm');
+Route::post('/cancel/{id}', [AccountController::class, 'cancel'])->name('client.cancel');
 Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.accounts.thanhcong');

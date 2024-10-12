@@ -18,6 +18,7 @@ class Order extends Model
         'user_name',
         'user_phone',
         'user_address',
+        'note',
         'voucher_id',
         'user_id'
     ];
@@ -27,7 +28,7 @@ class Order extends Model
     }
 
     public function orderDetails(){
-        return $this->hasMany(OrderDetail::class, 'order_id');
+        return $this->hasMany(OrderDetail::class, 'order_id')->orderByDesc('id');
     }
 
     public function orderHistories(){
