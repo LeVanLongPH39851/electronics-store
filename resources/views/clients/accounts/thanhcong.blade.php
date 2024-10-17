@@ -14,7 +14,7 @@
             <div class="text-center mt-3">
                 <a href="{{ route('client.shop') }}" class="btn btn-outline-success mx-2">Tiếp tục mua sắm</a>
                 @php
-                    $order = DB::table('orders')->orderByDesc('created_at')->first();
+                    $order = DB::table('orders')->where('user_id', Auth::id())->orderByDesc('created_at')->first();
                 @endphp
                 <a href="{{route('client.order.detail', $order->id)}}" class="btn btn-outline-primary mx-2">Chi tiết đơn hàng</a>
             </div> 

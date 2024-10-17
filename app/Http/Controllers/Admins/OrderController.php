@@ -13,7 +13,7 @@ class OrderController extends Controller
     protected $classActive = "Đơn Hàng";
 
     public function index(){
-        $orders = Order::orderByDesc('created_at')->get();
+        $orders = Order::orderByDesc('created_at')->paginate(15);
         $template = 'admins.orders.list'; //Tạo biến template để include vào content của layout
 
         return view('admins.layout', [
