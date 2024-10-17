@@ -16,6 +16,7 @@ use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Clients\AccountController;
 use App\Http\Controllers\Admins\DashboardController;
 use App\Http\Controllers\Clients\CheckoutController;
+use App\Http\Controllers\Admins\DiscountCodeController;
 use App\Http\Controllers\Clients\OrderDetailController;
 use App\Http\Controllers\Clients\ProductDetailController;
 use App\Http\Controllers\Admins\Trashs\UserTrashController;
@@ -59,6 +60,7 @@ Route::middleware(['admin'])->group(function () {
         Route::post('/product-trash/restore', [ProductTrashController::class, 'restore'])->name('product.restore');
         Route::resource('/product-trash', ProductTrashController::class);
         Route::resource('/categories', CategoryController::class);
+        //-----------------------------------quản lí nhân viên----------------------------------------------------------------
         Route::middleware(['staff'])->group(function () {
             Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');
             Route::post('/staff-trash/delete', [StaffTrashController::class, 'delete'])->name('staff.delete');
@@ -80,30 +82,40 @@ Route::middleware(['admin'])->group(function () {
         Route::get('/ssd/edit/{id}', [SsdController::class, 'edit'])->name('ssd.edit');
         Route::post('/ssd/update/{id}', [SsdController::class, 'update'])->name('ssd.update');
         Route::delete('/ssd/delete/{id}', [SsdController::class, 'destroy'])->name('ssd.destroy');
+        //---------------------------------------quản lí đơn hàng------------------------------------------------
         Route::get('/order', [OrderController::class, 'index'])->name('order.index');
         Route::get('/order/{id}', [OrderController::class, 'show'])->name('order.show');
         Route::post('/order/{id}', [OrderController::class, 'update'])->name('order.update');
+        //--------------------------------------quản lí mã giảm giá----------------------------------------------------------------
+        Route::resource('discount-codes', DiscountCodeController::class);
     });
 });
 
 // route client
 Route::get('/', [HomeController::class, 'index'])->name('client.index');
+//----------------------------------tài khoản----------------------------------------------------------------
 Route::get('/login', [LoginController::class, 'login'])->name('client.login');
 Route::get('/signup', [LoginController::class, 'signup'])->name('client.signup');
 Route::get('/logout', [LoginController::class, 'logout'])->name('client.logout');
+//-------------------------------------shop----------------------------------------------------
 Route::post('/store', [LoginController::class, 'store'])->name('client.store');
 Route::post('/store-signup', [LoginController::class, 'storeSignup'])->name('client.store.signup');
 Route::get('/shop', [ShopController::class, 'shop'])->name('client.shop');
 Route::get('/product-detail/{id}', [ProductDetailController::class, 'productDetail'])->name('client.product.detail');
+//------------------------------------giỏ hàng----------------------------------------------------------------
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('client.addToCart');
 Route::get('/cart', [CartController::class, 'showCart'])->name('client.cart');
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('client.updateCart');
 Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('client.removeFromCart');
+//------------------------------------thanh toán----------------------------------------------------------------
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkouts.checkout');
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('client.checkouts.process');
 Route::get('/checkout/callback', [CheckoutController::class, 'handleVnPayCallback'])->name('client.vnpay.callback');
+
 Route::get('/account', [AccountController::class, 'account'])->name('client.account');
 Route::get('/order-detail/{id}', [AccountController::class, 'orderDetail'])->name('client.order.detail');
 Route::post('/confirm/{id}', [AccountController::class, 'confirm'])->name('client.confirm');
 Route::post('/cancel/{id}', [AccountController::class, 'cancel'])->name('client.cancel');
 Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.accounts.thanhcong');
+//------------------------------------mã giảm giá------------------------------------------------
+Route::post('/apply-discount', [DiscountCodeController::class, 'applyDiscount']);
