@@ -77,6 +77,7 @@
                                     <th>Trạng thái thanh toán</th>
                                     <th>Trạng thái đơn hàng</th>
                                     <th>Tổng tiền</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -183,6 +184,9 @@
                                         </td>
                                         <td class="text-danger">
                                             <strong>{{ number_format($order->total_price, 0, '', '.') }} vnđ</strong>
+                                        </td>
+                                        <td>
+                                            <a href="{{route('order.show', $order->id)}}"><i class="las la-pen text-secondary fs-18"></i></a>
                                         </td>
                                     </tr>
                                 @empty

@@ -15,16 +15,13 @@ class OrderController extends Controller
 
     public function index(Request $request)
     {
-        // Get input values
-        $time_value = $request->input('time_value');  // Numeric input for time
-        $time_unit = $request->input('time_unit');    // Unit of time (s, m, h, d)
+        // Lấy giá trị ô input
+        $time_value = $request->input('time_value');
+        $time_unit = $request->input('time_unit');
         
-        // Initialize current time
         $now = Carbon::now();
     
-        // Check if both time_value and time_unit are provided
         if ($time_value && $time_unit) {
-            // Convert time_value to a Carbon duration based on the time_unit
             switch ($time_unit) {
                 case 's':
                     $duration = Carbon::now()->addSeconds($time_value);
@@ -39,35 +36,29 @@ class OrderController extends Controller
                     $duration = Carbon::now()->addDays($time_value);
                     break;
                 default:
-                    $duration = $now; // Default to now if unit is invalid
+                    $duration = $now;
                     break;
             }
-    
-            // Get orders that have a delivered_at timestamp and status is 'ghtc'
+
             $orders = Order::whereNotNull('delivered_at')
                 ->where('status', 'ghtc')
                 ->get();
-    
+                
             foreach ($orders as $order) {
-                // Calculate waiting time based on the delivered_at timestamp
                 $delivered_at = Carbon::parse($order->delivered_at);
                 $waiting_time = $delivered_at->copy()->addSeconds($duration->diffInSeconds($now));
     
-                // Update the order's waiting time
                 $order->waiting_time = $waiting_time->toDateTimeString();
                 $order->save();
             }
     
-            // Update order status from 'ghtc' to 'dndh' if waiting time has elapsed
             Order::where('status', 'ghtc')
                 ->where('waiting_time', '<=', $now)
                 ->update(['status' => 'dndh']);
         }
     
-        // Retrieve all orders for display
         $orders = Order::orderBy('created_at')->get();
         
-        // Define template for rendering
         $template = 'admins.orders.list';
     
         return view('admins.layout', [
@@ -112,6 +103,7 @@ class OrderController extends Controller
             $request->input('status') == "ghtc" ? $order->payment_status = "dtt" : "";
             if ($order->status === 'ghtc') {
                 $order->delivered_at = now();
+                $order->waiting_time = now()->addDays(4);
             }
             $order->save();
             OrderHistory::create([
