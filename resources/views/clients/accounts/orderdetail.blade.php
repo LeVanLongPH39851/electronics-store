@@ -42,18 +42,35 @@
                                             <th>Giá</th>
                                             <th>Số lượng</th>
                                             <th>Thành tiền</th>	 	 	 	
+                                            <th>Hành động</th>	 	 	 	
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($order->orderDetails as $orderDetail)
-                                        <tr>
-                                            <td>{{$orderDetail->product_name}} ({{$orderDetail->color_name}} - {{$orderDetail->ssd_name}})</td>
-                                            <td><img src="{{".".Storage::url($orderDetail->product_variant_image)}}" class="product-detal-w"/></td>
-                                            <td class="text-danger">{{number_format($orderDetail->price, 0, '', '.')}} vnđ</td>
-                                            <td>{{$orderDetail->quantity}}</td>
-                                            <td class="text-danger">{{number_format($orderDetail->price * $orderDetail->quantity, 0, '', '.')}} vnđ</td>
-                                        </tr>
-                                        @endforeach
+                                            <tr>
+                                                <td>{{$orderDetail->product_name}} ({{$orderDetail->color_name}} - {{$orderDetail->ssd_name}})</td>
+                                                <td><img src="{{".".Storage::url($orderDetail->product_variant_image)}}" class="product-detal-w"/></td>
+                                                <td class="text-danger">{{number_format($orderDetail->price, 0, '', '.')}} vnđ</td>
+                                                <td>{{$orderDetail->quantity}}</td>
+                                                <td class="text-danger">{{number_format($orderDetail->price * $orderDetail->quantity, 0, '', '.')}} vnđ</td>
+
+                                                <!-- Thêm nút Đánh giá nếu trạng thái đơn hàng là đã nhận hàng -->
+                                                <td>
+                                                    @if ($order->status === "dndh")
+                                                    <div class="mt-2">
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModalReviews-{{$orderDetail->id}}">
+                                                            Đánh giá
+                                                        </button>
+                                                        
+                                                    </div>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                             <!-- Gọi modalreview.blade.php và truyền dữ liệu -->
+                                            @include('clients.components.modalreview', ['orderDetail' => $orderDetail, 'order' => $order])
+                                            @endforeach
+
+
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -70,6 +87,8 @@
                                                 <p>Phươn thức thanh toán: <span class="text-primary">{{$order->payment_method === "cod" ? "Thanh toán khi nhận hàng" : "Thanh toán online"}}</span></p>
                                                 <p>Trạng thái thanh toán: <span class="text-{{$order->payment_status === "ctt" ? "danger" : "success"}}">{{$order->payment_status === "ctt" ? "Chưa thanh toán" : "Đã thanh toán"}}</span></p>
                                                 <p>Trạng thái đơn hàng: <span class="text-{{$order->status === "cxn" ? "warning" : ($order->status === "dxn" ? "info" : ($order->status === "dgh" ? "purple" : ($order->status === "ghtc" ? "success" : ($order->status === "ghtb" ? "danger" : ($order->status === "dh" ? "danger" : "success")))))}}">{{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Đã nhận hàng")))))}}</span></p>
+
+                                                   
                                             </td>
                                         </tr>
                                     </tfoot>

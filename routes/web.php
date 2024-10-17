@@ -22,6 +22,7 @@ use App\Http\Controllers\Admins\Trashs\UserTrashController;
 use App\Http\Controllers\Admins\Trashs\StaffTrashController;
 use App\Http\Controllers\Admins\Categories\CategoryController;
 use App\Http\Controllers\Admins\Trashs\ProductTrashController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,3 +108,8 @@ Route::get('/order-detail/{id}', [AccountController::class, 'orderDetail'])->nam
 Route::post('/confirm/{id}', [AccountController::class, 'confirm'])->name('client.confirm');
 Route::post('/cancel/{id}', [AccountController::class, 'cancel'])->name('client.cancel');
 Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.accounts.thanhcong');
+
+// đánh giá
+Route::post('/order/{orderId}/product/{orderDetailId}/review', [ReviewController::class, 'store'])->name('client.review.store');
+Route::get('product/{productId}/reviews', [ReviewController::class, 'index'])->name('client.review.index');
+Route::get('product/{productId}/reviews/show', [ReviewController::class, 'show'])->name('client.review.show');

@@ -78,3 +78,67 @@
 .aspect-ratio {
     aspect-ratio: 1/1;
 }
+
+.star-rating .fa-star {
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc; /* Màu sao chưa chọn */
+}
+
+.star-rating .fa-star.selected {
+    color: #ffd700; /* Màu sao khi được chọn */
+}
+
+.product-reviews {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.review-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.review-content {
+    padding-left: 15px;
+}
+
+.review-username {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.star-rating {
+    color: #ffd700; /* Màu vàng cho sao */
+}
+
+.review-text {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.review-date {
+    color: #999;
+    font-size: 14px;
+}
+
+.star-rating .fa-star {
+    font-size: 14px; /* Điều chỉnh kích thước nếu cần */
+}
+
+.star-rating .fa-solid {
+    color: gold; /* Màu cho các sao được chọn */
+}
+
+.star-rating .fa-regular {
+    color: gray; /* Màu cho các sao không được chọn */
+}
