@@ -20,7 +20,9 @@ class Order extends Model
         'user_address',
         'note',
         'voucher_id',
-        'user_id'
+        'user_id',
+        'delivered_at',
+        'waiting_time'
     ];
 
     public function user(){

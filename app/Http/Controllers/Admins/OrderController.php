@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admins;
 
+use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\OrderHistory;
 use Illuminate\Http\Request;
@@ -12,15 +13,59 @@ class OrderController extends Controller
 {
     protected $classActive = "Đơn Hàng";
 
-    public function index(){
-        $orders = Order::orderByDesc('created_at')->get();
-        $template = 'admins.orders.list'; //Tạo biến template để include vào content của layout
+    public function index(Request $request)
+    {
+        // Lấy giá trị ô input
+        $time_value = $request->input('time_value');
+        $time_unit = $request->input('time_unit');
+        
+        $now = Carbon::now();
+    
+        if ($time_value && $time_unit) {
+            switch ($time_unit) {
+                case 's':
+                    $duration = Carbon::now()->addSeconds($time_value);
+                    break;
+                case 'm':
+                    $duration = Carbon::now()->addMinutes($time_value);
+                    break;
+                case 'h':
+                    $duration = Carbon::now()->addHours($time_value);
+                    break;
+                case 'd':
+                    $duration = Carbon::now()->addDays($time_value);
+                    break;
+                default:
+                    $duration = $now;
+                    break;
+            }
 
+            $orders = Order::whereNotNull('delivered_at')
+                ->where('status', 'ghtc')
+                ->get();
+                
+            foreach ($orders as $order) {
+                $delivered_at = Carbon::parse($order->delivered_at);
+                $waiting_time = $delivered_at->copy()->addSeconds($duration->diffInSeconds($now));
+    
+                $order->waiting_time = $waiting_time->toDateTimeString();
+                $order->save();
+            }
+    
+            Order::where('status', 'ghtc')
+                ->where('waiting_time', '<=', $now)
+                ->update(['status' => 'dndh']);
+        }
+    
+        $orders = Order::orderBy('created_at')->get();
+        
+        $template = 'admins.orders.list';
+    
         return view('admins.layout', [
-         'title' => 'Danh Sách Đơn Hàng',
-         'template' => $template,
-         'classActive' => $this->classActive,
-         'orders' => $orders
+            'title' => 'Danh Sách Đơn Hàng',
+            'template' => $template,
+            'classActive' => $this->classActive,
+            'orders' => $orders
         ]);
     }
 
@@ -56,6 +101,10 @@ class OrderController extends Controller
             $oldStatus = $order->status;
             $order->status = $request->input('status');
             $request->input('status') == "ghtc" ? $order->payment_status = "dtt" : "";
+            if ($order->status === 'ghtc') {
+                $order->delivered_at = now();
+                $order->waiting_time = now()->addDays(4);
+            }
             $order->save();
             OrderHistory::create([
                 "from_status" => $oldStatus,
