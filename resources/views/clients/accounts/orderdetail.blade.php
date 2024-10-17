@@ -34,7 +34,7 @@
                                 @endif
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-bordered text-center table-detail">
                                     <thead class="table-light">
                                         <tr>
                                             <th>Tên sản phẩm</th>
