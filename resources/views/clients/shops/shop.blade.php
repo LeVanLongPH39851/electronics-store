@@ -161,11 +161,21 @@
                                             <div class="pro-info">
                                                 <h4><a href="product.html">{{ $value->name }}</a></h4>
                                                 <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
+                                                    @php
+                                                    $averageRating = $value->reviews_avg_star ?? 0; // Điểm đánh giá trung bình
+                                                    $fullStars = floor($averageRating);
+                                                    $halfStar = $averageRating - $fullStars;
+                                                @endphp
+                                                
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    @if ($i <= $fullStars)
+                                                        <i class="fa-solid fa-star" style="color: gold;"></i> <!-- Sao đầy -->
+                                                    @elseif ($i == $fullStars + 1 && $halfStar >= 0.5)
+                                                        <i class="fa-solid fa-star-half-alt" style="color: gold;"></i> <!-- Nửa sao -->
+                                                    @else
+                                                        <i class="fa-regular fa-star" style="color: gray;"></i> <!-- Sao rỗng -->
+                                                    @endif
+                                                @endfor
                                                 </div>
                                                 <p>
                                                     <span class="price" style="font-size: 16px">{{number_format($value->productVariants->min('price'), 0, '', '.')}}đ - {{number_format($value->productVariants->max('price'), 0, '', '.')}}đ</span

@@ -25,25 +25,26 @@ class CartController extends Controller
         }
 
         // Xác thực dữ liệu đầu vào
-        $validatedData = $request->validate([
-            'product' => 'required|exists:products,id',
-            'color' => 'required|exists:colors,id',
-            'ssd' => 'required|exists:ssds,id',
-            'quantity' => 'required|integer|min:1',
-        ],
-        [
-            'color.required' => "Vui lòng nhập màu",
-            'color.exists' => "Màu không hợp lệ",
-            'ssd.required' => "Vui lòng nhập ssd",
-            'quantity.required' => "Vui lòng nhập số lượng",
-            'quantity.integer' => "Số lượng phải là số nguyên",
-            'quantity.min' => "Số lượng phải lớn hơn 0"
-        ]
-       );
+        $validatedData = $request->validate(
+            [
+                'product' => 'required|exists:products,id',
+                'color' => 'required|exists:colors,id',
+                'ssd' => 'required|exists:ssds,id',
+                'quantity' => 'required|integer|min:1',
+            ],
+            [
+                'color.required' => "Vui lòng nhập màu",
+                'color.exists' => "Màu không hợp lệ",
+                'ssd.required' => "Vui lòng nhập ssd",
+                'quantity.required' => "Vui lòng nhập số lượng",
+                'quantity.integer' => "Số lượng phải là số nguyên",
+                'quantity.min' => "Số lượng phải lớn hơn 0"
+            ]
+        );
 
         $product = Product::find($validatedData['product']);
         $productVariant = $product->productVariants->where('color_id', $validatedData['color'])->where('ssd_id', $validatedData['ssd'])->first();
-        if(!$productVariant){
+        if (!$productVariant) {
             return redirect()->back()->with('error', 'Thêm giỏ hàng không thành công');
         }
 
@@ -93,14 +94,14 @@ class CartController extends Controller
     public function updateCart(Request $request)
     {
         $count = Cart::where('user_id', Auth::id())->get();
-        if($count->isEmpty()){
-        return redirect()->route('client.cart')->with('error', 'Chưa có sản phẩm nào trong giỏ hàng');
+        if ($count->isEmpty()) {
+            return redirect()->route('client.cart')->with('error', 'Chưa có sản phẩm nào trong giỏ hàng');
         }
-        if(!$request->quantities || count($request->quantities) !== $count->count()){
+        if (!$request->quantities || count($request->quantities) !== $count->count()) {
             return redirect()->route('client.cart')->with('error', "Lỗi cập nhật giỏ hàng");
         }
         foreach ($request->quantities as $cartId => $quantity) {
-            if($quantity <= 0){
+            if ($quantity <= 0) {
                 return redirect()->route('client.cart')->with('error', 'Số lượng sản phẩm phải lớn hơn không');
             }
             $cart = Cart::find($cartId);
@@ -113,7 +114,7 @@ class CartController extends Controller
 
                 $cart->variant_quantity = $quantity;
                 $cart->save();
-            }else{
+            } else {
                 return redirect()->route('client.cart')->with('error', "Lỗi cập nhật giỏ hàng");
             }
         }

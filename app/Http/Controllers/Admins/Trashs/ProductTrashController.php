@@ -14,26 +14,31 @@ class ProductTrashController extends Controller
      */
 
     protected $classActive = "Sản Phẩm";
-     
+
     public function index()
     {
-        $products = Product::with('category')  // Nối thêm bảng category
-        ->withMin('productVariants', 'price')  // Lấy giá min của productVariants
-        ->withMax('productVariants', 'price')  // Lấy giá max của productVariants
-        ->withSum('productVariants', 'quantity') // Lấy tổng số lượng
-        ->orderByDesc('created_at')
-        ->onlyTrashed()
-        ->paginate(8);
+        $products = Product::with('category')  // Nạp bảng category
+            ->withMin('productVariants', 'price')  // Lấy giá min của productVariants
+            ->withMax('productVariants', 'price')  // Lấy giá max của productVariants
+            ->withSum('productVariants', 'quantity') // Lấy tổng số lượng
+            ->withSum('productVariants', 'sold_quantity') // Tổng số lượng đã bán
+            ->withSum('productVariants', 'price') // Tính doanh thu
+            // ->withCount('reviews') // Đếm tổng số đánh giá cho từng sản phẩm
+            // ->withAvg('reviews', 'rating') // Tính điểm đánh giá trung bình cho sản phẩm
+            ->orderByDesc('created_at')
+            ->onlyTrashed() // Lấy sản phẩm đã bị xóa mềm
+            ->paginate(8);
 
-        $template = 'admins.products.trash'; //Tạo biến template để include vào content của layout
+        $template = 'admins.products.trash'; // Tạo biến template để include vào content của layout
 
         return view('admins.layout', [
-         'title' => 'Sản Phẩm Đã Xóa',
-         'template' => $template,
-         'classActive' => $this->classActive,
-         'products' => $products,
+            'title' => 'Sản Phẩm Đã Xóa',
+            'template' => $template,
+            'classActive' => $this->classActive,
+            'products' => $products,
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -72,13 +77,13 @@ class ProductTrashController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if($request->isMethod("PUT")){
-            
+        if ($request->isMethod("PUT")) {
+
             $product = Product::onlyTrashed()->find($id); //Tìm product đã xóa có id đấy
 
-            if($product){
-             $product->restore(); //Khôi phục
-             return redirect()->back()->with("success", "Khôi phục thành công");
+            if ($product) {
+                $product->restore(); //Khôi phục
+                return redirect()->back()->with("success", "Khôi phục thành công");
             }
 
             return redirect()->back()->with("error", "Không tìm thấy sản phẩm");
@@ -94,17 +99,17 @@ class ProductTrashController extends Controller
     {
         $product = Product::onlyTrashed()->find($id); //Tìm product đã xóa có id đấy
 
-        if($product){
-            
-            foreach($product->galleries as $gallery){
-                if($gallery->path && Storage::disk('public')->exists($gallery->path)){
-                Storage::disk('public')->delete($gallery->path);
+        if ($product) {
+
+            foreach ($product->galleries as $gallery) {
+                if ($gallery->path && Storage::disk('public')->exists($gallery->path)) {
+                    Storage::disk('public')->delete($gallery->path);
                 }
             }
 
-            foreach($product->productVariants as $productVariant){
-                if($productVariant->image && Storage::disk('public')->exists($productVariant->image)){
-                Storage::disk('public')->delete($productVariant->image);
+            foreach ($product->productVariants as $productVariant) {
+                if ($productVariant->image && Storage::disk('public')->exists($productVariant->image)) {
+                    Storage::disk('public')->delete($productVariant->image);
                 }
             }
 
@@ -118,79 +123,82 @@ class ProductTrashController extends Controller
     }
 
     //Xóa mềm nhiều
-    public function trash(Request $request){
-        if($request->isMethod("POST")){
+    public function trash(Request $request)
+    {
+        if ($request->isMethod("POST")) {
 
-        $arrayOfValues = explode(',', $request->input("selectedValues")); //Lấy tất cả id đc chọn
-        
-        foreach($arrayOfValues as $arrayOfValue){
-            
-            $product = Product::find($arrayOfValue);
+            $arrayOfValues = explode(',', $request->input("selectedValues")); //Lấy tất cả id đc chọn
 
-            if($product){
-             $product->delete(); //Xóa mềm nhiều
-            }else{
-             return redirect()->back()->with("error", "Không tìm thấy sản phẩm");
+            foreach ($arrayOfValues as $arrayOfValue) {
+
+                $product = Product::find($arrayOfValue);
+
+                if ($product) {
+                    $product->delete(); //Xóa mềm nhiều
+                } else {
+                    return redirect()->back()->with("error", "Không tìm thấy sản phẩm");
+                }
             }
-        }
 
-        return redirect()->back()->with("success", "Chuyển vào thùng rác thành công");
+            return redirect()->back()->with("success", "Chuyển vào thùng rác thành công");
         }
 
         return redirect()->back()->with("error", "Chuyển vào thùng rác thất bại");
     }
 
     //Xóa vĩnh viễn nhiều
-    public function delete(Request $request){
-        if($request->isMethod("POST")){
-        $arrayOfValues = explode(',', $request->input("selectedValues")); //Lấy tất cả id đc chọn
-        
-        foreach($arrayOfValues as $arrayOfValue){
-            $product = Product::onlyTrashed()->find($arrayOfValue);
+    public function delete(Request $request)
+    {
+        if ($request->isMethod("POST")) {
+            $arrayOfValues = explode(',', $request->input("selectedValues")); //Lấy tất cả id đc chọn
 
-            if($product){
-            foreach($product->galleries as $gallery){
-                if($gallery->path && Storage::disk('public')->exists($gallery->path)){
-                Storage::disk('public')->delete($gallery->path);
+            foreach ($arrayOfValues as $arrayOfValue) {
+                $product = Product::onlyTrashed()->find($arrayOfValue);
+
+                if ($product) {
+                    foreach ($product->galleries as $gallery) {
+                        if ($gallery->path && Storage::disk('public')->exists($gallery->path)) {
+                            Storage::disk('public')->delete($gallery->path);
+                        }
+                    }
+                    foreach ($product->productVariants as $productVariant) {
+                        if ($productVariant->image && Storage::disk('public')->exists($productVariant->image)) {
+                            Storage::disk('public')->delete($productVariant->image);
+                        }
+                    }
+
+                    Storage::disk('public')->delete($product->image);
+                    $product->forceDelete(); //Xóa cứng
+
+                } else {
+                    return redirect()->back()->with("error", "Không tìm thấy sản phẩm");
                 }
             }
-            foreach($product->productVariants as $productVariant){
-                if($productVariant->image && Storage::disk('public')->exists($productVariant->image)){
-                Storage::disk('public')->delete($productVariant->image);
-                }
-            }
-            
-            Storage::disk('public')->delete($product->image);
-            $product->forceDelete(); //Xóa cứng
 
-            }else{
-            return redirect()->back()->with("error", "Không tìm thấy sản phẩm");
-            }
-        }
-        
-        return redirect()->back()->with("success", "Xóa vĩnh viễn thành công");
+            return redirect()->back()->with("success", "Xóa vĩnh viễn thành công");
         }
 
         return redirect()->back()->with("error", "Xóa vĩnh viễn thất bại");
     }
 
-    public function restore(Request $request) {
-        if($request->isMethod("POST")){
+    public function restore(Request $request)
+    {
+        if ($request->isMethod("POST")) {
 
-        $arrayOfValues = explode(',', $request->input("selectedValues")); //Lấy tất cả id đc chọn
-        
-        foreach($arrayOfValues as $arrayOfValue){
+            $arrayOfValues = explode(',', $request->input("selectedValues")); //Lấy tất cả id đc chọn
 
-            $product = Product::onlyTrashed()->find($arrayOfValue); //Tìm product đã xóa
+            foreach ($arrayOfValues as $arrayOfValue) {
 
-            if($product){
-                $product->restore(); //Khôi phục
-            }else{
-                return redirect()->back()->with("error", "Không tìm thấy sản phẩm");
+                $product = Product::onlyTrashed()->find($arrayOfValue); //Tìm product đã xóa
+
+                if ($product) {
+                    $product->restore(); //Khôi phục
+                } else {
+                    return redirect()->back()->with("error", "Không tìm thấy sản phẩm");
+                }
             }
-        }
 
-        return redirect()->back()->with("success", "Khôi phục thành công");
+            return redirect()->back()->with("success", "Khôi phục thành công");
         }
 
         return redirect()->back()->with("error", "Khôi phục thất bại");

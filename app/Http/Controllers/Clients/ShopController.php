@@ -21,7 +21,8 @@ class ShopController extends Controller
 
         $listProduct = Product::withMin('productVariants', 'price')
             ->withMax('productVariants', 'price')
-            ->withSum('productVariants', 'quantity');
+            ->withSum('productVariants', 'quantity')
+            ->withAvg('reviews', 'star');
 
         // Lọc theo danh mục
         if ($request->input('category')) {
@@ -29,7 +30,7 @@ class ShopController extends Controller
         }
 
         if ($request->input('search')) {
-            $listProduct = $listProduct->where('name', "LIKE", "%".$request->input('search')."%");
+            $listProduct = $listProduct->where('name', "LIKE", "%" . $request->input('search') . "%");
         }
 
         if ($request->input('price_filter')) {
@@ -77,9 +78,9 @@ class ShopController extends Controller
         } else {
             $price = 0;
         }
-        
-        if($request->input('sort') && $request->input('sort') != 0 ){
-            switch($request->input('sort')){
+
+        if ($request->input('sort') && $request->input('sort') != 0) {
+            switch ($request->input('sort')) {
                 case "nameAZ":
                     $listProduct->orderBy('name');
                     break;
@@ -94,9 +95,9 @@ class ShopController extends Controller
                     break;
             }
         }
-        
+
         $listProduct = $listProduct->orderByDesc('created_at')->paginate(8);
-        
+
         return view(
             "clients.layout",
             [

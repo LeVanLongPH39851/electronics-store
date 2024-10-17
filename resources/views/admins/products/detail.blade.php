@@ -60,7 +60,7 @@
                                         <i class="iconoir-dollar-circle fs-24 align-self-center text-danger me-2"></i>
                                         <div class="flex-grow-1 text-truncate">
                                             <p class="text-danger mb-0 fw-semibold fs-13">Doanh thu</p>    
-                                            <h3 class="mt-1 mb-0 fs11 fw-bold text-danger">200.000.000 vnđ</h3>                                                                                                                                   
+                                            <h3 class="mt-1 mb-0 fs11 fw-bold text-danger"> {{ number_format($totalRevenue) }} VNĐ</h3>                                                                                                                                   
                                         </div><!--end media body-->
                                     </div>
                                 </div><!--end card-body-->
@@ -73,7 +73,7 @@
                                         <i class="iconoir-cart fs-24 align-self-center text-blue me-2"></i>
                                         <div class="flex-grow-1 text-truncate"> 
                                             <p class="text-blue mb-0 fw-semibold fs-13">Đã bán</p>    
-                                            <h3 class="mt-1 mb-0 fs11 fw-bold text-blue">190</h3>                                                                                                                                   
+                                            <h3 class="mt-1 mb-0 fs11 fw-bold text-blue">{{ $totalSales }}</h3>                                                                                                                                   
                                         </div><!--end media body-->
                                     </div>
                                 </div><!--end card-body-->
@@ -87,7 +87,7 @@
                                         <i class="iconoir-thumbs-up fs-24 align-self-center text-primary me-2"></i>
                                         <div class="flex-grow-1 text-truncate"> 
                                             <p class="text-primary mb-0 fw-semibold fs-13">Đánh giá</p>    
-                                            <h3 class="mt-1 mb-0 fs11 fw-bold text-primary">165</h3>                                                                                                                                   
+                                            <h3 class="mt-1 mb-0 fs11 fw-bold text-primary">{{ $product->reviews_count }}</h3>                                                                                                                                   
                                         </div><!--end media body-->
                                     </div>
                                 </div><!--end card-body-->
@@ -100,7 +100,7 @@
                                         <i class="iconoir-eye fs-24 align-self-center text-info me-2"></i>
                                         <div class="flex-grow-1 text-truncate"> 
                                             <p class="text-info mb-0 fw-semibold fs-13">Lượt xem</p>    
-                                            <h3 class="mt-1 mb-0 fs11 fw-bold text-info">25</h3>                                                                                                                                   
+                                            <h3 class="mt-1 mb-0 fs11 fw-bold text-info">{{ $viewsCount }}</h3>                                                                                                                                   
                                         </div><!--end media body-->
                                     </div>
                                 </div><!--end card-body-->
@@ -152,7 +152,8 @@
                     </div>
                 </div><!--end card-body--> 
             </div><!--end card-->
-        </div> <!--end col-->           
+        </div> <!--end col-->        
+           
     </div><!--end row-->  
      
     <div class="row">
@@ -206,5 +207,59 @@
                 </div>
             </div>
         </div> <!-- end col -->
-    </div> <!-- end row -->                                       
+    </div> <!-- end row -->           
+    
+    {{-- Đánh giá --}}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">                      
+                            <h4 class="card-title">Đánh giá sản phẩm</h4>                      
+                        </div><!--end col-->
+                    </div><!--end row-->                                  
+                </div><!--end card-header-->
+                <div class="card-body pt-0">
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead class="table-light">
+                              <tr>
+                                <th>Người đánh giá</th>
+                                <th>Đánh giá</th>
+                                <th>Ngày đánh giá</th>
+                                <th>Nội dung</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($product->reviews as $review)
+                                    <tr>
+                                        <td>{{ $review->user->name }}</td>
+                                        <td>
+                                            {{-- Hiển thị số sao bằng biểu tượng --}}
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if($i <= $review->star)
+                                                    <i class="fas fa-star text-warning"></i> {{-- Sao đầy --}}
+                                                @else
+                                                    <i class="far fa-star text-warning"></i> {{-- Sao rỗng --}}
+                                                @endif
+                                            @endfor
+                                        </td>
+                                        <td>{{ $review->created_at->format('d/m/Y') }}</td>
+                                        <td>{{ $review->content }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">Chưa có đánh giá nào</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                          </table>
+                    </div>
+                </div><!--end card-body--> 
+            </div><!--end card-->
+        </div> <!-- end col -->
+    </div> <!-- end row -->
+    
+
 </div><!-- container -->
