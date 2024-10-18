@@ -29,19 +29,19 @@ class DashboardController extends Controller
         ->orderByDesc('year')
         ->pluck('year')
         ->toArray();
-        $query = Order::where('payment_status', 'dtt');
+        $query = Order::whereIn('status', ['ghtc', 'dndh']);
         $this->filter($query, $day, $month, $year);
         $revenue = $query->sum('total_price');
-        $query = Order::where('payment_status', 'dtt');
+        $query = Order::whereIn('status', ['ghtc', 'dndh']);
         $this->lastFilter($query, $day, $month, $year);
         $lastRevenue = $query->sum('total_price');
         $query = OrderDetail::whereHas('order', function($query) use ($day, $month, $year) {
-            $query->where('payment_status', 'dtt');
+            $query->whereIn('status', ['ghtc', 'dndh']);
             $this->filter($query, $day, $month, $year);
         });
         $profit = $query->sum(DB::raw('(price - import_price) * quantity'));
         $query = OrderDetail::whereHas('order', function($query) use ($day, $month, $year) {
-            $query->where('payment_status', 'dtt');
+            $query->whereIn('status', ['ghtc', 'dndh']);
             $this->lastFilter($query, $day, $month, $year);
         });
         $lastProfit = $query->sum(DB::raw('(price - import_price) * quantity'));
