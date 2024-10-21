@@ -24,7 +24,7 @@
                                 <div>
                                     <form action="{{route('client.confirm', $order->id)}}" method="post">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" onclick="return confirm('Bạn có chắc chắn xác nhận không ?')">Xác nhận đơn hàng</button>
+                                        <button type="submit" class="btn btn-success" onclick="return confirm('Bạn có chắc chắn đã nhận hàng không ?')">Đã nhận hàng</button>
                                     </form>
                                 </div>
                                 @else
@@ -34,7 +34,7 @@
                                 @endif
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover text-center">
                                     <thead class="table-light">
                                         <tr>
                                             <th>Tên sản phẩm</th>
@@ -57,12 +57,11 @@
                                                 <!-- Thêm nút Đánh giá nếu trạng thái đơn hàng là đã nhận hàng -->
                                                 <td>
                                                     @if ($order->status === "dndh")
-                                                    <div class="mt-2">
-                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModalReviews-{{$orderDetail->id}}">
-                                                            Đánh giá
-                                                        </button>
-                                                        
-                                                    </div>
+                                                        <div class="mt-2 rating-button">
+                                                            <button class="btn btn-rate"  data-bs-toggle="modal" data-bs-target="#myModalReviews-{{$orderDetail->id}}">
+                                                                <i class="fa fa-star"></i> Đánh giá
+                                                            </button>
+                                                        </div>
                                                     @endif
                                                 </td>
                                             </tr>
