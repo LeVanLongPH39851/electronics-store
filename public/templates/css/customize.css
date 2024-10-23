@@ -142,3 +142,29 @@
 .star-rating .fa-regular {
     color: gray; /* Màu cho các sao không được chọn */
 }
+
+.rating-button {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.btn-rate {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-rate i {
+    margin-right: 5px;
+}
+
+.btn-rate:hover {
+    background-color: #45a049;
+    color: black;
+    transition: color 0.6s ease;
+}
