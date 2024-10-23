@@ -147,7 +147,7 @@
                     </ul> --}}
                     <!-- Kết thúc Danh sách Dropdown -->
                 <li>
-                  <a href="blog.html"
+                  <a href="{{route('client.blog')}}"
                     >blog<i class="fa fa-angle-down"></i
                   ></a>
                   <!-- Home Version Dropdown Start -->

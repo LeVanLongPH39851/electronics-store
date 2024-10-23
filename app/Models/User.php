@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $table = "users";
-    
+
     protected $fillable = [
         'user_code',
         'name',
@@ -34,10 +34,15 @@ class User extends Authenticatable
         'deleted_at'
     ];
 
-    public function orders(){
+    public function orders()
+    {
         return $this->hasMany(Order::class, 'user_id');
     }
-    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

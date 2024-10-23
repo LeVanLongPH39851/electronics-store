@@ -23,6 +23,7 @@ use App\Http\Controllers\Admins\Trashs\StaffTrashController;
 use App\Http\Controllers\Admins\Categories\CategoryController;
 use App\Http\Controllers\Admins\PostController;
 use App\Http\Controllers\Admins\Trashs\ProductTrashController;
+use App\Http\Controllers\Clients\PostDetailController;
 use App\Http\Controllers\ReviewController;
 
 /*
@@ -116,3 +117,8 @@ Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client
 Route::post('/order/{orderId}/product/{orderDetailId}/review', [ReviewController::class, 'store'])->name('client.review.store');
 Route::get('product/{productId}/reviews', [ReviewController::class, 'index'])->name('client.review.index');
 Route::get('product/{productId}/reviews/show', [ReviewController::class, 'show'])->name('client.review.show');
+
+// blog
+Route::get('/blog', [PostDetailController::class, 'index'])->name('client.blog');
+Route::get('/blog-detail/{id}', [PostDetailController::class, 'blogDetail'])->name('client.blog.detail');
+Route::post('/blog-detail/{post}/comments', [PostDetailController::class, 'storeComment'])->name('comments.store');

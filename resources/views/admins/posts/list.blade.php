@@ -46,7 +46,7 @@
                                         <span>1</span>
                                     </td>
                                     <td>
-                                        <span>50</span>
+                                        <span>{{$post->views}}</span>
                                     </td>
                                     
                                     <td class="text-end">                                                       
@@ -60,7 +60,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="9" class="text-danger">Không có sản phẩm nào</td>
+                                    <td colspan="9" class="text-danger">Không có bài viết nào</td>
                                 </tr>
                                 @endforelse  
                               

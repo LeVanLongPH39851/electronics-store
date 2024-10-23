@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     //
-    protected $classActive = "Đơn Hàng";
+    protected $classActive = "Bài viết";
 
     public function index()
     {
@@ -27,8 +27,6 @@ class PostController extends Controller
 
     public function create()
     {
-
-
         $template = "admins.posts.create";
 
         return view('admins.layout', [
@@ -41,9 +39,9 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'image' => 'required|image',
+            'title' => 'required|string|max:255', // Tối đa 255 ký tự
+            'content' => 'required|string', // Nội dung không được rỗng
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Kích thước tối đa 2MB và chỉ định loại tệp hình ảnh
         ]);
 
         $imagePath = $request->file('image')->store('posts', 'public');
@@ -52,6 +50,8 @@ class PostController extends Controller
             'title' => $request->title,
             'image' => $imagePath,
             'content' => $request->input('content'),
+            'user_id' => auth()->id(),
+            'views' => 0,
         ]);
 
         return redirect()->route('post.index')->with('success', 'Thêm mới thành công');
@@ -79,8 +79,7 @@ class PostController extends Controller
     public function show(string $id)
     {
 
-        $post = Post::find($id);
-
+        $post = Post::withCount('comments')->find($id);
         if ($post) {
 
             $template = 'admins.posts.detail';

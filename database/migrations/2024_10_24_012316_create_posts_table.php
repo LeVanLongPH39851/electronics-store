@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('title', 255);
             $table->string('image', 255);
             $table->text('content');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->unsignedBigInteger('views')->default(0); // Lượt xem bài viết, mặc định là 0
             $table->timestamps();
         });
     }
