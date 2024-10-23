@@ -22,6 +22,7 @@ use App\Http\Controllers\Admins\Trashs\StaffTrashController;
 use App\Http\Controllers\Admins\Categories\CategoryController;
 use App\Http\Controllers\Admins\Trashs\ProductTrashController;
 use App\Http\Controllers\Admins\VoucherController;
+use App\Http\Controllers\Clients\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,3 +109,10 @@ Route::get('/order-detail/{id}', [AccountController::class, 'orderDetail'])->nam
 Route::post('/confirm/{id}', [AccountController::class, 'confirm'])->name('client.confirm');
 Route::post('/cancel/{id}', [AccountController::class, 'cancel'])->name('client.cancel');
 Route::get('/thanh-cong', [AccountController::class, 'thanhCong'])->name('client.accounts.thanhcong');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/wishlist/add/{productId}', [WishlistController::class, 'addToWishlist'])->name('client.wishlist.add');
+    Route::get('/wishlist', [WishlistController::class, 'showWishlist'])->name('client.wishlist');
+    Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'removeFromWishlist'])->name('client.wishlist.remove');
+});
+
+

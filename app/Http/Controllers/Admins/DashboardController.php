@@ -12,7 +12,7 @@ use App\Models\OrderDetail;
 class DashboardController extends Controller
 {
     protected $classActive = "Thống Kê"; //Dùng để thêm class active vào thẻ <li> ở sidebar
-    
+
     //Dashboard admin
     public function index(Request $request){
         $day = $request->input('day') && $request->input('day') != 0 ? $request->input('day') : false;
@@ -239,7 +239,7 @@ class DashboardController extends Controller
       }
       return $chartRevenue;
     }
-    
+
     public function chartProfit($day, $month, $year){
         if($year && !$month && !$day){
             $chartProfit = OrderDetail::join('orders', 'order_details.order_id', '=', 'orders.id')

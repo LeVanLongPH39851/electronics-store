@@ -5,6 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Category;
+use App\Models\Brand;
+use App\Models\User;
+use App\Models\ProductVariant;
+use App\Models\Gallery;
+use App\Models\OrderDetail;
 
 class Product extends Model
 {
@@ -49,5 +55,9 @@ class Product extends Model
 
     public function orderDetails(){
         return $this->hasMany(OrderDetail::class, 'product_id');
+    }
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class, 'product_id');
     }
 }
