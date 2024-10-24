@@ -20,7 +20,10 @@ use App\Http\Controllers\Clients\ProductDetailController;
 use App\Http\Controllers\Admins\Trashs\UserTrashController;
 use App\Http\Controllers\Admins\Trashs\StaffTrashController;
 use App\Http\Controllers\Admins\Categories\CategoryController;
+use App\Http\Controllers\Admins\PostController;
 use App\Http\Controllers\Admins\Trashs\ProductTrashController;
+use App\Http\Controllers\Clients\PostDetailController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Admins\VoucherController;
 use App\Http\Controllers\Clients\WishlistController;
 
@@ -60,6 +63,7 @@ Route::middleware(['admin'])->group(function () {
         Route::post('/product-trash/restore', [ProductTrashController::class, 'restore'])->name('product.restore');
         Route::resource('/product-trash', ProductTrashController::class);
         Route::resource('/categories', CategoryController::class);
+        Route::resource('/post', PostController::class);
         Route::resource('/voucher', VoucherController::class);
         Route::middleware(['staff'])->group(function () {
             Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');
@@ -115,4 +119,12 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'removeFromWishlist'])->name('client.wishlist.remove');
 });
 
+// đánh giá
+Route::post('/order/{orderId}/product/{orderDetailId}/review', [ReviewController::class, 'store'])->name('client.review.store');
+Route::get('product/{productId}/reviews', [ReviewController::class, 'index'])->name('client.review.index');
+Route::get('product/{productId}/reviews/show', [ReviewController::class, 'show'])->name('client.review.show');
 
+// blog
+Route::get('/blog', [PostDetailController::class, 'index'])->name('client.blog');
+Route::get('/blog-detail/{id}', [PostDetailController::class, 'blogDetail'])->name('client.blog.detail');
+Route::post('/blog-detail/{post}/comments', [PostDetailController::class, 'storeComment'])->name('comments.store');

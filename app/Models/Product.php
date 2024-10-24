@@ -33,11 +33,13 @@ class Product extends Model
         "deleted_at"
     ];
 
-    public function category(){
-       return $this->belongsTo(Category::class, 'category_id');
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function brand(){
+    public function brand()
+    {
         return $this->belongsTo(Brand::class, 'brand_id');
     }
 
@@ -45,19 +47,26 @@ class Product extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function productVariants(){
+    public function productVariants()
+    {
         return $this->hasMany(ProductVariant::class, 'product_id');
     }
 
-    public function galleries(){
+    public function galleries()
+    {
         return $this->hasMany(Gallery::class, 'product_id');
     }
 
-    public function orderDetails(){
+    public function orderDetails()
+    {
         return $this->hasMany(OrderDetail::class, 'product_id');
     }
     public function wishlists()
     {
         return $this->hasMany(Wishlist::class, 'product_id');
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

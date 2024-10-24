@@ -40,6 +40,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class, 'user_id');
     }
+  
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
     public function products()
     {
@@ -50,8 +55,7 @@ class User extends Authenticatable
     // {
     //     return $this->belongsToMany(Product::class, 'wishlist_items', 'user_id', 'product_id');
     // }
-
-
+  
     /**
      * The attributes that should be hidden for serialization.
      *

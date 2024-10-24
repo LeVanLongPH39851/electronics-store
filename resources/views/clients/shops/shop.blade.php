@@ -170,19 +170,44 @@
                     <div class="tab-content border-default fix">
                         <div id="grid-view" class="tab-pane show fade active">
                             <div class="row">
-                                @forelse ($listProduct as $key => $value)
-                                    <!-- Single Product Start -->
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                        <div class="single-product">
-                                            <!-- Product Image Start -->
-                                            <div class="pro-img">
-                                                <a href="{{ route('client.product.detail', $value->id) }}">
-                                                    <img class="primary-img"
-                                                        src="{{ asset('storage/' . $value->image) }}"
-                                                        alt="single-product">
-                                                    {{--     --}}
-                                                </a>
-                                                {{-- <span class="sticker-new">new</span> --}}
+                                @forelse ($listProduct as $key => $value)                 
+                                <!-- Single Product Start -->
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                    <div class="single-product">
+                                        <!-- Product Image Start -->
+                                        <div class="pro-img">
+                                            <a href="{{route('client.product.detail', $value->id)}}">
+                                                <img class="primary-img" src="{{asset('storage/' . $value->image) }}" alt="single-product">
+                                                <img class="secondary-img" src="{{asset('storage/' . $value->galleries->first()->path) }}" alt="single-product">
+                                            </a>
+                                            {{-- <span class="sticker-new">new</span> --}}
+                                        </div>
+                                        <!-- Product Image End -->
+                                        <!-- Product Content Start -->
+                                        <div class="pro-content">
+                                            <div class="pro-info">
+                                                <h4><a href="product.html">{{ $value->name }}</a></h4>
+                                                <div class="product-rating">
+                                                    @php
+                                                    $averageRating = $value->reviews_avg_star ?? 0; // Điểm đánh giá trung bình
+                                                    $fullStars = floor($averageRating);
+                                                    $halfStar = $averageRating - $fullStars;
+                                                @endphp
+                                                
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    @if ($i <= $fullStars)
+                                                        <i class="fa-solid fa-star" style="color: gold;"></i> <!-- Sao đầy -->
+                                                    @elseif ($i == $fullStars + 1 && $halfStar >= 0.5)
+                                                        <i class="fa-solid fa-star-half-alt" style="color: gold;"></i> <!-- Nửa sao -->
+                                                    @else
+                                                        <i class="fa-regular fa-star" style="color: gray;"></i> <!-- Sao rỗng -->
+                                                    @endif
+                                                @endfor
+                                                </div>
+                                                <p>
+                                                    <span class="price" style="font-size: 16px">{{number_format($value->productVariants->min('price'), 0, '', '.')}}đ - {{number_format($value->productVariants->max('price'), 0, '', '.')}}đ</span
+                                                    >
+                                                </p>
                                             </div>
                                             <!-- Product Image End -->
                                             <!-- Product Content Start -->
