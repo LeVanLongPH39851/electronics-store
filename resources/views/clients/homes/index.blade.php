@@ -138,52 +138,46 @@
                       src="{{".".Storage::url($newProduct->image)}}"
                       alt="single-product"
                     />
-                    <img
-                      class="secondary-img"
-                      src="{{".".Storage::url($newProduct->galleries->first()->path)}}"
-                      alt="single-product"
-                    />
+                    {{-- <img class="secondary-img" src="{{ ".".Storage::url($newProduct->galleries->first()->path()) }}" alt="single-product" /> --}}
                   </a>
-                  {{-- <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div> --}}
+                    <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div>
                 </div>
                 <!-- Product Image End -->
                 <!-- Product Content Start -->
-                <div class="pro-content">
-                  <div class="pro-info">
-                    <h4><a href="product.html">{{$newProduct->name}}</a></h4>
+                <div class="pro-content"><div class="pro-info">
+                    <h4><a href="product.html">{{ $newProduct->name }}</a></h4>
                     <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
                     </div>
                     <p>
-                      <span class="price" style="font-size: 14px">{{number_format($newProduct->product_variants_min_price, 0, '', '.')}}đ - {{number_format($newProduct->product_variants_max_price, 0, '', '.')}}đ</span
-                      >
+                        <span class="price" style="font-size: 14px">{{ number_format($newProduct->product_variants_min_price, 0, '', '.') }}đ - {{ number_format($newProduct->product_variants_max_price, 0, '', '.') }}đ</span>
                     </p>
-                  </div>
-                  <div class="pro-actions">
+                </div>
+                <div class="pro-actions">
                     <div class="actions-primary">
-                      <a
-                        href="{{route('client.product.detail', $newProduct->id)}}"
-                        class="px-1"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Xem chi tiết"
-                        >Xem chi tiết</a
-                      >
+                        <a
+                            href="{{ route('client.product.detail', $newProduct->id) }}"
+                            class="px-1"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Xem chi tiết"
+                        >Xem chi tiết</a>
                     </div>
                     <div class="actions-secondary">
-                      <a
-                        href="product.html"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Yêu thích"
-                        ><i class="fa fa-heart-o"></i
-                      ></a>
+                        <form action="{{ route('client.wishlist.add', $newProduct->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Yêu thích"
+                            style="border: none; background: rgb(249, 96, 122); cursor: pointer; height: 36px; border-radius: 2px">
+                                <i class="fa fa-heart-o" style="font-size: 20px;"></i>
+                            </button>
+                        </form>
                     </div>
-                  </div>
+                </div>
+
                 </div>
                 <!-- Product Content End -->
                 {{-- <span class="sticker-new">mới</span> --}}
