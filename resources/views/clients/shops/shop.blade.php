@@ -37,7 +37,7 @@
                              <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="40-50" {{$price == '40-50' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 40 Triệu - 50 Triệu</div>
                              <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value=">50" {{$price == '>50' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> Trên 50 Triệu</div>
                              <div class="price_slider_amount" style="display: flex; justify-content: start">
-                                <button type="submit" class="btn btn-success">Filter</button>
+                                <button type="submit" class="btn btn-comment">Filter</button>
                             </div>
                             </div>
                         </form>
