@@ -4,17 +4,20 @@ namespace App\Http\Controllers\Clients;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Voucher;
 use App\Models\OrderDetail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\ProductVariant;
+use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
+use App\Models\VoucherHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class CheckoutController extends Controller
     {
-    public function checkout() {
+    public function checkout(Request $request) {
         $carts = Cart::where('user_id', auth()->id())->get();
 
         // Kiểm tra nếu giỏ hàng rỗng
@@ -22,8 +25,40 @@ class CheckoutController extends Controller
             return redirect()->route('client.cart')->with('error', 'Giỏ hàng của bạn hiện đang trống.');
         }
 
+        if($request->input('coupon_code')){
+            $voucher = Voucher::where('voucher_code', $request->input('coupon_code'))->first();
+            if($voucher){
+                $userIds = explode(',', $voucher->for_user_ids);
+                $totalPrice = 0;
+                foreach($carts as $cart){
+                $totalPrice += $cart->productVariant->price * $cart->variant_quantity;
+                }
+                if(!in_array(Auth::id(), $userIds)){
+                    return redirect()->back()->with("error", "Mã giảm giá không giành cho bạn");
+                }
+                if($voucher->max_price && $totalPrice < $voucher->min_price){
+                    return redirect()->back()->with("error", "Tổng đơn hàng không đủ để giảm giá");
+                }
+                if($totalPrice > $voucher->max_price){
+                    return redirect()->back()->with("error", "Tổng đơn hàng quá mức giảm giá");
+                }
+                if ($voucher->start_date > Carbon::today()){
+                    return redirect()->back()->with("error", "Ngày giảm giá chưa bắt đầu");
+                }
+                if ($voucher->end_date < Carbon::today()){
+                    return redirect()->back()->with("error", "Ngày giảm giá đã kết thúc");
+                }
+                if ($voucher->quantity <= 0){
+                    return redirect()->back()->with("error", "Đã hết lượt giảm giá");
+                }
+            }else{
+                return redirect()->back()->with("error", "Mã giảm giá không chính xác");
+            }
+        }else{
+            $voucher = NULL;
+        }
         $template = "clients.checkouts.checkout";
-        return view("clients.layout", ["title" => "Checkout", "template" => $template, "carts" => $carts]);
+        return view("clients.layout", ["title" => "Checkout", "template" => $template, "carts" => $carts, "voucher" => $voucher]);
     }
 
     public function process(Request $request){
@@ -51,7 +86,11 @@ class CheckoutController extends Controller
             if($productVariant->quantity < $cart->variant_quantity){
                 return redirect()->back()->with('error', 'Số lượng sản phầm đã quá tồn kho');
             }
-            $totalPrice += $cart->productVariant->price * $cart->variant_quantity;
+            if($request->input('voucher')){
+                $totalPrice += $cart->productVariant->price * $cart->variant_quantity * $request->input('voucher') / 100;
+            }else{
+                $totalPrice += $cart->productVariant->price * $cart->variant_quantity;
+            }
         }
         $orderInfo = [
             'paymentMethod' => $request->paymentMethod,
@@ -59,7 +98,9 @@ class CheckoutController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'total_price' => $totalPrice,
-            'note' => $request->note
+            'note' => $request->note,
+            'id_voucher' => $request->id_voucher,
+            'voucher' => $request->voucher
         ];
         session(['order_info' => $orderInfo]);
         
@@ -77,6 +118,18 @@ class CheckoutController extends Controller
             'user_id' => Auth::id()
         ]);
 
+        if($request->input('voucher')){
+            VoucherHistory::create([
+            'voucher_id' => Voucher::where('id', $request->input('id_voucher'))->first()->id,
+            'user_id' => Auth::id(),
+            'order_id' => $order->id,
+            ]);
+            $voucherFind = Voucher::find($request->input('id_voucher'));
+            $voucherFind->quantity -= 1;
+            $voucherFind->used_quantity += 1;
+            $voucherFind->save();
+        }
+
         foreach($carts as $cart){
             $imagePath = 'uploads/orders/order_'.$order->id."/".basename($cart->productVariant->image);
             Storage::disk('public')->copy($cart->productVariant->image, $imagePath);
@@ -87,7 +140,7 @@ class CheckoutController extends Controller
               "ssd_name" => $cart->productVariant->ssd->name,
               "import_price" => $cart->productVariant->import_price,
               "listed_price" => $cart->productVariant->listed_price,
-              "price" => $cart->productVariant->price,
+              "price" => $request->input('voucher') ? $cart->productVariant->price * $request->input('voucher') / 100 : $cart->productVariant->price,
               "quantity" => $cart->variant_quantity,
               "product_id" => $cart->productVariant->product->id,
               "order_id" => $order->id
@@ -104,13 +157,8 @@ class CheckoutController extends Controller
     
     private function redirectToVnPay()
     {
-        // Lấy giỏ hàng của người dùng hiện tại
-        $carts = Cart::where('user_id', auth()->id())->get();
-
         // Khởi tạo tổng số tiền thanh toán
-        $totalAmount = $carts->sum(function ($cart) {
-            return $cart->productVariant->price * $cart->variant_quantity;
-        });
+        $totalAmount = session('order_info')['total_price'];
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = route('client.vnpay.callback');
@@ -185,7 +233,17 @@ class CheckoutController extends Controller
                 'note' => $orderInfo['note'],
                 'user_id' => Auth::id()
             ]);
-
+            if($orderInfo['voucher']){
+                VoucherHistory::create([
+                'voucher_id' => Voucher::where('id', $orderInfo['id_voucher'])->first()->id,
+                'user_id' => Auth::id(),
+                'order_id' => $order->id,
+                ]);
+                $voucherFind = Voucher::find($orderInfo['id_voucher']);
+                $voucherFind->quantity -= 1;
+                $voucherFind->used_quantity += 1;
+                $voucherFind->save();
+            }
             $carts = Cart::where('user_id', auth()->id())->get();
             
             foreach($carts as $cart){
@@ -198,7 +256,7 @@ class CheckoutController extends Controller
                   "ssd_name" => $cart->productVariant->ssd->name,
                   "import_price" => $cart->productVariant->import_price,
                   "listed_price" => $cart->productVariant->listed_price,
-                  "price" => $cart->productVariant->price,
+                  "price" => $orderInfo['voucher'] ? $cart->productVariant->price * $orderInfo['voucher'] / 100 : $cart->productVariant->price,
                   "quantity" => $cart->variant_quantity,
                   "product_id" => $cart->productVariant->product->id,
                   "order_id" => $order->id
