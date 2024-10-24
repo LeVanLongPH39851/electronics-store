@@ -146,6 +146,7 @@
                         </div>
                     </form>
                     @endif
+
                     @if ($order->waiting_time <= now() || $order->status == 'dndh')
                     <div class="text-muted">
                         <span class="text-primary">

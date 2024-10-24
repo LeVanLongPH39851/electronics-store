@@ -135,6 +135,10 @@
                                     <td>
                                         <a href="{{route('order.show', $order->id)}}"><i class="las la-pen text-secondary fs-18"></i></a>
                                     </td>
+
+                                    </td>
+                                    <td class="text-danger fs-12"><strong>{{number_format($order->total_price, 0, '', '.')}} vnđ</strong></td>
+
                                 </tr>
                                 @empty
                                 <tr>

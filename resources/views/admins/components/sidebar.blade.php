@@ -335,6 +335,7 @@
                 <span>Bài viết</span>
               </a>
           </li>
+
           <li class="nav-item">
             <a
               class="nav-link {{$classActive === "Đánh giá" ? "active bg-active" : ""}}"

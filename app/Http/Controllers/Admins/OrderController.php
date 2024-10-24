@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     protected $classActive = "Đơn Hàng";
-
+  
     public function index(Request $request)
     {
         // Lấy giá trị ô input
