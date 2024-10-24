@@ -58,8 +58,13 @@
                                 method="post">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa không ?')"
-                                    class="btn btn-danger">Xóa</button>
+                                @if ($slideShow->active === 'on')
+                                    <button type="button" onclick="return alert('Bạn không thể xóa vì đang sử dụng !')"
+                                        class="btn btn-danger">Xóa</button>
+                                @else
+                                    <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa không ?')"
+                                        class="btn btn-danger">Xóa</button>
+                                @endif
                             </form>
                         </div>
                     </div>

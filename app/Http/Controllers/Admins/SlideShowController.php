@@ -285,7 +285,8 @@ class SlideShowController extends Controller
                 Storage::disk('public')->delete($slideShowGallery->image);
             }
 
-            $slideShow->delete(); //Xóa vĩnh viễn
+            $slideShow->delete();
+            
             return redirect()->back()->with("success", "Xóa slide show thành công");
         }
 
