@@ -308,6 +308,16 @@
             </li>
             <li class="nav-item">
               <a
+                class="nav-link {{$classActive === "Mã Giảm Giá" ? "active bg-active" : ""}}"
+                href="{{ route('voucher.index') }}"
+              >
+                <i class="fa-solid fa-tag menu-icon {{$classActive === "Mã Giảm Giá" ? "text-primary" : ""}}"></i>
+                <span>Mã giảm giá</span>
+              </a>
+              <!--end startbarElements-->
+            </li>
+          <li class="nav-item">
+              <a
                 class="nav-link {{$classActive === "Đơn Hàng" ? "active bg-active" : ""}}"
                 href="{{ route('order.index') }}"
               >

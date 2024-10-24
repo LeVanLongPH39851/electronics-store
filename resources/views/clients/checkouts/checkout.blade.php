@@ -9,8 +9,7 @@
                     <h3>Bạn có mã giảm giá không? <span id="showcoupon">Nhấp vào để nhập mã.</span></h3>
                     <div id="checkout_coupon" class="coupon-checkout-content">
                         <div class="coupon-info">
-                            <form action="" method="POST">
-                                @csrf
+                            <form action="{{route('client.checkouts.checkout')}}" method="GET">
                                 <p class="checkout-coupon">
                                     <input type="text" name="coupon_code" class="code" placeholder="Mã giảm giá"
                                         required />
@@ -97,9 +96,15 @@
                                                     {{ $cart->variant_quantity }}</span>
                                             </td>
                                             <td class="product-total">
+                                                @if ($voucher)
                                                 <span
-                                                    class="amount">{{ number_format($cart->productVariant->price * $cart->variant_quantity, 0, '', '.') }}
-                                                    vnđ</span>
+                                                class="amount">{{ number_format(($cart->productVariant->price * $cart->variant_quantity * $voucher->percent / 100), 0, '', '.') }}
+                                                vnđ</span> <span class="text-danger fw-bold" style="font-size: 10px">-{{$voucher->percent}}%</span>
+                                                @else
+                                                <span
+                                                class="amount">{{ number_format($cart->productVariant->price * $cart->variant_quantity, 0, '', '.') }}
+                                                vnđ</span>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -107,19 +112,42 @@
                                 <tfoot>
                                     <tr class="cart-subtotal">
                                         <th>Tạm tính</th>
-                                        <td><span
-                                                class="amount">{{ number_format($carts->sum(function ($cart) {return $cart->productVariant->price * $cart->variant_quantity;}),0,'','.') }}
-                                                vnđ</span></td>
+                                        @php
+                                            $total = $carts->sum(function ($cart) {return $cart->productVariant->price * $cart->variant_quantity;});
+                                        @endphp
+                                        <td>
+                                            @if ($voucher)
+                                            <span
+                                                class="amount">{{ number_format( $total * $voucher->percent / 100 ,0,'','.') }}
+                                                vnđ</span>
+                                            @else
+                                            <span
+                                                class="amount">{{ number_format($total,0,'','.') }}
+                                                vnđ</span>
+                                            @endif
+                                        </td>    
                                     </tr>
                                     <tr class="order-total">
                                         <th>Tổng</th>
-                                        <td><span
-                                                class="total amount">{{ number_format($carts->sum(function ($cart) {return $cart->productVariant->price * $cart->variant_quantity;}),0,'','.') }}
-                                                vnđ</span></td>
+                                        <td>
+                                            @if ($voucher)
+                                            <span
+                                                class="amount">{{ number_format( $total * $voucher->percent / 100 ,0,'','.') }}
+                                                vnđ</span>
+                                            @else
+                                            <span
+                                                class="amount">{{ number_format($total,0,'','.') }}
+                                                vnđ</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
+                        @if ($voucher)
+                        <input type="hidden" name="voucher" value="{{$voucher->percent}}">
+                        <input type="hidden" name="id_voucher" value="{{$voucher->id}}">
+                        @endif
                         <div class="payment-method">
                             <div class="mb-3">
                                 <h3>Chọn phương thức thanh toán:</h3>

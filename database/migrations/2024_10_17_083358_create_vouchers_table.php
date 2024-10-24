@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
-            $table->string('voucher', 20)->unique();
-            $table->integer('permanent')->nullable();
-            $table->integer('percent')->nullable();
-            $table->integer('minimum_spend')->nullable();
-            $table->integer('maximum_spend')->nullable();
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
-            $table->integer('limit_user')->nullable();
-            $table->string('for_product_ids')->nullable();
+            $table->string('voucher_code', 20)->unique();
+            $table->integer('percent');
+            $table->integer('min_price')->nullable();
+            $table->integer('max_price');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->integer('quantity');
+            $table->integer('used_quantity')->default(0);
+            $table->text('for_user_ids')->nullable();
             $table->timestamps();
         });
     }

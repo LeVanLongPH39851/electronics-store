@@ -111,9 +111,9 @@
                                         $icon = $order->status === "cxn" ? "clock" : ($order->status === "dxn" ? "check" : ($order->status === "dgh" ? "truck" : ($order->status === "ghtc" ? "check-to-slot" : ($order->status === "ghtb" ? "ban" : ($order->status === "dh" ? "xmark" : "thumbs-up")))));
                                     @endphp
                                     <td>
-                                        <span class="badge bg-{{$color}}-subtle text-{{$color}}"><i class="fas fa-{{$icon}} me-1"></i> {{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Đã nhận hàng")))))}}</span>
+                                        <span class="badge bg-{{$color}}-subtle text-{{$color}}"><i class="fas fa-{{$icon}} me-1"></i> {{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Hoàn thành")))))}}</span>
                                     </td>
-                                    <td class="text-danger"><strong>{{number_format($order->total_price, 0, '', '.')}} vnđ</strong></td>
+                                    <td class="text-danger fs-12"><strong>{{number_format($order->total_price, 0, '', '.')}} vnđ</strong></td>
                                 </tr>
                                 @empty
                                 <tr>
@@ -122,6 +122,8 @@
                                 @endforelse                                                                           
                             </tbody>
                         </table>
+                        <div class="nav-mt-3">
+                            {{ $orders->appends(request()->query())->links('pagination::bootstrap-5') }}</div>
                     </div>
                 </div>
             </div>
