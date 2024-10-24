@@ -1,4 +1,4 @@
-@include('clients.components.breadcrumb')
+
 <!-- Cart Main Area Start -->
 <div class="cart-main-area ptb-45">
     <div class="container">
