@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     protected $classActive = "Đơn Hàng";
-  
+
     public function index(Request $request)
     {
         // Lấy giá trị ô input
@@ -101,6 +101,10 @@ class OrderController extends Controller
             $oldStatus = $order->status;
             $order->status = $request->input('status');
             $request->input('status') == "ghtc" ? $order->payment_status = "dtt" : "";
+            if ($order->status === 'ghtc') {
+                $order->delivered_at = now();
+                $order->waiting_time = now()->addDays(4);
+            }
             $order->save();
             OrderHistory::create([
                 "from_status" => $oldStatus,
