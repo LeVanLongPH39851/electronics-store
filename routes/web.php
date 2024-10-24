@@ -22,6 +22,7 @@ use App\Http\Controllers\Admins\Trashs\StaffTrashController;
 use App\Http\Controllers\Admins\Categories\CategoryController;
 use App\Http\Controllers\Admins\Trashs\ProductTrashController;
 use App\Http\Controllers\Admins\VoucherController;
+use App\Http\Controllers\Admins\SlideShowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,8 @@ Route::middleware(['admin'])->group(function () {
         Route::resource('/product-trash', ProductTrashController::class);
         Route::resource('/categories', CategoryController::class);
         Route::resource('/voucher', VoucherController::class);
+        Route::post('/slide-show/apply/{id}', [SlideShowController::class, 'apply'])->name('slide-show.apply');
+        Route::resource('/slide-show', SlideShowController::class);
         Route::middleware(['staff'])->group(function () {
             Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');
             Route::post('/staff-trash/delete', [StaffTrashController::class, 'delete'])->name('staff.delete');
