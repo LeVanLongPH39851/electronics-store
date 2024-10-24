@@ -93,7 +93,7 @@
                 class="d-flex justify-content-lg-end justify-content-center align-items-center"
               >
                 <li>
-                  <a class="wish-list-item" href="wishlist.html"
+                  <a class="wish-list-item" href="{{ route('client.wishlist') }}"
                     ><i class="ion-android-favorite-outline"></i
                   ></a>
                 </li>

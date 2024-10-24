@@ -10,24 +10,25 @@
                     <!-- Sidebar Electronics Categorie Start -->
                     <div class="electronics mb-30">
                         <h3 class="sidebar-title e-title">Danh Mục</h3>
-                        
+
                         <div class="category-menu sidebar-menu sidbar-style">
                             <ul>
                                 @foreach ($listDanhMuc as $danhMuc)
                                     <li class="has-sub">
-                                        <a href="{{route('client.shop')}}?category={{$danhMuc->id}}">{{$danhMuc->name}}</a>
+                                        <a
+                                            href="{{ route('client.shop') }}?category={{ $danhMuc->id }}">{{ $danhMuc->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
                         </div>
-                        
+
                         <!-- category-menu-end -->
                     </div>
                     <!-- Sidebar Electronics Categorie End -->
                     <!-- Price Filter Options Start -->
-                    <div class="search-filter mb-30">   
+                    <div class="search-filter mb-30">
                         <h3 class="sidebar-title">Lọc theo giá</h3>
-                        <form method="get" action="{{route('client.shop')}}">
+                        <form method="get" action="{{ route('client.shop') }}">
                             <div class="price_slider_wrapper">
                              <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="1-5" {{$price == '1-5' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id="">  Dưới 5 Triệu</div>
                              <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="5-10" {{ $price == '5-10' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 5 Triệu - 10 Triệu</div>
@@ -39,6 +40,36 @@
                              <div class="price_slider_amount" style="display: flex; justify-content: start">
                                 <button type="submit" class="btn btn-comment">Filter</button>
                             </div>
+                                <div style="display: flex; margin-bottom: 10px; align-items: center"><input
+                                        type="radio" value="1-5" {{ $price == '1-5' ? 'checked' : '' }}
+                                        name="price_filter" style="margin-right: 5px" id=""> Dưới 5 Triệu</div>
+                                <div style="display: flex; margin-bottom: 10px; align-items: center"><input
+                                        type="radio" value="5-10" {{ $price == '5-10' ? 'checked' : '' }}
+                                        name="price_filter" style="margin-right: 5px" id=""> 5 Triệu - 10 Triệu
+                                </div>
+                                <div style="display: flex; margin-bottom: 10px; align-items: center"><input
+                                        type="radio" value="10-20" {{ $price == '10-20' ? 'checked' : '' }}
+                                        name="price_filter" style="margin-right: 5px" id=""> 10 Triệu - 20
+                                    Triệu</div>
+                                <div style="display: flex; margin-bottom: 10px; align-items: center"><input
+                                        type="radio" value="20-30" {{ $price == '20-30' ? 'checked' : '' }}
+                                        name="price_filter" style="margin-right: 5px" id=""> 20 Triệu - 30
+                                    Triệu</div>
+                                <div style="display: flex; margin-bottom: 10px; align-items: center"><input
+                                        type="radio" value="30-40" {{ $price == '30-40' ? 'checked' : '' }}
+                                        name="price_filter" style="margin-right: 5px" id=""> 30 Triệu - 40
+                                    Triệu</div>
+                                <div style="display: flex; margin-bottom: 10px; align-items: center"><input
+                                        type="radio" value="40-50" {{ $price == '40-50' ? 'checked' : '' }}
+                                        name="price_filter" style="margin-right: 5px" id=""> 40 Triệu - 50
+                                    Triệu</div>
+                                <div style="display: flex; margin-bottom: 10px; align-items: center"><input
+                                        type="radio" value=">50" {{ $price == '>50' ? 'checked' : '' }}
+                                        name="price_filter" style="margin-right: 5px" id=""> Trên 50 Triệu
+                                </div>
+                                <div class="price_slider_amount" style="display: flex; justify-content: start">
+                                    <button type="submit" class="btn btn-success">Filter</button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -47,13 +78,13 @@
                     {{-- <div class="sidebar-categorie mb-30">
                         <h3 class="sidebar-title">Màu</h3>
                         <ul class="sidbar-style">
-                            @foreach ($listColor as $color)                         
+                            @foreach ($listColor as $color)
                             <li class="form-check">
                                 <input class="form-check-input" value="#" id="camera" type="checkbox">
                                 <label class="form-check-label" for="camera">{{$color->name}}</label>
                             </li>
                             @endforeach
-                           
+
                         </ul>
                     </div>
                     <!-- Sidebar Categorie Start -->
@@ -61,13 +92,13 @@
                     <div class="size mb-30">
                         <h3 class="sidebar-title">Ram</h3>
                         <ul class="size-list sidbar-style">
-                            @foreach($listSsd as $ram)
+                            @foreach ($listSsd as $ram)
                             <li class="form-check">
                                 <input class="form-check-input" value="" id="small" type="checkbox">
                                 <label class="form-check-label" for="small">{{$ram->name}}</label>
                             </li>
                            @endforeach
-                            
+
                         </ul>
                     </div> --}}
                     <!-- Product Size End -->
@@ -105,15 +136,17 @@
             <!-- Product Categorie List Start -->
             <div class="col-lg-9 order-1 order-lg-2">
                 <!-- Grid & List View Start -->
-                <form action="{{route('client.shop')}}" id="sort" method="get">
-                <div class="grid-list-top border-default universal-padding d-md-flex justify-content-md-between align-items-center mb-30">
-                    {{-- <div class="grid-list-view">
+                <form action="{{ route('client.shop') }}" id="sort" method="get">
+                    <div
+                        class="grid-list-top border-default universal-padding d-md-flex justify-content-md-between align-items-center mb-30">
+                        {{-- <div class="grid-list-view">
                         <select name="" id="">
                             <option value="">12 product</option>
                         </select>
                     </div> --}}
                         <div class="d-flex">
-                            <input type="text" name="search" value="{{request('search')}}" class="form-control me-2" placeholder="Tìm kiếm sản phẩm">
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                class="form-control me-2" placeholder="Tìm kiếm sản phẩm">
                             <button class="btn btn-success"><i class="fa fa-search"></i></button>
                         </div>
                         <!-- Toolbar Short Area Start -->
@@ -122,20 +155,24 @@
                                 <label>Lọc:</label>
                                 <select class="sorter wide" name="sort" onchange="submit()">
                                     <option value="0">Lọc sản phẩm</option>
-                                    <option {{request('sort') === 'nameAZ' ? "selected" : ""}} value="nameAZ">Theo tên từ A đến Z</option>
-                                    <option {{request('sort') === "nameZA" ? "selected" : ""}} value="nameZA">Theo tên từ Z đến A</option>
-                                    <option {{request('sort') === "priceAsc" ? "selected" : ""}} value="priceAsc">Giá thấp đến cao</option>
-                                    <option {{request('sort') === "priceDesc" ? "selected" : ""}} value="priceDesc">Giá cao đến thấp</option>
+                                    <option {{ request('sort') === 'nameAZ' ? 'selected' : '' }} value="nameAZ">Theo
+                                        tên từ A đến Z</option>
+                                    <option {{ request('sort') === 'nameZA' ? 'selected' : '' }} value="nameZA">Theo
+                                        tên từ Z đến A</option>
+                                    <option {{ request('sort') === 'priceAsc' ? 'selected' : '' }} value="priceAsc">Giá
+                                        thấp đến cao</option>
+                                    <option {{ request('sort') === 'priceDesc' ? 'selected' : '' }} value="priceDesc">
+                                        Giá cao đến thấp</option>
                                 </select>
                                 <script>
-                                    function submit(){
+                                    function submit() {
                                         document.getElementById('sort').submit();
                                     }
                                 </script>
                             </div>
                         </div>
-                    <!-- Toolbar Short Area End -->
-                </div>
+                        <!-- Toolbar Short Area End -->
+                    </div>
                 </form>
                 <!-- Grid & List View End -->
                 <div class="main-categorie mb-all-40">
@@ -182,34 +219,51 @@
                                                     >
                                                 </p>
                                             </div>
-                                            <div class="pro-actions">
-                                                <div class="actions-primary">
-                                                  <a
-                                                    href="{{route('client.product.detail', $value->id)}}"
-                                                    class="px-1"
-                                                    data-bs-toggle="tooltip"
-                                                    data-bs-placement="top"
-                                                    title="Xem chi tiết"
-                                                    >Xem chi tiết</a
-                                                  >
+                                            <!-- Product Image End -->
+                                            <!-- Product Content Start -->
+                                            <div class="pro-content">
+                                                <div class="pro-info">
+                                                    <h4><a href="product.html">{{ $value->name }}</a></h4>
+                                                    <div class="product-rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <p>
+                                                        <span class="price"
+                                                            style="font-size: 16px">{{ number_format($value->productVariants->min('price'), 0, '', '.') }}đ
+                                                            -
+                                                            {{ number_format($value->productVariants->max('price'), 0, '', '.') }}đ</span>
+                                                    </p>
                                                 </div>
-                                                <div class="actions-secondary">
-                                                  <a
-                                                    href="product.html"
-                                                    data-bs-toggle="tooltip"
-                                                    data-bs-placement="top"
-                                                    title="Yêu thích"
-                                                    ><i class="fa fa-heart-o"></i
-                                                  ></a>
+                                                <div class="pro-actions">
+                                                    <div class="actions-primary">
+                                                        <a href="{{ route('client.product.detail', $value->id) }}"
+                                                            class="px-1" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" title="Xem chi tiết">Xem chi
+                                                            tiết</a>
+                                                    </div>
+                                                    <div class="actions-secondary">
+                                                        <form action="{{ route('client.wishlist.add', $value->id) }}"
+                                                            method="POST" style="display: inline;">
+                                                            @csrf
+                                                            <button type="submit" data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Yêu thích"
+                                                                style="border: none; background: rgb(249, 96, 122); cursor: pointer; height: 36px; border-radius: 2px">
+                                                                <i class="fa fa-heart-o" style="font-size: 20px;"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                              </div>
+                                            </div>
+                                            <!-- Product Content End -->
                                         </div>
-                                        <!-- Product Content End -->
                                     </div>
-                                </div>
-                                <!-- Single Product End -->
+                                    <!-- Single Product End -->
                                 @empty
-                                <p class="text-danger">Không có sản phẩm nào</p>
+                                    <p class="text-danger">Không có sản phẩm nào</p>
                                 @endforelse
                             </div>
                             <!-- Row End -->
@@ -228,7 +282,7 @@
 </div>
 <!-- Shop Page End -->
 @section('modal')
-@include('clients.components.modalshop')
+    @include('clients.components.modalshop')
 @endsection
 
 <!-- Đảm bảo bạn đã bao gồm thư viện jQuery -->
