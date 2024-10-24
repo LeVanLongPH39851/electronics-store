@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -26,10 +27,15 @@ class UserFactory extends Factory
         $showPassword = Str::random(8);
 
         //Faker
+        $userCode = "UR-".Str::random(5);
+        while(User::where('user_code', $userCode)->exists()){
+            $userCode = "UR-".Str::random(5);
+        }
+        $email = fake()->unique()->userName() . '@gmail.com';
         return [
-            'user_code' => "UR-".Str::random(5),
+            'user_code' => $userCode,
             'name' => $this->sanitizeName(fake()->name()),
-            'email' => fake()->userName() . '@gmail.com',
+            'email' => $email,
             'phone' => '0' . fake()->numberBetween(100000000, 999999999),
             'address' => fake()->address(),
             'show_password' => $showPassword,

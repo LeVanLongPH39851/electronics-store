@@ -308,6 +308,16 @@
             </li>
             <li class="nav-item">
               <a
+                class="nav-link {{$classActive === "Mã Giảm Giá" ? "active bg-active" : ""}}"
+                href="{{ route('voucher.index') }}"
+              >
+                <i class="fa-solid fa-tag menu-icon {{$classActive === "Mã Giảm Giá" ? "text-primary" : ""}}"></i>
+                <span>Mã giảm giá</span>
+              </a>
+              <!--end startbarElements-->
+            </li>
+          <li class="nav-item">
+              <a
                 class="nav-link {{$classActive === "Đơn Hàng" ? "active bg-active" : ""}}"
                 href="{{ route('order.index') }}"
               >
@@ -315,6 +325,15 @@
                 <span>Đơn Hàng</span>
               </a>
               <!--end startbarElements-->
+          </li>
+            <li class="nav-item">
+              <a
+                class="nav-link {{$classActive === "Bài viết" ? "active bg-active" : ""}}"
+                href="{{ route('post.index') }}"
+              >
+                <i class="fas fa-rectangle-list menu-icon {{$classActive === "Bài viết" ? "text-primary" : ""}}"></i>
+                <span>Bài viết</span>
+              </a>
           </li>
           </ul>
           <!--end navbar-nav--->
