@@ -1,4 +1,4 @@
-@include('clients.components.breadcrumb')
+
 <!-- Cart Main Area Start -->
 <div class="cart-main-area ptb-45">
     <div class="container">
@@ -25,7 +25,7 @@
                                 <tr>
                                     <td class="product-thumbnail">
                                         <a href="#">
-                                            <img src="{{ Storage::url($cart->productVariant->image) }}" alt="cart-image" />
+                                            <img src="{{ ".".Storage::url($cart->productVariant->image) }}" alt="cart-image" />
                                         </a>
                                     </td>
                                     <td class="product-name">
@@ -77,35 +77,14 @@
                                         <tr class="cart-subtotal">
                                             <th class="text-start">Tạm Tính</th>
                                             <td class="text-end">
-                                                <span class="amount" id="subtotal">{{ number_format($carts->sum(function($cart) { return $cart->productVariant->price * $cart->variant_quantity; }), 0, '', '.') }} vnđ</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">
-                                                <!-- Phần nhập mã giảm giá -->
-                                                <div class="discount-section mt-4">
-                                                    <label class="mb-2">Mã giảm giá</label>
-                                                    <div class="d-flex">
-                                                        <input type="text" id="discount_code" name="discount_code" class="form-control me-2" placeholder="Nhập mã giảm giá">
-                                                        <button type="button" id="apply-discount" class="btn btn-success">Áp dụng</button>
-                                                    </div>
-                                                    <span id="discount_message" class="text-danger mt-2"></span>
-                                                    <p class="mt-2">Số tiền giảm: <span id="discount_amount">0</span> vnđ</p>
-                                                </div>
-                                                <!-- Kết thúc phần nhập mã giảm giá -->
-                                            </td>
-                                        </tr>
-                                        <tr class="discount-row">
-                                            <th class="text-start">Giảm giá</th>
-                                            <td class="text-end">
-                                                <span class="amount" id="discount_display">0 vnđ</span>
+                                                <span class="amount">{{ number_format($carts->sum(function($cart) { return $cart->productVariant->price * $cart->variant_quantity; }), 0, '', '.') }} vnđ</span>
                                             </td>
                                         </tr>
                                         <tr class="order-total">
                                             <th class="text-start">Tổng Tiền</th>
                                             <td class="text-end">
                                                 <strong>
-                                                    <span class="amount" id="total_amount">{{ number_format($carts->sum(function($cart) { return $cart->productVariant->price * $cart->variant_quantity; }), 0, '', '.') }} vnđ</span>
+                                                    <span class="amount">{{ number_format($carts->sum(function($cart) { return $cart->productVariant->price * $cart->variant_quantity; }), 0, '', '.') }} vnđ</span>
                                                 </strong>
                                             </td>
                                         </tr>
@@ -135,52 +114,6 @@ function updateQuantity(button, change) {
         input.value = quantity + change;
     }
 }
-
-// Mã Giảm Giá
-document.getElementById('apply-discount').addEventListener('click', function() {
-    const discountCode = document.getElementById('discount_code').value;
-    const totalAmount = {{ $carts->sum(function($cart) { return $cart->productVariant->price * $cart->variant_quantity; }) }}; // Tính tổng tiền giỏ hàng
-    const discountMessage = document.getElementById('discount_message');
-    const discountAmountElement = document.getElementById('discount_amount');
-    const discountDisplayElement = document.getElementById('discount_display');
-    const totalAmountElement = document.getElementById('total_amount');
-
-    if (discountCode) {
-        $.ajax({
-            url: '/apply-discount', // Đường dẫn tới route xử lý mã giảm giá
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                code: discountCode,
-                total_amount: totalAmount
-            },
-            success: function(response) {
-                if (response.success) {
-                    const discountAmount = response.discount_amount;
-                    discountAmountElement.innerText = discountAmount; // Hiển thị số tiền giảm
-                    discountDisplayElement.innerText = discountAmount; // Hiển thị số tiền giảm
-                    discountMessage.innerText = ''; // Xóa thông báo lỗi
-
-                    // Cập nhật tổng tiền
-                    const newTotal = totalAmount - discountAmount;
-                    totalAmountElement.innerText = newTotal < 0 ? '0 vnđ' : numberWithCommas(newTotal) + ' vnđ'; // Cập nhật tổng tiền
-                } else {
-                    discountMessage.innerText = response.error; // Hiển thị thông báo lỗi nếu có
-                }
-            },
-            error: function() {
-                discountMessage.innerText = 'Có lỗi xảy ra, vui lòng thử lại.';
-            }
-        });
-    } else {
-        discountMessage.innerText = 'Vui lòng nhập mã giảm giá.';
-    }
-});
-
-// Hàm định dạng số
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-</script>
+</script>   
 
 <!-- Cart Main Area End -->

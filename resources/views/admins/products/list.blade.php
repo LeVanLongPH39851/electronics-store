@@ -141,6 +141,8 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        <div class="nav-mt-3">
+                            {{ $products->appends(request()->query())->links('pagination::bootstrap-5') }}</div>
                     </div>
                 </div>
             </div>

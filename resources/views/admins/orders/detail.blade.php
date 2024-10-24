@@ -73,10 +73,10 @@
                             <div class="row mt-1">
                                 <div class="col-12 d-flex justify-content-between">
                                     <div class="text-start">
-                                        <h6 class="mb-1">{{$orderHistory->from_status === "cxn" ? "Đang chờ xác nhận" : ($orderHistory->from_status === "dxn" ? "Đã xác nhận" : ($orderHistory->from_status === "dgh" ? "Đang giao hàng" : ($orderHistory->from_status === "ghtc" ? "Giao hành thành công" : ($orderHistory->from_status === "ghtb" ? "Giao hành thất bại" : ($orderHistory->from_status === "dh" ? "Đã hủy" : "Đã nhận hàng")))))}}</h6>
+                                        <h6 class="mb-1">{{$orderHistory->from_status === "cxn" ? "Đang chờ xác nhận" : ($orderHistory->from_status === "dxn" ? "Đã xác nhận" : ($orderHistory->from_status === "dgh" ? "Đang giao hàng" : ($orderHistory->from_status === "ghtc" ? "Giao hành thành công" : ($orderHistory->from_status === "ghtb" ? "Giao hành thất bại" : ($orderHistory->from_status === "dh" ? "Đã hủy" : "Hoàn thành")))))}}</h6>
                                     </div>
                                     <div class="text-center">
-                                        <h6 class="mb-1">{{$orderHistory->to_status === "cxn" ? "Đang chờ xác nhận" : ($orderHistory->to_status === "dxn" ? "Đã xác nhận" : ($orderHistory->to_status === "dgh" ? "Đang giao hàng" : ($orderHistory->to_status === "ghtc" ? "Giao hàng thành công" : ($orderHistory->to_status === "ghtb" ? "Giao hàng thất bại" : ($orderHistory->to_status === "dh" ? "Đã hủy" : "Đã nhận hàng")))))}}</h6>
+                                        <h6 class="mb-1">{{$orderHistory->to_status === "cxn" ? "Đang chờ xác nhận" : ($orderHistory->to_status === "dxn" ? "Đã xác nhận" : ($orderHistory->to_status === "dgh" ? "Đang giao hàng" : ($orderHistory->to_status === "ghtc" ? "Giao hàng thành công" : ($orderHistory->to_status === "ghtb" ? "Giao hàng thất bại" : ($orderHistory->to_status === "dh" ? "Đã hủy" : "Hoàn thành")))))}}</h6>
                                         <p class="mb-0 text-muted fs-12 fw-medium">{{date('H:i:s d/m/Y', strtotime($orderHistory->created_at))}}</p>
                                     </div>
                                 </div>
@@ -118,17 +118,17 @@
                                 @php
                                     $dh = $order->status !== "cxn" && $order->status !== "ghtb" ? "disabled" : "";
                                     $dxn = $order->status !== "cxn" ? "disabled" : "";
-                                    $dgh = $order->status !== "dxn" && $order->status !== "ghtb" ? "disabled" : "";
+                                    $dgh = $order->status !== "dxn" ? "disabled" : "";
                                     $ghtc = $order->status !== "dgh" ? "disabled" : "";
                                     $ghtb = $order->status !== "dgh"  ? "disabled" : "";
                                 @endphp
                                 <select name="status" class="form-select">
-                                    <option {{$order->status === "dh" ? "selected" : ""}} {{$dh}} value="dh">Hủy</option>
                                     <option {{$order->status === "cxn" ? "selected" : ""}} disabled value="cxn">Đang chờ xác nhận</option>
                                     <option {{$order->status === "dxn" ? "selected" : ""}} {{$dxn}} value="dxn">Đã xác nhận</option>
                                     <option {{$order->status === "dgh" ? "selected" : ""}} {{$dgh}} value="dgh">Đang giao hàng</option>
                                     <option {{$order->status === "ghtc" ? "selected" : ""}} {{$ghtc}} value="ghtc">Giao hàng thành công</option>
                                     <option {{$order->status === "ghtb" ? "selected" : ""}} {{$ghtb}} value="ghtb">Giao hàng thất bại</option>
+                                    <option {{$order->status === "dh" ? "selected" : ""}} {{$dh}} value="dh">Hủy</option>
                                 </select>
                                 @if ($errors->has("status"))
                                 <p class="text-danger mt-1 mb-0">{{$errors->first("status")}}</p>
@@ -169,7 +169,7 @@
                                     $icon = $order->status === "cxn" ? "clock" : ($order->status === "dxn" ? "check" : ($order->status === "dgh" ? "truck" : ($order->status === "ghtc" ? "check-to-slot" : ($order->status === "ghtb" ? "ban" : ($order->status === "dh" ? "xmark" : "thumbs-up")))));
                                 @endphp                      
                             <span class="badge rounded text-{{$color}} bg-{{$color}}-subtle fs-12 p-1">
-                                <span>{{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Đã nhận hàng")))))}}</span>
+                                <span>{{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Hoàn thành")))))}}</span>
                             </span>                  
                         </div><!--end col-->    
                     </div>  <!--end row-->                                  
@@ -215,8 +215,8 @@
                             <p class="text-body-emphasis fw-semibold">{{$orderDetail->order->user_phone}}</p>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
-                            <p class="text-body fw-semibold"><i class="iconoir-mail text-secondary fs-20 align-middle me-1"></i>Địa chỉ :</p>
-                            <p class="text-body-emphasis fw-semibold">{{$orderDetail->order->user_address}}</p>
+                            <p class="text-body fw-semibold text-nowrap"><i class="iconoir-mail text-secondary fs-20 align-middle me-1"></i>Địa chỉ :</p>&nbsp;
+                            <p class="text-body-emphasis fw-semibold fs-12" style="text-align: justify">{{$orderDetail->order->user_address}}</p>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <p class="text-body fw-semibold"><i class="iconoir-calendar text-secondary fs-20 align-middle me-1"></i>Ngày đặt :</p>

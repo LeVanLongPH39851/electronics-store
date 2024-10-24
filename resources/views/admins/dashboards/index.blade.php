@@ -1,1065 +1,549 @@
-  <div class="container-xxl animated fadeInDown">
-    <div class="row">
-      <div class="col-md-12 col-lg-12 col-xl-4">
-        <div class="row">
-          <div class="col-md-12 col-lg-6 col-xl-12">
-            <div class="card">
-              <div class="card-body border-dashed-bottom pb-3">
-                <div class="row d-flex justify-content-between">
-                  <div class="col-auto">
-                    <div
-                      class="d-flex justify-content-center align-items-center thumb-xl border border-secondary rounded-circle"
-                    >
-                      <i
-                        class="icofont-money-bag h1 align-self-center mb-0 text-secondary"
-                      ></i>
-                    </div>
-                    <h5 class="mt-2 mb-0 fs-14">Total Revenue</h5>
-                  </div>
-                  <!--end col-->
-                  <div class="col align-self-center">
-                    <div id="line-1" class="apex-charts float-end"></div>
-                  </div>
-                  <!--end col-->
-                </div>
-                <!--end row-->
-              </div>
-              <!--end card-body-->
-              <div class="card-body">
-                <div class="row d-flex justify-content-center">
-                  <div class="col-12 col-md-6">
-                    <h2 class="fs-22 mt-0 mb-1 fw-bold">$8365.00</h2>
-                    <p class="mb-0 text-truncate text-muted">
-                      <span class="text-success"
-                        ><i class="mdi mdi-trending-up"></i>8.5%</span
-                      >
-                      New Sessions Today
-                    </p>
-                  </div>
-                  <!--end col-->
-                  <div
-                    class="col-12 col-md-6 align-self-center text-start text-md-end"
-                  >
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm px-2 mt-2 mt-md-0"
-                    >
-                      View Report
-                    </button>
-                  </div>
-                  <!--end col-->
-                </div>
-                <!--end row-->
-              </div>
-              <!--end card-body-->
-            </div>
-            <!--end card-->
-          </div>
-          <!--end col-->
-          <div class="col-md-12 col-lg-6 col-xl-12">
-            <div class="card">
-              <div class="card-body border-dashed-bottom pb-3">
-                <div class="row d-flex justify-content-between">
-                  <div class="col-auto">
-                    <div
-                      class="d-flex justify-content-center align-items-center thumb-xl border border-secondary rounded-circle"
-                    >
-                      <i
-                        class="icofont-opencart h1 align-self-center mb-0 text-secondary"
-                      ></i>
-                    </div>
-                    <h5 class="mt-2 mb-0 fs-14">New Order</h5>
-                  </div>
-                  <!--end col-->
-                  <div class="col align-self-center">
-                    <div id="line-2" class="apex-charts float-end"></div>
-                  </div>
-                  <!--end col-->
-                </div>
-                <!--end row-->
-              </div>
-              <!--end card-body-->
-              <div class="card-body">
-                <div class="row d-flex justify-content-center">
-                  <div class="col-12 col-md-6">
-                    <h2 class="fs-22 mt-0 mb-1 fw-bold">722</h2>
-                    <p class="mb-0 text-truncate text-muted">
-                      <span class="text-success"
-                        ><i class="mdi mdi-trending-up"></i>8.5%</span
-                      >
-                      New Sessions Today
-                    </p>
-                  </div>
-                  <!--end col-->
-                  <div
-                    class="col-12 col-md-6 align-self-center text-start text-md-end"
-                  >
-                    <button
-                      type="button"
-                      class="btn btn-outline-secondary btn-sm px-2 mt-2 mt-md-0"
-                    >
-                      View Report
-                    </button>
-                  </div>
-                  <!--end col-->
-                </div>
-                <!--end row-->
-              </div>
-              <!--end card-body-->
-            </div>
-            <!--end card-->
-          </div>
-          <!--end col-->
+<div class="container-xxl animated fadeInDown">
+  <form action="{{route("admin.index")}}" method="GET">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Thống kê đơn hàng</h4>
         </div>
-        <!--end row-->
       </div>
-      <!--end col-->
-      <div class="col-md-12 col-lg-12 col-xl-8">
-        <div class="card">
-          <div class="card-header">
-            <div class="row align-items-center">
-              <div class="col">
-                <h4 class="card-title">Monthly Avg. Income</h4>
-              </div>
-              <!--end col-->
-              <div class="col-auto">
-                <div class="dropdown">
-                  <a
-                    href="#"
-                    class="btn bt btn-light dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i class="icofont-calendar fs-5 me-1"></i> This Year<i
-                      class="las la-angle-down ms-1"
-                    ></i>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="#">Today</a>
-                    <a class="dropdown-item" href="#">Last Week</a>
-                    <a class="dropdown-item" href="#">Last Month</a>
-                    <a class="dropdown-item" href="#">This Year</a>
-                  </div>
-                </div>
-              </div>
-              <!--end col-->
-            </div>
-            <!--end row-->
-          </div>
-          <!--end card-header-->
-          <div class="card-body pt-0">
-            <div id="monthly_income" class="apex-charts"></div>
-            <div class="row">
-              <div class="col-md-6 col-lg-3">
-                <div class="card shadow-none border mb-3 mb-lg-0">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col text-center">
-                        <span class="fs-18 fw-semibold">$24,500</span>
-                        <h6 class="text-uppercase text-muted mt-2 m-0">
-                          Today's Revenue
-                        </h6>
-                      </div>
-                      <!--end col-->
-                    </div>
-                    <!-- end row -->
-                  </div>
-                  <!--end card-body-->
-                </div>
-                <!--end card-body-->
-              </div>
-              <!--end col-->
-              <div class="col-md-6 col-lg-3">
-                <div class="card shadow-none border mb-3 mb-lg-0">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col text-center">
-                        <span class="fs-18 fw-semibold">82.8%</span>
-                        <h6 class="text-uppercase text-muted mt-2 m-0">
-                          Conversion Rate
-                        </h6>
-                      </div>
-                      <!--end col-->
-                    </div>
-                    <!-- end row -->
-                  </div>
-                  <!--end card-body-->
-                </div>
-                <!--end card-body-->
-              </div>
-              <!--end col-->
-
-              <div class="col-md-6 col-lg-3">
-                <div class="card shadow-none border mb-3 mb-lg-0">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col text-center">
-                        <span class="fs-18 fw-semibold">$9982.00</span>
-                        <h6 class="text-uppercase text-muted mt-2 m-0">
-                          Total Expenses
-                        </h6>
-                      </div>
-                      <!--end col-->
-                    </div>
-                    <!-- end row -->
-                  </div>
-                  <!--end card-body-->
-                </div>
-                <!--end card-->
-              </div>
-              <!--end col-->
-              <div class="col-md-6 col-lg-3">
-                <div class="card shadow-none border mb-3 mb-lg-0">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col text-center">
-                        <span class="fs-18 fw-semibold">$80.5</span>
-                        <h6 class="text-uppercase text-muted mt-2 m-0">
-                          Avg. Value
-                        </h6>
-                      </div>
-                      <!--end col-->
-                    </div>
-                    <!-- end row -->
-                  </div>
-                  <!--end card-body-->
-                </div>
-                <!--end card-body-->
-              </div>
-              <!--end col-->
-            </div>
-            <!--end row-->
-          </div>
-          <!--end card-body-->
-        </div>
-        <!--end card-->
-      </div>
-      <!--end col-->
     </div>
-    <!--end row-->
-    <div class="row justify-content-center">
-      <div class="col-md-6 col-lg-8">
-        <div class="card">
-          <div class="card-header">
-            <div class="row align-items-center">
-              <div class="col">
-                <h4 class="card-title">Popular Products</h4>
-              </div>
-              <!--end col-->
-              <div class="col-auto">
-                <div class="dropdown">
-                  <a
-                    href="#"
-                    class="btn bt btn-light dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i class="icofont-calendar fs-5 me-1"></i> This Year<i
-                      class="las la-angle-down ms-1"
-                    ></i>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="#">Today</a>
-                    <a class="dropdown-item" href="#">Last Week</a>
-                    <a class="dropdown-item" href="#">Last Month</a>
-                    <a class="dropdown-item" href="#">This Year</a>
-                  </div>
-                </div>
-              </div>
-              <!--end col-->
-            </div>
-            <!--end row-->
-          </div>
-          <!--end card-header-->
-          <div class="card-body pt-0">
-            <div class="table-responsive">
-              <table class="table mb-0">
-                <thead class="table-light">
-                  <tr>
-                    <th class="border-top-0">Product</th>
-                    <th class="border-top-0">Price</th>
-                    <th class="border-top-0">Sell</th>
-                    <th class="border-top-0">Status</th>
-                    <th class="border-top-0">Action</th>
-                  </tr>
-                  <!--end tr-->
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/products/01.png"
-                          height="40"
-                          class="me-3 align-self-center rounded"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0">History Book</h6>
-                          <a href="#" class="fs-12 text-primary"
-                            >ID: A3652</a
-                          >
-                        </div>
-                        <!--end media body-->
-                      </div>
-                    </td>
-                    <td>$50 <del class="text-muted fs-10">$70</del></td>
-                    <td>450 <small class="text-muted">(550)</small></td>
-                    <td>
-                      <span
-                        class="badge bg-primary-subtle text-primary px-2"
-                        >Stock</span
-                      >
-                    </td>
-                    <td>
-                      <a href="#"
-                        ><i class="las la-pen text-secondary fs-18"></i
-                      ></a>
-                      <a href="#"
-                        ><i
-                          class="las la-trash-alt text-secondary fs-18"
-                        ></i
-                      ></a>
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/products/02.png"
-                          height="40"
-                          class="me-3 align-self-center rounded"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0">Colorful Pots</h6>
-                          <a href="#" class="fs-12 text-primary"
-                            >ID: A5002</a
-                          >
-                        </div>
-                        <!--end media body-->
-                      </div>
-                    </td>
-                    <td>$99 <del class="text-muted fs-10">$150</del></td>
-                    <td>750 <small class="text-muted">(00)</small></td>
-                    <td>
-                      <span
-                        class="badge bg-danger-subtle text-danger px-2"
-                        >Out of Stock</span
-                      >
-                    </td>
-                    <td>
-                      <a href="#"
-                        ><i class="las la-pen text-secondary fs-18"></i
-                      ></a>
-                      <a href="#"
-                        ><i
-                          class="las la-trash-alt text-secondary fs-18"
-                        ></i
-                      ></a>
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/products/04.png"
-                          height="40"
-                          class="me-3 align-self-center rounded"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0">Pearl Bracelet</h6>
-                          <a href="#" class="fs-12 text-primary"
-                            >ID: A6598</a
-                          >
-                        </div>
-                        <!--end media body-->
-                      </div>
-                    </td>
-                    <td>$199 <del class="text-muted fs-10">$250</del></td>
-                    <td>280 <small class="text-muted">(220)</small></td>
-                    <td>
-                      <span
-                        class="badge bg-primary-subtle text-primary px-2"
-                        >Stock</span
-                      >
-                    </td>
-                    <td>
-                      <a href="#"
-                        ><i class="las la-pen text-secondary fs-18"></i
-                      ></a>
-                      <a href="#"
-                        ><i
-                          class="las la-trash-alt text-secondary fs-18"
-                        ></i
-                      ></a>
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/products/06.png"
-                          height="40"
-                          class="me-3 align-self-center rounded"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0">Dancing Man</h6>
-                          <a href="#" class="fs-12 text-primary"
-                            >ID: A9547</a
-                          >
-                        </div>
-                        <!--end media body-->
-                      </div>
-                    </td>
-                    <td>$40 <del class="text-muted fs-10">$49</del></td>
-                    <td>500 <small class="text-muted">(1000)</small></td>
-                    <td>
-                      <span
-                        class="badge bg-danger-subtle text-danger px-2"
-                        >Out of Stock</span
-                      >
-                    </td>
-                    <td>
-                      <a href="#"
-                        ><i class="las la-pen text-secondary fs-18"></i
-                      ></a>
-                      <a href="#"
-                        ><i
-                          class="las la-trash-alt text-secondary fs-18"
-                        ></i
-                      ></a>
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/products/05.png"
-                          height="40"
-                          class="me-3 align-self-center rounded"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0">Fire Lamp</h6>
-                          <a href="#" class="fs-12 text-primary"
-                            >ID: A2047</a
-                          >
-                        </div>
-                        <!--end media body-->
-                      </div>
-                    </td>
-                    <td>$80 <del class="text-muted fs-10">$59</del></td>
-                    <td>800 <small class="text-muted">(2000)</small></td>
-                    <td>
-                      <span
-                        class="badge bg-danger-subtle text-danger px-2"
-                        >Out of Stock</span
-                      >
-                    </td>
-                    <td>
-                      <a href="#"
-                        ><i class="las la-pen text-secondary fs-18"></i
-                      ></a>
-                      <a href="#"
-                        ><i
-                          class="las la-trash-alt text-secondary fs-18"
-                        ></i
-                      ></a>
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                </tbody>
-              </table>
-              <!--end table-->
-            </div>
-            <!--end /div-->
-          </div>
-          <!--end card-body-->
-        </div>
-        <!--end card-->
-      </div>
-      <!--end col-->
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card">
-          <div class="card-header">
-            <div class="row align-items-center">
-              <div class="col">
-                <h4 class="card-title">Customers</h4>
-              </div>
-              <!--end col-->
-              <div class="col-auto">
-                <div class="img-group d-flex">
-                  <a
-                    class="user-avatar position-relative d-inline-block"
-                    href="#"
-                  >
-                    <img
-                      src="assets/images/users/avatar-1.jpg"
-                      alt="avatar"
-                      class="thumb-md shadow-sm rounded-circle"
-                    />
-                  </a>
-                  <a
-                    class="user-avatar position-relative d-inline-block ms-n2"
-                    href="#"
-                  >
-                    <img
-                      src="assets/images/users/avatar-2.jpg"
-                      alt="avatar"
-                      class="thumb-md shadow-sm rounded-circle"
-                    />
-                  </a>
-                  <a
-                    class="user-avatar position-relative d-inline-block ms-n2"
-                    href="#"
-                  >
-                    <img
-                      src="assets/images/users/avatar-4.jpg"
-                      alt="avatar"
-                      class="thumb-md shadow-sm rounded-circle"
-                    />
-                  </a>
-                  <a
-                    class="user-avatar position-relative d-inline-block ms-n2"
-                    href="#"
-                  >
-                    <img
-                      src="assets/images/users/avatar-3.jpg"
-                      alt="avatar"
-                      class="thumb-md shadow-sm rounded-circle"
-                    />
-                  </a>
-                  <a
-                    href="#"
-                    class="user-avatar position-relative d-inline-block ms-1"
-                  >
-                    <span
-                      class="thumb-md shadow-sm justify-content-center d-flex align-items-center bg-info-subtle rounded-circle fw-semibold fs-6"
-                      >+6</span
-                    >
-                  </a>
-                </div>
-              </div>
-              <!--end col-->
-            </div>
-            <!--end row-->
-          </div>
-          <div class="card-body pt-0">
-            <div id="customers" class="apex-charts"></div>
-            <div class="bg-light py-3 px-2 mb-0 mt-3 text-center rounded">
-              <h6 class="mb-0">
-                <i class="icofont-calendar fs-5 me-1"></i> 01 January 2024
-                to 31 December 2024
-              </h6>
-            </div>
-            <p
-              class="text-secondary text-truncate mb-0 rounded mt-2 text-center"
-            >
-              To review the new order by Jems.
-              <a href="#" class="text-primary text-decoration-underline"
-                >detail</a
-              >
-            </p>
-          </div>
-          <!--end card-body-->
-        </div>
-        <!--end card-->
-      </div>
-      <!--end col-->
-    </div>
-    <!--end row-->
-    <div class="row justify-content-center">
-      <div class="col-md-6 col-lg-4">
-        <div class="card">
-          <div class="card-header">
-            <div class="row align-items-center">
-              <div class="col">
-                <h4 class="card-title">Top Selling by Country</h4>
-              </div>
-              <!--end col-->
-              <div class="col-auto">
-                <div class="dropdown">
-                  <a
-                    href="#"
-                    class="btn bt btn-light dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i class="icofont-calendar fs-5 me-1"></i> This
-                    Month<i class="las la-angle-down ms-1"></i>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="#">Today</a>
-                    <a class="dropdown-item" href="#">Last Week</a>
-                    <a class="dropdown-item" href="#">Last Month</a>
-                    <a class="dropdown-item" href="#">This Year</a>
-                  </div>
-                </div>
-              </div>
-              <!--end col-->
-            </div>
-            <!--end row-->
-          </div>
-          <!--end card-header-->
-          <div class="card-body pt-0">
-            <div class="table-responsive">
-              <table class="table mb-0">
-                <tbody>
-                  <tr class="">
-                    <td class="px-0">
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/flags/us_flag.jpg"
-                          class="me-2 align-self-center thumb-md rounded-circle"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0 text-truncate">USA</h6>
-                          <div class="d-flex align-items-center">
-                            <div
-                              class="progress bg-primary-subtle w-100"
-                              style="height: 5px"
-                              role="progressbar"
-                              aria-label="Success example"
-                              aria-valuenow="25"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            >
-                              <div
-                                class="progress-bar bg-primary"
-                                style="width: 85%"
-                              ></div>
-                            </div>
-                            <small class="flex-shrink-1 ms-1">85%</small>
-                          </div>
-                        </div>
-                        <!--end media body-->
-                      </div>
-                      <!--end media-->
-                    </td>
-                    <td class="px-0 text-end">
-                      <span
-                        class="text-body ps-2 align-self-center text-end"
-                        >$5860.00</span
-                      >
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                  <tr class="">
-                    <td class="px-0">
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/flags/spain_flag.jpg"
-                          class="me-2 align-self-center thumb-md rounded-circle"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0 text-truncate">Spain</h6>
-                          <div class="d-flex align-items-center">
-                            <div
-                              class="progress bg-primary-subtle w-100"
-                              style="height: 5px"
-                              role="progressbar"
-                              aria-label="Success example"
-                              aria-valuenow="25"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            >
-                              <div
-                                class="progress-bar bg-primary"
-                                style="width: 78%"
-                              ></div>
-                            </div>
-                            <small class="flex-shrink-1 ms-1">78%</small>
-                          </div>
-                        </div>
-                        <!--end media body-->
-                      </div>
-                      <!--end media-->
-                    </td>
-                    <td class="px-0 text-end">
-                      <span
-                        class="text-body ps-2 align-self-center text-end"
-                        >$5422.00</span
-                      >
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                  <tr class="">
-                    <td class="px-0">
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/flags/french_flag.jpg"
-                          class="me-2 align-self-center thumb-md rounded-circle"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0 text-truncate">French</h6>
-                          <div class="d-flex align-items-center">
-                            <div
-                              class="progress bg-primary-subtle w-100"
-                              style="height: 5px"
-                              role="progressbar"
-                              aria-label="Success example"
-                              aria-valuenow="25"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            >
-                              <div
-                                class="progress-bar bg-primary"
-                                style="width: 71%"
-                              ></div>
-                            </div>
-                            <small class="flex-shrink-1 ms-1">71%</small>
-                          </div>
-                        </div>
-                        <!--end media body-->
-                      </div>
-                      <!--end media-->
-                    </td>
-                    <td class="px-0 text-end">
-                      <span
-                        class="text-body ps-2 align-self-center text-end"
-                        >$4587.00</span
-                      >
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                  <tr class="">
-                    <td class="px-0">
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/flags/germany_flag.jpg"
-                          class="me-2 align-self-center thumb-md rounded-circle"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0 text-truncate">Germany</h6>
-                          <div class="d-flex align-items-center">
-                            <div
-                              class="progress bg-primary-subtle w-100"
-                              style="height: 5px"
-                              role="progressbar"
-                              aria-label="Success example"
-                              aria-valuenow="25"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            >
-                              <div
-                                class="progress-bar bg-primary"
-                                style="width: 65%"
-                              ></div>
-                            </div>
-                            <small class="flex-shrink-1 ms-1">65%</small>
-                          </div>
-                        </div>
-                        <!--end media body-->
-                      </div>
-                      <!--end media-->
-                    </td>
-                    <td class="px-0 text-end">
-                      <span
-                        class="text-body ps-2 align-self-center text-end"
-                        >$3655.00</span
-                      >
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                  <tr class="">
-                    <td class="px-0">
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/flags/baha_flag.jpg"
-                          class="me-2 align-self-center thumb-md rounded-circle"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0 text-truncate">Bahamas</h6>
-                          <div class="d-flex align-items-center">
-                            <div
-                              class="progress bg-primary-subtle w-100"
-                              style="height: 5px"
-                              role="progressbar"
-                              aria-label="Success example"
-                              aria-valuenow="25"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            >
-                              <div
-                                class="progress-bar bg-primary"
-                                style="width: 48%"
-                              ></div>
-                            </div>
-                            <small class="flex-shrink-1 ms-1">48%</small>
-                          </div>
-                        </div>
-                        <!--end media body-->
-                      </div>
-                      <!--end media-->
-                    </td>
-                    <td class="px-0 text-end">
-                      <span
-                        class="text-body ps-2 align-self-center text-end"
-                        >$3325.00</span
-                      >
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                </tbody>
-              </table>
-              <!--end table-->
-            </div>
-            <!--end /div-->
-          </div>
-          <!--end card-body-->
-        </div>
-        <!--end card-->
-      </div>
-      <!--end col-->
-      <div class="col-md-6 col-lg-4">
-        <div class="card">
-          <div class="card-header">
-            <div class="row align-items-center">
-              <div class="col">
-                <h4 class="card-title">Categories Data</h4>
-              </div>
-              <!--end col-->
-              <div class="col-auto">
-                <div class="text-center">
-                  <h6 class="text-uppercase text-muted mt-1 m-0">
-                    <span class="fs-16 fw-semibold">24+</span> Categories
-                  </h6>
-                </div>
-              </div>
-              <!--end col-->
-            </div>
-            <!--end row-->
-          </div>
-          <div class="card-body pt-0">
-            <div id="categories" class="apex-charts mt-n2"></div>
-            <div class="text-center">
-              <button type="button" class="btn btn-primary mx-auto">
-                More Detail <i class="fa-solid fa-arrow-right-long"></i>
-              </button>
-            </div>
-          </div>
-          <!--end card-body-->
-        </div>
-        <!--end card-->
-      </div>
-      <!--end col-->
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card">
-          <div class="card-header">
-            <div class="row align-items-center">
-              <div class="col">
-                <h4 class="card-title">Recents Order</h4>
-              </div>
-              <!--end col-->
-              <div class="col-auto">
-                <div class="dropdown">
-                  <a
-                    href="#"
-                    class="btn bt btn-light dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i class="icofont-calendar fs-5 me-1"></i> This
-                    Month<i class="las la-angle-down ms-1"></i>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="#">Today</a>
-                    <a class="dropdown-item" href="#">Last Week</a>
-                    <a class="dropdown-item" href="#">Last Month</a>
-                    <a class="dropdown-item" href="#">This Year</a>
-                  </div>
-                </div>
-              </div>
-              <!--end col-->
-            </div>
-            <!--end row-->
-          </div>
-          <!--end card-header-->
-          <div class="card-body pt-0">
-            <div class="table-responsive">
-              <table class="table mb-0">
-                <tbody>
-                  <tr class="">
-                    <td class="px-0">
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/users/avatar-1.jpg"
-                          height="36"
-                          class="me-2 align-self-center rounded"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0 text-truncate">Scott Holland</h6>
-                          <a
-                            href="#"
-                            class="font-12 text-muted text-decoration-underline"
-                            >#3652</a
-                          >
-                        </div>
-                        <!--end media body-->
-                      </div>
-                      <!--end media-->
-                    </td>
-                    <td class="px-0 text-end">
-                      <span
-                        class="text-primary ps-2 align-self-center text-end"
-                        >$3325.00</span
-                      >
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                  <tr class="">
-                    <td class="px-0">
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/users/avatar-2.jpg"
-                          height="36"
-                          class="me-2 align-self-center rounded"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0 text-truncate">Karen Savage</h6>
-                          <a
-                            href="#"
-                            class="font-12 text-muted text-decoration-underline"
-                            >#4789</a
-                          >
-                        </div>
-                        <!--end media body-->
-                      </div>
-                      <!--end media-->
-                    </td>
-                    <td class="px-0 text-end">
-                      <span
-                        class="text-primary ps-2 align-self-center text-end"
-                        >$2548.00</span
-                      >
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                  <tr class="">
-                    <td class="px-0">
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/users/avatar-3.jpg"
-                          height="36"
-                          class="me-2 align-self-center rounded"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0 text-truncate">Steven Sharp</h6>
-                          <a
-                            href="#"
-                            class="font-12 text-muted text-decoration-underline"
-                            >#4521</a
-                          >
-                        </div>
-                        <!--end media body-->
-                      </div>
-                      <!--end media-->
-                    </td>
-                    <td class="px-0 text-end">
-                      <span
-                        class="text-primary ps-2 align-self-center text-end"
-                        >$2985.00</span
-                      >
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                  <tr class="">
-                    <td class="px-0">
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/users/avatar-4.jpg"
-                          height="36"
-                          class="me-2 align-self-center rounded"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0 text-truncate">Teresa Himes</h6>
-                          <a
-                            href="#"
-                            class="font-12 text-muted text-decoration-underline"
-                            >#3269</a
-                          >
-                        </div>
-                        <!--end media body-->
-                      </div>
-                      <!--end media-->
-                    </td>
-                    <td class="px-0 text-end">
-                      <span
-                        class="text-primary ps-2 align-self-center text-end"
-                        >$1845.00</span
-                      >
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                  <tr>
-                    <td class="px-0">
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="assets/images/users/avatar-5.jpg"
-                          height="36"
-                          class="me-2 align-self-center rounded"
-                          alt="..."
-                        />
-                        <div class="flex-grow-1 text-truncate">
-                          <h6 class="m-0 text-truncate">Ralph Denton</h6>
-                          <a
-                            href="#"
-                            class="font-12 text-muted text-decoration-underline"
-                            >#4521</a
-                          >
-                        </div>
-                        <!--end media body-->
-                      </div>
-                      <!--end media-->
-                    </td>
-                    <td class="px-0 text-end">
-                      <span
-                        class="text-primary ps-2 align-self-center text-end"
-                        >$1422.00</span
-                      >
-                    </td>
-                  </tr>
-                  <!--end tr-->
-                </tbody>
-              </table>
-              <!--end table-->
-            </div>
-            <!--end /div-->
-          </div>
-          <!--end card-body-->
-        </div>
-        <!--end card-->
-      </div>
-      <!--end col-->
-    </div>
-    <!--end row-->
   </div>
-  <!-- container -->
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-xl-12">
+      <div class="row">
+        <div class="col-md-12 col-lg-2">
+          <div class="card">
+            <div class="card-body border-dashed-bottom pb-3">
+              <div class="row d-flex justify-content-between">  
+                <div class="col-auto d-flex align-items-center">
+                  <div class="text-warning">
+                    <h5 class="mb-1 fs-12">Đang chờ xác nhận</h5>
+                    <div class="d-flex align-items-center">
+                      <i class="fas fa-clock me-1"></i><p class="mb-0 fs11">{{$countCxn < 10 && $countCxn > 0 ? "0".$countCxn : $countCxn}} đơn hàng</p>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+        <div class="col-md-12 col-lg-2">
+          <div class="card">
+            <div class="card-body border-dashed-bottom pb-3">
+              <div class="row d-flex justify-content-between">
+                <div class="col-auto d-flex align-items-center">
+                  <div class="text-primary">
+                    <h5 class="mb1 fs-12">Đã xác nhận</h5>
+                    <div class="d-flex align-items-center">
+                      <i class="fas fa-check me-1"></i><p class="mb-0 fs11">{{$countDxn < 10 && $countDxn > 0 ? "0".$countDxn : $countDxn}} đơn hàng</p>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+        <div class="col-md-12 col-lg-2">
+          <div class="card">
+            <div class="card-body border-dashed-bottom pb-3">
+              <div class="row d-flex justify-content-between">
+                <div class="col-auto d-flex align-items-center">
+                  <div class="text-purple">
+                    <h5 class="mb1 fs-12">Đang giao hàng</h5>
+                    <div class="d-flex align-items-center">
+                      <i class="fas fa-truck me-1"></i><p class="mb-0 fs11">{{$countDgh < 10 && $countDgh > 0 ? "0".$countDgh : $countDgh}} đơn hàng</p>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+        <div class="col-md-12 col-lg-2">
+          <div class="card">
+            <div class="card-body border-dashed-bottom pb-3">
+              <div class="row d-flex justify-content-between">
+                <div class="col-auto d-flex align-items-center">
+                  <div class="text-success">
+                    <h5 class="mb1 fs-12">Giao hàng thành công</h5>
+                    <div class="d-flex align-items-center">
+                      <i class="fas fa-check-to-slot me-1"></i><p class="mb-0 fs11">{{$countGhtc < 10 && $countGhtc > 0 ? "0".$countGhtc : $countGhtc}} đơn hàng</p>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+        <div class="col-md-12 col-lg-2">
+          <div class="card">
+            <div class="card-body border-dashed-bottom pb-3">
+              <div class="row d-flex justify-content-between">
+                <div class="col-auto d-flex align-items-center">
+                  <div class="text-danger">
+                    <h5 class="mb1 fs-12">Giao hàng thất bại</h5>
+                    <div class="d-flex align-items-center">
+                      <i class="fas fa-ban me-1"></i><p class="mb-0 fs11">{{$countGhtb < 10 && $countGhtb > 0 ? "0".$countGhtb : $countGhtb}} đơn hàng</p>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+        <div class="col-md-12 col-lg-2">
+          <div class="card">
+            <div class="card-body border-dashed-bottom pb-3">
+              <div class="row d-flex justify-content-between">
+                <div class="col-auto d-flex align-items-center">
+                  <div class="text-danger">
+                    <h5 class="mb1 fs-12">Đã hủy</h5>
+                    <div class="d-flex align-items-center">
+                      <i class="fas fa-xmark me-1"></i><p class="mb-0 fs11">{{$countDh < 10 && $countDh > 0 ? "0".$countDh : $countDh}} đơn hàng</p>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+    </div>
+    <!--end col-->
+    <div class="col-md-12 col-lg-12 col-xl-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <h4 class="card-title">Thống kê doanh thu</h4>
+            </div>
+            <div class="col-auto px-1">
+              <select class="form-select cursor-pointer" id="year" name="year" onchange="updateDays()">
+                <option value="0">Chọn năm</option>
+                @foreach ($years as $year)
+                <option {{request('year') == $year ? "selected" : ""}} value="{{$year}}">Năm {{$year}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="col-auto px-1">
+              <select class="form-select cursor-pointer" id="month" name="month" onchange="updateDays()">
+                <option value="0">Chọn tháng</option>
+                <option {{request('month') === "01" ? "selected" : ""}} value="01">Tháng 01</option>
+                <option {{request('month') === "02" ? "selected" : ""}} value="02">Tháng 02</option>
+                <option {{request('month') === "03" ? "selected" : ""}} value="03">Tháng 03</option>
+                <option {{request('month') === "04" ? "selected" : ""}} value="04">Tháng 04</option>
+                <option {{request('month') === "05" ? "selected" : ""}} value="05">Tháng 05</option>
+                <option {{request('month') === "06" ? "selected" : ""}} value="06">Tháng 06</option>
+                <option {{request('month') === "07" ? "selected" : ""}} value="07">Tháng 07</option>
+                <option {{request('month') === "08" ? "selected" : ""}} value="08">Tháng 08</option>
+                <option {{request('month') === "09" ? "selected" : ""}} value="09">Tháng 09</option>
+                <option {{request('month') === "10" ? "selected" : ""}} value="10">Tháng 10</option>
+                <option {{request('month') === "11" ? "selected" : ""}} value="11">Tháng 11</option>
+                <option {{request('month') === "12" ? "selected" : ""}} value="12">Tháng 12</option>
+              </select>
+            </div>
+            <div class="col-auto px-1">
+              <select class="form-select cursor-pointer" id="day" name="day">
+                <option value="0">Chọn ngày</option>
+                <option {{request('day') === "01" ? "selected" : ""}} value="01">Ngày 01</option>
+                <option {{request('day') === "02" ? "selected" : ""}} value="02">Ngày 02</option>
+                <option {{request('day') === "03" ? "selected" : ""}} value="03">Ngày 03</option>
+                <option {{request('day') === "04" ? "selected" : ""}} value="04">Ngày 04</option>
+                <option {{request('day') === "05" ? "selected" : ""}} value="05">Ngày 05</option>
+                <option {{request('day') === "06" ? "selected" : ""}} value="06">Ngày 06</option>
+                <option {{request('day') === "07" ? "selected" : ""}} value="07">Ngày 07</option>
+                <option {{request('day') === "08" ? "selected" : ""}} value="08">Ngày 08</option>
+                <option {{request('day') === "09" ? "selected" : ""}} value="09">Ngày 09</option>
+                <option {{request('day') === "10" ? "selected" : ""}} value="10">Ngày 10</option>
+                <option {{request('day') === "11" ? "selected" : ""}} value="11">Ngày 11</option>
+                <option {{request('day') === "12" ? "selected" : ""}} value="12">Ngày 12</option>
+                <option {{request('day') === "13" ? "selected" : ""}} value="13">Ngày 13</option>
+                <option {{request('day') === "14" ? "selected" : ""}} value="14">Ngày 14</option>
+                <option {{request('day') === "15" ? "selected" : ""}} value="15">Ngày 15</option>
+                <option {{request('day') === "16" ? "selected" : ""}} value="16">Ngày 16</option>
+                <option {{request('day') === "17" ? "selected" : ""}} value="17">Ngày 17</option>
+                <option {{request('day') === "18" ? "selected" : ""}} value="18">Ngày 18</option>
+                <option {{request('day') === "19" ? "selected" : ""}} value="19">Ngày 19</option>
+                <option {{request('day') === "20" ? "selected" : ""}} value="20">Ngày 20</option>
+                <option {{request('day') === "21" ? "selected" : ""}} value="21">Ngày 21</option>
+                <option {{request('day') === "22" ? "selected" : ""}} value="22">Ngày 22</option>
+                <option {{request('day') === "23" ? "selected" : ""}} value="23">Ngày 23</option>
+                <option {{request('day') === "24" ? "selected" : ""}} value="24">Ngày 24</option>
+                <option {{request('day') === "25" ? "selected" : ""}} value="25">Ngày 25</option>
+                <option {{request('day') === "26" ? "selected" : ""}} value="26">Ngày 26</option>
+                <option {{request('day') === "27" ? "selected" : ""}} value="27">Ngày 27</option>
+                <option {{request('day') === "28" ? "selected" : ""}} value="28">Ngày 28</option>
+                <option {{request('day') === "29" ? "selected" : ""}} value="29">Ngày 29</option>
+                <option {{request('day') === "30" ? "selected" : ""}} value="30">Ngày 30</option>
+                <option {{request('day') === "31" ? "selected" : ""}} value="31">Ngày 31</option>
+              </select>
+            </div>
+            <div class="col-auto ps-1 pe-0">
+              <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+          <!--end row-->
+        </div>
+        <!--end card-header-->
+        <div class="card-body pt-0">
+          <div id="monthly_income" class="apex-charts"></div>
+          <div id="monthly_income2" class="apex-charts"></div>
+          <div class="row">
+            <div class="col-md-6 col-lg-3">
+              <div class="card shadow-none border mb-3 mb-lg-0">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col text-center">
+                      <span class="fs-18 fw-semibold">Danh thu</span>
+                      <h6 class="text-danger mt-2 m-0">
+                        {{number_format($revenue, 0, '', '.')}} VNĐ
+                        @if($revenue > 0 && $lastRevenue > 0 && $revenue > $lastRevenue)
+                          &nbsp;&nbsp;<span class="text-success"><i class="fa-solid fa-arrow-up-wide-short"></i> {{round((($revenue - $lastRevenue) / $lastRevenue) * 100)}}%</span>
+                        @elseif($revenue > 0 && $lastRevenue > 0 && $revenue < $lastRevenue)
+                          &nbsp;&nbsp;<span class="text-warning"><i class="fa-solid fa-arrow-down-wide-short"></i> {{ltrim(round((($revenue - $lastRevenue) / $lastRevenue) * 100), "-")}}%</span>
+                        @endif
+                      </h6>
+                    </div>
+                    <!--end col-->
+                  </div>
+                  <!-- end row -->
+                </div>
+                <!--end card-body-->
+              </div>
+              <!--end card-body-->
+            </div>
+            <!--end col-->
+            <div class="col-md-6 col-lg-3">
+              <div class="card shadow-none border mb-3 mb-lg-0">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col text-center">
+                      <span class="fs-18 fw-semibold">Lợi nhuận</span>
+                      <h6 class="mt-2 m-0 text-danger">
+                        {{number_format($profit, 0, '', '.')}} VNĐ
+                        @if($profit > 0 && $lastProfit > 0 && $profit > $lastProfit)
+                          &nbsp;&nbsp;<span class="text-success"><i class="fa-solid fa-arrow-up-wide-short"></i> {{round((($profit - $lastProfit) / $lastProfit) * 100, 1)}}%</span>
+                        @elseif($profit > 0 && $lastProfit > 0 && $profit < $lastProfit)
+                          &nbsp;&nbsp;<span class="text-warning"><i class="fa-solid fa-arrow-down-wide-short"></i> {{ltrim(round((($profit - $lastProfit) / $lastProfit) * 100, 1), "-")}}%</span>
+                        @endif
+                      </h6>
+                    </div>
+                    <!--end col-->
+                  </div>
+                  <!-- end row -->
+                </div>
+                <!--end card-body-->
+              </div>
+              <!--end card-body-->
+            </div>
+            <!--end col-->
+            <div class="col-md-6 col-lg-3">
+              <div class="card shadow-none border mb-3 mb-lg-0">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col text-center">
+                      <span class="fs-18 fw-semibold">Đơn hàng</span>
+                      <h6 class="mt-2 m-0 text-primary">
+                        {{$order < 10 && $order > 0 ? "0".$order : $order}} đơn hàng
+                        @if($order > 0 &&  $lastOrder > 0 && $order > $lastOrder)
+                          &nbsp;&nbsp;<span class="text-success"><i class="fa-solid fa-arrow-up-wide-short"></i> {{round((($order - $lastOrder) / $lastOrder) * 100, 1)}}%</span>
+                        @elseif($order > 0 &&  $lastOrder > 0 && $order < $lastOrder)
+                          &nbsp;&nbsp;<span class="text-warning"><i class="fa-solid fa-arrow-down-wide-short"></i> {{ltrim(round((($order - $lastOrder) / $lastOrder) * 100, 1), "-")}}%</span>
+                        @endif
+                      </h6>
+                    </div>
+                    <!--end col-->
+                  </div>
+                  <!-- end row -->
+                </div>
+                <!--end card-body-->
+              </div>
+              <!--end card-->
+            </div>
+            <!--end col-->
+            <div class="col-md-6 col-lg-3">
+              <div class="card shadow-none border mb-3 mb-lg-0">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col text-center">
+                      <span class="fs-18 fw-semibold">Hoàn thành</span>
+                      <h6 class="text-purple mt-2 m-0">
+                        @php
+                            $orderPercent = $order > 0 ? round((($orderSuccess / $order) * 100), 1) : 0;
+                            $lastOrderPercent = $lastOrder > 0 ? round((($lastOrderSuccess / $lastOrder) * 100), 1) : 0;
+                        @endphp
+                        {{ $orderPercent }}%
+                        @if($orderPercent > 0 && $lastOrderPercent > 0 && $orderPercent > $lastOrderPercent)
+                          &nbsp;&nbsp;<span class="text-success"><i class="fa-solid fa-arrow-up-wide-short"></i> {{round((($orderPercent - $lastOrderPercent) / $lastOrderPercent) * 100, 1)}}%</span>
+                        @elseif($orderPercent > 0 && $lastOrderPercent > 0 && $orderPercent < $lastOrderPercent)
+                          &nbsp;&nbsp;<span class="text-warning"><i class="fa-solid fa-arrow-down-wide-short"></i> {{ltrim(round((($orderPercent - $lastOrderPercent) / $lastOrderPercent) * 100, 1), "-")}}%</span>
+                        @endif
+                      </h6>
+                    </div>
+                    <!--end col-->
+                  </div>
+                  <!-- end row -->
+                </div>
+                <!--end card-body-->
+              </div>
+              <!--end card-body-->
+            </div>
+            <!--end col-->
+          </div>
+          <!--end row-->
+        </div>
+        <!--end card-body-->
+      </div>
+      <!--end card-->
+    </div>
+    <!--end col-->
+  </div>
+  <!--end row-->
+  <div class="row justify-content-center">
+    <div class="col-md-4 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col d-flex justify-content-between align-items-center">
+              <h4 class="card-title">Top {{request('topSelling') ?? 5}} sản phẩm bán chạy nhất</h4>
+              <select name="topSelling" style="font-size: 9px" onchange="submit()">
+                <option {{request('topSelling') == 5 ? "selected" : ""}} value="5">Top 5</option>
+                <option {{request('topSelling') == 10 ? "selected" : ""}} value="10">Top 10</option>
+              </select>
+            </div>
+            <!--end col-->
+          </div>
+          <!--end row-->
+        </div>
+        <!--end card-header-->
+        <div class="card-body pt-0">
+          <div class="table-responsive">
+            <table class="table mb-0">
+              <tbody>
+                @forelse ($topbestSellingProducts as $topbestSellingProduct)
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img
+                        src="{{".".Storage::url($topbestSellingProduct->image)}}"
+                        height="40"
+                        class="me-3 align-self-center rounded"
+                        alt="..."
+                      />
+                      <div class="flex-grow-1 text-truncate">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div>
+                            <h6 class="m-0 fs-12">{{$topbestSellingProduct->name}}</h6>
+                          <a href="{{route('product.show', $topbestSellingProduct->id)}}" class="fs-12 text-primary"
+                            >ID: {{$topbestSellingProduct->product_code}}</a
+                          >
+                          </div>
+                        <span class="text-danger fs-12">Đã bán {{$topbestSellingProduct->order_details_sum_quantity}}</span>
+                        </div>
+                      </div>
+                      <!--end media body-->
+                    </div>
+                  </td>
+                </tr>
+                @empty
+                    <p class="text-danger">Không có sản phẩm nào</p>
+                @endforelse
+              </tbody>
+            </table>
+            <!--end table-->
+          </div>
+          <!--end /div-->
+        </div>
+        <!--end card-body-->
+      </div>
+      <!--end card-->
+    </div>
+    <!--end col-->
+    <div class="col-md-4 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col d-flex justify-content-between align-items-center">
+              <h4 class="card-title">Top {{request('topRevenue') ?? 5}} sản phẩm doanh thu cao nhất</h4>
+              <select name="topRevenue" style="font-size: 9px" onchange="submit()">
+                <option {{request('topRevenue') == 5 ? "selected" : ""}} value="5">Top 5</option>
+                <option {{request('topRevenue') == 10 ? "selected" : ""}} value="10">Top 10</option>
+              </select>
+            </div>
+            <!--end col-->
+          </div>
+          <!--end row-->
+        </div>
+        <!--end card-header-->
+        <div class="card-body pt-0">
+          <div class="table-responsive">
+            <table class="table mb-0">
+              <tbody>
+                @forelse ($tophighestRevenueProducts as $tophighestRevenueProduct)
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img
+                        src="{{".".Storage::url($tophighestRevenueProduct->image)}}"
+                        height="40"
+                        class="me-3 align-self-center rounded"
+                        alt="..."
+                      />
+                      <div class="flex-grow-1 text-truncate">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                            <h6 class="m-0 fs-12">{{$tophighestRevenueProduct->name}}</h6>
+                          <a href="{{route('product.show', $tophighestRevenueProduct->id)}}" class="fs-12 text-primary"
+                            >ID: {{$tophighestRevenueProduct->product_code}}</a
+                          >
+                          </div>
+                          <span class="text-danger fs-12">{{number_format($tophighestRevenueProduct->order_details_sum_price, 0, '', '.')}} vnđ</span>
+                        </div>
+                      </div>
+                      <!--end media body-->
+                    </div>
+                  </td>
+                </tr>
+                @empty
+                    <p class="text-danger">Không có sản phẩm nào</p>
+                @endforelse
+              </tbody>
+            </table>
+            <!--end table-->
+          </div>
+          <!--end /div-->
+        </div>
+        <!--end card-body-->
+      </div>
+      <!--end card-->
+    </div>
+    <!--end col-->
+    <div class="col-md-4 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col d-flex justify-content-between align-items-center">
+              <h4 class="card-title">Top {{request('topProfit') ?? 5}} sản phẩm lợi nhuận cao nhất</h4>
+              <select name="topProfit" style="font-size: 9px" onchange="submit()">
+                <option {{request('topProfit') == 5 ? "selected" : ""}} value="5">Top 5</option>
+                <option {{request('topProfit') == 10 ? "selected" : ""}} value="10">Top 10</option>
+              </select>
+            </div>
+            <!--end col-->
+          </div>
+          <!--end row-->
+        </div>
+        <!--end card-header-->
+        <div class="card-body pt-0">
+          <div class="table-responsive">
+            <table class="table mb-0">
+              <tbody>
+                @forelse ($tophighestProfitProducts as $tophighestProfitProduct)
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img
+                        src="{{".".Storage::url($tophighestProfitProduct->image)}}"
+                        height="40"
+                        class="me-3 align-self-center rounded"
+                        alt="..."
+                      />
+                      <div class="flex-grow-1 text-truncate">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                            <h6 class="m-0 fs-12">{{$tophighestProfitProduct->name}}</h6>
+                          <a href="{{route('product.show', $tophighestProfitProduct->id)}}" class="fs-12 text-primary"
+                            >ID: {{$tophighestProfitProduct->product_code}}</a
+                          >
+                          </div>
+                          <span class="text-danger fs-12">{{number_format($tophighestProfitProduct->order_details_sum_price, 0, '', '.')}} vnđ</span>
+                        </div>
+                      </div>
+                      <!--end media body-->
+                    </div>
+                  </td>
+                </tr>
+                @empty
+                    <p class="text-danger">Không có sản phẩm nào</p>
+                @endforelse
+              </tbody>
+            </table>
+            <!--end table-->
+          </div>
+          <!--end /div-->
+        </div>
+        <!--end card-body-->
+      </div>
+      <!--end card-->
+    </div>
+    <!--end col-->
+  </div>
+  <!--end row-->
+  </form>
+</div>
+<!-- container -->
 
-  {{-- Thêm js --}}
-  @section('script')
-    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/js/pages/ecommerce-index.init.js"></script>
-  @endsection
+{{-- Thêm js --}}
+@section('script')
+<script>
+  var chartTimeUnit = @json($chartTimeUnit);
+  var unit = @json($unit);
+  var chartRevenue = @json($chartRevenue);
+  var chartProfit = @json($chartProfit);
+  var revenue = {{$revenue}};
+  var profit = {{$profit}};
+</script>
+  <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/js/pages/ecommerce-index.init.js"></script>
+  <script>
+    function submit(){
+      document.querySelector('form').submit();
+    }
+    function updateDays() {
+      const yearSelect = document.getElementById('year');
+      const monthSelect = document.getElementById('month');
+      const daySelect = document.getElementById('day');
+      daySelect.innerHTML = '<option value="0">Chọn ngày</option>';
+      if (yearSelect.value && monthSelect.value) {
+          const year = parseInt(yearSelect.value);
+          const month = parseInt(monthSelect.value);
+          const daysInMonth = new Date(year, month, 0).getDate();
+          for (let day = 1; day <= daysInMonth; day++) {
+              daySelect.innerHTML += `<option value="${day < 10 ? 0 : ""}${day}">Ngày ${day < 10 ? 0 : ""}${day}</option>`;
+          }
+      }
+    }
+  </script>
+@endsection

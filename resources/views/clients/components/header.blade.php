@@ -93,7 +93,7 @@
                 class="d-flex justify-content-lg-end justify-content-center align-items-center"
               >
                 <li>
-                  <a class="wish-list-item" href="wishlist.html"
+                  <a class="wish-list-item" href="{{ route('client.wishlist') }}"
                     ><i class="ion-android-favorite-outline"></i
                   ></a>
                 </li>
@@ -147,7 +147,7 @@
                     </ul> --}}
                     <!-- Kết thúc Danh sách Dropdown -->
                 <li>
-                  <a href="blog.html"
+                  <a href="{{route('client.blog')}}"
                     >blog<i class="fa fa-angle-down"></i
                   ></a>
                   <!-- Home Version Dropdown Start -->

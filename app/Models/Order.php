@@ -25,15 +25,18 @@ class Order extends Model
         'waiting_time'
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function orderDetails(){
+    public function orderDetails()
+    {
         return $this->hasMany(OrderDetail::class, 'order_id')->orderByDesc('id');
     }
 
-    public function orderHistories(){
+    public function orderHistories()
+    {
         return $this->hasMany(OrderHistory::class, "order_id");
     }
 }
