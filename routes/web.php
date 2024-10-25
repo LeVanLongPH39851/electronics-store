@@ -26,6 +26,7 @@ use App\Http\Controllers\Clients\PostDetailController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Admins\VoucherController;
 use App\Http\Controllers\Clients\RecentlyViewedController;
+use App\Http\Controllers\Admins\SlideShowController;
 use App\Http\Controllers\Clients\WishlistController;
 
 /*
@@ -66,6 +67,8 @@ Route::middleware(['admin'])->group(function () {
         Route::resource('/categories', CategoryController::class);
         Route::resource('/post', PostController::class);
         Route::resource('/voucher', VoucherController::class);
+        Route::post('/slide-show/apply/{id}', [SlideShowController::class, 'apply'])->name('slide-show.apply');
+        Route::resource('/slide-show', SlideShowController::class);
         Route::middleware(['staff'])->group(function () {
             Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');
             Route::post('/staff-trash/delete', [StaffTrashController::class, 'delete'])->name('staff.delete');
