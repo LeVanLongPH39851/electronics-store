@@ -25,6 +25,7 @@ use App\Http\Controllers\Admins\Trashs\ProductTrashController;
 use App\Http\Controllers\Clients\PostDetailController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Admins\VoucherController;
+use App\Http\Controllers\Clients\RecentlyViewedController;
 use App\Http\Controllers\Admins\SlideShowController;
 use App\Http\Controllers\Clients\WishlistController;
 
@@ -103,6 +104,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('client.logout')
 Route::post('/store', [LoginController::class, 'store'])->name('client.store');
 Route::post('/store-signup', [LoginController::class, 'storeSignup'])->name('client.store.signup');
 Route::get('/shop', [ShopController::class, 'shop'])->name('client.shop');
+Route::get('/recently-viewed', [RecentlyViewedController::class, 'recentlyViewed'])->name('recently.viewed');
 Route::get('/product-detail/{id}', [ProductDetailController::class, 'productDetail'])->name('client.product.detail');
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('client.addToCart');
 Route::get('/cart', [CartController::class, 'showCart'])->name('client.cart');
