@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Clients;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class ProductDetailController extends Controller
 {
@@ -18,6 +19,11 @@ class ProductDetailController extends Controller
             ->with('reviews.user')
             ->withCount('reviews') // Đếm tổng số đánh giá cho sản phẩm
             ->withAvg('reviews', 'star') // Tính điểm đánh giá trung bình cho sản phẩm
+            ->with(['flashSales' => function ($query) {
+                $now = Carbon::now();
+                $query->where('start_time', '<=', $now)
+                    ->where('end_time', '>=', $now);
+            }])
             ->find($id);
 
         if (!$product) {
@@ -37,6 +43,8 @@ class ProductDetailController extends Controller
             ->take(4) // Giới hạn số lượng sản phẩm liên quan
             ->get();
 
+        $flashSalePrice = $product->flashSales->isNotEmpty() ? $product->flashSales->first()->flash_sale_price : null;
+
 
         $averageRating = $product->reviews_avg_star ?? 0;
         // Chọn template để hiển thị
@@ -48,7 +56,8 @@ class ProductDetailController extends Controller
             'product' => $product,
             'relatedProducts' => $relatedProducts,
             'viewsCount' => $viewsCount,
-            'averageRating' => $averageRating
+            'averageRating' => $averageRating,
+            'flashSalePrice' => $flashSalePrice,
         ]);
     }
 }

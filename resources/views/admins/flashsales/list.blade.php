@@ -9,8 +9,8 @@
                         </div><!--end col-->
                         <div class="col-auto">
                             <div class="col-auto">
-                                <a href="{{ route('post.create') }}"><button type="button" class="btn btn-primary"><i
-                                            class="fa-solid fa-plus me-1"></i> Thêm bài viết</button></a>
+                                <a href=""><button type="button" class="btn btn-primary"><i
+                                            class="fa-solid fa-plus me-1"></i> Thêm chương trình</button></a>
                             </div>
                         </div><!--end col-->
                     </div><!--end row-->
@@ -20,41 +20,48 @@
                         <table class="table mb-0 checkbox-all">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Bài viết</th>
-                                    <th>Thời gian đăng bài</th>
-                                    {{-- <th>Bình luận</th> --}}
-                                    <th>Lượt xem</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Thời gian bắt đầu</th>
+                                    <th>Thời gian kết thúc</th>
+                                    <th></th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                
-                                @forelse ($post as $post)
+                                @forelse ($flashsale as $flashsale)
                                 <tr>     
                                     <td>
-                                        <a href="{{route('post.show', $post->id)}}" class="me-1"><img src="{{".".Storage::url($post->image)}}" alt="" height="40"></a>
+                                        <a href="#" class="me-1">
+                                            <img src="{{".".Storage::url($flashsale->image)}}" alt="" height="40">
+                                        </a>
                                         <p class="d-inline-block align-middle mb-0">
-                                            <a href="{{route('post.show', $post->id)}}" class="d-inline-block align-middle mb-0 product-name">{{$post->title}}</a> 
+                                            <a href="#" class="d-inline-block align-middle mb-0 product-name">{{ $flashsale->product->name }}</a>
                                         </p>
-                                    </td>
-                                   
+                                    </td>  
                                     <td>
-                                        <span>{{ $post->created_at->format('h:i A | d/m/Y') }}</span>
+                                        <span>{{   $flashsale->start_time }}</span>
 
                                     </td>
-                                   
                                     <td>
-                                        <span>{{$post->views}}</span>
+                                        <span>{{   $flashsale->end_time }}</span>
+
+                                    </td>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <span>{{$flashsale->views}}</span>
                                     </td>
                                     
-                                    <td class="text-end">                                                       
-                                        <a href="{{route('post.edit', $post->id)}}"><i class="las la-pen text-secondary fs-18"></i></a>
-                                        <form class="d-inline" action="{{route('post.destroy', $post->id)}}" method="POST">
+                                    {{-- <td class="text-end">                                                       
+                                        <a href="{{route('flashsale.edit', $flashsale->id)}}"><i class="las la-pen text-secondary fs-18"></i></a>
+                                        <form class="d-inline" action="{{route('flashsale.destroy', $flashsale->id)}}" method="flashsale">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" onclick="return confirm('Bạn có chắc chắn chuyển vào thùng rác không ?')" class="btn-reset"><i class="las la-trash-alt text-secondary fs-18"></i></button>
                                         </form>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                                 @empty
                                 <tr>

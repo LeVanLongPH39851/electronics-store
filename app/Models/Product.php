@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\ProductVariant;
 use App\Models\Gallery;
 use App\Models\OrderDetail;
+use Carbon\Carbon;
 
 class Product extends Model
 {
@@ -43,7 +44,8 @@ class Product extends Model
         return $this->belongsTo(Brand::class, 'brand_id');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
@@ -68,5 +70,32 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    // Flash Sale
+
+    public function flashSales()
+    {
+        return $this->hasMany(FlashSale::class); //1-n
+    }
+
+    // Lấy Flash Sale hiện tại (nếu có)
+    public function getCurrentFlashSale()
+    {
+        return $this->flashSales()->where('start_time', '<=', Carbon::now())
+            ->where('end_time', '>=', Carbon::now())
+            ->first();
+    }
+
+    // Lấy giá hiện tại, nếu có Flash Sale đang diễn ra thì lấy giá Flash Sale
+    public function getCurrentPrice()
+    {
+        $flashSale = $this->getCurrentFlashSale();
+
+        if ($flashSale) {
+            return $flashSale->flash_sale_price;
+        }
+
+        return $this->price; // Giá gốc nếu không có Flash Sale
     }
 }

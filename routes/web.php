@@ -20,12 +20,14 @@ use App\Http\Controllers\Clients\ProductDetailController;
 use App\Http\Controllers\Admins\Trashs\UserTrashController;
 use App\Http\Controllers\Admins\Trashs\StaffTrashController;
 use App\Http\Controllers\Admins\Categories\CategoryController;
+use App\Http\Controllers\Admins\FlashSaleController;
 use App\Http\Controllers\Admins\PostController;
 use App\Http\Controllers\Admins\Trashs\ProductTrashController;
 use App\Http\Controllers\Clients\PostDetailController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Admins\VoucherController;
 use App\Http\Controllers\Clients\WishlistController;
+use App\Models\FlashSale;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +67,7 @@ Route::middleware(['admin'])->group(function () {
         Route::resource('/categories', CategoryController::class);
         Route::resource('/post', PostController::class);
         Route::resource('/voucher', VoucherController::class);
+        Route::resource('/flash-sale', FlashSaleController::class);
         Route::middleware(['staff'])->group(function () {
             Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');
             Route::post('/staff-trash/delete', [StaffTrashController::class, 'delete'])->name('staff.delete');
