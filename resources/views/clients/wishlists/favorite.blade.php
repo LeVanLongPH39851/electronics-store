@@ -11,7 +11,7 @@
                 <div class="row">
                     @forelse ($wishlists as $wishlistItem)
                         <!-- Single Product Start -->
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-6">
                             <div class="single-product">
                                 <!-- Product Image Start -->
                                 <div class="pro-img">
@@ -34,7 +34,7 @@
                                 <form action="{{ route('client.wishlist.remove', $wishlistItem->id) }}" method="POST" class="remove-wishlist-form">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger remove-btn" title="Xóa khỏi danh sách yêu thích">Xóa</button>
+                                    <button type="submit" class="btn btn-danger remove-btn" title="Xóa khỏi danh sách yêu thích">Bỏ yêu thích</button>
                                 </form>
                                 <!-- Product Content End -->
                             </div>

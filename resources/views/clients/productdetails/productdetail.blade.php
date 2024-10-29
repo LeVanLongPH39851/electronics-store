@@ -57,7 +57,7 @@
                                <p class="d-flex align-items-center"><span class="price" id="price">{{ number_format($product->product_variants_min_price, 0, '', '.') }} vnđ - {{ number_format($product->product_variants_max_price, 0, '', '.') }} vnđ</span><span id="sale"></span></p>
                            </div>
                            <p class="mb-20 pro-desc-details">{!! $product->short_description !!}</p>
-                           
+
                            <div class="color clearfix mb-20">
                                <label class="mb-2 mt-4">Màu Sắc</label>
                                <div class="product-options">
@@ -96,15 +96,15 @@
                            @if ($errors->has('quantity'))
                                    <p class="text-danger mb-0">{{$errors->first('quantity')}}</p>
                                @endif
-                           
-                           <input type="hidden" name="product" value="{{$product->id}}">   
+
+                           <input type="hidden" name="product" value="{{$product->id}}">
 
                            <div class="pro-ref mt-15">
                                <label><b>Số lượng có sẵn:</b> <span id="result-quantity">{{ $product->product_variants_sum_quantity }}</span></label>
                            </div>
                        </div>
                    </form>
-                   
+
                </div>
                <!-- Thumbnail Description End -->
            </div>
@@ -295,7 +295,7 @@ radio.addEventListener('click', function () {
             // Lọc ra các SSD hợp lệ dựa trên color được chọn
             let validSSDs = productVariants.filter(variant => variant.color_id == colorValue.value && variant.quantity > 0 )
                                             .map(variant => variant.ssd_id);
-                                            
+
 
             // Disable SSDs không có trong danh sách hợp lệ
             ssdCheckboxes.forEach(input => {
@@ -327,7 +327,7 @@ radio.addEventListener('click', function () {
                 var number = ((variant.listed_price - variant.price) / variant.listed_price) * 100;
                 var saleResult = (number % 1 >= 0.5) ? Math.ceil(number) : Math.floor(number);
                 sale.innerHTML = '<span class="saving-price">- ' + saleResult + '%</span>';
-            } 
+            }
             });
         }
     }
