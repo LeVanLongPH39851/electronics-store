@@ -42,17 +42,28 @@
                        <div class="thubnail-desc fix">
                            <h3 class="product-header mb-1 mt-3">{{ $product->name }}</h3>
                            <div class="rating-summary fix mtb-10">
-                               <div class="rating">
-                                   <i class="fa fa-star"></i>
-                                   <i class="fa fa-star"></i>
-                                   <i class="fa fa-star-o"></i>
-                                   <i class="fa fa-star-o"></i>
-                                   <i class="fa fa-star-o"></i>
-                               </div>
-                               <div class="rating-feedback">
-                                   <a href="#" class="mt-1">(1 review)</a>
-                               </div>
-                           </div>
+                                <div class="rating">
+                                    @php
+                                        $fullStars = floor($averageRating); // Số sao đầy
+                                        $halfStar = $averageRating - $fullStars; // Phần thập phân
+                                    @endphp
+                                    
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= $fullStars)
+                                            <i class="fa-solid fa-star" style="color: gold;"></i> <!-- Sao đầy -->
+                                        @elseif ($i == $fullStars + 1 && $halfStar >= 0.5)
+                                            <i class="fa-solid fa-star-half-alt" style="color: gold;"></i> <!-- Nửa sao -->
+                                        @else
+                                            <i class="fa-regular fa-star" style="color: gray;"></i> <!-- Sao rỗng -->
+                                        @endif
+                                    @endfor
+                                </div>
+                                
+                                <div class="rating-feedback">
+                                    <a href="#" class="mt-1">({{ $product->reviews_count }} đánh giá)</a>
+                                </div>
+                            </div>
+                        
                            <div class="pro-price mtb-10">
                                <p class="d-flex align-items-center"><span class="price" id="price">{{ number_format($product->product_variants_min_price, 0, '', '.') }} vnđ - {{ number_format($product->product_variants_max_price, 0, '', '.') }} vnđ</span><span id="sale"></span></p>
                            </div>
@@ -122,11 +133,54 @@
             <div class="col-sm-12">
                 <ul class="main-thumb-desc nav tabs-area" role="tablist">
                     <li><a class="active" data-bs-toggle="tab" href="#dtail">Mô tả sản phẩm</a></li>
-                </ul>
+                    <li><a  data-bs-toggle="tab" href="#review">Đánh giá</a></li>
+                </ul>   
                 <!-- Product Thumbnail Tab Content Start -->
                 <div class="tab-content thumb-content border-default">
                     <div id="dtail" class="tab-pane fade show active">
                         <p>{!!$product->description!!}</p>
+                    </div>
+                    <div id="review" class="tab-pane fade">
+                        <!-- Đánh giá sản phẩm -->
+                        <div class="product-reviews">
+                            <div class="group-title">
+                                <h2>Đánh giá sản phẩm</h2>
+                            </div>
+                
+                            <div class="reviews-list">
+                                @if ($product->reviews->isEmpty())
+                                    <p>Chưa có đánh giá nào cho sản phẩm này.</p>
+                                @else
+                                    @foreach ($product->reviews as $review)
+                                        <div class="review-item">
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <img src="https://png.pngtree.com/png-clipart/20190904/original/pngtree-user-cartoon-avatar-pattern-flat-avatar-png-image_4492883.jpg" alt="User Avatar" class="user-avatar">
+                                                </div>
+                                                <div class="col-11">
+                                                    <div class="review-content">
+                                                        <h5 class="review-username mb-1">{{ $review->user->name }}</h5>
+                                                        <div class="star-rating">
+                                                            <div class="star-rating">
+                                                                @for ($i = 1; $i <= 5; $i++)
+                                                                    <i class="fa{{ $i <= $review->star ? '-solid' : '-regular' }} fa-star" style="color: {{ $i <= $review->star ? 'gold' : 'gray' }};"></i>
+                                                                @endfor
+                                                            </div>
+                                                            
+                                                            <p class="review-date">{{ $review->created_at->format('d/m/Y') }}</p>
+                                                        </div>
+                                                        <p class="review-text">{{ $review->content }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                            
+                        </div>
+
+                       
                     </div>
                 </div>
                 <!-- Product Thumbnail Tab Content End -->
@@ -136,6 +190,7 @@
     </div>
     <!-- Container End -->
 </div>
+
 <!-- Product Thumbnail Description End -->
 <!-- Realted Products Start Here -->
 <div class="second-featured-products related-pro pb-45">
@@ -158,11 +213,11 @@
                       src="{{".".Storage::url($relatedProduct->image)}}"
                       alt="single-product"
                     />
-                    <img
+                    {{-- <img
                       class="secondary-img"
                       src="{{".".Storage::url($relatedProduct->galleries->first()->path)}}"
                       alt="single-product"
-                    />
+                    /> --}}
                   </a>
                   {{-- <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div> --}}
                 </div>
@@ -218,6 +273,8 @@
     </div>
     <!-- Container End -->
 </div>
+
+
 <!-- Realated Products End Here -->
 @section('script')
 <script>

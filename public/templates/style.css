@@ -2473,7 +2473,7 @@ li.megamenu-img a {
 }
 
 .sidebar-lg-title {
-    font-size: 38px;
+    font-size: 26px;
     font-weight: 700;
     margin-bottom: 15px;
     text-transform: uppercase;
@@ -5080,15 +5080,20 @@ a.shipping-calculator-button:hover {
     padding: 8px !important;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-.quantity-prd{
-  text-align: center;
-  width: 70px;
-  height: 38px;
-  appearance: none;
+.quantity-prd {
+    text-align: center;
+    width: 70px;
+    height: 38px;
+    appearance: none;
+}
+
+.single-product {
+    transform: scale(0.8);
+    transform-origin: top left;
 }
