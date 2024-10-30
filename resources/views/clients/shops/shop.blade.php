@@ -72,63 +72,6 @@
                             </div>
                         </form>
                     </div>
-                    <!-- Price Filter Options End -->
-                    <!-- Sidebar Categorie Start -->
-                    {{-- <div class="sidebar-categorie mb-30">
-                        <h3 class="sidebar-title">Màu</h3>
-                        <ul class="sidbar-style">
-                            @foreach ($listColor as $color)
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" id="camera" type="checkbox">
-                                <label class="form-check-label" for="camera">{{$color->name}}</label>
-                            </li>
-                            @endforeach
-
-                        </ul>
-                    </div>
-                    <!-- Sidebar Categorie Start -->
-                    <!-- Product Size Start -->
-                    <div class="size mb-30">
-                        <h3 class="sidebar-title">Ram</h3>
-                        <ul class="size-list sidbar-style">
-                            @foreach ($listSsd as $ram)
-                            <li class="form-check">
-                                <input class="form-check-input" value="" id="small" type="checkbox">
-                                <label class="form-check-label" for="small">{{$ram->name}}</label>
-                            </li>
-                           @endforeach
-
-                        </ul>
-                    </div> --}}
-                    <!-- Product Size End -->
-                    <!-- Product Color Start -->
-                    {{-- <div class="color mb-30">
-                        <h3 class="sidebar-title">color</h3>
-                        <ul class="color-option sidbar-style">
-                            <li>
-                                <span class="white"></span>
-                                <a href="#">white (4)</a>
-                            </li>
-                            <li>
-                                <span class="orange"></span>
-                                <a href="#">Orange (2)</a>
-                            </li>
-                            <li>
-                                <span class="blue"></span>
-                                <a href="#">Blue (6)</a>
-                            </li>
-                            <li>
-                                <span class="yellow"></span>
-                                <a href="#">Yellow (8)</a>
-                            </li>
-                        </ul>
-                    </div> --}}
-                    <!-- Product Color End -->
-                    <!-- Single Banner Start -->
-                    {{-- <div class="sidebar-banner">
-                        <a href="shop.html"><img src="templates/img/banner/10.jpg" alt="slider-banner"></a>
-                    </div> --}}
-                    <!-- Single Banner End -->
                 </div>
             </div>
             <!-- Sidebar Shopping Option End -->
@@ -179,23 +122,39 @@
                     <div class="tab-content border-default fix">
                         <div id="grid-view" class="tab-pane show fade active">
                             <div class="row">
-                                @forelse ($listProduct as $key => $value)
-                                    <!-- Single Product Start -->
+
+                                {{-- ------------------------------------------- --}}
+                                @foreach ($listProduct as $key => $value)
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                         <div class="single-product">
                                             <!-- Product Image Start -->
-                                            <div class="pro-img">
+                                            <div class="pro-img position-relative">
                                                 <a href="{{ route('client.product.detail', $value->id) }}">
-                                                    <img class="primary-img" src="{{ asset('storage/' . $value->image) }}" alt="single-product">
-                                                    <img class="secondary-img" src="{{asset('storage/' . $value->galleries->first()->path) }}" alt="single-product">
+                                                    <img class="primary-img"
+                                                        src="{{ asset('storage/' . $value->image) }}"
+                                                        alt="single-product">
+                                                    <img class="secondary-img"
+                                                        src="{{ asset('storage/' . $value->galleries->first()->path) }}"
+                                                        alt="single-product">
                                                 </a>
-                                                {{-- <span class="sticker-new">new</span> --}}
+
+                                                <!-- Hiển thị trái tim nếu đã yêu thích -->
+                                                @if ($value->isFavorited())
+                                                    <span class="heart-icon"
+                                                        style="position: absolute; top: 1px; left: 263px; color: red;">
+                                                        <i class="fa fa-heart"></i>
+                                                    </span>
+                                                @endif
                                             </div>
                                             <!-- Product Image End -->
+
                                             <!-- Product Content Start -->
                                             <div class="pro-content">
                                                 <div class="pro-info">
-                                                    <h4><a href="product.html">{{ $value->name }}</a></h4>
+                                                    <h4><a
+                                                            href="{{ route('client.product.detail', $value->id) }}">{{ $value->name }}</a>
+                                                    </h4>
+                                                    <!-- Các thông tin khác của sản phẩm -->
                                                     <div class="product-rating">
                                                         @php
                                                             $averageRating = $value->reviews_avg_star ?? 0; // Điểm đánh giá trung bình
@@ -223,32 +182,16 @@
                                                             {{ number_format($value->productVariants->max('price'), 0, '', '.') }}đ</span>
                                                     </p>
                                                 </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="pro-info">
-                                                        <h4><a href="product.html">{{ $value->name }}</a></h4>
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                        <p>
-                                                            <span class="price"
-                                                                style="font-size: 16px">{{ number_format($value->productVariants->min('price'), 0, '', '.') }}đ
-                                                                -
-                                                                {{ number_format($value->productVariants->max('price'), 0, '', '.') }}đ</span>
-                                                        </p>
+
+                                                <!-- Ẩn nút Yêu thích nếu sản phẩm đã yêu thích -->
+                                                <div class="pro-actions">
+                                                    <div class="actions-primary">
+                                                        <a href="{{ route('client.product.detail', $value->id) }}"
+                                                            class="px-1" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" title="Xem chi tiết">Xem chi
+                                                            tiết</a>
                                                     </div>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-primary">
-                                                            <a href="{{ route('client.product.detail', $value->id) }}"
-                                                                class="px-1" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" title="Xem chi tiết">Xem chi
-                                                                tiết</a>
-                                                        </div>
+                                                    @if (!$value->isFavorited())
                                                         <div class="actions-secondary">
                                                             <form
                                                                 action="{{ route('client.wishlist.add', $value->id) }}"
@@ -256,21 +199,20 @@
                                                                 @csrf
                                                                 <button type="submit" data-bs-toggle="tooltip"
                                                                     data-bs-placement="top" title="Yêu thích"
-                                                                    style="border: none; background: rgb(249, 96, 122); cursor: pointer; height: 36px; border-radius: 2px">
+                                                                    style="border: none; background: coral; cursor: pointer; height: 36px; border-radius: 2px;">
                                                                     <i class="fa fa-heart-o"
                                                                         style="font-size: 20px;"></i>
                                                                 </button>
                                                             </form>
                                                         </div>
-                                                    </div>
+                                                    @endif
                                                 </div>
-                                                <!-- Product Content End -->
                                             </div>
+                                            <!-- Product Content End -->
                                         </div>
-                                        <!-- Single Product End -->
-                                    @empty
-                                        <p class="text-danger">Không có sản phẩm nào</p>
-                                @endforelse
+                                    </div>
+                                @endforeach
+                                {{-- -------------------------------- --}}
                             </div>
                             <!-- Row End -->
                         </div>
