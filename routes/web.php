@@ -105,6 +105,8 @@ Route::post('/store', [LoginController::class, 'store'])->name('client.store');
 Route::post('/store-signup', [LoginController::class, 'storeSignup'])->name('client.store.signup');
 Route::get('/shop', [ShopController::class, 'shop'])->name('client.shop');
 Route::get('/recently-viewed', [RecentlyViewedController::class, 'recentlyViewed'])->name('recently.viewed');
+Route::delete('/recently-viewed/{id}', [RecentlyViewedController::class, 'deleteRecentlyViewed'])->name('recently.viewed.delete');
+Route::post('/add-recently-viewed/{productId}', [RecentlyViewedController::class, 'addRecentlyViewed'])->name('client.product.addRecentlyViewed');
 Route::get('/product-detail/{id}', [ProductDetailController::class, 'productDetail'])->name('client.product.detail');
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('client.addToCart');
 Route::get('/cart', [CartController::class, 'showCart'])->name('client.cart');

@@ -144,10 +144,13 @@
                                 </tfoot>
                             </table>
                         </div>
-<<<<<<< HEAD
-                            <div class="payment-method">
-                                <div class="mb-3">
-                                    <h3>Chọn phương thức thanh toán:</h3>
+                                        @if ($voucher)
+                        <input type="hidden" name="voucher" value="{{$voucher->percent}}">
+                        <input type="hidden" name="id_voucher" value="{{$voucher->id}}">
+                        @endif
+                        <div class="payment-method">
+                            <div class="mb-3">
+                                <h3>Chọn phương thức thanh toán:</h3>
                                     <div class="form-check border rounded p-3 mb-3 bg-white">
                                         <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCOD" value="cod">
                                         <label class="form-check-label" for="paymentCOD">
@@ -156,23 +159,6 @@
                                         <div class="form-text">
                                             Khách hàng thanh toán tiền mặt khi nhận được sản phẩm.
                                         </div>
-=======
-                        @if ($voucher)
-                        <input type="hidden" name="voucher" value="{{$voucher->percent}}">
-                        <input type="hidden" name="id_voucher" value="{{$voucher->id}}">
-                        @endif
-                        <div class="payment-method">
-                            <div class="mb-3">
-                                <h3>Chọn phương thức thanh toán:</h3>
-                                <div class="form-check border rounded p-3 mb-3 bg-white">
-                                    <input class="form-check-input" type="radio" checked name="paymentMethod" id="paymentVnpay"
-                                        value="cod">
-                                    <label class="form-check-label" for="paymentCOD">
-                                        Thanh toán khi nhận hàng
-                                    </label>
-                                    <div class="form-text">
-                                        Khách hàng thanh toán tiền mặt khi nhận được sản phẩm.
->>>>>>> 559a994a31e61881df1d8d7370cc0ea5ce2532ef
                                     </div>
                                     <div class="form-check border rounded p-3 mb-3 bg-white">
                                         <input class="form-check-input" type="radio" name="paymentMethod" id="paymentVnpay" value="online">

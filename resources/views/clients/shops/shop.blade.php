@@ -181,97 +181,74 @@
                             <div class="row">
                                 @forelse ($listProduct as $key => $value)
                                     <!-- Single Product Start -->
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 d-flex align-items-stretch">
                                         <div class="single-product">
                                             <!-- Product Image Start -->
                                             <div class="pro-img">
-                                                <a href="{{ route('client.product.detail', $value->id) }}">
+                                                <a href="{{ route('client.product.detail', $value->id) }}"
+                                                   onclick="event.preventDefault(); document.getElementById('add-viewed-{{ $value->id }}').submit();">
                                                     <img class="primary-img" src="{{ asset('storage/' . $value->image) }}" alt="single-product">
-                                                    <img class="secondary-img" src="{{asset('storage/' . $value->galleries->first()->path) }}" alt="single-product">
+                                                    <img class="secondary-img" src="{{ asset('storage/' . $value->galleries->first()->path) }}" alt="single-product">
                                                 </a>
-                                                {{-- <span class="sticker-new">new</span> --}}
+                                                
+                                                <form id="add-viewed-{{ $value->id }}" action="{{ route('client.product.addRecentlyViewed', $value->id) }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
                                             </div>
                                             <!-- Product Image End -->
+                                            
                                             <!-- Product Content Start -->
                                             <div class="pro-content">
                                                 <div class="pro-info">
-                                                    <h4><a href="product.html">{{ $value->name }}</a></h4>
+                                                    <h4><a href="{{ route('client.product.detail', $value->id) }}">{{ $value->name }}</a></h4>
                                                     <div class="product-rating">
                                                         @php
-                                                            $averageRating = $value->reviews_avg_star ?? 0; // Điểm đánh giá trung bình
+                                                            $averageRating = $value->reviews_avg_star ?? 0;
                                                             $fullStars = floor($averageRating);
                                                             $halfStar = $averageRating - $fullStars;
                                                         @endphp
-
+                            
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $fullStars)
                                                                 <i class="fa-solid fa-star" style="color: gold;"></i>
-                                                                <!-- Sao đầy -->
                                                             @elseif ($i == $fullStars + 1 && $halfStar >= 0.5)
-                                                                <i class="fa-solid fa-star-half-alt"
-                                                                    style="color: gold;"></i> <!-- Nửa sao -->
+                                                                <i class="fa-solid fa-star-half-alt" style="color: gold;"></i>
                                                             @else
-                                                                <i class="fa-regular fa-star"
-                                                                    style="color: gray;"></i> <!-- Sao rỗng -->
+                                                                <i class="fa-regular fa-star" style="color: gray;"></i>
                                                             @endif
                                                         @endfor
                                                     </div>
                                                     <p>
-                                                        <span class="price"
-                                                            style="font-size: 16px">{{ number_format($value->productVariants->min('price'), 0, '', '.') }}đ
+                                                        <span class="price" style="font-size: 16px">{{ number_format($value->productVariants->min('price'), 0, '', '.') }}đ
                                                             -
                                                             {{ number_format($value->productVariants->max('price'), 0, '', '.') }}đ</span>
                                                     </p>
                                                 </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="pro-info">
-                                                        <h4><a href="product.html">{{ $value->name }}</a></h4>
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                        <p>
-                                                            <span class="price"
-                                                                style="font-size: 16px">{{ number_format($value->productVariants->min('price'), 0, '', '.') }}đ
-                                                                -
-                                                                {{ number_format($value->productVariants->max('price'), 0, '', '.') }}đ</span>
-                                                        </p>
+                                                <!-- Product Content End -->
+                                                
+                                                <div class="pro-actions">
+                                                    <div class="actions-primary">
+                                                        <a href="{{ route('client.product.detail', $value->id) }}" class="px-1" data-bs-toggle="tooltip"
+                                                           data-bs-placement="top" title="Xem chi tiết">Xem chi tiết</a>
                                                     </div>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-primary">
-                                                            <a href="{{ route('client.product.detail', $value->id) }}"
-                                                                class="px-1" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" title="Xem chi tiết">Xem chi
-                                                                tiết</a>
-                                                        </div>
-                                                        <div class="actions-secondary">
-                                                            <form
-                                                                action="{{ route('client.wishlist.add', $value->id) }}"
-                                                                method="POST" style="display: inline;">
-                                                                @csrf
-                                                                <button type="submit" data-bs-toggle="tooltip"
-                                                                    data-bs-placement="top" title="Yêu thích"
+                                                    <div class="actions-secondary">
+                                                        <form action="{{ route('client.wishlist.add', $value->id) }}" method="POST" style="display: inline;">
+                                                            @csrf
+                                                            <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Yêu thích"
                                                                     style="border: none; background: rgb(249, 96, 122); cursor: pointer; height: 36px; border-radius: 2px">
-                                                                    <i class="fa fa-heart-o"
-                                                                        style="font-size: 20px;"></i>
-                                                                </button>
-                                                            </form>
-                                                        </div>
+                                                                <i class="fa fa-heart-o" style="font-size: 20px;"></i>
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                                <!-- Product Content End -->
                                             </div>
                                         </div>
-                                        <!-- Single Product End -->
-                                    @empty
-                                        <p class="text-danger">Không có sản phẩm nào</p>
+                                    </div>
+                                    <!-- Single Product End -->
+                                @empty
+                                    <p class="text-danger">Không có sản phẩm nào</p>
                                 @endforelse
-                            </div>
+                            </div>                                                
                             <!-- Row End -->
                         </div>
                         {{ $listProduct->appends(request()->query())->links('pagination::bootstrap-5') }}

@@ -16,18 +16,19 @@
                         @forelse ($products as $product)
                             <div class="col">
                                 <div class="card h-100">
-                                    <a href="{{ route('client.product.detail', $product->id) }}" class="pro-img">
-                                        <img src="{{ asset('storage/' . $product->image) }}"
-                                            class="card-img-top img-fluid" alt="{{ $product->name }}">
+                                    <a href="{{ route('client.product.detail', $product->product->id) }}"
+                                        class="pro-img">
+                                        <img src="{{ asset('storage/' . $product->product->image) }}"
+                                            class="card-img-top img-fluid" alt="{{ $product->product->name }}">
                                     </a>
                                     <div class="card-body d-flex flex-column">
                                         <h5 class="card-title text-center">
-                                            <a href="{{ route('client.product.detail', $product->id) }}"
-                                                class="text-dark">{{ $product->name }}</a>
+                                            <a href="{{ route('client.product.detail', $product->product->id) }}"
+                                                class="text-dark">{{ $product->product->name }}</a>
                                         </h5>
                                         <div class="text-center mb-3">
                                             @php
-                                                $averageRating = $product->reviews_avg_star ?? 0;
+                                                $averageRating = $product->product->reviews_avg_star ?? 0;
                                                 $fullStars = floor($averageRating);
                                                 $halfStar = $averageRating - $fullStars;
                                             @endphp
@@ -41,21 +42,19 @@
                                                 @endif
                                             @endfor
                                         </div>
-                                        <p class="text-center price" style="font-size: 14px;">
-                                            <strong>{{ number_format($product->productVariants->min('price'), 0, '', '.') }}đ
+                                        <p class="text-center price" style="font-size: 13px;">
+                                            <strong>{{ number_format($product->product->productVariants->min('price'), 0, '', '.') }}đ
                                                 -
-                                                {{ number_format($product->productVariants->max('price'), 0, '', '.') }}đ</strong>
+                                                {{ number_format($product->product->productVariants->max('price'), 0, '', '.') }}đ</strong>
                                         </p>
-                                        <div class="mt-2 text-center d-flex justify-content-center align-items-center">
-                                            <a href="{{ route('client.product.detail', $product->id) }}"
-                                                class="btn btn-primary btn-sm me-2"
-                                                style="padding: 4px 8px; font-size: 12px;">Xem chi tiết</a>
-                                            <form action="{{ route('client.wishlist.add', $product->id) }}"
+                                        <div class="mt-3 text-center d-flex justify-content-center align-items-center">
+                                            <form action="{{ route('recently.viewed.delete', $product->product->id) }}"
                                                 method="POST" style="display: inline;">
                                                 @csrf
-                                                <button type="submit" class="btn btn-outline-danger btn-sm"
-                                                    style="padding: 4px 8px; font-size: 12px;">
-                                                    <i class="fa fa-heart-o"></i> Yêu thích
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-danger btn-sm d-flex align-items-center">
+                                                    <i class="fa fa-trash me-1"></i> Xóa
                                                 </button>
                                             </form>
                                         </div>
@@ -65,7 +64,9 @@
                         @empty
                             <p class="text-danger text-center">Không có sản phẩm nào đã xem gần đây.</p>
                         @endforelse
-
+                    </div>
+                    <div class="mt-4">
+                        {{ $products->links() }}
                     </div>
                 </div>
             </div>
