@@ -66,6 +66,7 @@ Route::middleware(['admin'])->group(function () {
         Route::resource('/product-trash', ProductTrashController::class);
         Route::resource('/categories', CategoryController::class);
         Route::resource('/post', PostController::class);
+        // Route::post('posts/upload', [PostController::class, 'upload'])->name('posts.upload');
         Route::resource('/voucher', VoucherController::class);
         Route::resource('/flash-sale', FlashSaleController::class);
         Route::middleware(['staff'])->group(function () {
@@ -129,5 +130,5 @@ Route::get('product/{productId}/reviews/show', [ReviewController::class, 'show']
 
 // blog
 Route::get('/blog', [PostDetailController::class, 'index'])->name('client.blog');
-Route::get('/blog-detail/{id}', [PostDetailController::class, 'blogDetail'])->name('client.blog.detail');
+Route::get('/blog-detail/{slug}', [PostDetailController::class, 'blogDetail'])->name('client.blog.detail');
 Route::post('/blog-detail/{post}/comments', [PostDetailController::class, 'storeComment'])->name('comments.store');

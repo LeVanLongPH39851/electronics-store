@@ -25,4 +25,4 @@ class FlashSaleController extends Controller
             'flashsale' => $flashsale
         ]);
     }
-}
+} 

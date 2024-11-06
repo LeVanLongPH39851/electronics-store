@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -44,10 +45,23 @@ class PostController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Kích thước tối đa 2MB và chỉ định loại tệp hình ảnh
         ]);
 
+        // Lưu hình ảnh vào thư mục 'posts' trong storage
         $imagePath = $request->file('image')->store('posts', 'public');
 
+        // Tạo slug từ tiêu đề
+        $slug = Str::slug($request->input('title'));
+
+        // Kiểm tra tính duy nhất của slug và thêm số đếm nếu cần
+        $count = 1;
+        while (Post::where('slug', $slug)->exists()) {
+            $slug = Str::slug($request->input('title')) . '-' . $count;
+            $count++;
+        }
+
+        // Tạo bài viết mới với slug
         Post::create([
             'title' => $request->title,
+            'slug' => $slug,  // Đảm bảo đã thêm giá trị slug
             'image' => $imagePath,
             'content' => $request->input('content'),
             'user_id' => auth()->id(),
