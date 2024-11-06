@@ -5118,3 +5118,8 @@ input[type="number"]::-webkit-outer-spin-button {
     height: 38px;
     appearance: none;
 }
+
+.single-product {
+    transform: scale(0.8);
+    transform-origin: top left;
+}

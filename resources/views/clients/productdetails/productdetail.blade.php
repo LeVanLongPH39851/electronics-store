@@ -213,11 +213,11 @@
                       src="{{".".Storage::url($relatedProduct->image)}}"
                       alt="single-product"
                     />
-                    <img
+                    {{-- <img
                       class="secondary-img"
                       src="{{".".Storage::url($relatedProduct->galleries->first()->path)}}"
                       alt="single-product"
-                    />
+                    /> --}}
                   </a>
                   {{-- <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div> --}}
                 </div>
