@@ -170,7 +170,7 @@ class CheckoutController extends Controller
         $vnp_OrderType = 'billpayment';
         $vnp_Amount = $totalAmount * 100; // VNPAY yêu cầu số tiền tính bằng đồng
         $vnp_Locale = 'vn';
-        $vnp_BankCode = 'NCB';
+        $vnp_BankCode = '';
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
 
         $inputData = [
