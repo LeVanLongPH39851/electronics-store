@@ -24,15 +24,6 @@ class HomeController extends Controller
             ->orderByDesc('created_at')
             ->get();
 
-        // Lấy các sản phẩm đang trong Flash Sale
-        $flashSaleProducts = Product::whereHas('flashSales', function ($query) {
-            $now = Carbon::now();
-            $query->where('start_time', '<=', $now)
-                ->where('end_time', '>=', $now);
-        })
-            ->with('flashSales') // Lấy thông tin flash sales liên quan đến sản phẩm
-            ->orderByDesc('created_at')
-            ->get();
 
         $template = "clients.homes.index";
         return view("clients.layout", [
@@ -41,7 +32,6 @@ class HomeController extends Controller
             "template" => $template,
             "categories" => $categories,
             "newProducts" => $newProducts,
-            "flashSaleProducts" => $flashSaleProducts,
             "title" => "Trang chủ",
             "template" => $template,
             "categories" => $categories,

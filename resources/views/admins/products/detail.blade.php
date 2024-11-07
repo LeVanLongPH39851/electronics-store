@@ -42,12 +42,9 @@
                     <div class="mt-3">
                         <div class="text-body mb-1 d-flex align-items-center"><span class="text-body fw-semibold">Mã sản phẩm :</span>&nbsp;<span class="text-primary fw-semibold">{{$product->product_code}}</span></div>
                         <div class="price-section">
-                            @if ($flashSalePrice)
-                                <span class="text-danger">{{ number_format($flashSalePrice, 0, '', '.') }} VNĐ</span>
-                                <span class="text-muted text-decoration-line-through">{{ number_format($product->product_variants_min_price, 0, '', '.') }} VNĐ - {{ number_format($product->product_variants_max_price, 0, '', '.') }} VNĐ</span>
-                            @else
+                            
                                 <span class="text-danger">{{ number_format($product->product_variants_min_price, 0, '', '.') }} VNĐ - {{ number_format($product->product_variants_max_price, 0, '', '.') }} VNĐ</span>
-                            @endif
+                         
                         </div>
                         
                         <div class="text-body mb-3 d-flex align-items-center"><span class="text-body fw-semibold">Số lượng :</span>&nbsp;<span>{{$product->product_variants_sum_quantity}}</span></div>                                                            

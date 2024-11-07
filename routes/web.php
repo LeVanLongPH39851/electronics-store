@@ -70,7 +70,6 @@ Route::middleware(['admin'])->group(function () {
         Route::resource('/post', PostController::class);
         // Route::post('posts/upload', [PostController::class, 'upload'])->name('posts.upload');
         Route::resource('/voucher', VoucherController::class);
-        Route::resource('/flash-sale', FlashSaleController::class);
 
         Route::post('/slide-show/apply/{id}', [SlideShowController::class, 'apply'])->name('slide-show.apply');
         Route::resource('/slide-show', SlideShowController::class);

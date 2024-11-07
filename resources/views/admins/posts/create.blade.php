@@ -58,7 +58,7 @@
                                 <div class="mb-3 row">
                                     <label class="col-sm-2 col-form-label text-end">Nội dung <span class="text-danger">*</span></label>
                                      <div class="col-sm-10">
-                                            <div id="editor-2" style="height: 400px;">{!! old('content') !!}</div> <!-- Thay đổi chiều cao ở đây -->
+                                            <div id="editor" style="height: 400px;">{!! old('content') !!}</div> <!-- Thay đổi chiều cao ở đây -->
                                             <textarea name="content" class="form-control" style="display: none">{{ old('content') }}</textarea>
                                             @if ($errors->has('content'))
                                                 <p class="text-danger mt-1 mb-0">{{ $errors->first('content') }}</p>

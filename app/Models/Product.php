@@ -71,31 +71,4 @@ class Product extends Model
     {
         return $this->hasMany(Review::class);
     }
-
-    // Flash Sale
-
-    public function flashSales()
-    {
-        return $this->hasMany(FlashSale::class); //1-n
-    }
-
-    // Lấy Flash Sale hiện tại (nếu có)
-    public function getCurrentFlashSale()
-    {
-        return $this->flashSales()->where('start_time', '<=', Carbon::now())
-            ->where('end_time', '>=', Carbon::now())
-            ->first();
-    }
-
-    // Lấy giá hiện tại, nếu có Flash Sale đang diễn ra thì lấy giá Flash Sale
-    public function getCurrentPrice()
-    {
-        $flashSale = $this->getCurrentFlashSale();
-
-        if ($flashSale) {
-            return $flashSale->flash_sale_price;
-        }
-
-        return $this->price; // Giá gốc nếu không có Flash Sale
-    }
 }
