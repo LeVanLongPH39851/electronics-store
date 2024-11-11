@@ -14,7 +14,6 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('orders:update-status')->everyMinute(); //test
         $schedule->command('orders:update-status')->dailyAt('00:00');  //UP mỗi ngày vào 0h
-
     }
 
     /**
