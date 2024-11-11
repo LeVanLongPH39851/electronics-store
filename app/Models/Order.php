@@ -21,22 +21,18 @@ class Order extends Model
         'note',
         'voucher_id',
         'user_id',
-        'delivered_at',
-        'waiting_time'
+        'delivered_at'
     ];
 
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function orderDetails()
-    {
+    public function orderDetails(){
         return $this->hasMany(OrderDetail::class, 'order_id')->orderByDesc('id');
     }
 
-    public function orderHistories()
-    {
+    public function orderHistories(){
         return $this->hasMany(OrderHistory::class, "order_id");
     }
 }

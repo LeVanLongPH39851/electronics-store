@@ -19,13 +19,4 @@ class Wishlist extends Model
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-    public function review()
-    {
-        return $this->hasOne(Review::class, 'product_id', 'product_id')
-            ->whereColumn('user_id', 'wishlist_items.user_id');
-    }
 }

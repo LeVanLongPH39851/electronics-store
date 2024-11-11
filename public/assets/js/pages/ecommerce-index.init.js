@@ -120,11 +120,11 @@ var options1 = {
                     percentage = (o / profit) * 100;
                 }
                 if (percentage >= 1e3) {
-                    return (
-                        (percentage / 1e3).toFixed(1).replace(/\.0$/, "") + "%"
-                    );
+                    // return (
+                    //     (percentage / 1e3).toFixed(1).replace(/\.0$/, "") + "%"
+                    // );
                 } else {
-                    return percentage.toFixed(1).replace(/\.0$/, "") + "%";
+                    // return percentage.toFixed(1).replace(/\.0$/, "") + "%";
                 }
             },
             offsetY: -20,

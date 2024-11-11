@@ -146,10 +146,10 @@
                         </div>
                     </form>
                     @endif
-                    @if ($order->waiting_time <= now() || $order->status == 'dndh')
+                    @if ($order->status == 'dndh')
                     <div class="text-muted">
                         <span class="text-primary">
-                            Hoàn tất - Đã nhận được hàng
+                            Hoàn tất - Đã nhận được đơn hàng
                         </span>
                     </div>
                     @endif

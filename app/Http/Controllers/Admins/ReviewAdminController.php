@@ -11,42 +11,51 @@ class ReviewAdminController extends Controller
     protected $classActive = "Đánh giá";
     public function index(Request $request)
     {
-        $perPage = $request->get('perPage', 10); // Số mục trên mỗi trang (mặc định là 10)
-        $orderBy = $request->get('orderBy', 'latest'); // Thứ tự sắp xếp
-        $keyWord = $request->get('keyWord'); // Từ khóa tìm kiếm
-        $star = $request->get('star'); // Lọc theo số sao
-    
+        $perPage = $request->get('perPage', 10); // hiện mặc định là 10 mục
+        $orderBy = $request->get('orderBy', 'latest'); // thứ tự sắp xếp
+        $keyWord = $request->get('keyWord'); // tìm kiếm
+        $star = $request->get('star'); // lọc theo sao
+        $status = $request->get('status');// lọc trạng thái
         $query = Review::with(['product', 'user']);
-    
-        // Nếu có từ khóa tìm kiếm
+
+        //tìm kiếm
         if ($keyWord) {
-            $query->where(function($q) use ($keyWord) {
+            $query->where(function ($q) use ($keyWord) {
                 $q->whereHas('product', function ($qProduct) use ($keyWord) {
-                    $qProduct->where('name', 'like', "%{$keyWord}%");
+                    $qProduct->where('name', 'like', "%{$keyWord}%"); //theo tên sp
                 })
-                ->orWhereHas('user', function ($qUser) use ($keyWord) {
-                    $qUser->where('name', 'like', "%{$keyWord}%");
-                })
-                ->orWhere('content', 'like', "%{$keyWord}%");
+                    ->orWhereHas('user', function ($qUser) use ($keyWord) {
+                        $qUser->where('name', 'like', "%{$keyWord}%"); //theo tên người dùng
+                    })
+                    ->orWhere('content', 'like', "%{$keyWord}%"); //theo nội dung
             });
         }
-    
-        // Nếu có lọc theo số sao
-        if ($star) {
+
+        //lọc sao
+        if ($star == '3up') {
+            $query->whereIn('star', [3, 4, 5]);
+        } elseif ($star) {
             $query->where('star', $star);
         }
-    
-        // Sắp xếp theo lựa chọn
+
+        // lọc tg
         if ($orderBy === 'oldest') {
-            $query->orderBy('created_at', 'asc');
+            $query->orderBy('created_at', 'asc'); // cũ
         } else {
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('created_at', 'desc'); // mới
         }
-    
+        
+        // lọc trạng thái
+        if ($status === "1") {
+            $query->where('is_active', 1);
+        } elseif ($status === "0") {
+            $query->where('is_active', 0);
+        }
+
         $reviewItems = $query->paginate($perPage);
-    
+
         $template = 'admins.reviews.index';
-    
+
         return view('admins.layout', [
             'title' => 'Danh Sách Đánh Giá',
             'template' => $template,
@@ -55,12 +64,31 @@ class ReviewAdminController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
-        // Lấy chi tiết wishlist item kèm sản phẩm và đánh giá
-        $reviewItem = Review::with(['product', 'user'])
-            ->findOrFail($id);
+        $review = Review::with(['product', 'user'])->findOrFail($id);
 
-        return view('admins.reviews.show', compact('reviewItem'));
+        $template = "admins.reviews.show";
+        if ($review) {
+            return view('admins.layout', [
+                'title' => 'Cập Nhật Khách Hàng',
+                'template' => $template,
+                'review' => $review,
+                'classActive' => $this->classActive
+            ]);
+        }
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'is_active' => 'required|boolean',
+        ]);
+
+        $review = Review::findOrFail($id);
+        $review->is_active = $request->input('is_active');
+        $review->save();
+
+        // Redirect back to the show page with a success message
+        return redirect()->route('reviews.show', $id)->with('success', 'Trạng thái đã được cập nhật!');
     }
 }

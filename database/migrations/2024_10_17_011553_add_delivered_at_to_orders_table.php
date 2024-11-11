@@ -10,14 +10,13 @@ return new class extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->timestamp('delivered_at')->nullable();
-            $table->timestamp('waiting_time')->nullable();
         });
     }
 
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn(['delivered_at', 'waiting_time']);
+            $table->dropColumn('delivered_at');
         });
     }
 };

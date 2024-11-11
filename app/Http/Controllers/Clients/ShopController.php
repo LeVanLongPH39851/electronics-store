@@ -96,7 +96,7 @@ class ShopController extends Controller
             }
         }
 
-        $listProduct = $listProduct->orderByDesc('created_at')->paginate(8);
+        $listProduct = Product::orderByDesc('created_at')->paginate(8);
 
         return view(
             "clients.layout",
