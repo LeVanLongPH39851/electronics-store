@@ -20,7 +20,6 @@ class ProductDetailController extends Controller
             ->withCount('reviews') // Đếm tổng số đánh giá cho sản phẩm
             ->withAvg('reviews', 'star') // Tính điểm đánh giá trung bình cho sản phẩm
             ->find($id);
-
         if (!$product) {
             // Nếu không tìm thấy sản phẩm, trả về trang trước đó với thông báo lỗi
             return redirect()->back()->with('error', 'Không tìm thấy sản phẩm');
@@ -41,7 +40,6 @@ class ProductDetailController extends Controller
 
         // Lấy lượt xem hiện tại
         $viewsCount = $product->views;
-
         // Lấy sản phẩm liên quan
         $relatedProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $id)
@@ -54,7 +52,7 @@ class ProductDetailController extends Controller
             ->with('user')->latest('created_at')->paginate(3);
         // Chọn template để hiển thị
         $template = "clients.productdetails.productdetail";
-
+      
         return view("clients.layout", [
             "title" => "Chi tiết sản phẩm",
             "template" => $template,
@@ -118,5 +116,4 @@ class ProductDetailController extends Controller
         'totalReviews' => $totalReviews,
     ]);
 }
-
 }

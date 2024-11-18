@@ -176,12 +176,10 @@
                                         @endif
                                     @endforeach
                                     <div class="mt-3"><a href="{{ route('client.product.reviews', ['id' => $product->id]) }}" class="btn btn-outline-success text-dark custom-hover">>>>Xem thêm {{$product->reviews_count}} đánh giá về sản phẩm này</a></div>
-                                    
                                 @endif
                             </div>
                             
                         </div>
-                        
                     </div>
                 </div>
                 <!-- Product Thumbnail Tab Content End -->

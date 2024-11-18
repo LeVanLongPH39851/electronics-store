@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     protected $classActive = "Đơn Hàng";
-
     public function index(Request $request) {
         $query = Order::query();
     
@@ -37,7 +36,6 @@ class OrderController extends Controller
         // Phân trang
         $perPage = $request->get('perPage', 15);
         $orders = $query->paginate($perPage);
-    
         return view('admins.layout', [
             'title' => 'Danh Sách Đơn Hàng',
             'template' => 'admins.orders.list',
