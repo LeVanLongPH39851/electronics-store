@@ -157,12 +157,140 @@
         </div>
         <!-- Container End -->
     </div>
-    <!-- Hot Deal Products End Here -->
-    <!-- Big Banner Start Here -->
-    <div class="big-banner pb-45">
-        <div class="container">
-            <div class="single-banner">
-                <img src="templates/img/banner/5.jpg" alt="" />
+    <!-- Container End -->
+</div>
+<!-- Categorie Menu & Slider Area End Here -->
+<!-- Brand Banner Area Start Here -->
+<div class="main-brand-banner pb-30">
+    <div class="container">
+      <!-- Brand Banner Start -->
+      <div class="brand-banner owl-carousel">
+        <div class="single-brand">
+          <a href="#"
+            ><img class="img" src="templates/img/brand/1.jpg" alt="brand-image"
+          /></a>
+        </div>
+        <div class="single-brand">
+          <a href="#"><img src="templates/img/brand/2.jpg" alt="brand-image" /></a>
+        </div>
+        <div class="single-brand">
+          <a href="#"><img src="templates/img/brand/3.jpg" alt="brand-image" /></a>
+        </div>
+        <div class="single-brand">
+          <a href="#"><img src="templates/img/brand/4.jpg" alt="brand-image" /></a>
+        </div>
+        <div class="single-brand">
+          <a href="#"><img src="templates/img/brand/5.jpg" alt="brand-image" /></a>
+        </div>
+        <div class="single-brand">
+          <a href="#"><img src="templates/img/brand/6.jpg" alt="brand-image" /></a>
+        </div>
+        <div class="single-brand">
+          <a href="#"><img src="templates/img/brand/7.jpg" alt="brand-image" /></a>
+        </div>
+      </div>
+      <!-- Brand Banner End -->
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Brand Banner Area End Here -->
+  <div class="hot-deal-products pb-45">
+    <div class="container">
+      <!-- Post Title Start -->
+      <div class="post-title">
+        <h2>Sản phẩm mới</h2>
+      </div>
+      <!-- Post Title End -->
+      <div class="row">
+        <!-- Hot Deal Left Banner Start -->
+        <div class="col-xl-3 col-lg-4 col-md-5">
+          <div class="single-banner">
+            <a href="shop.html"><img src="templates/img/banner/4.jpg" alt="" /></a>
+          </div>
+        </div>
+        <!-- Hot Deal Left Banner End -->
+        <!-- Hot Deal Product Activation Start -->
+        <div class="col-xl-9 col-lg-8 col-md-7">
+          <div class="main-hot-deal">
+            <!-- Hot Deal Product Active Start -->
+            <div class="hot-deal-active owl-carousel">
+              <!-- Single Product Start -->
+              @foreach ($newProducts as $newProduct)
+              <div class="single-product">
+                <!-- Product Image Start -->
+                <div class="pro-img w-100 d-flex align-items-center" style="aspect-ratio: 1/1">
+                  <a href="{{route('client.product.detail', $newProduct->id)}}">
+                    <img
+                      class="primary-img"
+                      src="{{".".Storage::url($newProduct->image)}}"
+                      alt="single-product"
+                    />
+                    {{-- <img class="secondary-img" src="{{ ".".Storage::url($newProduct->galleries->first()->path()) }}" alt="single-product" /> --}}
+                  </a>
+                    <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div>
+                </div>
+                <!-- Product Image End -->
+                <!-- Product Content Start -->
+                <div class="pro-content"><div class="pro-info">
+                    <h4><a href="product.html">{{ $newProduct->name }}</a></h4>
+                    <div class="product-rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p>
+                        <span class="price" style="font-size: 14px">{{ number_format($newProduct->product_variants_min_price, 0, '', '.') }}đ - {{ number_format($newProduct->product_variants_max_price, 0, '', '.') }}đ</span>
+                    </p>
+                </div>
+                <div class="pro-actions">
+                    <div class="actions-primary">
+                        <a
+                            href="{{ route('client.product.detail', $newProduct->id) }}"
+                            class="px-1 mx-2"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Xem chi tiết"
+                        >Xem chi tiết</a>
+                    </div>
+                   
+                    <div class="actions-secondary">
+                        <form action="{{ route('client.wishlist.add', $newProduct->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" data-bs-toggle="tooltip" class="whish-btn" data-bs-placement="top" title="Yêu thích">
+                                <i class="fa fa-heart-o" style="font-size: 20px;"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                </div>
+                <!-- Product Content End -->
+                {{-- <span class="sticker-new">mới</span> --}}
+                {{-- <span class="sticker-sale">-5%</span> --}}
+              </div>
+              @endforeach
+              <!-- Single Product End -->
+        <!-- Brand Banner Start -->
+        <div class="brand-banner owl-carousel">
+            <div class="single-brand">
+                <a href="#"><img class="img" src="templates/img/brand/1.jpg" alt="brand-image" /></a>
+            </div>
+            <div class="single-brand">
+                <a href="#"><img src="templates/img/brand/2.jpg" alt="brand-image" /></a>
+            </div>
+            <div class="single-brand">
+                <a href="#"><img src="templates/img/brand/3.jpg" alt="brand-image" /></a>
+            </div>
+            <div class="single-brand">
+                <a href="#"><img src="templates/img/brand/4.jpg" alt="brand-image" /></a>
+            </div>
+            <div class="single-brand">
+                <a href="#"><img src="templates/img/brand/5.jpg" alt="brand-image" /></a>
+            </div>
+            <div class="single-brand">
+                <a href="#"><img src="templates/img/brand/6.jpg" alt="brand-image" /></a>
             </div>
         </div>
         <!-- Container End -->
@@ -3289,7 +3417,8 @@
         </div>
         <!-- Container End -->
     </div>
-    <!-- Support Area End Here -->
-    @section('modal')
-        @include('clients.components.modalhome')
-    @endsection
+  </div>
+  <!-- Support Area End Here -->
+@section('modal')
+    @include('clients.components.modalhome')
+@endsection

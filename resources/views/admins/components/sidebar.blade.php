@@ -326,6 +326,16 @@
             </a>
             <!--end startbarElements-->
           </li>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {{$classActive === "Bài viết" ? "active bg-active" : ""}}"
+            href="{{ route('post.index') }}"
+          >
+            <i class="fas fa-rectangle-list menu-icon {{$classActive === "Bài viết" ? "text-primary" : ""}}"></i>
+            <span>Bài viết</span>
+          </a>
+      </li> 
         <li class="nav-item">
             <a
               class="nav-link {{$classActive === "Đơn Hàng" ? "active bg-active" : ""}}"

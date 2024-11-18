@@ -22,7 +22,7 @@
                                 <tr>
                                     <th>Bài viết</th>
                                     <th>Thời gian đăng bài</th>
-                                    <th>Bình luận</th>
+                                    {{-- <th>Bình luận</th> --}}
                                     <th>Lượt xem</th>
                                     <th></th>
                                 </tr>
@@ -42,9 +42,7 @@
                                         <span>{{ $post->created_at->format('h:i A | d/m/Y') }}</span>
 
                                     </td>
-                                    <td>
-                                        <span>1</span>
-                                    </td>
+                                   
                                     <td>
                                         <span>{{$post->views}}</span>
                                     </td>
