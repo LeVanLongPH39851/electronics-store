@@ -6,12 +6,12 @@
         <!-- Row Start -->
         <div class="row">
             <div class="col-lg-12 order-1 order-lg-2">
-                <h2 class="mb-4">Danh sách yêu thích của bạn</h2>
+                <h2 class="mb-4">Sản phẩm yêu thích của bạn</h2>
 
                 <div class="row">
                     @forelse ($wishlists as $wishlistItem)
                         <!-- Single Product Start -->
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-6">
                             <div class="single-product">
                                 <!-- Product Image Start -->
                                 <div class="pro-img">
@@ -34,7 +34,7 @@
                                 <form action="{{ route('client.wishlist.remove', $wishlistItem->id) }}" method="POST" class="remove-wishlist-form">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger remove-btn" title="Xóa khỏi danh sách yêu thích">Xóa</button>
+                                    <button type="submit" class="btn btn-danger remove-btn" title="Xóa khỏi danh sách yêu thích">Bỏ yêu thích</button>
                                 </form>
                                 <!-- Product Content End -->
                             </div>
@@ -42,7 +42,7 @@
                         <!-- Single Product End -->
                     @empty
                         <div class="col-12">
-                            <p class="text-danger">Không có sản phẩm yêu thích!</p>
+                            <p class="text-danger">Chưa có sản phẩm yêu thích!</p>
                         </div>
                     @endforelse
                 </div>

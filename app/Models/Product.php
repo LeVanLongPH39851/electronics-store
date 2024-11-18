@@ -67,6 +67,10 @@ class Product extends Model
     {
         return $this->hasMany(Wishlist::class, 'product_id');
     }
+    public function isFavorited()
+    {
+        return auth()->check() && $this->wishlists()->where('user_id', auth()->id())->exists();
+    }
     public function reviews()
     {
         return $this->hasMany(Review::class);
