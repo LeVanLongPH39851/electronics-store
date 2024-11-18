@@ -45,7 +45,7 @@
                             </div><!--end col-->
                             <div class="col-lg-6">
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Ảnh 1 <span
+                                    <label class="col-sm-2 col-form-label text-end">Ảnh <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
                                         <div class="position-relative">
@@ -60,24 +60,18 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Link 1 <span
+                                    <label class="col-sm-2 col-form-label text-end">Link <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <select name="link"
-                                            class="form-select {{ $errors->has('link') ? 'is-invalid' : '' }}">
-                                            <option value="0">-- Chọn link --</option>
-                                            @foreach ($products as $product)
-                                                <option {{ old('link') == $product->id ? 'selected' : '' }}
-                                                    value="{{ $product->id }}">{{ $product->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="text" name="link" placeholder="Nhập link cho slide show"
+                                            class="form-control {{ $errors->has('link') ? 'is-invalid' : '' }}">
                                         @if ($errors->has('link'))
                                             <p class="text-danger mt-1 mb-0">{{ $errors->first('link') }}</p>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Ảnh 2 <span
+                                    <label class="col-sm-2 col-form-label text-end">Ảnh <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
                                         <div class="position-relative">
@@ -93,24 +87,18 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Link 2 <span
+                                    <label class="col-sm-2 col-form-label text-end">Link <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <select name="link2"
-                                            class="form-select {{ $errors->has('link2') ? 'is-invalid' : '' }}">
-                                            <option value="0">-- Chọn link --</option>
-                                            @foreach ($products as $product)
-                                                <option {{ old('link2') == $product->id ? 'selected' : '' }}
-                                                    value="{{ $product->id }}">{{ $product->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="text" name="link2" placeholder="Nhập link cho slide show"
+                                            class="form-control {{ $errors->has('link2') ? 'is-invalid' : '' }}">
                                         @if ($errors->has('link2'))
                                             <p class="text-danger mt-1 mb-0">{{ $errors->first('link2') }}</p>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Ảnh 3 <span
+                                    <label class="col-sm-2 col-form-label text-end">Ảnh <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
                                         <div class="position-relative">
@@ -126,17 +114,11 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Link 3 <span
+                                    <label class="col-sm-2 col-form-label text-end">Link <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <select name="link3"
-                                            class="form-select {{ $errors->has('link3') ? 'is-invalid' : '' }}">
-                                            <option value="0">-- Chọn link --</option>
-                                            @foreach ($products as $product)
-                                                <option {{ old('link3') == $product->id ? 'selected' : '' }}
-                                                    value="{{ $product->id }}">{{ $product->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="text" name="link3" placeholder="Nhập link cho slide show"
+                                            class="form-control {{ $errors->has('link3') ? 'is-invalid' : '' }}">
                                         @if ($errors->has('link3'))
                                             <p class="text-danger mt-1 mb-0">{{ $errors->first('link3') }}</p>
                                         @endif

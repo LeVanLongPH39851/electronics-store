@@ -26,12 +26,19 @@
                 <div class="slider-wrapper theme-default">
                     <!-- Slider Background  Image Start-->
                     <div id="slider" class="nivoSlider">
-                        @foreach ($slideShow->slideShowGalleries as $slideShowGallery)
-                            <a
-                                href="{{ $slideShowGallery->link ? route('client.product.detail', $slideShowGallery->link) : '' }}"><img
-                                    src="{{ '.' . Storage::url($slideShowGallery->image) }}"
-                                    data-thumb="{{ '.' . Storage::url($slideShowGallery->image) }}" alt="slide" /></a>
-                        @endforeach
+                        @if ($slideShow)
+                            @foreach ($slideShow->slideShowGalleries->sortBy('order') as $slideShowGallery)
+                                <a href="{{ $slideShowGallery->link ? $slideShowGallery->link : '' }}"><img
+                                        src="{{ '.' . Storage::url($slideShowGallery->image) }}"
+                                        data-thumb="{{ '.' . Storage::url($slideShowGallery->image) }}"
+                                        alt="slide" /></a>
+                            @endforeach
+                        @else
+                            <a href="shop.html"><img src="templates/img/slider/1.jpg"
+                                    data-thumb="templates/img/slider/1.jpg" alt="" title="#htmlcaption" /></a>
+                            <a href="shop.html"><img src="templates/img/slider/2.jpg" data-thumb="img/slider/2.jpg"
+                                    alt="" title="#htmlcaption2" /></a>
+                        @endif
                     </div>
                     <!-- Slider Background  Image Start-->
                     <div class="slider-progress"></div>
@@ -41,21 +48,33 @@
             <!-- Right Slider Banner Start Here -->
             <div class="col-xl-3 col-lg-12">
                 <div class="right-sider-banner">
-                    <div class="single-banner">
-                        <a href="{{ route('client.product.detail', $slideShow->link_one) }}"><img
-                                src="{{ '.' . Storage::url($slideShow->image_one) }}" alt=""
-                                style="aspect-ratio: 16 / 9; object-fit: cover" /></a>
-                    </div>
-                    <div class="single-banner">
-                        <a href="{{ route('client.product.detail', $slideShow->link_two) }}"><img
-                                src="{{ '.' . Storage::url($slideShow->image_two) }}" alt=""
-                                style="aspect-ratio: 16 / 9; object-fit: cover" /></a>
-                    </div>
-                    <div class="single-banner">
-                        <a href="{{ route('client.product.detail', $slideShow->link_three) }}"><img
-                                src="{{ '.' . Storage::url($slideShow->image_three) }}" alt=""
-                                style="aspect-ratio: 16 / 9; object-fit: cover" /></a>
-                    </div>
+                    @if ($slideShow)
+                        <div class="single-banner">
+                            <a href="{{ $slideShow->link_one }}"><img
+                                    src="{{ '.' . Storage::url($slideShow->image_one) }}" alt=""
+                                    style="aspect-ratio: 16 / 9; object-fit: cover" /></a>
+                        </div>
+                        <div class="single-banner">
+                            <a href="{{ $slideShow->link_two }}"><img
+                                    src="{{ '.' . Storage::url($slideShow->image_two) }}" alt=""
+                                    style="aspect-ratio: 16 / 9; object-fit: cover" /></a>
+                        </div>
+                        <div class="single-banner">
+                            <a href="{{ $slideShow->link_three }}"><img
+                                    src="{{ '.' . Storage::url($slideShow->image_three) }}" alt=""
+                                    style="aspect-ratio: 16 / 9; object-fit: cover" /></a>
+                        </div>
+                    @else
+                        <div class="single-banner">
+                            <a href="shop.html"><img src="templates/img/banner/1.jpg" alt="" /></a>
+                        </div>
+                        <div class="single-banner">
+                            <a href="shop.html"><img src="templates/img/banner/2.jpg" alt="" /></a>
+                        </div>
+                        <div class="single-banner">
+                            <a href="shop.html"><img src="templates/img/banner/3.jpg" alt="" /></a>
+                        </div>
+                    @endif
                 </div>
             </div>
             <!-- Right Slider Banner End Here -->
@@ -1251,8 +1270,9 @@
                                             <p><span class="price">12.000.000đ</span></p>
                                             <div class="pro-actions">
                                                 <div class="actions-primary">
-                                                    <a href="cart.html" class="px-1 w-auto" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Add to Cart">Thêm giỏ hàng</a>
+                                                    <a href="cart.html" class="px-1 w-auto"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        title="Add to Cart">Thêm giỏ hàng</a>
                                                 </div>
                                                 <div class="actions-secondary">
                                                     <a href="product.html" data-bs-toggle="tooltip"
@@ -1260,7 +1280,8 @@
                                                             class="fa fa-heart-o"></i></a>
                                                     <span data-bs-toggle="tooltip" data-bs-placement="top">
                                                         <a href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#myModal"><i class="fa fa-search"></i></a>
+                                                            data-bs-target="#myModal"><i
+                                                                class="fa fa-search"></i></a>
                                                     </span>
                                                 </div>
                                             </div>

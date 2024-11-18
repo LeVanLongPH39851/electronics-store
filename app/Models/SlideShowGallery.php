@@ -14,6 +14,7 @@ class SlideShowGallery extends Model
     protected $fillable = [
         "image",
         "link",
+        "order",
         "slide_show_id"
     ];
     

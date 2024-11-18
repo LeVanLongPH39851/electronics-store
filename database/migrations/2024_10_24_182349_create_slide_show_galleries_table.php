@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('slide_show_galleries', function (Blueprint $table) {
             $table->id();
             $table->text('image');
+            $table->integer('order')->default(0);
             $table->string('link')->nullable();
             $table->foreignId('slide_show_id')->constrained('slide_shows')->onDelete('cascade');
             $table->timestamps();
