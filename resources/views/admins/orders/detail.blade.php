@@ -146,6 +146,13 @@
                         </div>
                     </form>
                     @endif
+                    @if ($order->status == 'dndh')
+                    <div class="text-muted">
+                        <span class="text-primary">
+                            Hoàn tất - Đã nhận được đơn hàng
+                        </span>
+                    </div>
+                    @endif
                 </div><!--card-body-->
             </div><!--end card-->
         </div> <!-- end col -->
