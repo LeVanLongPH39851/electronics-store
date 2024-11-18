@@ -143,44 +143,43 @@
                     <div id="review" class="tab-pane fade">
                         <!-- Đánh giá sản phẩm -->
                         <div class="product-reviews">
-                            <div class="group-title">
-                                <h2>Đánh giá sản phẩm</h2>
-                            </div>
-                
+                            <!-- Hiển thị danh sách đánh giá -->
                             <div class="reviews-list">
-                                @if ($product->reviews->isEmpty())
+                                @if ($reviews->isEmpty())
                                     <p>Chưa có đánh giá nào cho sản phẩm này.</p>
                                 @else
-                                    @foreach ($product->reviews as $review)
-                                        <div class="review-item">
-                                            <div class="row">
-                                                <div class="col-1">
-                                                    <img src="https://png.pngtree.com/png-clipart/20190904/original/pngtree-user-cartoon-avatar-pattern-flat-avatar-png-image_4492883.jpg" alt="User Avatar" class="user-avatar">
-                                                </div>
-                                                <div class="col-11">
-                                                    <div class="review-content">
-                                                        <h5 class="review-username mb-1">{{ $review->user->name }}</h5>
-                                                        <div class="star-rating">
+                                    @foreach ($reviews as $review)
+                                        @if ($review->is_active)
+                                            <div class="review-item">
+                                                <div class="row">
+                                                    <div class="col-1">
+                                                        <img src="{{ '.' . Storage::url($review->user->image) }}"
+                                                            alt="{{ $review->user->name }}" class="user-avatar">
+                                                    </div>
+                                                    <div class="col-11">
+                                                        <div class="review-content">
+                                                            <h5 class="review-username mb-1">{{ $review->user->name }}
+                                                            </h5>
                                                             <div class="star-rating">
                                                                 @for ($i = 1; $i <= 5; $i++)
-                                                                    <i class="fa{{ $i <= $review->star ? '-solid' : '-regular' }} fa-star" style="color: {{ $i <= $review->star ? 'gold' : 'gray' }};"></i>
+                                                                    <i class="fa{{ $i <= $review->star ? '-solid' : '-regular' }} fa-star"
+                                                                        style="color: {{ $i <= $review->star ? 'gold' : 'gray' }};"></i>
                                                                 @endfor
+                                                                <p class="review-date">
+                                                                    {{ $review->created_at->format('d/m/Y H:i') }}</p>
                                                             </div>
-                                                            
-                                                            <p class="review-date">{{ $review->created_at->format('d/m/Y') }}</p>
+                                                            <p class="review-text">{{ $review->content }}</p>
                                                         </div>
-                                                        <p class="review-text">{{ $review->content }}</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     @endforeach
+                                    <div class="mt-3"><a href="{{ route('client.product.reviews', ['id' => $product->id]) }}" class="btn btn-outline-success text-dark custom-hover">>>>Xem thêm {{$product->reviews_count}} đánh giá về sản phẩm này</a></div>
                                 @endif
                             </div>
                             
                         </div>
-
-                       
                     </div>
                 </div>
                 <!-- Product Thumbnail Tab Content End -->

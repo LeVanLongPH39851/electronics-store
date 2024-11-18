@@ -16,25 +16,29 @@
                                         <option {{ request('perPage') == 12 ? 'selected' : '' }} value="12">12 đơn hàng</option>
                                         <option {{ request('perPage') == 15 ? 'selected' : '' }} value="15">15 đơn hàng</option>
                                         <option {{ request('perPage') == 18 ? 'selected' : '' }} value="18">18 đơn hàng</option>
-                                        {{-- request('perPage'): dữ lại value cũ của perPage --}}
                                     </select>
                                 </div>
                                 <div class="col-auto">
                                     <select name="orderBy" class="form-select" onchange="submitForm()">
-                                        <option {{ request('orderBy') == 'lastest' ? 'selected' : '' }} value="lastest">
-                                            Mới nhất</option>
-                                        <option {{ request('orderBy') == 'oldest' ? 'selected' : '' }} value="oldest">Cũ
-                                            nhất</option>
-                                        {{-- request('orderBy'): dữ lại value cũ của orderBy --}}
+                                        <option {{ request('orderBy') == 'latest' ? 'selected' : '' }} value="latest">Mới nhất</option>
+                                        <option {{ request('orderBy') == 'oldest' ? 'selected' : '' }} value="oldest">Cũ nhất</option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <select name="status" class="form-select" onchange="submitForm()">
+                                        <option value="">Tất cả trạng thái</option>
+                                        <option {{ request('status') == 'cxn' ? 'selected' : '' }} value="cxn">Đang chờ xác nhận</option>
+                                        <option {{ request('status') == 'dxn' ? 'selected' : '' }} value="dxn">Đã xác nhận</option>
+                                        <option {{ request('status') == 'dgh' ? 'selected' : '' }} value="dgh">Đang giao hàng</option>
+                                        <option {{ request('status') == 'ghtc' ? 'selected' : '' }} value="ghtc">Giao hàng thành công</option>
+                                        <option {{ request('status') == 'ghtb' ? 'selected' : '' }} value="ghtb">Giao hàng thất bại</option>
+                                        <option {{ request('status') == 'dndh' ? 'selected' : '' }} value="dndh">Đã hoàn tất</option>
+                                        <option {{ request('status') == 'dh' ? 'selected' : '' }} value="dh">Đã hủy</option>
                                     </select>
                                 </div>
                                 <div class="col-auto d-flex">
-                                    <input type="text" id="keyword-input" class="form-control border-end-0"
-                                        name="keyWord" value="{{ request('keyWord') }}" placeholder="Từ khóa..."
-                                        style="border-top-right-radius: 0; border-bottom-right-radius: 0">
-                                    {{-- request('keyWord'): dữ lại value cũ của keyWord --}}
-                                    <button class="btn btn-info text-nowrap"
-                                        style="border-top-left-radius: 0; border-bottom-left-radius: 0">Tìm kiếm</button>
+                                    <input type="text" id="keyword-input" class="form-control border-end-0" name="keyWord" value="{{ request('keyWord') }}" placeholder="Từ khóa..." style="border-top-right-radius: 0; border-bottom-right-radius: 0">
+                                    <button class="btn btn-info text-nowrap" style="border-top-left-radius: 0; border-bottom-left-radius: 0">Tìm kiếm</button>
                                 </div>
                             </form>
                         </div><!--end col-->
@@ -111,7 +115,7 @@
                                         $icon = $order->status === "cxn" ? "clock" : ($order->status === "dxn" ? "check" : ($order->status === "dgh" ? "truck" : ($order->status === "ghtc" ? "check-to-slot" : ($order->status === "ghtb" ? "ban" : ($order->status === "dh" ? "xmark" : "thumbs-up")))));
                                     @endphp
                                     <td>
-                                        <span class="badge bg-{{$color}}-subtle text-{{$color}}"><i class="fas fa-{{$icon}} me-1"></i> {{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hành thành công" : ($order->status === "ghtb" ? "Giao hành thất bại" : ($order->status === "dh" ? "Đã hủy" : "Hoàn thành")))))}}</span>
+                                        <span class="badge bg-{{$color}}-subtle text-{{$color}}"><i class="fas fa-{{$icon}} me-1"></i> {{$order->status === "cxn" ? "Đang chờ xác nhận" : ($order->status === "dxn" ? "Đã xác nhận" : ($order->status === "dgh" ? "Đang giao hàng" : ($order->status === "ghtc" ? "Giao hàng thành công" : ($order->status === "ghtb" ? "Giao hàng thất bại" : ($order->status === "dh" ? "Đã hủy" : "Hoàn thành")))))}}</span>
                                     </td>
                                     <td class="text-danger fs-12"><strong>{{number_format($order->total_price, 0, '', '.')}} vnđ</strong></td>
                                 </tr>
@@ -130,3 +134,19 @@
         </div> <!-- end col -->
     </div> <!-- end row -->
 </div><!-- container -->
+@section('script')
+    <script>
+        function submitForm() {
+            document.getElementById('form_filter').submit();
+        }
+
+        function validateAndSubmit() {
+            var keyword = document.getElementById('keyword-input').value;
+            if (keyword.trim() === "") {
+                alert("Vui lòng nhập từ khóa trước khi tìm kiếm");
+                return false;
+            }
+            document.getElementById('form_filter').submit();
+        }
+    </script>
+@endsection
