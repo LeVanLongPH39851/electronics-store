@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $countGhtb = Order::where('status', 'ghtb')->count();
         $countDh = Order::where('status', 'dh')->count();
         $years = Order::select(DB::raw('YEAR(created_at) as year'))
-        ->distinct()
+            ->distinct()
             ->orderByDesc('year')
             ->pluck('year')
             ->toArray();
