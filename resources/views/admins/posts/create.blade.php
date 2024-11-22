@@ -12,78 +12,72 @@
             </div>
         </div>
     </div>
-    <form id="myForm" action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div class="row justify-content-center">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col">                      
-                            <h4 class="card-title">Thông tin chung</h4>                      
-                        </div><!--end col-->
-                    </div>  <!--end row-->                                  
-                </div><!--end card-header-->
-                <div class="card-body pt-0">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="mb-3 row">
-                                <label class="col-sm-2 col-form-label text-end">Tiêu đề <span class="text-danger">*</span></label>
-                                <div class="col-sm-10">
-                                    <input class="form-control {{$errors->has("title") ? "is-invalid" : ""}}" name="title" value="{{old('title')}}" type="text" placeholder="Nhập vào họ tên">
-                                    @if ($errors->has("title"))
-                                    <p class="text-danger mt-1 mb-0">{{$errors->first("title")}}</p>
-                                    @endif
-                                </div>
-                            </div>  
-                    
-                            
-                            
-                            <div class="mb-3 row">
-                                <label class="col-sm-2 col-form-label text-end">Nội dung <span class="text-danger">*</span></label>
-                                <div class="col-sm-10">
-                                    
-                                    <div id="editor">{!! old('content') !!}</div>
-                                    
-                                    <textarea name="content" class="form-control" style="display: none">{!! old('content') !!}</textarea>
-                                    @if ($errors->has("content"))
-                                    <p class="text-danger mt-1 mb-0">{{$errors->first("content")}}</p>
-                                    @endif
-                                </div>
-                            </div>
-                            
-                            
-                           
-                           
-                         
-                        </div><!--end col-->
-                        <div class="col-lg-6">    
-                            <div class="mb-3 row">
-                                <label class="col-sm-2 col-form-label text-end">Ảnh <span class="text-danger">*</span></label>
-                                <div class="col-sm-10">
-                                    <div class="position-relative">
-                                        <input class="form-control {{$errors->has("image") ? "is-invalid" : ""}}" name="image" type="file" onchange="showImage(event)">
-                                        <img src="" class="image-style position-absolute" id="image" alt="image">
+    <form id="myForm" action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">                      
+                                <h4 class="card-title">Thông tin chung</h4>                      
+                            </div><!--end col-->
+                        </div>  <!--end row-->                                  
+                    </div><!--end card-header-->
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label text-end">Tiêu đề <span class="text-danger">*</span></label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" name="title" value="{{ old('title') }}" type="text" placeholder="Nhập vào tiêu đề">
+                                        @if ($errors->has('title'))
+                                            <p class="text-danger mt-1 mb-0">{{ $errors->first('title') }}</p>
+                                        @endif
                                     </div>
-                                    @if ($errors->has("image"))
-                                    <p class="text-danger mt-1 mb-0">{{$errors->first("image")}}</p>
-                                    @endif
                                 </div>
-                            </div>
-                             
+
+                               
+                            </div><!--end col-->
                             
-                        </div><!--end col-->
-                        <div class="text-end mb-3">
-                            {{-- <button type="reset" class="btn btn-danger mr1">Reset</button> --}}
-                            <button type="submit" class="btn btn-primary">Tạo mới</button>
-                        </div>
-                    </div> <!--end row-->
-                </div><!--end card-body--> 
-            </div><!--end card--> 
-        </div> <!--end col-->                                                       
-    </div><!--end row-->
-    
+                            <div class="col-lg-6">    
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label text-end">Ảnh <span class="text-danger">*</span></label>
+                                    <div class="col-sm-10">
+                                        <div class="position-relative">
+                                            <input class="form-control {{$errors->has("image") ? "is-invalid" : ""}}" name="image" type="file" onchange="showImage(event)">
+                                            <img src="" class="image-style position-absolute" id="image" alt="image">
+                                        </div>
+                                        @if ($errors->has("image"))
+                                            <p class="text-danger mt-1 mb-0">{{$errors->first("image")}}</p>
+                                        @endif
+                                    </div>
+                                </div>                           
+                            </div><!--end col-->
+                            <div class="col-lg-12">    
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label text-end">Nội dung <span class="text-danger">*</span></label>
+                                     <div class="col-sm-10">
+                                            <div id="editor" style="height: 400px;">{!! old('content') !!}</div> <!-- Thay đổi chiều cao ở đây -->
+                                            <textarea name="content" class="form-control" style="display: none">{{ old('content') }}</textarea>
+                                            @if ($errors->has('content'))
+                                                <p class="text-danger mt-1 mb-0">{{ $errors->first('content') }}</p>
+                                            @endif
+                                        </div>
+                                </div>  
+                                
+                            </div><!--end col-->
+                            
+                            <div class="text-end mb-3">
+                                <button type="submit" class="btn btn-primary">Tạo mới</button>
+                            </div>
+                        </div> <!--end row-->
+                    </div><!--end card-body--> 
+                </div><!--end card--> 
+            </div> <!--end col-->                                                       
+        </div><!--end row-->
     </form>
+    
 </div>
 
 {{-- Thêm js --}}
@@ -148,4 +142,5 @@
 });
 
 </script>
+
 @endsection

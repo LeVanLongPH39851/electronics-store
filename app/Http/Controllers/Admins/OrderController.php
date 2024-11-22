@@ -12,25 +12,46 @@ class OrderController extends Controller
 {
     protected $classActive = "Đơn Hàng";
 
-    public function index()
-    {
-        $orders = Order::orderByDesc('created_at')->paginate(15);
-        $template = 'admins.orders.list'; //Tạo biến template để include vào content của layout
-
+    public function index(Request $request) {
+        $query = Order::query();
+    
+        // Lọc theo trạng thái
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+    
+        // Tìm kiếm theo từ khóa
+        if ($request->has('keyWord') && $request->keyWord != '') {
+            $keyWord = $request->keyWord;
+            $query->where(function ($q) use ($keyWord) {
+                $q->where('order_code', 'LIKE', '%' . $keyWord . '%')
+                  ->orWhere('user_name', 'LIKE', '%' . $keyWord . '%')
+                  ->orWhere('user_phone', 'LIKE', '%' . $keyWord . '%');
+            });
+        }
+    
+        // Sắp xếp theo ngày tạo
+        $orderBy = $request->get('orderBy', 'latest') == 'latest' ? 'desc' : 'asc';
+        $query->orderBy('created_at', $orderBy);
+    
+        // Phân trang
+        $perPage = $request->get('perPage', 15);
+        $orders = $query->paginate($perPage);
         return view('admins.layout', [
             'title' => 'Danh Sách Đơn Hàng',
-            'template' => $template,
+            'template' => 'admins.orders.list',
             'classActive' => $this->classActive,
             'orders' => $orders
         ]);
     }
+    
 
     public function show(string $id)
     {
         $order = Order::find($id);
         if ($order) {
-            $template = 'admins.orders.detail';
 
+            $template = 'admins.orders.detail'; //Tạo biến template để include vào content của layout
             return view('admins.layout', [
                 'title' => 'Chi Tiết Đơn Hàng',
                 'template' => $template,
@@ -60,6 +81,9 @@ class OrderController extends Controller
                 $oldStatus = $order->status;
                 $order->status = $request->input('status');
                 $request->input('status') == "ghtc" ? $order->payment_status = "dtt" : "";
+                if ($order->status === 'ghtc') {
+                    $order->delivered_at = now();
+                }
                 $order->save();
                 OrderHistory::create([
                     "from_status" => $oldStatus,

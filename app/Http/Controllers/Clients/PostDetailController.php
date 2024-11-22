@@ -24,10 +24,10 @@ class PostDetailController extends Controller
             'posts' => $posts
         ]);
     }
-    public function blogDetail(string $id)
+    public function blogDetail(string $slug)
     {
 
-        $post = Post::with('user', 'comments')->find($id);
+        $post = Post::with('user', 'comments')->where('slug', $slug)->first();
         if (!$post) {
             return redirect()->route('posts.index')->with('error', 'Bài viết không tồn tại.');
         }

@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\ProductVariant;
 use App\Models\Gallery;
 use App\Models\OrderDetail;
+use Carbon\Carbon;
 
 class Product extends Model
 {
@@ -43,7 +44,8 @@ class Product extends Model
         return $this->belongsTo(Brand::class, 'brand_id');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
@@ -64,6 +66,10 @@ class Product extends Model
     public function wishlists()
     {
         return $this->hasMany(Wishlist::class, 'product_id');
+    }
+    public function isFavorited()
+    {
+        return auth()->check() && $this->wishlists()->where('user_id', auth()->id())->exists();
     }
     public function reviews()
     {
