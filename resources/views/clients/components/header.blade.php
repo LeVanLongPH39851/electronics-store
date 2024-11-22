@@ -18,16 +18,6 @@
                     ></i
                   ></a>
                 </li>
-                {{-- <li>
-                  <span>Currency:</span
-                  ><a href="#">USD $<i class="ion-arrow-down-b"></i></a>
-                  <!-- Dropdown Start -->
-                  <ul class="ht-dropdown">
-                    <li><a href="#">English</a></li>
-                    <li><a href="#">Français</a></li>
-                  </ul>
-                  <!-- Dropdown End -->
-                </li> --}}
               </ul>
             </div>
             <!-- Header Top Left End -->

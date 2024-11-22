@@ -142,9 +142,10 @@ class DashboardController extends Controller
     {
 
         $orderYear = Order::select(DB::raw('YEAR(created_at) as year'))
-            ->orderBy('year', 'asc')
-            ->first()?->year;
-        if ($year && $year != $orderYear  && !$month && !$day) {
+        ->orderBy('year', 'asc')
+        ->first()
+        ?->year;
+        if($year && $year != $orderYear  && !$month && !$day){
             $year = Order::select(DB::raw('YEAR(created_at)'))->whereYear('created_at', '<', $year)
                 ->orderBy('created_at', 'desc')
                 ->pluck(DB::raw('YEAR(created_at)'))->first();
