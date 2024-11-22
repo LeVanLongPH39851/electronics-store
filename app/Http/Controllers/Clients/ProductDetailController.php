@@ -28,17 +28,16 @@ class ProductDetailController extends Controller
 
         // Tăng lượt xem lên 1
         $product->increment('view');
-
-        // Lưu sản phẩm đã xem vào session
-        $recentlyViewedProducts = session('recently_viewed_products', []);
-
-        // Kiểm tra xem sản phẩm đã có trong danh sách chưa
-        if (!in_array($id, $recentlyViewedProducts)) {
-            $recentlyViewedProducts[] = $id; // Thêm sản phẩm vào danh sách
-        }
-
-        session(['recently_viewed_products' => $recentlyViewedProducts]); // Cập nhật session
-
+    
+        // // Lưu sản phẩm đã xem vào session
+        // $recentlyViewedProducts = session('recently_viewed_products', []);
+        
+        // // Kiểm tra xem sản phẩm đã có trong danh sách chưa
+        // if (!in_array($id, $recentlyViewedProducts)) {
+        //     $recentlyViewedProducts[] = $id; // Thêm sản phẩm vào danh sách
+        // }
+        
+        // session(['recently_viewed_products' => $recentlyViewedProducts]); 
         // Lấy lượt xem hiện tại
         $viewsCount = $product->views;
         // Lấy sản phẩm liên quan

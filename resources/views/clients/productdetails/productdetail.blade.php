@@ -33,8 +33,8 @@
                                     alt="product-thumbnail"></a>
                             @foreach ($product->galleries as $gallery)
                                 <a data-bs-toggle="tab" class="d-flex align-items-center aspect-ratio"
-                                    href="#thumbgl{{ $gallery->id }}"><img
-                                        src="{{ '.' . Storage::url($gallery->path) }}" alt="product-thumbnail"></a>
+                                    href="#thumbgl{{ $gallery->id }}"><img src="{{ '.' . Storage::url($gallery->path) }}"
+                                        alt="product-thumbnail"></a>
                             @endforeach
                         </div>
                     </div>
@@ -200,7 +200,6 @@
                                     <div class="mt-3"><a href="{{ route('client.product.reviews', ['id' => $product->id]) }}" class="btn btn-outline-success text-dark custom-hover">>>>Xem thêm {{$product->reviews_count}} đánh giá về sản phẩm này</a></div>
                                 @endif
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -228,21 +227,26 @@
                 <div class="single-product">
                     <!-- Product Image Start -->
                     <div class="pro-img w-100 d-flex align-items-center" style="aspect-ratio: 1/1">
-                        <a href="{{ route('client.product.detail', $relatedProduct->id) }}">
+                        <a href="{{ route('client.product.detail', $relatedProduct->id) }}"
+                            onclick="event.preventDefault(); document.getElementById('add-viewed-{{ $relatedProduct->id }}').submit();">
                             <img class="primary-img" src="{{ '.' . Storage::url($relatedProduct->image) }}"
                                 alt="single-product" />
+                            {{-- <img class="secondary-img" src="{{ '.' . Storage::url($relatedProduct->galleries->first()->path) }}" alt="single-product" /> --}}
                         </a>
+
+                        <form id="add-viewed-{{ $relatedProduct->id }}"
+                            action="{{ route('client.product.addRecentlyViewed', $relatedProduct->id) }}" method="POST"
+                            style="display: none;">
+                            @csrf
+                        </form>
                     </div>
-                    @if ($relatedProduct->isFavorited())
-                        <span class="heart-icon" style="position: absolute; top: 1px; left: 200px; color: red;">
-                            <i class="fa fa-heart"></i>
-                        </span>
-                    @endif
                     <!-- Product Image End -->
                     <!-- Product Content Start -->
                     <div class="pro-content">
                         <div class="pro-info">
-                            <h4><a href="product.html">{{ $relatedProduct->name }}</a></h4>
+                            <h4><a
+                                    href="{{ route('client.product.detail', $relatedProduct->id) }}">{{ $relatedProduct->name }}</a>
+                            </h4>
                             <div class="product-rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -251,10 +255,10 @@
                                 <i class="fa fa-star"></i>
                             </div>
                             <p>
-                                <span class="price"
-                                    style="font-size: 14px">{{ number_format($relatedProduct->productVariants->min('price'), 0, '', '.') }}đ
-                                    -
-                                    {{ number_format($relatedProduct->productVariants->max('price'), 0, '', '.') }}đ</span>
+                                <span class="price" style="font-size: 14px">
+                                    {{ number_format($relatedProduct->productVariants->min('price'), 0, '', '.') }}đ -
+                                    {{ number_format($relatedProduct->productVariants->max('price'), 0, '', '.') }}đ
+                                </span>
                             </p>
                         </div>
                         <div class="pro-actions">
@@ -263,19 +267,10 @@
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Xem chi tiết">Xem chi
                                     tiết</a>
                             </div>
-                            @if (!$relatedProduct->isFavorited())
-                                <div class="actions-secondary">
-                                    <form action="{{ route('client.wishlist.add', $relatedProduct->id) }}" method="POST"
-                                        style="display: inline;">
-                                        @csrf
-                                        <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top"
-                                            title="Yêu thích"
-                                            style="border: none; background: coral; cursor: pointer; height: 36px; border-radius: 2px;">
-                                            <i class="fa fa-heart" style="font-size: 20px;"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            @endif
+                            <div class="actions-secondary">
+                                <a href="product.html" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Yêu thích"><i class="fa fa-heart-o"></i></a>
+                            </div>
                         </div>
                     </div>
                     <!-- Product Content End -->
@@ -347,9 +342,9 @@
             const ssdCheckboxes = document.querySelectorAll('.form-check-input1');
             const colorCheckboxes = document.querySelectorAll('.form-check-input2');
             const ssdsChecked = document.querySelectorAll('.form-check-input1:checked').length >
-                0; // Kiểm tra nếu có ít nhất một color được chọn
+            0; // Kiểm tra nếu có ít nhất một color được chọn
             const colorsChecked = document.querySelectorAll('.form-check-input2:checked').length >
-                0; // Kiểm tra nếu có ít nhất một ssd được chọn
+            0; // Kiểm tra nếu có ít nhất một ssd được chọn
             const ssdValue = document.querySelector('.form-check-input1:checked');
             const colorValue = document.querySelector('.form-check-input2:checked');
             const productVariants = <?php echo json_encode($product->productVariants); ?>;

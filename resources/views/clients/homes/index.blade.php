@@ -20,37 +20,22 @@
                     </nav>
                 </div>
             </div>
-
-            <!-- Row End -->
-        </div>
-        <!-- Container End -->
-    </div>
-    <!-- Categorie Menu & Slider Area End Here -->
-    <!-- Brand Banner Area Start Here -->
-    <div class="main-brand-banner pb-30">
-        <div class="container">
-            <!-- Brand Banner Start -->
-            <div class="brand-banner owl-carousel">
-                <div class="single-brand">
-                    <a href="#"><img class="img" src="templates/img/brand/1.jpg" alt="brand-image" /></a>
-                </div>
-                <div class="single-brand">
-                    <a href="#"><img src="templates/img/brand/2.jpg" alt="brand-image" /></a>
-                </div>
-                <div class="single-brand">
-                    <a href="#"><img src="templates/img/brand/3.jpg" alt="brand-image" /></a>
-                </div>
-                <div class="single-brand">
-                    <a href="#"><img src="templates/img/brand/4.jpg" alt="brand-image" /></a>
-                </div>
-                <div class="single-brand">
-                    <a href="#"><img src="templates/img/brand/5.jpg" alt="brand-image" /></a>
-                </div>
-                <div class="single-brand">
-                    <a href="#"><img src="templates/img/brand/6.jpg" alt="brand-image" /></a>
-                </div>
-                <div class="single-brand">
-                    <a href="#"><img src="templates/img/brand/7.jpg" alt="brand-image" /></a>
+            <!-- Vertical Menu End Here -->
+            <!-- Slider Area Start Here -->
+            <div class="col-xl-6 col-lg-8">
+                <div class="slider-wrapper theme-default">
+                    <!-- Slider Background  Image Start-->
+                    <div id="slider" class="nivoSlider">
+                        @foreach ($slideShow->slideShowGalleries as $slideShowGallery)
+                            <a
+                                href="{{ $slideShowGallery->link ? route('client.product.detail', $slideShowGallery->link) : '' }}"><img
+                                    src="{{ '.' . Storage::url($slideShowGallery->image) }}"
+                                    data-thumb="{{ '.' . Storage::url($slideShowGallery->image) }}"
+                                    alt="slide" /></a>
+                        @endforeach
+                    </div>
+                    <!-- Slider Background  Image Start-->
+                    <div class="slider-progress"></div>
                 </div>
             </div>
             <!-- Brand Banner End -->
@@ -3140,41 +3125,40 @@
                         @foreach ($newProducts as $newProduct)
                             <div class="single-product">
                                 <!-- Product Image Start -->
-                                <div class="pro-img w-100 d-flex align-items-center" style="aspect-ratio: 1/1">
-                                    <a href="{{ route('client.product.detail', $newProduct->id) }}">
-                                        <img class="primary-img" src="{{ '.' . Storage::url($newProduct->image) }}"
-                                            alt="single-product" />
-                                        @if ($newProduct->galleries->isNotEmpty())
-                                            <img class="primary-img"
-                                                src="{{ asset(Storage::url($newProduct->galleries->first()->path)) }}"
-                                                alt="single-product">
-                                        @else
-                                            <img class="secondary-img"
-                                                src="{{ '.' . Storage::url($newProduct->image) }}"
-                                                alt="single-product" />
-                                            <!-- Xử lý khi không có phần tử trong galleries -->
-                                        @endif
-
+                                <div class="pro-img">
+                                    <a href="{{ route('client.product.detail', $newProduct->id) }}"
+                                        onclick="event.preventDefault(); document.getElementById('add-viewed-{{ $newProduct->id }}').submit();">
+                                        <img class="primary-img" src="{{ asset('storage/' . $newProduct->image) }}"
+                                            alt="single-product">
+                                        <img class="secondary-img"
+                                            src="{{ asset('storage/' . $newProduct->galleries->first()->path) }}"
+                                            alt="single-product">
                                     </a>
-                                    {{-- <div class="countdown bg-main text-white" data-countdown="2024/12/01"></div> --}}
+
+                                    <form id="add-viewed-{{ $newProduct->id }}"
+                                        action="{{ route('client.product.addRecentlyViewed', $newProduct->id) }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
                                 </div>
                                 <!-- Product Image End -->
                                 <!-- Product Content Start -->
                                 <div class="pro-content">
                                     <div class="pro-info">
-                                        <h4><a href="product.html">{{ $newProduct->name }}</a></h4>
+                                        <h4><a
+                                                href="{{ route('client.product.detail', $newProduct->id) }}">{{ $newProduct->name }}</a>
+                                        </h4>
                                         <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
+                                            @for ($i = 0; $i < 5; $i++)
+                                                <i class="fa fa-star"></i>
+                                            @endfor
                                         </div>
                                         <p>
-                                            <span class="price"
-                                                style="font-size: 14px">{{ number_format($newProduct->product_variants_min_price, 0, '', '.') }}đ
+                                            <span class="price" style="font-size: 14px">
+                                                {{ number_format($newProduct->product_variants_min_price, 0, '', '.') }}đ
                                                 -
-                                                {{ number_format($newProduct->product_variants_max_price, 0, '', '.') }}đ</span>
+                                                {{ number_format($newProduct->product_variants_max_price, 0, '', '.') }}đ
+                                            </span>
                                         </p>
                                     </div>
                                     <div class="pro-actions">
@@ -3194,8 +3178,6 @@
                                     </div>
                                 </div>
                                 <!-- Product Content End -->
-                                <span class="sticker-new">mới</span>
-                                {{-- <span class="sticker-sale">-5%</span> --}}
                             </div>
                         @endforeach
                     </div>
