@@ -164,9 +164,8 @@
                             <div class="group-title">
                                 <h2>Đánh giá sản phẩm</h2>
                             </div>
-
                             <div class="reviews-list">
-                                @if ($product->reviews->isEmpty())
+                                @if ($reviews->isEmpty())
                                     <p>Chưa có đánh giá nào cho sản phẩm này.</p>
                                 @else
                                     @foreach ($product->reviews as $review)
@@ -186,23 +185,22 @@
                                                                     <i class="fa{{ $i <= $review->star ? '-solid' : '-regular' }} fa-star"
                                                                         style="color: {{ $i <= $review->star ? 'gold' : 'gray' }};"></i>
                                                                 @endfor
+                                                                <p class="review-date">
+                                                                    {{ $review->created_at->format('d/m/Y H:i') }}</p>
                                                             </div>
 
                                                             <p class="review-date">
                                                                 {{ $review->created_at->format('d/m/Y') }}</p>
                                                         </div>
-                                                        <p class="review-text">{{ $review->content }}</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     @endforeach
+                                    <div class="mt-3"><a href="{{ route('client.product.reviews', ['id' => $product->id]) }}" class="btn btn-outline-success text-dark custom-hover">>>>Xem thêm {{$product->reviews_count}} đánh giá về sản phẩm này</a></div>
                                 @endif
                             </div>
-
                         </div>
-
-
                     </div>
                 </div>
                 <!-- Product Thumbnail Tab Content End -->

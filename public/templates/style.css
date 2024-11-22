@@ -1424,7 +1424,27 @@ li.megamenu-img a {
     transition: all 400ms ease-in 0s;
     width: 110px;
 }
-
+.actions-secondary .whish-btn {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 2px;
+    display: block;
+    font-size: 10px;
+    height: 36px;
+    line-height: 36px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: all 400ms ease-in 0s;
+    -ms-transition: all 400ms ease-in 0s;
+    transition: all 400ms ease-in 0s;
+    width: 35px;
+    margin-left: 5px;
+    background: transparent;
+    border: 1px solid #22c55e;
+    color: #22c55e;
+}
+.actions-secondary .whish-btn > i {
+    font-size: 16px !important;
+}
 /* .actions-primary span,
 .actions-secondary span {
     background: #22c55e none repeat scroll 0 0;
@@ -1444,6 +1464,12 @@ li.megamenu-img a {
 
 .actions-primary a:hover,
 .actions-secondary a:hover {
+    background: #ff7849;
+    color: #fff;
+    border-color: #ff7849;
+}
+
+.actions-secondary .whish-btn:hover {
     background: #ff7849;
     color: #fff;
     border-color: #ff7849;

@@ -7,7 +7,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="single-latest-blog">
                         <div class="blog-img">
-                            <a href="{{route('client.blog.detail', $post->id)}}"><img src="{{".".Storage::url($post->image)}}" alt="blog-image"></a>
+                            <a href="{{route('client.blog.detail', $post->slug)}}"><img src="{{".".Storage::url($post->image)}}" alt="blog-image"></a>
                         </div>
                         <div class="blog-desc">
                             <h4><a href="single-blog.html">{{$post->title}}</a></h4>

@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Admins\SsdController;
 use App\Http\Controllers\Admins\AuthController;
+use App\Http\Controllers\Admins\PostController;
 use App\Http\Controllers\Admins\UserController;
 use App\Http\Controllers\Admins\BrandController;
 use App\Http\Controllers\Admins\ColorController;
@@ -13,13 +15,20 @@ use App\Http\Controllers\Clients\HomeController;
 use App\Http\Controllers\Clients\ShopController;
 use App\Http\Controllers\Clients\LoginController;
 use App\Http\Controllers\Admins\ProductController;
+use App\Http\Controllers\Admins\VoucherController;
 use App\Http\Controllers\Clients\AccountController;
 use App\Http\Controllers\Admins\DashboardController;
+use App\Http\Controllers\Admins\SlideShowController;
 use App\Http\Controllers\Clients\CheckoutController;
+use App\Http\Controllers\Clients\WishlistController;
+use App\Http\Controllers\Admins\ReviewAdminController;
+use App\Http\Controllers\Clients\PostDetailController;
 use App\Http\Controllers\Clients\ProductDetailController;
+use App\Http\Controllers\Clients\RecentlyViewedController;
 use App\Http\Controllers\Admins\Trashs\UserTrashController;
 use App\Http\Controllers\Admins\Trashs\StaffTrashController;
 use App\Http\Controllers\Admins\Categories\CategoryController;
+use App\Http\Controllers\Admins\FlashSaleController;
 use App\Http\Controllers\Admins\PostController;
 use App\Http\Controllers\Admins\Trashs\ProductTrashController;
 use App\Http\Controllers\Clients\PostDetailController;
@@ -28,6 +37,7 @@ use App\Http\Controllers\Admins\VoucherController;
 use App\Http\Controllers\Clients\RecentlyViewedController;
 use App\Http\Controllers\Admins\SlideShowController;
 use App\Http\Controllers\Clients\WishlistController;
+use App\Models\FlashSale;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,8 +76,11 @@ Route::middleware(['admin'])->group(function () {
         Route::resource('/product-trash', ProductTrashController::class);
         Route::resource('/categories', CategoryController::class);
         Route::resource('/post', PostController::class);
+        // Route::post('posts/upload', [PostController::class, 'upload'])->name('posts.upload');
         Route::resource('/voucher', VoucherController::class);
+
         Route::post('/slide-show/apply/{id}', [SlideShowController::class, 'apply'])->name('slide-show.apply');
+        Route::resource('/reviews', ReviewAdminController::class);
         Route::resource('/slide-show', SlideShowController::class);
         Route::middleware(['staff'])->group(function () {
             Route::post('/staff-trash/trash', [StaffTrashController::class, 'trash'])->name('staff.trash');
@@ -130,8 +143,13 @@ Route::middleware(['auth'])->group(function () {
 Route::post('/order/{orderId}/product/{orderDetailId}/review', [ReviewController::class, 'store'])->name('client.review.store');
 Route::get('product/{productId}/reviews', [ReviewController::class, 'index'])->name('client.review.index');
 Route::get('product/{productId}/reviews/show', [ReviewController::class, 'show'])->name('client.review.show');
-
+// danh sách đanh giá của sp
+Route::get('/review-product-detail/{id}', [ProductDetailController::class, 'show'])->name('client.product.reviews');
 // blog
 Route::get('/blog', [PostDetailController::class, 'index'])->name('client.blog');
+
+Route::get('/blog-detail/{slug}', [PostDetailController::class, 'blogDetail'])->name('client.blog.detail');
+Route::post('/blog-detail/{post}/comments', [PostDetailController::class, 'storeComment'])->name('comments.store');
+
 Route::get('/blog-detail/{id}', [PostDetailController::class, 'blogDetail'])->name('client.blog.detail');
 Route::post('/blog-detail/{post}/comments', [PostDetailController::class, 'storeComment'])->name('comments.store');

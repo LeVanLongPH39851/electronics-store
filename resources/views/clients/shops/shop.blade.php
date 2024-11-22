@@ -39,6 +39,16 @@
                         <h3 class="sidebar-title">Lọc theo giá</h3>
                         <form method="get" action="{{ route('client.shop') }}">
                             <div class="price_slider_wrapper">
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="1-5" {{$price == '1-5' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id="">  Dưới 5 Triệu</div>
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="5-10" {{ $price == '5-10' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 5 Triệu - 10 Triệu</div>
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="10-20" {{$price == '10-20' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 10 Triệu - 20 Triệu</div>
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="20-30" {{$price == '20-30' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 20 Triệu - 30 Triệu</div>
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="30-40" {{$price == '30-40' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 30 Triệu - 40 Triệu</div>
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="40-50" {{$price == '40-50' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 40 Triệu - 50 Triệu</div>
+                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value=">50" {{$price == '>50' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> Trên 50 Triệu</div>
+                             <div class="price_slider_amount" style="display: flex; justify-content: start">
+                                <button type="submit" class="btn btn-comment">Filter</button>
+                            </div>
                                 <div style="display: flex; margin-bottom: 10px; align-items: center"><input
                                         type="radio" value="1-5" {{ $price == '1-5' ? 'checked' : '' }}
                                         name="price_filter" style="margin-right: 5px" id=""> Dưới 5 Triệu</div>
@@ -72,63 +82,6 @@
                             </div>
                         </form>
                     </div>
-                    <!-- Price Filter Options End -->
-                    <!-- Sidebar Categorie Start -->
-                    {{-- <div class="sidebar-categorie mb-30">
-                        <h3 class="sidebar-title">Màu</h3>
-                        <ul class="sidbar-style">
-                            @foreach ($listColor as $color)
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" id="camera" type="checkbox">
-                                <label class="form-check-label" for="camera">{{$color->name}}</label>
-                            </li>
-                            @endforeach
-
-                        </ul>
-                    </div>
-                    <!-- Sidebar Categorie Start -->
-                    <!-- Product Size Start -->
-                    <div class="size mb-30">
-                        <h3 class="sidebar-title">Ram</h3>
-                        <ul class="size-list sidbar-style">
-                            @foreach ($listSsd as $ram)
-                            <li class="form-check">
-                                <input class="form-check-input" value="" id="small" type="checkbox">
-                                <label class="form-check-label" for="small">{{$ram->name}}</label>
-                            </li>
-                           @endforeach
-
-                        </ul>
-                    </div> --}}
-                    <!-- Product Size End -->
-                    <!-- Product Color Start -->
-                    {{-- <div class="color mb-30">
-                        <h3 class="sidebar-title">color</h3>
-                        <ul class="color-option sidbar-style">
-                            <li>
-                                <span class="white"></span>
-                                <a href="#">white (4)</a>
-                            </li>
-                            <li>
-                                <span class="orange"></span>
-                                <a href="#">Orange (2)</a>
-                            </li>
-                            <li>
-                                <span class="blue"></span>
-                                <a href="#">Blue (6)</a>
-                            </li>
-                            <li>
-                                <span class="yellow"></span>
-                                <a href="#">Yellow (8)</a>
-                            </li>
-                        </ul>
-                    </div> --}}
-                    <!-- Product Color End -->
-                    <!-- Single Banner Start -->
-                    {{-- <div class="sidebar-banner">
-                        <a href="shop.html"><img src="templates/img/banner/10.jpg" alt="slider-banner"></a>
-                    </div> --}}
-                    <!-- Single Banner End -->
                 </div>
             </div>
             <!-- Sidebar Shopping Option End -->
@@ -242,6 +195,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Product Content End -->
                                         </div>
                                     </div>
                                     <!-- Single Product End -->
