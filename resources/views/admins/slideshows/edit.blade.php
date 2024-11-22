@@ -38,8 +38,17 @@
                                         </div>
                                         <p>Hình ảnh hiện tại <span class="text-danger">(Chọn để xóa)</span></p>
                                         <div class="row g-1">
-                                            @foreach ($slideShow->slideShowGalleries as $index => $slideShowGallery)
-                                                <div class="col-2">
+                                            @foreach ($slideShow->slideShowGalleries->sortByDesc('id') as $index => $slideShowGallery)
+                                                <div class="col-3">
+                                                    <select name="orderProducts[{{ $slideShowGallery->id }}]"
+                                                        class="form-select fs-10" style="margin-bottom: 1px">
+                                                        <option value="0">-- Ví trị --</option>
+                                                        @foreach ($slideShow->slideShowGalleries as $key => $value)
+                                                            <option
+                                                                {{ old('orderProducts.' . $slideShowGallery->id, $slideShowGallery->order) == $key + 1 ? 'selected' : '' }}
+                                                                value="{{ $key + 1 }}">{{ $key + 1 }}</option>
+                                                        @endforeach
+                                                    </select>
                                                     <div class="position-relative">
                                                         <img src="{{ '.' . Storage::url($slideShowGallery->image) }}"
                                                             class="w-100 rounded" alt="">
@@ -47,16 +56,10 @@
                                                             name="delete_galleries[{{ $slideShowGallery->id }}]"
                                                             {{ old('delete_galleries.' . $slideShowGallery->id) ? 'checked' : '' }}>
                                                     </div>
-                                                    <select name="linkProducts[{{ $slideShowGallery->id }}]"
-                                                        class="form-select fs-10" style="margin-top: 1px">
-                                                        <option value="0">--</option>
-                                                        @foreach ($products as $product)
-                                                            <option
-                                                                {{ old('linkProducts.' . $slideShowGallery->id, $slideShowGallery->link) == $product->id ? 'selected' : '' }}
-                                                                value="{{ $product->id }}">{{ $product->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
+                                                    <input name="linkProducts[{{ $slideShowGallery->id }}]"
+                                                        class="form-control fs-10" style="margin-top: 1px"/>
+
+
                                                 </div>
                                             @endforeach
                                         </div>
@@ -68,7 +71,7 @@
                             </div><!--end col-->
                             <div class="col-lg-6">
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Ảnh 1 <span
+                                    <label class="col-sm-2 col-form-label text-end">Ảnh <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
                                         <div class="position-relative">
@@ -84,25 +87,20 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Link 1 <span
+                                    <label class="col-sm-2 col-form-label text-end">Link <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <select name="link"
-                                            class="form-select {{ $errors->has('link') ? 'is-invalid' : '' }}">
-                                            <option value="0">-- Chọn link --</option>
-                                            @foreach ($products as $product)
-                                                <option
-                                                    {{ old('link', $slideShow->link_one) == $product->id ? 'selected' : '' }}
-                                                    value="{{ $product->id }}">{{ $product->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="text" name="link"
+                                            value="{{ old('link', $slideShow->link_one) }}"
+                                            placeholder="Nhập link cho slide show"
+                                            class="form-control {{ $errors->has('link') ? 'is-invalid' : '' }}">
                                         @if ($errors->has('link'))
                                             <p class="text-danger mt-1 mb-0">{{ $errors->first('link') }}</p>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Ảnh 2 <span
+                                    <label class="col-sm-2 col-form-label text-end">Ảnh <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
                                         <div class="position-relative">
@@ -119,25 +117,20 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Link 2 <span
+                                    <label class="col-sm-2 col-form-label text-end">Link <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <select name="link2"
-                                            class="form-select {{ $errors->has('link2') ? 'is-invalid' : '' }}">
-                                            <option value="0">-- Chọn link --</option>
-                                            @foreach ($products as $product)
-                                                <option
-                                                    {{ old('link2', $slideShow->link_two) == $product->id ? 'selected' : '' }}
-                                                    value="{{ $product->id }}">{{ $product->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="text" name="link2"
+                                            value="{{ old('link2', $slideShow->link_two) }}"
+                                            placeholder="Nhập link cho slide show"
+                                            class="form-control {{ $errors->has('link2') ? 'is-invalid' : '' }}">
                                         @if ($errors->has('link2'))
                                             <p class="text-danger mt-1 mb-0">{{ $errors->first('link2') }}</p>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Ảnh 3 <span
+                                    <label class="col-sm-2 col-form-label text-end">Ảnh <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
                                         <div class="position-relative">
@@ -154,18 +147,13 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label text-end">Link 3 <span
+                                    <label class="col-sm-2 col-form-label text-end">Link <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <select name="link3"
-                                            class="form-select {{ $errors->has('link3') ? 'is-invalid' : '' }}">
-                                            <option value="0">-- Chọn link --</option>
-                                            @foreach ($products as $product)
-                                                <option
-                                                    {{ old('link3', $slideShow->link_three) == $product->id ? 'selected' : '' }}
-                                                    value="{{ $product->id }}">{{ $product->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="text" name="link3"
+                                            value="{{ old('link3', $slideShow->link_three) }}"
+                                            placeholder="Nhập link cho slide show"
+                                            class="form-control {{ $errors->has('link3') ? 'is-invalid' : '' }}">
                                         @if ($errors->has('link3'))
                                             <p class="text-danger mt-1 mb-0">{{ $errors->first('link3') }}</p>
                                         @endif

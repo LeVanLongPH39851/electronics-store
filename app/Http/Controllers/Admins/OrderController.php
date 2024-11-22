@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     protected $classActive = "Đơn Hàng";
+
     public function index(Request $request) {
         $query = Order::query();
     
@@ -49,8 +50,8 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         if ($order) {
-            $template = 'admins.orders.detail'; //Tạo biến template để include vào content của layout
 
+            $template = 'admins.orders.detail'; //Tạo biến template để include vào content của layout
             return view('admins.layout', [
                 'title' => 'Chi Tiết Đơn Hàng',
                 'template' => $template,

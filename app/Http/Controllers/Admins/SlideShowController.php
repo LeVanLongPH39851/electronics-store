@@ -56,9 +56,9 @@ class SlideShowController extends Controller
             $request->validate(
                 [
                     'name' => 'required|max:100',
-                    'link' => 'required|not_in:0|exists:products,id',
-                    'link2' => 'required|not_in:0|exists:products,id',
-                    'link3' => 'required|not_in:0|exists:products,id',
+                    'link' => 'required',
+                    'link2' => 'required',
+                    'link3' => 'required',
                     "image" => "required|image|mimes:jpeg,png,jpg|max:2048",
                     "image2" => "required|image|mimes:jpeg,png,jpg|max:2048",
                     "image3" => "required|image|mimes:jpeg,png,jpg|max:2048",
@@ -161,14 +161,13 @@ class SlideShowController extends Controller
             $request->validate(
                 [
                     'name' => 'required|max:100',
-                    'link' => 'required|not_in:0|exists:products,id',
-                    'link2' => 'required|not_in:0|exists:products,id',
-                    'link3' => 'required|not_in:0|exists:products,id',
+                    'link' => 'required',
+                    'link2' => 'required',
+                    'link3' => 'required',
                     "image" => "nullable|image|mimes:jpeg,png,jpg|max:2048",
                     "image2" => "nullable|image|mimes:jpeg,png,jpg|max:2048",
                     "image3" => "nullable|image|mimes:jpeg,png,jpg|max:2048",
-                    'galleries.*' => 'image|mimes:jpeg,png,jpg|max:2048',
-
+                    'galleries.*' => 'image|mimes:jpeg,png,jpg|max:2048'
                 ],
                 [
                     'name.required' => 'Không được để trống tên slide show',
@@ -253,15 +252,23 @@ class SlideShowController extends Controller
                     }
                 }
 
+                $checkArr = [];
                 foreach ($request->input('linkProducts') as $index => $link) {
                     $slideShowGallery = SlideShowGallery::find($index);
                     if ($slideShowGallery && $link != 0 && $link != "") {
                         $slideShowGallery->link = $link;
                         $slideShowGallery->save();
                     }
+                    if ($request->input('orderProducts')[$index] != 0 && $request->input('orderProducts')[$index] != "") {
+                        if (in_array($request->input('orderProducts')[$index], $checkArr)) {
+                            return redirect()->back()->with("error", "Vị trí slide show không được trùng");
+                        }
+                        $checkArr[] = $request->input('orderProducts')[$index];
+                        $slideShowGallery->order = (int) $request->input('orderProducts')[$index];
+                        $slideShowGallery->save();
+                    }
                 }
-
-                return redirect()->back()->with("success", "Sửa slide show thành công thành công");
+                return redirect()->back()->with("success", "Sửa slide show thành công");
             }
 
             return redirect()->back()->with("error", "Không tìm thấy slide show");
@@ -277,7 +284,7 @@ class SlideShowController extends Controller
         $slideShow = SlideShow::find($id);
 
         if ($slideShow) {
-
+            SlideShow::orderByDesc('id')->wher->first();
             Storage::disk('public')->delete($slideShow->image_one);
             Storage::disk('public')->delete($slideShow->image_two);
             Storage::disk('public')->delete($slideShow->image_three);
@@ -285,8 +292,11 @@ class SlideShowController extends Controller
                 Storage::disk('public')->delete($slideShowGallery->image);
             }
 
-            $slideShow->delete();
-            
+            $slideShow->delete(); //Xóa vĩnh viễn
+            $slide = SlideShow::orderByDesc('id')->first();
+            $slide->active = "on";
+            $slide->save();
+
             return redirect()->back()->with("success", "Xóa slide show thành công");
         }
 

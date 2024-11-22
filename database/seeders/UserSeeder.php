@@ -27,6 +27,6 @@ class UserSeeder extends Seeder
         ]);
 
         //Taọ 100 bảng ghi từ userFactory
-        User::factory()->count(1000)->create();
+        // User::factory()->count(100)->create();
     }
 }
