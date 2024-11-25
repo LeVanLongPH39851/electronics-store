@@ -58,21 +58,22 @@
           <!-- Categorie Search Box Start Here -->
           <div class="col-lg-6 col-md-12">
             <div class="categorie-search-box">
-              <form action="#">
-                <div class="form-group">
-                  <select class="bootstrap-select" name="poscats">
-                    <option value="0">Tất cả sản phẩm</option>
-                    <option value="2">Electronics</option>
+                <form action="{{ route('client.shop') }}">
+                    <div class="form-group">
+                      <select class="bootstrap-select" name="poscats">
+                        <option value="0">Tất cả sản phẩm</option>
+                        <option value="2">Electronics</option>
 
-                  </select>
-                </div>
-                <input
-                  type="text"
-                  name="search"
-                  placeholder="Tìm kiếm sản phẩm ... "
-                />
-                <button><i class="ion-ios-search"></i></button>
-              </form>
+                      </select>
+                    </div>
+                    <input
+                      type="text"
+                      name="search"
+                      value="{{ request('search') }}"
+                      placeholder="Tìm kiếm sản phẩm ... "
+                    />
+                    <button class="btn btn-success"><i class="fa fa-search"></i></button>
+                  </form>
             </div>
           </div>
           <!-- Categorie Search Box End Here -->

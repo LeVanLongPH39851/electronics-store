@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Clients;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Ssd;
+use App\Models\Brand;
 use App\Models\Color;
 use App\Models\Product;
-use App\Models\Ssd;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ShopController extends Controller
 {
@@ -17,7 +18,7 @@ class ShopController extends Controller
         $listDanhMuc = Category::all();
         $listColor = Color::all();
         $listSsd = Ssd::all();
-
+        $listBrand=Brand::all();
 
         $listProduct = Product::withMin('productVariants', 'price')
             ->withMax('productVariants', 'price')
@@ -28,7 +29,9 @@ class ShopController extends Controller
         if ($request->input('category')) {
             $listProduct = $listProduct->where('category_id', $request->input('category'));
         }
-
+        if ($request->input('brands')) {
+            $listProduct = $listProduct->where('brand_id', $request->input('brands'));
+        }
         if ($request->input('search')) {
             $listProduct = $listProduct->where('name', "LIKE", "%" . $request->input('search') . "%");
         }
@@ -108,6 +111,7 @@ class ShopController extends Controller
                 "listSsd" => $listSsd,
                 "listProduct" => $listProduct,
                 'price' =>  $price,
+                "listBrand"=>$listBrand
 
             ]
         );
