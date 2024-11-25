@@ -39,16 +39,6 @@
                         <h3 class="sidebar-title">Lọc theo giá</h3>
                         <form method="get" action="{{ route('client.shop') }}">
                             <div class="price_slider_wrapper">
-                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="1-5" {{$price == '1-5' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id="">  Dưới 5 Triệu</div>
-                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="5-10" {{ $price == '5-10' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 5 Triệu - 10 Triệu</div>
-                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="10-20" {{$price == '10-20' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 10 Triệu - 20 Triệu</div>
-                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="20-30" {{$price == '20-30' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 20 Triệu - 30 Triệu</div>
-                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="30-40" {{$price == '30-40' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 30 Triệu - 40 Triệu</div>
-                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value="40-50" {{$price == '40-50' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> 40 Triệu - 50 Triệu</div>
-                             <div style="display: flex; margin-bottom: 10px; align-items: center"><input type="radio" value=">50" {{$price == '>50' ? 'checked' : ''}} name="price_filter" style="margin-right: 5px" id=""> Trên 50 Triệu</div>
-                             <div class="price_slider_amount" style="display: flex; justify-content: start">
-                                <button type="submit" class="btn btn-comment">Filter</button>
-                            </div>
                                 <div style="display: flex; margin-bottom: 10px; align-items: center"><input
                                         type="radio" value="1-5" {{ $price == '1-5' ? 'checked' : '' }}
                                         name="price_filter" style="margin-right: 5px" id=""> Dưới 5 Triệu</div>
@@ -101,6 +91,17 @@
                                 class="form-control me-2" placeholder="Tìm kiếm sản phẩm">
                             <button class="btn btn-success"><i class="fa fa-search"></i></button>
                         </div>
+                        <div class="">
+                            <select class="brand-select" onchange="window.location.href=this.value;">
+                                <option value="">Chọn Thương Hiệu</option>
+                                @foreach ($listBrand as $brand)
+                                    <option value="{{ route('client.shop') }}?brands={{ $brand->id }}"
+                                        @if(request()->input('brands') == $brand->id) selected @endif>
+                                        {{ $brand->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                         <!-- Toolbar Short Area Start -->
                         <div class="main-toolbar-sorter clearfix">
                             <div class="toolbar-sorter d-md-flex align-items-center">
@@ -143,13 +144,11 @@
                                                     <img class="primary-img" src="{{ asset('storage/' . $value->image) }}" alt="single-product">
                                                     <img class="secondary-img" src="{{ asset('storage/' . $value->galleries->first()->path) }}" alt="single-product">
                                                 </a>
-                                                
                                                 <form id="add-viewed-{{ $value->id }}" action="{{ route('client.product.addRecentlyViewed', $value->id) }}" method="POST" style="display: none;">
                                                     @csrf
                                                 </form>
                                             </div>
                                             <!-- Product Image End -->
-                                            
                                             <!-- Product Content Start -->
                                             <div class="pro-content">
                                                 <div class="pro-info">
@@ -160,7 +159,6 @@
                                                             $fullStars = floor($averageRating);
                                                             $halfStar = $averageRating - $fullStars;
                                                         @endphp
-                            
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $fullStars)
                                                                 <i class="fa-solid fa-star" style="color: gold;"></i>
@@ -178,7 +176,7 @@
                                                     </p>
                                                 </div>
                                                 <!-- Product Content End -->
-                                                
+
                                                 <div class="pro-actions">
                                                     <div class="actions-primary">
                                                         <a href="{{ route('client.product.detail', $value->id) }}" class="px-1" data-bs-toggle="tooltip"
@@ -202,7 +200,7 @@
                                 @empty
                                     <p class="text-danger">Không có sản phẩm nào</p>
                                 @endforelse
-                            </div>                                                
+                            </div>
                             <!-- Row End -->
                         </div>
                         {{ $listProduct->appends(request()->query())->links('pagination::bootstrap-5') }}
