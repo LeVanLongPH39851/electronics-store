@@ -20,10 +20,21 @@ class ShopController extends Controller
         $listSsd = Ssd::all();
         $listBrand=Brand::all();
 
+        $colorId = $request->input('color_id');
+        $ssdId = $request->input('ssd_id');
+
         $listProduct = Product::withMin('productVariants', 'price')
             ->withMax('productVariants', 'price')
             ->withSum('productVariants', 'quantity')
-            ->withAvg('reviews', 'star');
+            ->withAvg('reviews', 'star')
+            ->whereHas('productVariants', function ($query) use ($colorId, $ssdId) {
+                if (!empty($colorId)) {
+                    $query->where('color_id', $colorId);
+                }
+                if (!empty($ssdId)) {
+                    $query->where('ssd_id', $ssdId);
+                }
+            });
 
         // Lọc theo danh mục
         if ($request->input('category')) {
