@@ -70,6 +70,27 @@
                                     <button type="submit" class="btn btn-success">Filter</button>
                                 </div>
                             </div>
+                            <div class="container mt-5">
+                                <div class="row g-3 align-items-center">
+                                    <!-- Bộ lọc Màu sắc -->
+                                    <div class="col-md-6">
+                                        <label for="" class="form-label"> Lọc theo màu </label>
+                                        <select id="" class="form-" onchange="window.location.href=this.value;">
+                                            <option value="{{ route('client.shop') }}?{{ http_build_query(request()->except('color_id')) }}">
+                                               Chọn màu
+                                            </option>
+                                            @foreach($listColor as $color)
+                                                <option value="{{ route('client.shop') }}?{{ http_build_query(array_merge(request()->except('color_id'), ['color_id' => $color->id])) }}"
+                                                    @if(request()->input('color_id') == $color->id) selected @endif>
+                                                    {{ $color->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                 
+                            </div>
+
                         </form>
                     </div>
                 </div>
