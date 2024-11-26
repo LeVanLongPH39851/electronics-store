@@ -88,7 +88,22 @@
                                         </select>
                                     </div>
                                 </div>
-                                 
+                                <div class="row g-3 align-items-center">
+                                    <!-- Bộ lọc SSD -->
+                                    <div class="col-md-6">
+                                        <label for="" class="form-label">Lọc theo SSD</label>
+                                        <select id="" class="form" onchange="window.location.href=this.value;">
+                                            <option value="{{ route('client.shop') }}?{{ http_build_query(request()->except('ssd_id')) }}">
+                                               Chon SSD
+                                            </option>
+                                            @foreach($listSsd as $ssd)
+                                                <option value="{{ route('client.shop') }}?{{ http_build_query(array_merge(request()->except('ssd_id'), ['ssd_id' => $ssd->id])) }}"
+                                                    @if(request()->input('ssd_id') == $ssd->id) selected @endif>
+                                                    {{ $ssd->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                             </div>
 
                         </form>
