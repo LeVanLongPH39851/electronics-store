@@ -324,6 +324,24 @@
                         </a>
                         <!--end startbarElements-->
                     </li>
+                    <li class="nav-item">
+                      <a
+                        class="nav-link {{$classActive === "Bài viết" ? "active bg-active" : ""}}"
+                        href="{{ route('post.index') }}"
+                      >
+                        <i class="fas fas fa-file-alt menu-icon {{$classActive === "Bài viết" ? "text-primary" : ""}}"></i>
+                        <span>Bài viết</span>
+                      </a>
+                  </li>
+                    <li class="nav-item">
+                      <a
+                        class="nav-link {{$classActive === "Đánh giá" ? "active bg-active" : ""}}"
+                        href="{{ route('reviews.index') }}"
+                      >
+                        <i class="fas fa-list menu-icon {{$classActive === "Đánh giá" ? "text-primary" : ""}}"></i>
+                        <span>Đánh giá</span>
+                      </a>
+                  </li>
                 </ul>
                 <!--end navbar-nav--->
             </div>
